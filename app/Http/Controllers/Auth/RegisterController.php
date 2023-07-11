@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -69,5 +71,34 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $response = Http::post('http://spatierolepermission.test/api/register', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => $request->role, // Assuming the role is provided in the request
+        ]);
+
+        // Check if the request was successful
+        if ($response->successful()) {
+            $data = $response->json();
+
+            // Extract the registered user data from the response
+            $user = $data['user'];
+
+            // Authenticate the user
+            // Assuming you have a User model and the authentication logic
+            auth()->loginUsingId($user['id']);
+
+            // Redirect or return a response based on successful registration
+            return redirect()->route('home'); // Adjust the route as per your application's needs
+        }
+
+        // Handle failed registration
+        // For example, return an error message or redirect back to the registration page
+        return redirect()->route('register')->with('error', 'Registration failed');
     }
 }
