@@ -20,4 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*==============================================================
+======================< Administration Routes >=================
+==============================================================*/
+Route::middleware(['auth'])->group(function () {
+    include_once 'administration/administration.php';
+});

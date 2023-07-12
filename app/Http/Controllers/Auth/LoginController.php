@@ -30,7 +30,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -67,7 +68,7 @@ class LoginController extends Controller
             auth()->login($user);
 
             // Redirect or return a response based on successful login
-            return redirect()->route('home'); // Adjust the route as per your application's needs
+            return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
         }
 
         // Handle failed login
