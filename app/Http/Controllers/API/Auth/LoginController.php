@@ -17,10 +17,12 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $authUser = Auth::user();
-            $role = $authUser->role; // Get the user's role from the 'role' column or JSON field
-            $permissions = $this->getPermissionsForRole($role); // Implement the logic to retrieve permissions based on the role
 
-            $token = $authUser->createToken('authToken', $permissions)->plainTextToken;
+            // $role = $authUser->role; // Get the user's role from the 'role' column or JSON field
+            // $permissions = $this->getPermissionsForRole($role); // Implement the logic to retrieve permissions based on the role
+            // $token = $authUser->createToken('authToken', $permissions)->plainTextToken;
+            
+            $token = $authUser->createToken('authToken')->plainTextToken;
 
             // Get Auth User
             $user = new UserResource(auth()->user());

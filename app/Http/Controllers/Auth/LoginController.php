@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -73,4 +74,33 @@ class LoginController extends Controller
         // For example, return an error message or redirect back to the login page
         return redirect()->route('login')->with('error', 'Invalid credentials');
     }
+    
+
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user) {
+            $user->tokens()->delete();
+
+            // Call the logout API endpoint
+            $response = Http::post('http://spatierolepermission.test/api/logout', [
+                'token' => $request->session()->get('access_token'),
+            ]);
+
+            // Check if the request was successful
+            if ($response->successful()) {
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                Auth::guard('web')->logout();
+
+                return redirect()->route('login')->with('message', 'Logged out successfully');
+            }
+        }
+
+        // Handle failed logout or when the user is not authenticated
+        // For example, return an error message or redirect back to the home page
+        return redirect()->route('home')->with('error', 'Failed to logout');
+    }
+
 }
