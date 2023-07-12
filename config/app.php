@@ -170,7 +170,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
-        // Helper Package
+        // RealRashid SweetAlertServiceProvider (https://realrashid.github.io/sweet-alert/install)
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+        // browner12/helpers (https://github.com/browner12/helpers)
         browner12\helpers\HelperServiceProvider::class,
     ])->toArray(),
 
@@ -186,7 +189,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        // RealRashid SweetAlertServiceProvider (https://realrashid.github.io/sweet-alert/install)
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ])->toArray(),
 
 ];
