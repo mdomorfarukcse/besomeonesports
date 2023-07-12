@@ -6,7 +6,7 @@
         {{-- Meta Ends --}}
         
         {{--  Page Title  --}}
-        <title> {{ config('app.name') }} | {{ __('Role_Name') }} | @yield('page_title') </title>
+        <title> {{ config('app.name') }} | @yield('page_title') </title>
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
 
