@@ -75,7 +75,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $response = Http::post('http://spatierolepermission.test/api/register', [
+        $response = Http::post(config('app.url').'/api/register', [
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
@@ -94,7 +94,7 @@ class RegisterController extends Controller
             auth()->loginUsingId($user['id']);
 
             // Redirect or return a response based on successful registration
-            return redirect()->route('home'); // Adjust the route as per your application's needs
+            return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
         }
 
         // Handle failed registration
