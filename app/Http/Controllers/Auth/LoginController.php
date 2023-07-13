@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $response = Http::post('http://spatierolepermission.test/api/login', [
+        $response = Http::post(config('app.url').'/api/login', [
             'email' => $request->email,
             'password' => $request->password,
         ]);
@@ -85,7 +85,7 @@ class LoginController extends Controller
             $user->tokens()->delete();
 
             // Call the logout API endpoint
-            $response = Http::post('http://spatierolepermission.test/api/logout', [
+            $response = Http::post(config('app.url').'/api/logout', [
                 'token' => $request->session()->get('access_token'),
             ]);
 
