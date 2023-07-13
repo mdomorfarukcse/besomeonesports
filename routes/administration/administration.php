@@ -10,6 +10,9 @@ Route::prefix('administration')
         ->group(function () {
             // Dashboard
             include_once 'dashboard/dashboard.php';
+            
+            // season
+            include_once 'season/season.php';
 
             // settings
             include_once 'settings/settings.php';
