@@ -20,6 +20,18 @@
                 </li>
 
                 <li>
+                    <a href="javaScript:void();"> 
+                        <i class="sl-icon-layers"></i>
+                        <span>Seasons</span>
+                        <i class="feather icon-chevron-right pull-right"></i> 
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('administration.season.index') }}">Seasons</a></li>
+                        <li><a href="add_season.html">Add Seasons</a></li>
+                    </ul>
+                </li>
+
+                <li>
                     <a href="javaScript:void(0);">
                         <i class="sl-icon-settings"></i>
                         <span>{{ __('Settings') }}</span>
@@ -43,6 +55,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="javaScript:void(0);">{{ __('Role') }}
                                 <i class="feather icon-chevron-right pull-right"></i>
