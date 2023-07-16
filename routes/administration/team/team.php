@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administration\Season\SeasonController;
+use App\Http\Controllers\Administration\Team\TeamController;
 
 /* ==============================================
-===============< Season Routes >==============
+===============< Sport Routes >==============
 ===============================================*/
-Route::controller(SeasonController::class)->prefix('season')->name('season.')->group(function () {
+Route::controller(TeamController::class)->prefix('team')->name('team.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
 });

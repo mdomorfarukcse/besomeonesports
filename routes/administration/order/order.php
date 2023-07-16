@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Administration\Order\OrderController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administration\Season\SeasonController;
 
 /* ==============================================
-===============< Season Routes >==============
+===============< Order Routes >==============
 ===============================================*/
-Route::controller(SeasonController::class)->prefix('season')->name('season.')->group(function () {
+Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
 });

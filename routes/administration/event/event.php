@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Administration\Event\EventController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administration\Season\SeasonController;
 
 /* ==============================================
-===============< Season Routes >==============
+===============< Event Routes >==============
 ===============================================*/
-Route::controller(SeasonController::class)->prefix('season')->name('season.')->group(function () {
+Route::controller(EventController::class)->prefix('event')->name('event.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
 });

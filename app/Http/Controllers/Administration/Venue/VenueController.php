@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Administration\Season;
+namespace App\Http\Controllers\Administration\Venue;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SeasonController extends Controller
+class VenueController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('administration.season.index');
+        return view('administration.venue.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class SeasonController extends Controller
      */
     public function create()
     {
-        return view('administration.season.create');
+        return view('administration.venue.create');
     }
 
     /**

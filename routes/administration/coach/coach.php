@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Administration\Coach\CoachController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administration\Season\SeasonController;
+
 
 /* ==============================================
-===============< Season Routes >==============
+===============< Coach Routes >==============
 ===============================================*/
-Route::controller(SeasonController::class)->prefix('season')->name('season.')->group(function () {
+Route::controller(CoachController::class)->prefix('coach')->name('coach.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
 });
