@@ -11,9 +11,42 @@ Route::prefix('administration')
             // Dashboard
             include_once 'dashboard/dashboard.php';
             
-            // season
+            // Seasons
             include_once 'season/season.php';
 
-            // settings
+            // Events
+            include_once 'event/event.php';
+
+            // Division
+            include_once 'division/division.php';
+            
+            // Player
+            include_once 'player/player.php';
+            
+            // Coach
+            include_once 'coach/coach.php';
+            
+            // Team
+            include_once 'team/team.php';
+            
+            // Venue
+            include_once 'venue/venue.php';
+            
+            // Schedule
+            include_once 'schedule/schedule.php';
+
+            // Chat
+            include_once 'chat/chat.php';
+            
+            // Product
+            include_once 'product/product.php';
+            
+            // Order
+            include_once 'order/order.php';
+            
+            // Sport
+            include_once 'sport/sport.php';
+
+            // Settings
             include_once 'settings/settings.php';
         });

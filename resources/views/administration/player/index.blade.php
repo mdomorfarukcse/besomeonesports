@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Season'))
+@section('page_title', __('Player'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -20,19 +20,18 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Season') }}</b>
+    <b class="text-uppercase">{{ __('Player') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Season') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Player') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start row -->
 <!-- Start row -->
 <div class="row">
     <!-- Start col -->
@@ -41,7 +40,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <h5 class="card-title mb-0">All Season</h5>
+                        <h5 class="card-title mb-0">All Player</h5>
                     </div>
                 </div>
             </div>
@@ -51,55 +50,56 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Sport</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Parent Name</th>
+                                <th>Parent Phone</th>
                                 <th>Status</th>
-                                <th>Season</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Basketball</td>
-                                <td>
-                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
-                                    <span class="badge badge-secondary badge-info"><span class="fa fa-xs fa-check"></span> Default</span>
-                                </td>
-                                <td><a href="#">2023-2024 Winter</a></td>
+                                <td>Aaron Williams</td>
+                                <td>2816872404</td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_player.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>Football</td>
-                                <td>
-                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
-                                </td>
-                                <td><a href="#">2023 2023</a></td>
+                                <td>Test Williams</td>
+                                <td>2816872404</td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="badge badge-danger">In-Active</span></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_player.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Basketball</td>
-                                <td>
-                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
-                                </td>
-                                <td><a href="#">2023</a></td>
+                                <td>Aaron Tests</td>
+                                <td>2816872404</td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_player.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
@@ -112,7 +112,7 @@
     </div>
     <!-- End col -->
 </div>
-<!-- End row -->
+
 <!-- End row -->
 
 @endsection

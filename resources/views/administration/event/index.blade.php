@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Season'))
+@section('page_title', __('Event'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -20,19 +20,18 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Season') }}</b>
+    <b class="text-uppercase">{{ __('Event') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Season') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Event') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start row -->
 <!-- Start row -->
 <div class="row">
     <!-- Start col -->
@@ -41,7 +40,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <h5 class="card-title mb-0">All Season</h5>
+                        <h5 class="card-title mb-0">All Event</h5>
                     </div>
                 </div>
             </div>
@@ -52,54 +51,74 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Sport</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Location</th>
                                 <th>Season</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">`1</th>
                                 <td>Basketball</td>
+                                <td><a href="#">Be Someone Sports Summer Basketball Leagues</a></td>
+                                <td>Jun 5 - Aug 14, 2023</td>
+                                <td>Alvin, TX</td>
+                                <td>2023</td>
                                 <td>
                                     <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
-                                    <span class="badge badge-secondary badge-info"><span class="fa fa-xs fa-check"></span> Default</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> App</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Marketing</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Registration</span>
                                 </td>
-                                <td><a href="#">2023-2024 Winter</a></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_event.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Football</td>
+                                <th scope="row">`1</th>
+                                <td>Basketball</td>
+                                <td><a href="#">Be Someone Sports Summer Sports Camp</a></td>
+                                <td>Jun 5 - Aug 6, 2023</td>
+                                <td>Alvin, TX</td>
+                                <td>2023</td>
                                 <td>
                                     <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> App</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Marketing</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Registration</span>
                                 </td>
-                                <td><a href="#">2023 2023</a></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_event.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
+                                <th scope="row">`1</th>
                                 <td>Basketball</td>
+                                <td><a href="#">Summer Sizzler</a></td>
+                                <td>Jul 15-16, 2023</td>
+                                <td>Alvin, TX</td>
+                                <td>2023</td>
                                 <td>
                                     <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Active</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> App</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Marketing</span>
+                                    <span class="badge badge-secondary badge-success"><span class="fa fa-xs fa-check"></span> Registration</span>
                                 </td>
-                                <td><a href="#">2023</a></td>
                                 <td>
                                     <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba" title="Details"><i class="feather icon-file"></i></a>
-                                        <a href="add_season.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                        <a href="add_event.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
                                         <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
                                     </div>
                                 </td>
@@ -112,7 +131,7 @@
     </div>
     <!-- End col -->
 </div>
-<!-- End row -->
+
 <!-- End row -->
 
 @endsection
