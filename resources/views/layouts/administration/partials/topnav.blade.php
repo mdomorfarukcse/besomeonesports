@@ -17,13 +17,6 @@
             </div>
             <div class="infobar">
                 <ul class="list-inline mb-0">
-                    <li class="list-inline-item role-select">
-                        <select class="form-control" id="selectRoleNavbar" name="role">
-                            <option value="1" selected>Administration</option>
-                            <option value="2">Manager</option>
-                            <option value="3">Marketting</option>
-                        </select>
-                    </li>
                     <li class="list-inline-item mt-2">
                         <div class="languagebar">
                             <div class="dropdown">
@@ -41,22 +34,33 @@
                         <div class="profilebar">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="{{ asset('assets/images/users/profile.svg') }}" class="img-fluid" alt="profile" /><span class="feather icon-chevron-down live-icon"></span>
+                                    <img src="https://loremflickr.com/500/500/girl/all" class="img-fluid rounded-circle" alt="profile" /><span class="feather icon-chevron-down live-icon"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                     <div class="dropdown-item">
-                                        <div class="profilename">
+                                        <div class="profilename pt-3">
+                                            <img src="https://loremflickr.com/500/500/girl/all" class="img-fluid rounded-circle" alt="profile" />
                                             <h5>{{ Auth::user()->name }}</h5>
+                                            <small class="text-muted text-capitalize">{{ Auth::user()->roles[0]->name }}</small>
                                         </div>
                                     </div>
                                     <div class="userbox">
                                         <ul class="list-unstyled mb-0">
                                             <li class="media dropdown-item">
-                                                <a href="#" class="profile-icon"><img src="{{ asset('assets/images/svg-icon/user.svg') }}" class="img-fluid" alt="user" />My Profile</a>
+                                                <a href="#" class="profile-icon">
+                                                    <i class="feather icon-user"></i>
+                                                    My Profile
+                                                </a>
+                                            </li>
+                                            <li class="media dropdown-item">
+                                                <a href="#" class="profile-icon">
+                                                    <i class="feather icon-settings"></i>
+                                                    Settings
+                                                </a>
                                             </li>
                                             <li class="media dropdown-item">
                                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="profile-icon">
-                                                    <img src="{{ asset('assets/images/svg-icon/logout.svg') }}" class="img-fluid" alt="logout" />
+                                                    <i class="feather icon-log-out"></i>
                                                     <span>Logout</span>
                                                 </a>
 
