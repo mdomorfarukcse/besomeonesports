@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('season_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('restrict');
+
+            $table->string('name', 100)->unique();
+            $table->date('start');
+            $table->date('end');
+            $table->text('description')->nullable();
+            $table->enum('status', ['Active', 'Inactive'])->default('Active');
+
             $table->timestamps();
             $table->softDeletes();
         });
