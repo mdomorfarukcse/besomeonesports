@@ -2,16 +2,16 @@
 
 namespace App\Models\Player\Traits;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Team\Team;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
 {
     /**
-     * Get the user that owns the phone.
+     * The teams that belong to the player.
      */
-    public function user(): BelongsTo
+    public function teams(): BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Team::class);
     }
 }

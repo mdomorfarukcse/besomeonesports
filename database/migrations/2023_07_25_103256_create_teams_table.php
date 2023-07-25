@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('team_id', 20)->unique();
             
-            $table->foreignId('sport_id')
+            $table->foreignId('event_id')
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
@@ -27,9 +27,11 @@ return new class extends Migration
 
             $table->foreignId('coach_id')
                   ->nullable()
-                  ->constrained('users');
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
 
-            $table->string('name', 100)->unique();
+            $table->string('name', 100);
             $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
             $table->tinyInteger('maximum_players')->nullable();
             $table->text('description')->nullable();

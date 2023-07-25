@@ -18,6 +18,11 @@ return new class extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('restrict');
+            
+            $table->foreignId('sport_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->string('name', 100)->unique();
             $table->date('start');

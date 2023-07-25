@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Season\Traits;
+namespace App\Models\Sport\Traits;
 
 use App\Models\Event\Event;
 use Illuminate\Database\Eloquent\Relations\HasMany;
