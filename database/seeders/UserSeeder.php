@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
             $user_delete
         ]);
 
-        $user_role = Role::create(['name' => 'user']);
-        $user_role->givePermissionTo([
+        $coach_role = Role::create(['name' => 'coach']);
+        $coach_role->givePermissionTo([
             $user_index,
             $user_read
         ]);
@@ -43,13 +43,13 @@ class UserSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => bcrypt('12345678')
         ]);
-        $user = User::create([
-            'name' => 'Demo User',
-            'email' => 'user@mail.com',
+        $coach = User::create([
+            'name' => 'Demo Coach',
+            'email' => 'coach@mail.com',
             'password' => bcrypt('12345678')
         ]);
         
         $admin->assignRole($admin_role);
-        $user->assignRole($user_role);
+        $coach->assignRole($coach_role);
     }
 }
