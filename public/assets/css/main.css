@@ -34,6 +34,7 @@ button:active {
 .form-control[readonly] {
     background-color: #f7faff;
     border-color: #f7faff;
+    color: #111111;
 }
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(199, 199, 199, 0.479);
