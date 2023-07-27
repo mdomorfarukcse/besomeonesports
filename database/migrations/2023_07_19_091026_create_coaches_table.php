@@ -24,6 +24,7 @@ return new class extends Migration
                   ->comment('The Coach ID Prefix Should be BSSCOACH. The coach ID Example: BSSCOACH202302010001');
 
             $table->string('first_name', 50);
+            $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
             $table->string('position', 50)->default('Coach');
             $table->date('birthdate');
@@ -34,7 +35,7 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 10);
             $table->string('usab_license_no', 20)->unique();
-            $table->string('note', 255)->nullable();
+            $table->longText('note', 255)->nullable();
 
             $table->enum('status', [
                 'Active', 

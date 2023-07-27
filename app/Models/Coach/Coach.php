@@ -13,4 +13,14 @@ class Coach extends Model
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
     protected $cascadeDeletes = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($coach) {
+            // Prefix 'BSCOACH' to the 'coach_id' attribute
+            $coach->coach_id = 'BSCOACH' . $coach->coach_id;
+        });
+    }
 }
