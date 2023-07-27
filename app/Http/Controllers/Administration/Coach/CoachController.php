@@ -19,7 +19,14 @@ class CoachController extends Controller
      */
     public function index()
     {
-        return view('administration.coach.index');
+        $coaches = Coach::select(['id', 'user_id', 'coach_id', 'position', 'phone_number'])
+                            ->with([
+                                'user' => function($user) {
+                                    $user->select(['id', 'name', 'email']);
+                                }
+                            ])->get();
+
+        return view('administration.coach.index', compact(['coaches']));
     }
 
     /**
