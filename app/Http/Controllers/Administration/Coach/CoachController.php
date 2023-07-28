@@ -19,7 +19,7 @@ class CoachController extends Controller
      */
     public function index()
     {
-        $coaches = Coach::select(['id', 'user_id', 'coach_id', 'position', 'phone_number'])
+        $coaches = Coach::select(['id', 'user_id', 'coach_id', 'phone_number', 'status'])
                             ->with([
                                 'user' => function($user) {
                                     $user->select(['id', 'name', 'email']);

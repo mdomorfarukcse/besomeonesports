@@ -61,7 +61,6 @@
                             <tr>
                                 <th>Sl.</th>
                                 <th>Coach ID (CID)</th>
-                                <th>Position</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
@@ -74,7 +73,6 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
                                     <td>{{ $coach->coach_id }}</td>
-                                    <td>{{ $coach->position }}</td>
                                     <td>
                                         {{ $coach->user->name }}
                                     </td>
