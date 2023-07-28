@@ -22,9 +22,9 @@ class CoachController extends Controller
         $coaches = Coach::select(['id', 'user_id', 'coach_id', 'phone_number', 'status'])
                             ->with([
                                 'user' => function($user) {
-                                    $user->select(['id', 'name', 'email']);
+                                    $user->select(['id', 'name', 'email', 'avatar']);
                                 }
-                            ])->get();
+                            ])->orderBy('created_at', 'desc')->get();
 
         return view('administration.coach.index', compact(['coaches']));
     }
@@ -48,11 +48,14 @@ class CoachController extends Controller
         try {
             DB::transaction(function() use ($request) {
                 $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+
+                $avatar = upload_avatar($request, 'avatar');
                 // Store Credentials into User
                 $user = User::create([
                     'name' => $coachName,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
+                    'avatar' => $avatar,
                 ]);
         
                 // Assign the provided role to the user
@@ -85,7 +88,7 @@ class CoachController extends Controller
             }, 5);
 
             toast('A New Coach Has Been Created.','success');
-            return redirect()->back();
+            return redirect()->route('administration.coach.index');
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             // dd($e);

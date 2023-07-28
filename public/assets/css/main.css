@@ -24,6 +24,14 @@ button:active {
     float: right !important;
 }
 
+.table.dataTable {
+    width: 100% !important;
+}
+.table-avatar {
+    height: 50px;
+    width: 50px;
+}
+
 /* ================< Input Fields >=================== */
 .required {
     color: rgb(255, 0, 0);
