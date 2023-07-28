@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
             $table->tinyInteger('maximum_players')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();

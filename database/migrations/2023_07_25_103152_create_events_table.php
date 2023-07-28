@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('name', 100)->unique();
             $table->date('start');
             $table->date('end');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
 
             $table->timestamps();

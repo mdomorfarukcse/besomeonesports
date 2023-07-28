@@ -4,7 +4,7 @@
     <div class="sidebar">
         <!-- Start Logobar -->
         <div class="logobar">
-            <a href="#" class="logo logo-large"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
+            <a href="#" class="logo logo-large"><img src="{{ asset('assets/images/logo.svg') }}" class="img-fluid" alt="logo" /></a>
             <a href="#" class="logo logo-small"><img src="{{ asset('assets/images/small_logo.svg') }}" class="img-fluid" alt="logo" /></a>
         </div>
         <!-- End Logobar -->
@@ -75,8 +75,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.coach.index') }}">Coaches</a></li>
-                        <li><a href="{{ route('administration.coach.create') }}">Add Coach</a></li>
+                        <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
+                        <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
                     </ul>
                 </li>
                 

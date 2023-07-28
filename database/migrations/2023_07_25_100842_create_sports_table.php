@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();
