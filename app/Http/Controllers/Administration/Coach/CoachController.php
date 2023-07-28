@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Admistration\Coach\CoachRequest;
+use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 
 class CoachController extends Controller
 {
@@ -41,7 +41,7 @@ class CoachController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CoachRequest $request)
+    public function store(CoachStoreRequest $request)
     {
         // dd($request->all());
 

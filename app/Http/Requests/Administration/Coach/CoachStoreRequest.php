@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admistration\Coach;
+namespace App\Http\Requests\Administration\Coach;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CoachRequest extends FormRequest
+class CoachStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
