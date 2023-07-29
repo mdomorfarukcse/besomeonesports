@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Add New Sport'))
+@section('page_title', __('Create New Sport'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,12 +25,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Add New Sport') }}</b>
+    <b class="text-uppercase">{{ __('Create New Sport') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Add New Sport') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Sport') }}</li>
 @endsection
 
 
@@ -101,7 +101,10 @@
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')

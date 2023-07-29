@@ -125,8 +125,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.sport.index') }}">Sports</a></li>
-                        <li><a href="{{ route('administration.sport.create') }}">Add Sports</a></li>
+                        <li><a href="{{ route('administration.sport.index') }}">All Sports</a></li>
+                        <li><a href="{{ route('administration.sport.create') }}">Create New Sport</a></li>
                     </ul>
                 </li>
 

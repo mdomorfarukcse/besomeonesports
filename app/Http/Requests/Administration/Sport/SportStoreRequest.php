@@ -22,7 +22,20 @@ class SportStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:sports,name']
+            'name' => ['required', 'string', 'unique:sports,name'],
+            "status" => ['required','in:Active,Inactive'],
+        ];
+    }
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }
 }
