@@ -9,4 +9,5 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PlayerController::class)->prefix('player')->name('player.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
 });

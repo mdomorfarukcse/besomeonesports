@@ -47,7 +47,7 @@ return new class extends Migration
             $table->string('mother_contact', 20)->nullable();
 
             // Local Guardian Info
-            $table->string('relation', 100);
+            $table->string('guardian_relation', 100);
             $table->string('guardian_name', 100);
             $table->string('guardian_number', 100);
             $table->string('guardian_email', 100)->nullable();
