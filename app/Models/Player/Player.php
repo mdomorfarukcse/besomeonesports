@@ -13,4 +13,14 @@ class Player extends Model
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
     protected $cascadeDeletes = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($player) {
+            // Prefix 'BSPLAYER' to the 'player_id' attribute
+            $player->player_id = 'BSPLAYER' . $player->player_id;
+        });
+    }
 }
