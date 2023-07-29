@@ -5,27 +5,42 @@
 
 @endsection
 
-@section('page_title', __('Venue'))
+@section('page_title', __('All Venues'))
 
 @section('css_links')
     {{--  External CSS  --}}
 @endsection
 
 @section('custom_css')
-    {{--  External CSS  --}}
-    <style>
-    /* Custom CSS Here */
-    </style>
+    <!-- DataTables css -->
+    <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Responsive Datatable css -->
+    <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
+@section('custom_css')
+{{--  External CSS  --}}
+<style>
+  /* Custom CSS Here */
+</style>
+@endsection
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Venue') }}</b>
+    <b class="text-uppercase">{{ __('All Venues') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Venue') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Venues') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('All Venues') }}</li>
+@endsection
+
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.venue.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-plus"></i>
+        <b>Create New Venue</b>
+    </a>
 @endsection
 
 
@@ -50,56 +65,33 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Abbr</th>
                                 <th>Name</th>
                                 <th>Courts</th>
                                 <th>Location</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>FHS</td>
-                                <td><a href="#">Friendswood High School</a></td>
-                                <td>Boys Gym Goal 1, Boys Gym goal 2, Boys Gym Goal 3, Boys Gym Goal 4</td>
-                                <td>Friendswood , TX</td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="courts.html" class="btn btn-primary-rgba" title="court"><i class="feather icon-award"></i></a>
-                                        <a href="add_venue.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>OJH</td>
-                                <td><a href="#">Old Jr High</a></td>
-                                <td>Boys Gym Goal 1, Boys Gym goal 2, Boys Gym Goal 3, Boys Gym Goal 4</td>
-                                <td>Friendswood , TX</td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="add_venue.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>FWJH</td>
-                                <td><a href="#"> Friendswood Jr High</a></td>
-                                <td>Boys Gym Goal 1, Boys Gym goal 2, Boys Gym Goal 3, Boys Gym Goal 4</td>
-                                <td>Friendswood , TX</td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="add_venue.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($venues as $sl => $venue)
+                                <tr>
+                                    <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
+                                    <td>{{ $venue->name }}</td>
+                                    <td></td>
+                                    <td>{{ $venue->street }} {{ $venue->city }} {{ $venue->state }} {{ $venue->postal_code }}</td>
+                                    <td>{!! status($venue->status) !!}</td>
+                                    <td class="text-right">
+                                        <div class="action-btn-group mr-3">
+                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                <i class="feather icon-trash-2"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                <i class="feather icon-info"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
