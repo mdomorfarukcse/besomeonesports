@@ -11,7 +11,7 @@ class DivisonStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class DivisonStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'unique:sports,name'],
+            "status" => ['required','in:Active,Inactive'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }
 }
