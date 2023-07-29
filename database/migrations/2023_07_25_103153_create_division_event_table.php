@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('division_events', function (Blueprint $table) {
+        Schema::create('division_event', function (Blueprint $table) {
             $table->foreignId('division_id')
                   ->constrained()
                   ->onUpdate('cascade')
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('division_events');
+        Schema::dropIfExists('division_event');
     }
 };
