@@ -19,7 +19,7 @@ return new class extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('restrict');
 
-            $table->string('player_id', 17)
+            $table->string('player_id', 18)
                   ->unique()
                   ->comment('The Player ID Prefix Should be BSSPLAYER. The Player ID Example: BSSPLAYER202302010001');
 
@@ -34,8 +34,8 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 10);
             $table->string('position', 50)->nullable();
-            $table->float('height', 2)->nullable()->comment('Example: 5.7 (5 Foot 7 Inch)');
-            $table->float('weight', 2)->nullable()->comment('Example: 50.00 (50 KG 0 Gram)');
+            $table->float('height', 4)->nullable()->comment('Example: 5.7 (5 Foot 7 Inch)');
+            $table->float('weight', 6)->nullable()->comment('Example: 50.00 (50 KG 0 Gram)');
             $table->longText('note', 255)->nullable();
 
             // Parrent Info
@@ -49,7 +49,7 @@ return new class extends Migration
             // Local Guardian Info
             $table->string('guardian_relation', 100);
             $table->string('guardian_name', 100);
-            $table->string('guardian_number', 100);
+            $table->string('guardian_contact', 100);
             $table->string('guardian_email', 100)->nullable();
 
             $table->enum('status', [

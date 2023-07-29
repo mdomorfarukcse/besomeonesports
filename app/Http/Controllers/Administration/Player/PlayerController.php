@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Administration\Player;
 
+use Exception;
+use App\Models\User;
+use App\Models\Player\Player;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Administration\Player\PlayerStoreRequest;
+use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
 
 class PlayerController extends Controller
 {
@@ -27,15 +34,80 @@ class PlayerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PlayerStoreRequest $request)
     {
-        //
+        try {
+            DB::transaction(function() use ($request) {
+                $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                
+                $avatar = upload_avatar($request, 'avatar');
+                // Store Credentials into User
+                $user = User::create([
+                    'name' => $playerName,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'avatar' => $avatar,
+                ]);
+                
+                // Assign the provided role to the user
+                $role = Role::where('name', 'player')->firstOrFail();
+                if ($role) {
+                    $user->assignRole($role);
+                }
+                
+                
+                // Store Information into player
+                $player = new Player();
+                
+                $player->user_id = $user->id;
+                $player->player_id = $request->player_id;
+                $player->first_name = $request->first_name;
+                $player->middle_name = $request->middle_name;
+                $player->last_name = $request->last_name;
+                $player->birthdate = $request->birthdate;
+                $player->contact_number = $request->contact_number;
+                $player->city = $request->city;
+                $player->state = $request->state;
+                $player->postal_code = $request->postal_code;
+                $player->street_address = $request->street_address;
+                $player->extended_address = $request->extended_address;
+                $player->position = $request->position;
+                $player->height = $request->height;
+                $player->weight = $request->weight;
+                $player->note = $request->note;
+                $player->status = $request->status;
+                
+                // Parents Info
+                $player->father_name = $request->father_name;
+                $player->father_email = $request->father_email;
+                $player->father_contact = $request->father_contact;
+                $player->mother_name = $request->mother_name;
+                $player->mother_email = $request->mother_email;
+                $player->mother_contact = $request->mother_contact;
+                
+                // Guardian Info
+                $player->guardian_relation = $request->guardian_relation;
+                $player->guardian_name = $request->guardian_name;
+                $player->guardian_email = $request->guardian_email;
+                $player->guardian_contact = $request->guardian_contact;
+                
+                $player->save();
+            }, 5);
+
+            toast('A New Player Has Been Created.','success');
+            return redirect()->route('administration.player.index');
+        } catch (Exception $e) {
+            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            // dd($e);
+            alert('Player Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Player $player)
     {
         //
     }
@@ -43,7 +115,7 @@ class PlayerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Player $player)
     {
         //
     }
@@ -51,7 +123,7 @@ class PlayerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PlayerUpdateRequest $request, Player $player)
     {
         //
     }
@@ -59,7 +131,7 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Player $player)
     {
         //
     }
