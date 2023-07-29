@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Administration\Sport;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Sport\SportStoreRequest;
+use App\Models\Sport\Sport;
+use Exception;
 use Illuminate\Http\Request;
 
 class SportController extends Controller
@@ -12,7 +15,8 @@ class SportController extends Controller
      */
     public function index()
     {
-        return view('administration.sport.index');
+        $sports = Sport::select(['id','name','description','status'])->orderBy('created_at', 'desc')->get();
+        return view('administration.sport.index', compact(['sports']));
     }
 
     /**
@@ -26,15 +30,35 @@ class SportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SportStoreRequest $request)
     {
-        //
+        //dd($request->all());
+
+        try{
+           
+            $sport = new Sport();
+
+            $sport->name = $request->name;
+            $sport->description = $request->description;
+            $sport->status = $request->status;
+            $sport->save();
+
+            toast('A New Sport Has Been Created.', 'success');
+            return redirect()->route('administration.sport.index');
+
+        } catch (Exception $e){
+
+            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            alert('Sport Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Sport $sport)
     {
         //
     }
@@ -42,7 +66,7 @@ class SportController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sport $sport)
     {
         //
     }
@@ -50,7 +74,7 @@ class SportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Sport $sport)
     {
         //
     }
@@ -58,7 +82,7 @@ class SportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sport $sport)
     {
         //
     }
