@@ -23,7 +23,7 @@ class DivisionController extends Controller
      */
     public function create()
     {
-        return view('administration.division.index');
+        return view('administration.division.create');
     }
 
     /**
