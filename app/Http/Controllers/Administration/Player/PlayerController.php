@@ -116,7 +116,7 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        //
+        return view('administration.player.show', compact(['player']));
     }
 
     /**
