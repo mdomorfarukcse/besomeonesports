@@ -60,7 +60,7 @@ class SportController extends Controller
      */
     public function show(Sport $sport)
     {
-        //
+        return view('administration.sport.show', compact(['sport']));
     }
 
     /**
@@ -68,7 +68,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        //
+        return view('administration.sport.edit', compact(['sport']));
     }
 
     /**
@@ -76,7 +76,27 @@ class SportController extends Controller
      */
     public function update(Request $request, Sport $sport)
     {
-        //
+        dd($request->all());
+
+        try{
+            
+            // store
+            $sport = Sport::find($sport);
+            $sport->name       = $request->name;
+            $sport->email      = $request->description;
+            $sport->sport_level = $request->status;
+            $sport->save();
+
+            toast('Sport Has Been Updated.', 'success');
+            return redirect()->route('administration.sport.index');
+
+        } catch (Exception $e){
+
+            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            alert('Sport Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
