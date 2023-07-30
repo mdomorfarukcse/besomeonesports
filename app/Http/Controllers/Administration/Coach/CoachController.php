@@ -59,7 +59,7 @@ class CoachController extends Controller
                 ]);
         
                 // Assign the provided role to the user
-                $role = Role::where('name', 'coach')->first();
+                $role = Role::where('name', 'coach')->firstOrFail();
                 if ($role) {
                     $user->assignRole($role);
                 }
@@ -95,9 +95,6 @@ class CoachController extends Controller
             alert('Coach Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
-        
-        
-
     }
 
     /**

@@ -38,18 +38,18 @@ class UserSeeder extends Seeder
             $user_read
         ]);
 
+        $player_role = Role::create(['name' => 'player']);
+        $player_role->givePermissionTo([
+            $user_index,
+            $user_read
+        ]);
+
         $admin = User::create([
             'name' => 'Demo Admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('12345678')
         ]);
-        $coach = User::create([
-            'name' => 'Demo Coach',
-            'email' => 'coach@mail.com',
-            'password' => bcrypt('12345678')
-        ]);
         
         $admin->assignRole($admin_role);
-        $coach->assignRole($coach_role);
     }
 }
