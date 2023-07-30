@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administration\Venue;
 
 use App\Http\Controllers\Controller;
+use App\Models\Venue\Venue;
+use Exception;
 use Illuminate\Http\Request;
 
 class VenueController extends Controller
@@ -12,7 +14,10 @@ class VenueController extends Controller
      */
     public function index()
     {
-        return view('administration.venue.index');
+
+        $venues = Venue::select(['id','name','street','city','state','postal_code','status'])->orderBy('created_at', 'desc')->get();
+        return view('administration.venue.index', compact(['venues']));
+
     }
 
     /**
@@ -28,7 +33,32 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        try{
+           
+            $venue = new Venue();
+
+            $venue->name = $request->name;
+            $venue->street = $request->street;
+            $venue->city = $request->city;
+            $venue->state = $request->state;
+            $venue->postal_code = $request->postal_code;
+            $venue->latitude = $request->latitude;
+            $venue->longitude = $request->longitude;
+            $venue->status = $request->status;
+            $venue->save();
+
+            toast('A New Venue Has Been Created.', 'success');
+            return redirect()->route('administration.venue.index');
+
+        } catch (Exception $e){
+
+            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            alert('Venue Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**

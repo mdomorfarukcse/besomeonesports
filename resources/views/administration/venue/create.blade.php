@@ -5,11 +5,16 @@
 
 @endsection
 
-@section('page_title', __('Add Venue'))
+@section('page_title', __('Create New Venue'))
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- Datepicker css -->
+    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Select2 css -->
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
+
 
 @section('custom_css')
     {{--  External CSS  --}}
@@ -20,98 +25,121 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Add Venue') }}</b>
+    <b class="text-uppercase">{{ __('Create New Venue') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Add Venue') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Venue') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start row -->
-<form>
-    <!-- Start row -->
-    <div class="row">
-        <!-- Start col -->
-        <div class="col-lg-8">
+<!-- Start Row -->
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form action="{{ route('administration.venue.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            @csrf
             <div class="card m-b-30">
-                <div class="card-header">
-                    <h5 class="card-title">Add Venue</h5>
-                </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="foremail">Name</label>
-                        <input type="text" class="form-control mb-3" id="foremail" value="" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card border m-b-30">
+                                <div class="card-header border-bottom">
+                                    <h5 class="card-title mb-0">Create New Venue</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <label for="name">Name <span class="required">*</span></label>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="" required/>
+                                            @error('name')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="street">Street </label>
+                                            <input type="text" name="street" value="{{ old('street') }}" class="form-control @error('street') is-invalid @enderror" placeholder="" required/>
+                                            @error('street')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
+                                            @error('city')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="state">State</label>
+                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
+                                            @error('state')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="Postal Code">Postal Code </label>
+                                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="Tennies" required/>
+                                            @error('postal_code')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="latitude">Latitude</label>
+                                            <input type="text" name="latitude" value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" placeholder="Tennies" required/>
+                                            @error('latitude')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="longitude">Longitude </label>
+                                            <input type="text" name="longitude" value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" placeholder="Tennies" required/>
+                                            @error('longitude')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="status">Status <span class="required">*</span></label>
+                                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                                <option value="">Select Status</option>
+                                                <option value="Active" selected>Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                            @error('status')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="foremail">Abbreviation</label>
-                        <input type="text" class="form-control mb-3" id="foremail" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Default Time Increment</label>
-                        <input type="text" class="form-control mb-3" id="foremail" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Time Zone</label>
-                        <select id="TimeZone" name="TimeZone" class="form-control">
-                            <option selected="selected" value="Central Standard Time">(UTC-06:00) Central Time (US &amp; Canada)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Street Address</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Extended Address</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">City</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">State/Region</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Postal Code</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Latitude</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Longitude</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="foremail">Status</label>
-                        <select class="form-control">
-                            <option selected="selected" value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
+                        <i class="feather icon-plus mr-1"></i>
+                        <span class="text-bold">Create New Venue</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- End row -->
-</form>
+</div>
 
-<!-- End row -->
+<!-- End Row -->
 
 @endsection
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')
