@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Administration\Season;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Season\SeasonStoreRequest;
+use App\Models\Season\Season;
+use Exception;
 use Illuminate\Http\Request;
 
 class SeasonController extends Controller
@@ -12,7 +15,8 @@ class SeasonController extends Controller
      */
     public function index()
     {
-        return view('administration.season.index');
+        $seasons = Season::select(['id','name','year','start','end','status'])->orderBy('created_at', 'desc')->get();
+        return view('administration.season.index', compact(['seasons']));
     }
 
     /**
@@ -26,15 +30,37 @@ class SeasonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SeasonStoreRequest $request)
     {
-        //
+        //dd($request->all());
+
+        try{
+           
+            $season = new Season();
+
+            $season->name = $request->name;
+            $season->year = $request->year;
+            $season->start = $request->start;
+            $season->end = $request->end;
+            $season->status = $request->status;
+            $season->save();
+
+            toast('A New Season Has Been Created.', 'success');
+            return redirect()->route('administration.season.index');
+
+        } catch (Exception $e){
+
+            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            alert('Season Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Season $season)
     {
         //
     }
@@ -42,7 +68,7 @@ class SeasonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Season $season)
     {
         //
     }
@@ -50,7 +76,7 @@ class SeasonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Season $season)
     {
         //
     }
@@ -58,7 +84,7 @@ class SeasonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Season $season)
     {
         //
     }
