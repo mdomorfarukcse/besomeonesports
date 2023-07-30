@@ -67,6 +67,10 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <th>Player ID (PID)</th>
+                                                        <td class="text-primary text-bold">{{ $player->player_id }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <th>Name</th>
                                                         <td>{{ $player->user->name }}</td>
                                                     </tr>
@@ -80,11 +84,11 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Height</th>
-                                                        <td>{{ $player->height }}</td>
+                                                        <td>{!! show_height($player->height) !!}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Weight</th>
-                                                        <td>{{ $player->weight }}</td>
+                                                        <td>{!! show_weight($player->weight) !!}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Address</th>
