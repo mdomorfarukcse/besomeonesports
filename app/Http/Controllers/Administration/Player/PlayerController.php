@@ -19,7 +19,14 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        return view('administration.player.index');
+        $players = Player::select(['id', 'user_id', 'player_id', 'contact_number', 'status'])
+                            ->with([
+                                'user' => function($user) {
+                                    $user->select(['id', 'name', 'email', 'avatar']);
+                                }
+                            ])->orderBy('created_at', 'desc')->get();
+
+        return view('administration.player.index', compact(['players']));
     }
 
     /**
