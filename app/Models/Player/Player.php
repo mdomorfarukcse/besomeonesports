@@ -12,7 +12,7 @@ class Player extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
-    protected $cascadeDeletes = [];
+    protected $cascadeDeletes = ['user'];
 
     protected static function boot()
     {

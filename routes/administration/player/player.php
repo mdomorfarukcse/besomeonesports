@@ -13,4 +13,5 @@ Route::controller(PlayerController::class)->prefix('player')->name('player.')->g
     Route::get('/show/{player}', 'show')->name('show');
     Route::get('/edit/{player}', 'edit')->name('edit');
     Route::post('/update/{player}', 'update')->name('update');
+    Route::get('/destroy/{player}', 'destroy')->name('destroy');
 });

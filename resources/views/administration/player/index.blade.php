@@ -85,7 +85,7 @@
                                     <td>{!! status($player->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                            <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                 <i class="feather icon-trash-2"></i>
                                             </a>
                                             <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">

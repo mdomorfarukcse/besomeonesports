@@ -195,8 +195,20 @@ class PlayerController extends Controller
      */
     public function destroy(Player $player)
     {
-        //
+        
+        try {
+            $player->delete();
+
+            toast('Player Has Been Deleted.','success');
+            return redirect()->route('administration.player.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Player Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
+
+
 
 
     // Generate a unique ID with a minimum and maximum length of 10 characters
