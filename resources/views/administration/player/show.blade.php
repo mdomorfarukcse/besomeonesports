@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Add New Player'))
+@section('page_title', __('Show Player'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -20,18 +20,21 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Players') }}</b>
+    <b class="text-uppercase">{{ __('Show Player') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Players') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Players') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.player.index') }}">{{ __('All Players') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Show Details') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.player.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.player.edit', ['player' => $player]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-pen"></i>
         <b>Edit Player Info</b>
     </a>
@@ -51,8 +54,8 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="card border">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Player Info</h5>
+                                <div class="card-header bg-primary-rgba border-bottom">
+                                    <h5 class="card-title text-primary mb-0">Player's Information</h5>
                                 </div>
                                 <div class="card-body py-2">
                                     <div class="row">
@@ -70,6 +73,12 @@
                                                         <th>Player ID (PID)</th>
                                                         <td class="text-primary text-bold">{{ $player->player_id }}</td>
                                                     </tr>
+                                                    @if (!empty($player->position))
+                                                        <tr>
+                                                            <th>Position</th>
+                                                            <td>{{ $player->position }}</td>
+                                                        </tr>
+                                                    @endif
                                                     <tr>
                                                         <th>Name</th>
                                                         <td>{{ $player->user->name }}</td>
@@ -82,14 +91,18 @@
                                                         <th>Contact</th>
                                                         <td>{{ $player->contact_number }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>Height</th>
-                                                        <td>{!! show_height($player->height) !!}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Weight</th>
-                                                        <td>{!! show_weight($player->weight) !!}</td>
-                                                    </tr>
+                                                    @if (!empty($player->height))
+                                                        <tr>
+                                                            <th>Height</th>
+                                                            <td>{!! show_height($player->height) !!}</td>
+                                                        </tr>
+                                                    @endif
+                                                    @if (!empty($player->weight))
+                                                        <tr>
+                                                            <th>Weight</th>
+                                                            <td>{!! show_weight($player->weight) !!}</td>
+                                                        </tr>
+                                                    @endif                                                    
                                                     <tr>
                                                         <th>Address</th>
                                                         <td>
@@ -101,8 +114,10 @@
                                                                 State: {{ $player->state }}
                                                                 <br>
                                                                 Street Address: {{ $player->street_address }}
-                                                                <br>
-                                                                Extended Address: {{ $player->extended_address }}
+                                                                @if (!empty($player->extended_address))
+                                                                    <br>
+                                                                    Extended Address: {{ $player->extended_address }}
+                                                                @endif
                                                             </address>    
                                                         </td>
                                                     </tr>
@@ -110,6 +125,12 @@
                                                         <th>Status</th>
                                                         <td>{!! status($player->status) !!}</td>
                                                     </tr>
+                                                    @if (!empty($player->note))
+                                                        <tr>
+                                                            <th>Note</th>
+                                                            <td>{!! $player->note !!}</td>
+                                                        </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -121,8 +142,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card border m-b-30">
-                                        <div class="card-header border-bottom">
-                                            <h5 class="card-title mb-0">Parents Info</h5>
+                                        <div class="card-header bg-primary-rgba border-bottom">
+                                            <h5 class="card-title text-primary mb-0">Parents Information</h5>
                                         </div>
                                         <div class="card-body py-2">
                                             <div class="row">
@@ -162,8 +183,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="card border m-b-30">
-                                        <div class="card-header border-bottom">
-                                            <h5 class="card-title mb-0">Guardian Info</h5>
+                                        <div class="card-header bg-primary-rgba border-bottom">
+                                            <h5 class="card-title text-primary mb-0">Guardian's Information</h5>
                                         </div>
                                         <div class="card-body py-2">
                                             <div class="row">
