@@ -60,7 +60,7 @@ class SeasonController extends Controller
      */
     public function show(Season $season)
     {
-        //
+        return view('administration.season.show', compact(['season']));
     }
 
     /**
@@ -68,7 +68,7 @@ class SeasonController extends Controller
      */
     public function edit(Season $season)
     {
-        //
+        dd($season);
     }
 
     /**
@@ -76,7 +76,7 @@ class SeasonController extends Controller
      */
     public function update(Request $request, Season $season)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -84,6 +84,6 @@ class SeasonController extends Controller
      */
     public function destroy(Season $season)
     {
-        //
+        dd($season);
     }
 }
