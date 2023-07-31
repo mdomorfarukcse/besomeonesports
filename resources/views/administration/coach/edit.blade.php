@@ -132,11 +132,11 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="coachAvatar" name="avatar" value="{{ show_avatar($coach->user->avatar) }}" accept=".png, .jpg, .jpeg" />
                                     <label for="coachAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
-                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                    <div id="imagePreview" style="background-image: url({{ show_avatar($coach->user->avatar) }});"></div>
                                 </div>
                             </div>
                         </div>
