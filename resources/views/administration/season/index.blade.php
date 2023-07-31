@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('All Season'))
+@section('page_title', __('All Seasons'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,13 +25,13 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Season') }}</b>
+    <b class="text-uppercase">{{ __('All Seasons') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Season') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Season') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Seasons') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('All Seasons') }}</li>
 @endsection
 
 
@@ -77,10 +77,10 @@
                                     <td>{!! status($season->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                            <a href="{{ route('administration.season.destroy', ['season' => $season]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                 <i class="feather icon-trash-2"></i>
                                             </a>
-                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                            <a href="{{ route('administration.season.show', ['season' => $season]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                 <i class="feather icon-info"></i>
                                             </a>
                                         </div>

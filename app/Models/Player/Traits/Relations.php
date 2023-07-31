@@ -2,11 +2,20 @@
 
 namespace App\Models\Player\Traits;
 
+use App\Models\User;
 use App\Models\Team\Team;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
 {
+    /**
+     * Get the user for the coach.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * The teams that belong to the player.
      */

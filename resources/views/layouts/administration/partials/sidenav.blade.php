@@ -26,8 +26,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.season.index') }}">Seasons</a></li>
-                        <li><a href="{{ route('administration.season.create') }}">Add Seasons</a></li>
+                        <li><a href="{{ route('administration.season.index') }}">All Seasons</a></li>
+                        <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
                     </ul>
                 </li>
 
@@ -63,8 +63,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.player.index') }}">Players</a></li>
-                        <li><a href="{{ route('administration.player.create') }}">Add Player</a></li>
+                        <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
+                        <li><a href="{{ route('administration.player.create') }}">Add New Player</a></li>
                     </ul>
                 </li>
                 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Season;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Season\SeasonStoreRequest;
+use App\Http\Requests\Administration\Season\SeasonUpdateRequest;
 use App\Models\Season\Season;
 use Exception;
 use Illuminate\Http\Request;
@@ -35,7 +36,6 @@ class SeasonController extends Controller
         //dd($request->all());
 
         try{
-           
             $season = new Season();
 
             $season->name = $request->name;
@@ -49,8 +49,7 @@ class SeasonController extends Controller
             return redirect()->route('administration.season.index');
 
         } catch (Exception $e){
-
-            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            dd($e);
             alert('Season Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -62,7 +61,7 @@ class SeasonController extends Controller
      */
     public function show(Season $season)
     {
-        //
+        return view('administration.season.show', compact(['season']));
     }
 
     /**
@@ -70,15 +69,31 @@ class SeasonController extends Controller
      */
     public function edit(Season $season)
     {
-        //
+        return view('administration.season.edit', compact(['season']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Season $season)
+    public function update(SeasonUpdateRequest $request, Season $season)
     {
-        //
+        try{
+            $season->name = $request->name;
+            $season->year = $request->year;
+            $season->start = $request->start;
+            $season->end = $request->end;
+            $season->status = $request->status;
+            $season->save();
+
+            toast('Season Has Been Updated.', 'success');
+            return redirect()->route('administration.season.show', ['season' => $season]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Season Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
@@ -86,6 +101,15 @@ class SeasonController extends Controller
      */
     public function destroy(Season $season)
     {
-        //
+        try {
+            $season->delete();
+
+            toast('Season Has Been Deleted.','success');
+            return redirect()->route('administration.season.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Season Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

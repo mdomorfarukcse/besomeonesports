@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('seasons', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->year('year')->unique();
+            $table->year('year');
             $table->date('start');
             $table->date('end');
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
-            $table->unique(['start', 'end'], 'start_end_unique');
             $table->timestamps();
             $table->softDeletes();
         });
