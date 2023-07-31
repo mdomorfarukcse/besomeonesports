@@ -166,7 +166,16 @@ class CoachController extends Controller
      */
     public function destroy(Coach $coach)
     {
-        //
+        try {
+            $coach->delete();
+
+            toast('Coach Has Been Deleted.','success');
+            return redirect()->route('administration.coach.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Coach Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
 
