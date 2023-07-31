@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
+use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
 
 class CoachController extends Controller
 {
@@ -100,33 +101,81 @@ class CoachController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Coach $coach)
     {
-        //
+        return view('administration.coach.show', compact(['coach']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Coach $coach)
     {
-        //
+        return view('administration.coach.edit', compact(['coach']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CoachUpdateRequest $request, Coach $coach)
     {
-        //
+        // dd($request->position);
+        try {
+            DB::transaction(function() use ($request, $coach) {
+                $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+
+                $avatar = upload_avatar($request, 'avatar');
+                // Store Credentials into User
+                $user = User::whereId($coach->user_id)->firstOrFail();
+
+                $user->name = $coachName;
+                if (isset($request->avatar)) {
+                    $user->avatar = $avatar;
+                }
+                $user->save();
+                
+                $coach->position = $request->position;
+                $coach->first_name = $request->first_name;
+                $coach->middle_name = $request->middle_name;
+                $coach->last_name = $request->last_name;
+                $coach->birthdate = $request->birthdate;
+                $coach->phone_number = $request->phone_number;
+                $coach->usab_license_no = $request->usab_license_no;
+                $coach->city = $request->city;
+                $coach->state = $request->state;
+                $coach->postal_code = $request->postal_code;
+                $coach->street_address = $request->street_address;
+                $coach->extended_address = $request->extended_address;
+                $coach->note = $request->note;
+                $coach->status = $request->status;
+                
+                $coach->save();
+            }, 5);
+
+            toast('Coach Has Been Updated.','success');
+            return redirect()->route('administration.coach.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Coach Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Coach $coach)
     {
-        //
+        try {
+            $coach->delete();
+
+            toast('Coach Has Been Deleted.','success');
+            return redirect()->route('administration.coach.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Coach Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
 
