@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Season;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Season\SeasonStoreRequest;
+use App\Http\Requests\Administration\Season\SeasonUpdateRequest;
 use App\Models\Season\Season;
 use Exception;
 use Illuminate\Http\Request;
@@ -74,9 +75,25 @@ class SeasonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Season $season)
+    public function update(SeasonUpdateRequest $request, Season $season)
     {
-        dd($request);
+        try{
+            $season->name = $request->name;
+            $season->year = $request->year;
+            $season->start = $request->start;
+            $season->end = $request->end;
+            $season->status = $request->status;
+            $season->save();
+
+            toast('Season Has Been Updated.', 'success');
+            return redirect()->route('administration.season.show', ['season' => $season]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Season Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
