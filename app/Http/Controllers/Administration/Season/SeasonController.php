@@ -68,7 +68,7 @@ class SeasonController extends Controller
      */
     public function edit(Season $season)
     {
-        dd($season);
+        return view('administration.season.edit', compact(['season']));
     }
 
     /**
