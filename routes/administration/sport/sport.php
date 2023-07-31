@@ -12,5 +12,6 @@ Route::controller(SportController::class)->prefix('sport')->name('sport.')->grou
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{sport}', 'show')->name('show');
     Route::get('/edit/{sport}', 'edit')->name('edit');
-    Route::put('/update', 'update')->name('update');
+    Route::post('/update/{sport}', 'update')->name('update');
+    Route::get('/destroy/{sport}', 'destroy')->name('destroy');
 });
