@@ -22,10 +22,10 @@ class SeasonStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:sports,name'],
-            'year' => ['required'],
+            'name' => ['required', 'string', 'unique:seasons,name'],
+            'year' => ['required', 'numeric'],
             'start' => ['required', 'date', 'date_format:Y-m-d'],
-            'end' => ['required', 'date', 'date_format:Y-m-d'],
+            'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
             "status" => ['required','in:Active,Inactive'],
         ];
     }
@@ -38,6 +38,7 @@ class SeasonStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.unique' => 'The Season Name should be Unique.',
             'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }

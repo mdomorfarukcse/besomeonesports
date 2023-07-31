@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('All Season'))
+@section('page_title', __('All Seasons'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,13 +25,13 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Season') }}</b>
+    <b class="text-uppercase">{{ __('All Seasons') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Season') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Season') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Seasons') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('All Seasons') }}</li>
 @endsection
 
 

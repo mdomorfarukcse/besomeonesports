@@ -35,7 +35,6 @@ class SeasonController extends Controller
         //dd($request->all());
 
         try{
-           
             $season = new Season();
 
             $season->name = $request->name;
@@ -49,8 +48,7 @@ class SeasonController extends Controller
             return redirect()->route('administration.season.index');
 
         } catch (Exception $e){
-
-            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            dd($e);
             alert('Season Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
