@@ -101,6 +101,15 @@ class SeasonController extends Controller
      */
     public function destroy(Season $season)
     {
-        dd($season);
+        try {
+            $season->delete();
+
+            toast('Season Has Been Deleted.','success');
+            return redirect()->route('administration.season.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Season Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }
