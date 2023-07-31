@@ -4,7 +4,7 @@ namespace App\Http\Requests\Administration\Season;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SeasonStoreRequest extends FormRequest
+class SeasonUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
