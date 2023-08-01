@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th></th>
+                                <th>Avatar</th>
                                 <th>Coach ID (CID)</th>
                                 <th>Name</th>
                                 <th>Email</th>

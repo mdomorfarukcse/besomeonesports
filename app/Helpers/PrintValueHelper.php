@@ -57,5 +57,21 @@ if (!function_exists('status')) {
             return $kilograms_html . $grams_html;
         }
     }
+
+    if (!function_exists('serial')) {
+        /**
+         * Get the serial number with leading zeros based on the given key.
+         *
+         * @param \Illuminate\Support\Collection $events The collection of items.
+         * @param int $key The key (index) for which the serial number is generated.
+         * @return string The serial number with leading zeros.
+         */
+        function serial($events, int $key): string
+        {
+            $totalItems = $events->count();
+            $totalDigits = strlen((string) $totalItems);
+            return str_pad($key + 1, $totalDigits, '0', STR_PAD_LEFT);
+        }
+    }    
 }
 

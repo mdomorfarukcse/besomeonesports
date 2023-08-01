@@ -17,7 +17,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('administration.event.index');
+        $events = Event::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'status'])
+                        ->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->orderByDesc('created_at')
+                        ->get();
+        // dd($events);
+        return view('administration.event.index', compact(['events']));
     }
 
     /**
