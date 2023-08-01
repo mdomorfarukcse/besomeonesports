@@ -35,10 +35,7 @@ class VenueController extends Controller
      */
     public function store(VenueStoreRequest $request)
     {
-        //dd($request->all());
-
         try{
-           
             $venue = new Venue();
 
             $venue->name = $request->name;
@@ -53,13 +50,10 @@ class VenueController extends Controller
 
             toast('A New Venue Has Been Created.', 'success');
             return redirect()->route('administration.venue.index');
-
         } catch (Exception $e){
-
-            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            dd($e);
             alert('Venue Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
-
         }
     }
 
@@ -85,7 +79,6 @@ class VenueController extends Controller
     public function update(VenueUpdateRequest $request, Venue $venue)
     {
         try{
-           
             $venue->name = $request->name;
             $venue->street = $request->street;
             $venue->city = $request->city;
@@ -98,12 +91,10 @@ class VenueController extends Controller
 
             toast('Venue Has Been Updated.', 'success');
             return redirect()->route('administration.venue.show', ['venue' => $venue]);
-
         } catch (Exception $e){
             dd($e);
             alert('Venue Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
-
         }
     }
 
@@ -122,6 +113,5 @@ class VenueController extends Controller
             alert('Venue Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
-
     }
 }

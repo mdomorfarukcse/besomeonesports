@@ -22,7 +22,7 @@ class VenueStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:venue,name'],
+            'name' => ['required', 'string', 'unique:venues,name'],
             "street" => ['required', 'string', 'max:100'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],
