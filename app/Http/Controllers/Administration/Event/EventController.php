@@ -148,6 +148,15 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        try {
+            $event->delete();
+
+            toast('Event Has Been Deleted.','success');
+            return redirect()->route('administration.event.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Event Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }
