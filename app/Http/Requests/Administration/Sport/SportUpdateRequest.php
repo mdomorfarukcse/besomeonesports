@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Administration\Season;
+namespace App\Http\Requests\Administration\Sport;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SeasonUpdateRequest extends FormRequest
+class SportUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +21,8 @@ class SeasonUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $seasonId = $this->route('season')->id;
-
         return [
-            'name' => [
-                'required',
-                'string',
-                'max:100',
-                Rule::unique('seasons')->ignore($seasonId),
-            ],
-            'year' => ['required', 'numeric'],
-            'start' => ['required', 'date', 'date_format:Y-m-d'],
-            'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
+            'name' => ['required', 'string', 'unique:sports,name'],
             "status" => ['required','in:Active,Inactive'],
         ];
     }
@@ -46,7 +35,7 @@ class SeasonUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.unique' => 'The Season Name should be Unique.',
+            'name.unique' => 'The Sport Name should be Unique.',
             'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }

@@ -24,6 +24,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->string('logo')->nullable();
             $table->string('name', 100)->unique();
             $table->date('start');
             $table->date('end');

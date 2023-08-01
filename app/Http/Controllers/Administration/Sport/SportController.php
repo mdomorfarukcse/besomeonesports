@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Sport;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Sport\SportStoreRequest;
+use App\Http\Requests\Administration\Sport\SportUpdateRequest;
 use App\Models\Sport\Sport;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class SportController extends Controller
      */
     public function index()
     {
-        $sports = Sport::select(['id','name','description','status'])->orderBy('created_at', 'desc')->get();
+        $sports = Sport::select(['id','name','status'])->orderBy('created_at', 'desc')->get();
         return view('administration.sport.index', compact(['sports']));
     }
 
@@ -60,7 +61,7 @@ class SportController extends Controller
      */
     public function show(Sport $sport)
     {
-        //
+        return view('administration.sport.show', compact(['sport']));
     }
 
     /**
@@ -68,15 +69,29 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        //
+        return view('administration.sport.edit', compact(['sport']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sport $sport)
+    public function update(SportUpdateRequest $request, Sport $sport)
     {
-        //
+        try{
+            $sport->name = $request->name;
+            $sport->description = $request->description;
+            $sport->status = $request->status;
+            $sport->save();
+
+            toast('Sport Has Been Updated.', 'success');
+            return redirect()->route('administration.sport.show', ['sport' => $sport]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Sport Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
@@ -84,6 +99,15 @@ class SportController extends Controller
      */
     public function destroy(Sport $sport)
     {
-        //
+        try {
+            $sport->delete();
+
+            toast('Sport Has Been Deleted.','success');
+            return redirect()->route('administration.sport.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Sport Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }
