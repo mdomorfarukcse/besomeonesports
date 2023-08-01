@@ -9,6 +9,11 @@
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- DataTables css -->
+    <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Responsive Datatable css -->
+    <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('custom_css')
@@ -94,6 +99,52 @@
             </div>
         </form>
     </div>
+    
+    <div class="col-md-12">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title">{{ __('All Events Under This Season') }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="default-datatable" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl.</th>
+                                <th>Logo</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($season->events as $key => $event)
+                                <tr>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($season->events, $key) }}</b></th>
+                                    <td>
+                                        <a href="{{ route('administration.event.show', ['event' => $event]) }}" target="_blank" class="text-bold text-dark">
+                                            <img src="{{ show_avatar($event->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="event">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('administration.event.show', ['event' => $event]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('View Event Details?') }}">
+                                            {{ $event->name }}
+                                        </a>
+                                        <br>
+                                        <small class="text-muted">
+                                            <a href="{{ route('administration.sport.show', ['sport' => $event->sport]) }}" target="_blank" class="text-bold" data-toggle="tooltip" data-placement="top" title="{{ __('View Sport Details?') }}">
+                                                {{ $event->sport->name }}
+                                            </a>
+                                        </small>
+                                    </td>
+                                    <td>{!! status($event->status) !!}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- End Row -->
@@ -103,8 +154,27 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Datatable js -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-table-datatable.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
+    <script>
+        // Custom Script Here
+        /* -- Bootstrap Tooltip -- */
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
 @endsection
