@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Event;
 
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\Event\Event;
+use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
+use App\Models\Season\Season;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Event\EventStoreRequest;
+use App\Http\Requests\Administration\Event\EventUpdateRequest;
 
 class EventController extends Controller
 {
@@ -12,7 +18,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('administration.event.index');
+        $events = Event::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'status'])
+                        ->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->orderByDesc('created_at')
+                        ->get();
+        // dd($events);
+        return view('administration.event.index', compact(['events']));
     }
 
     /**
@@ -20,46 +38,125 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('administration.event.create');
+        $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
+        $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+
+        return view('administration.event.create', compact(['seasons', 'sports']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
-        //
+        // dd($request->all());
+        try{
+            $logo = upload_avatar($request, 'logo');
+
+            $event = new Event();
+
+            $event->season_id = $request->season_id;
+            $event->sport_id = $request->sport_id;
+            $event->logo = $logo;
+            $event->name = $request->name;
+            $event->start = $request->start;
+            $event->end = $request->end;
+            $event->description = $request->description;
+            $event->status = $request->status;
+            $event->save();
+
+            toast('A New Event Has Been Created.', 'success');
+            return redirect()->route('administration.event.index');
+
+        } catch (Exception $e){
+            dd($e);
+            alert('DIvision Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
-        //
+        $event = Event::whereId($event->id)->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->firstOrFail();
+        return  view('administration.event.show', compact(['event']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event)
     {
-        //
+        $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
+        $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+
+        $event = Event::whereId($event->id)->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->firstOrFail();
+        return  view('administration.event.edit', compact(['event', 'seasons', 'sports']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EventUpdateRequest $request, Event $event)
     {
-        //
+        // dd($request->all());
+        try{
+            $logo = upload_avatar($request, 'logo');
+
+            $event->season_id = $request->season_id;
+            $event->sport_id = $request->sport_id;
+            if (isset($request->logo)) {
+                $event->logo = $logo;
+            }
+            $event->name = $request->name;
+            $event->start = $request->start;
+            $event->end = $request->end;
+            $event->description = $request->description;
+            $event->status = $request->status;
+            $event->save();
+
+            toast('Event Has Been Updated.', 'success');
+            return redirect()->route('administration.event.show', ['event' => $event]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('DIvision Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
-        //
+        try {
+            $event->delete();
+
+            toast('Event Has Been Deleted.','success');
+            return redirect()->route('administration.event.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Event Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

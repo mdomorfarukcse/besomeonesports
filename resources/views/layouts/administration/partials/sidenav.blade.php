@@ -38,8 +38,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.event.index') }}">Events</a></li>
-                        <li><a href="{{ route('administration.event.create') }}">Add Event</a></li>
+                        <li><a href="{{ route('administration.event.index') }}">All Events</a></li>
+                        <li><a href="{{ route('administration.event.create') }}">Create New Event</a></li>
                     </ul>
                 </li>
                 

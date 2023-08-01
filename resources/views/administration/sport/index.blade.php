@@ -66,9 +66,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sports as $sl => $sport)
+                            @foreach ($sports as $key => $sport)
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
+                                    <th class="fw-bold"><b>#{{ serial($sports, $key) }}</b></th>
                                     <td>{{ $sport->name }}</td>
                                     <td>{!! status($sport->status) !!}</td>
                                     <td class="text-right">

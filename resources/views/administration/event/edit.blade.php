@@ -5,21 +5,28 @@
 
 @endsection
 
-@section('page_title', __('Create New Event'))
+@section('page_title', __('Update Event'))
 
 @section('css_links')
     {{--  External CSS  --}}
-    <!-- Datepicker css -->
-    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Select2 css -->
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
-
 
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+    .input-group-text {
+        border: 0px solid #d4d8de;
+        background: #f7faff;
+        color: #111;
+        padding-right: 0;
+        font-weight: bold;
+    }
+    .input-group .form-control[readonly] {
+        padding-left: 0;
+    }
 
     /* Image Upload */
     .logo-upload {
@@ -86,15 +93,28 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Event') }}</b>
+    <b class="text-uppercase">{{ __('Update Event') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Event') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.event.index') }}">{{ __('All Events') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.event.show', ['event' => $event]) }}">{{ __('Show Details') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Edit Event') }}</li>
 @endsection
 
+
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-arrow-left"></i>
+        <b>Back</b>
+    </a>
+@endsection
 
 
 @section('content')
@@ -103,11 +123,11 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.event.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.event.update', ['event' => $event]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">Create New Event</h5>
+                    <h5 class="card-title mb-0">Update Event</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">  
@@ -118,7 +138,11 @@
                                     <label for="eventLogo"></label>
                                 </div>
                                 <div class="logo-preview">
-                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                    @if (!empty($event->logo))
+                                        <div id="imagePreview" style="background-image: url({{ show_avatar($event->logo) }});"></div>
+                                    @else
+                                        <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>                                      
@@ -127,7 +151,7 @@
                             <select class="select2-single form-control @error('season_id') is-invalid @enderror" name="season_id" required>
                                 <option value="">Select Season</option>
                                 @foreach ($seasons as $season)
-                                    <option value="{{ $season->id }}">
+                                    <option value="{{ $season->id }}" @if ($season->id == $event->season->id) selected @endif>
                                         {{ $season->name }}
                                         ({{ $season->year }})
                                     </option>
@@ -142,7 +166,7 @@
                             <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id" required>
                                 <option value="">Select Sport</option>
                                 @foreach ($sports as $sport)
-                                    <option value="{{ $sport->id }}">{{ $sport->name }}</option>
+                                    <option value="{{ $sport->id }}" @if ($sport->id == $event->sport->id) selected @endif>{{ $sport->name }}</option>
                                 @endforeach
                             </select>
                             @error('sport_id')
@@ -151,21 +175,21 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023" required/>
+                            <input type="text" name="name" value="{{ $event->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
                         <div class="form-group col-md-4">
                             <label for="start">Event Start Date <span class="required">*</span></label>
-                            <input type="date" name="start" value="{{ old('start') }}" class="form-control @error('start') is-invalid @enderror" placeholder="2023-01-01" required/>
+                            <input type="date" name="start" value="{{ $event->start }}" class="form-control @error('start') is-invalid @enderror" placeholder="2023-01-01" required/>
                             @error('start')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
                         <div class="form-group col-md-4">
                             <label for="end">Event End Date <span class="required">*</span></label>
-                            <input type="date" name="end" value="{{ old('end') }}" class="form-control @error('end') is-invalid @enderror" placeholder="2023-01-01" required/>
+                            <input type="date" name="end" value="{{ $event->end }}" class="form-control @error('end') is-invalid @enderror" placeholder="2023-01-01" required/>
                             @error('end')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -174,8 +198,8 @@
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
+                                <option value="Active" @if ($event->status === 'Active') selected @endif>Active</option>
+                                <option value="Inactive" @if ($event->status === 'Inactive') selected @endif>Inactive</option>
                             </select>
                             @error('status')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -183,7 +207,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Event Description">{{ old('description') }}</textarea>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Event Description">{{ $event->description }}</textarea>
                             @error('description')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -194,7 +218,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Event</span>
+                        <span class="text-bold">Update Event</span>
                     </button>
                 </div>
             </div>
