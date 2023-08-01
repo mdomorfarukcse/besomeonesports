@@ -11,4 +11,7 @@ Route::controller(DivisionController::class)->prefix('division')->name('division
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{division}', 'show')->name('show');
+    Route::get('/edit/{division}', 'edit')->name('edit');
+    Route::post('/update/{division}', 'update')->name('update');
+    Route::get('/destroy/{division}', 'destroy')->name('destroy');
 });

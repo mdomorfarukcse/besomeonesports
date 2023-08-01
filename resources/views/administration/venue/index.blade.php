@@ -71,7 +71,7 @@
                         <tbody>
                             @foreach ($venues as $sl => $venue)
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
+                                    <th class="fw-bold"><b>#{{ serial($venues, $sl) }}</b></th>
                                     <td>{{ $venue->name }}</td>
                                     <td>10</td>
                                     <td>{!! status($venue->status) !!}</td>
