@@ -79,7 +79,16 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event = Event::whereId($event->id)->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->firstOrFail();
+        return  view('administration.event.show', compact(['event']));
     }
 
     /**
