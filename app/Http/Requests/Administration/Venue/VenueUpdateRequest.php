@@ -4,7 +4,7 @@ namespace App\Http\Requests\Administration\Venue;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VenueStoreRequest extends FormRequest
+class VenueUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

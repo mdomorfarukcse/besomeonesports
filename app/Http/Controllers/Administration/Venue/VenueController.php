@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administration\Venue;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Venue\VenueStoreRequest;
+use App\Http\Requests\Administration\Venue\VenueUpdateRequest;
 use App\Models\Venue\Venue;
 use Exception;
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class VenueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VenueStoreRequest $request)
     {
         //dd($request->all());
 
@@ -64,32 +66,62 @@ class VenueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Venue $venue)
     {
-        //
+        return view('administration.venue.show', compact(['venue']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Venue $venue)
     {
-        //
+        return view('administration.venue.edit', compact(['venue']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(VenueUpdateRequest $request, Venue $venue)
     {
-        //
+        try{
+           
+            $venue->name = $request->name;
+            $venue->street = $request->street;
+            $venue->city = $request->city;
+            $venue->state = $request->state;
+            $venue->postal_code = $request->postal_code;
+            $venue->latitude = $request->latitude;
+            $venue->longitude = $request->longitude;
+            $venue->status = $request->status;
+            $venue->save();
+
+            toast('Venue Has Been Updated.', 'success');
+            return redirect()->route('administration.venue.show', ['venue' => $venue]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Venue Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Venue $venue)
     {
-        //
+        try {
+            $venue->delete();
+
+            toast('Venue Has Been Deleted.','success');
+            return redirect()->route('administration.venue.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Venue Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+
     }
 }
