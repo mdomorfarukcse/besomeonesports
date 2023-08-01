@@ -73,10 +73,10 @@
                                     <td>{!! status($division->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                            <a href="{{ route('administration.division.destroy', ['division' => $division]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                 <i class="feather icon-trash-2"></i>
                                             </a>
-                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                            <a href="{{ route('administration.division.show', ['division' => $division]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                 <i class="feather icon-info"></i>
                                             </a>
                                         </div>

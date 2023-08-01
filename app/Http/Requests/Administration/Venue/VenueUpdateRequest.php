@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Administration\Division;
+namespace App\Http\Requests\Administration\Venue;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DivisonStoreRequest extends FormRequest
+class VenueUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,11 @@ class DivisonStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:sports,name'],
+            'name' => ['required', 'string', 'unique:venues,name'],
+            "street" => ['required', 'string', 'max:100'],
+            "city" => ['required', 'string', 'max:50'],
+            "state" => ['required', 'string', 'max:50'],
+            "postal_code" => ['required', 'string', 'max:10'],
             "status" => ['required','in:Active,Inactive'],
         ];
     }
@@ -35,6 +39,7 @@ class DivisonStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.unique' => 'The Venue Name should be Unique.',
             'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }

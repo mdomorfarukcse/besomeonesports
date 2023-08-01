@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Administration\Division;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Administration\Division\DivisonStoreRequest;
+use App\Http\Requests\Administration\Division\DivisionStoreRequest;
+use App\Http\Requests\Administration\Division\DivisionUpdateRequest;
 use App\Models\Division\Division;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,14 +31,11 @@ class DivisionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DivisonStoreRequest $request)
+    public function store(DivisionStoreRequest $request)
     {
-        //dd($request->all());
-
         try{
            
             $division = new Division();
-
             $division->name = $request->name;
             $division->description = $request->description;
             $division->status = $request->status;
@@ -45,13 +43,11 @@ class DivisionController extends Controller
 
             toast('A New Division Has Been Created.', 'success');
             return redirect()->route('administration.division.index');
-
         } catch (Exception $e){
 
-            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
+            dd($e);
             alert('DIvision Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
-
         }
     }
 
@@ -60,7 +56,7 @@ class DivisionController extends Controller
      */
     public function show(Division $division)
     {
-        //
+        return view('administration.division.show', compact(['division']));
     }
 
     /**
@@ -68,15 +64,29 @@ class DivisionController extends Controller
      */
     public function edit(Division $division)
     {
-        //
+        return view('administration.division.edit', compact(['division']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Division $division)
+    public function update(DivisionUpdateRequest $request, Division $division)
     {
-        //
+        try{
+            $division->name = $request->name;
+            $division->description = $request->description;
+            $division->status = $request->status;
+            $division->save();
+
+            toast('Division Has Been Updated.', 'success');
+            return redirect()->route('administration.division.show', ['division' => $division]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Division Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
@@ -84,6 +94,15 @@ class DivisionController extends Controller
      */
     public function destroy(Division $division)
     {
-        //
+        try {
+            $division->delete();
+
+            toast('Division Has Been Deleted.','success');
+            return redirect()->route('administration.division.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Division Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }
