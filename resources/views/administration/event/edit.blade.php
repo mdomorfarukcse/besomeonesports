@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Update Coach'))
+@section('page_title', __('Update Event'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -29,21 +29,21 @@
     }
 
     /* Image Upload */
-    .avatar-upload {
+    .logo-upload {
         position: relative;
         max-width: 205px;
         margin: 50px auto;
     }
-    .avatar-upload .avatar-edit {
+    .logo-upload .logo-edit {
         position: absolute;
         right: 12px;
         z-index: 1;
         top: 10px;
     }
-    .avatar-upload .avatar-edit input {
+    .logo-upload .logo-edit input {
         display: none;
     }
-    .avatar-upload .avatar-edit input + label {
+    .logo-upload .logo-edit input + label {
         display: inline-block;
         width: 34px;
         height: 34px;
@@ -57,11 +57,11 @@
         font-weight: normal;
         transition: all 0.2s ease-in-out;
     }
-    .avatar-upload .avatar-edit input + label:hover {
+    .logo-upload .logo-edit input + label:hover {
         background: #d8d8d8;
         border-color: #a1a1a1;
     }
-    .avatar-upload .avatar-edit input + label:after {
+    .logo-upload .logo-edit input + label:after {
         content: "\f040";
         font-family: "FontAwesome";
         color: #757575;
@@ -72,7 +72,7 @@
         text-align: center;
         margin: auto;
     }
-    .avatar-upload .avatar-preview {
+    .logo-upload .logo-preview {
         width: 192px;
         height: 192px;
         position: relative;
@@ -80,7 +80,7 @@
         border: 6px solid #f8f8f8;
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     }
-    .avatar-upload .avatar-preview > div {
+    .logo-upload .logo-preview > div {
         width: 100%;
         height: 100%;
         border-radius: 100%;
@@ -93,187 +93,132 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Update Coach') }}</b>
+    <b class="text-uppercase">{{ __('Update Event') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Coaches') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
     <li class="breadcrumb-item text-capitalize">
-        <a href="{{ route('administration.coach.index') }}">{{ __('All Coaches') }}</a>
+        <a href="{{ route('administration.event.index') }}">{{ __('All Events') }}</a>
     </li>
     <li class="breadcrumb-item text-capitalize">
-        <a href="{{ route('administration.coach.show', ['coach' => $coach]) }}">{{ __('Show Details') }}</a>
+        <a href="{{ route('administration.event.show', ['event' => $event]) }}">{{ __('Show Details') }}</a>
     </li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Edit Coach') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Edit Event') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.coach.show', ['coach' => $coach]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-arrow-left"></i>
         <b>Back</b>
     </a>
 @endsection
 
+
 @section('content')
+
 
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.coach.update', ['coach' => $coach]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.event.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
-            <div class="card m-b-30">
+            <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title text-dark mb-0">Update Coach</h5>
+                    <h5 class="card-title mb-0">Update Event</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row">  
                         <div class="col-md-12">
-                            <div class="avatar-upload">
-                                <div class="avatar-edit">
-                                    <input type="file" id="coachAvatar" name="avatar" value="{{ show_avatar($coach->user->avatar) }}" accept=".png, .jpg, .jpeg" />
-                                    <label for="coachAvatar"></label>
+                            <div class="logo-upload">
+                                <div class="logo-edit">
+                                    <input type="file" id="eventLogo" name="logo" accept=".png, .jpg, .jpeg" />
+                                    <label for="eventLogo"></label>
                                 </div>
-                                <div class="avatar-preview">
-                                    <div id="imagePreview" style="background-image: url({{ show_avatar($coach->user->avatar) }});"></div>
+                                <div class="logo-preview">
+                                    @if (!empty($event->logo))
+                                        <div id="imagePreview" style="background-image: url({{ show_avatar($event->logo) }});"></div>
+                                    @else
+                                        <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                    @endif
                                 </div>
                             </div>
+                        </div>                                      
+                        <div class="form-group col-md-4">
+                            <label for="season_id">Season <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('season_id') is-invalid @enderror" name="season_id" required>
+                                <option value="">Select Season</option>
+                                @foreach ($seasons as $season)
+                                    <option value="{{ $season->id }}" @if ($season->id == $event->season->id) selected @endif>
+                                        {{ $season->name }}
+                                        ({{ $season->year }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('season_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
-                        <div class="col-md-12">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Coach Info</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="position">Position <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('position') is-invalid @enderror" name="position" required>
-                                                <option value="">Select Position</option>
-                                                <option value="Main Coach" @if ($coach->position === 'Main Coach') selected @endif>Main Coach</option>
-                                                <option value="Assistant Coach" @if ($coach->position === 'Assistant Coach') selected @endif>Assistant Coach</option>
-                                            </select>
-                                            @error('position')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="status">Status <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                                <option value="">Select Status</option>
-                                                <option value="Active" @if ($coach->status === 'Active') selected @endif>Active</option>
-                                                <option value="Inactive" @if ($coach->status === 'Inactive') selected @endif>Inactive</option>
-                                            </select>
-                                            @error('status')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="sport_id">Sport <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id" required>
+                                <option value="">Select Sport</option>
+                                @foreach ($sports as $sport)
+                                    <option value="{{ $sport->id }}" @if ($sport->id == $event->sport->id) selected @endif>{{ $sport->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('sport_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
-                        <div class="col-md-12">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Personal Infomation</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4 form-group">
-                                            <label for="first_name">First Name <span class="required">*</span></label>
-                                            <input type="text" name="first_name" value="{{ $coach->first_name }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
-                                            @error('first_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="middle_name">Middle Name</label>
-                                            <input type="text" name="middle_name" value="{{ $coach->middle_name }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
-                                            @error('middle_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="last_name">Last Name <span class="required">*</span></label>
-                                            <input type="text" name="last_name" value="{{ $coach->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
-                                            @error('last_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="birthdate">Birthdate <span class="required">*</span></label>
-                                            <input type="date" name="birthdate" value="{{ $coach->birthdate }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" required/>
-                                            @error('birthdate')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="phone_number">Phone Number <span class="required">*</span></label>
-                                            <input type="tel" name="phone_number" value="{{ $coach->phone_number }}" class="form-control @error('phone_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
-                                            @error('phone_number')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="usab_license_no">USAB License No. <span class="required">*</span></label>
-                                            <input type="text" name="usab_license_no" value="{{ $coach->usab_license_no }}" class="form-control @error('usab_license_no') is-invalid @enderror" placeholder="88941AE1611" required/>
-                                            @error('usab_license_no')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="city">City <span class="required">*</span></label>
-                                            <input type="text" name="city" value="{{ $coach->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
-                                            @error('city')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="state">State/Province <span class="required">*</span></label>
-                                            <input type="text" name="state" value="{{ $coach->state }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
-                                            @error('state')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="postal_code">Postal Code <span class="required">*</span></label>
-                                            <input type="text" name="postal_code" value="{{ $coach->postal_code }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
-                                            @error('postal_code')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="street_address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="street_address" value="{{ $coach->street_address }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
-                                            @error('street_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="extended_address">Extended Address</label>
-                                            <input type="text" name="extended_address" value="{{ $coach->extended_address }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
-                                            @error('extended_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-12 form-group">
-                                            <label for="note">Note</label>
-                                            <textarea name="note" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ $coach->note }}</textarea>
-                                            @error('note')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-5">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" name="name" value="{{ $event->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023" required/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="start">Event Start Date <span class="required">*</span></label>
+                            <input type="date" name="start" value="{{ $event->start }}" class="form-control @error('start') is-invalid @enderror" placeholder="2023-01-01" required/>
+                            @error('start')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="end">Event End Date <span class="required">*</span></label>
+                            <input type="date" name="end" value="{{ $event->end }}" class="form-control @error('end') is-invalid @enderror" placeholder="2023-01-01" required/>
+                            @error('end')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="status">Status <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="">Select Status</option>
+                                <option value="Active" @if ($event->status === 'Active') selected @endif>Active</option>
+                                <option value="Inactive" @if ($event->status === 'Inactive') selected @endif>Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Event Description">{{ $event->description }}</textarea>
+                            @error('description')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Update Coach</span>
+                        <span class="text-bold">Update Event</span>
                     </button>
                 </div>
             </div>
@@ -282,7 +227,6 @@
 </div>
 
 <!-- End Row -->
-
 @endsection
 
 
@@ -296,6 +240,7 @@
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
+        // Custom Script Here
         // File Uploder
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -308,7 +253,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#coachAvatar").change(function() {
+        $("#eventLogo").change(function() {
             readURL(this);
         });
     </script>

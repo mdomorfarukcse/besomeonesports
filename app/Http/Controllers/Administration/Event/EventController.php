@@ -96,7 +96,19 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
+        $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+
+        $event = Event::whereId($event->id)->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            }
+                        ])
+                        ->firstOrFail();
+        return  view('administration.event.edit', compact(['event', 'seasons', 'sports']));
     }
 
     /**
