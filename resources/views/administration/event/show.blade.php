@@ -27,7 +27,7 @@
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
     <li class="breadcrumb-item text-capitalize">
-        <a href="{{ route('administration.coach.index') }}">{{ __('All Events') }}</a>
+        <a href="{{ route('administration.event.index') }}">{{ __('All Events') }}</a>
     </li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Show Details') }}</li>
 @endsection
@@ -100,6 +100,34 @@
                                                     <tr>
                                                         <th>Status</th>
                                                         <td>{!! status($event->status) !!}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Divisions</th>
+                                                        <td>
+                                                            <ol>
+                                                                @foreach ($event->divisions as $division)
+                                                                    <li>
+                                                                        <a href="{{ route('administration.division.show', ['division' => $division]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $division->name }} details">
+                                                                            {{ $division->name }}
+                                                                        </a>    
+                                                                    </li>  
+                                                                @endforeach
+                                                            </ol>    
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Venues</th>
+                                                        <td>
+                                                            <ol>
+                                                                @foreach ($event->venues as $venue)
+                                                                    <li>
+                                                                        <a href="{{ route('administration.venue.show', ['venue' => $venue]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $venue->name }} details">
+                                                                            {{ $venue->name }}
+                                                                        </a>    
+                                                                    </li>  
+                                                                @endforeach
+                                                            </ol>    
+                                                        </td>
                                                     </tr>
                                                     @if (!empty($event->description))
                                                         <tr>

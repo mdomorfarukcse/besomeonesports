@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Administration\Event;
 use Exception;
 use App\Models\Event\Event;
 use App\Models\Sport\Sport;
+use App\Models\Venue\Venue;
 use Illuminate\Http\Request;
 use App\Models\Season\Season;
+use App\Models\Division\Division;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
 use App\Http\Requests\Administration\Event\EventUpdateRequest;
@@ -25,7 +28,9 @@ class EventController extends Controller
                             },
                             'sport' => function($sport) {
                                 $sport->select(['id', 'name']);
-                            }
+                            },
+                            'divisions',
+                            'venues'
                         ])
                         ->orderByDesc('created_at')
                         ->get();
@@ -40,8 +45,10 @@ class EventController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
 
-        return view('administration.event.create', compact(['seasons', 'sports']));
+        return view('administration.event.create', compact(['seasons', 'sports', 'divisions', 'venues']));
     }
 
     /**
@@ -51,19 +58,24 @@ class EventController extends Controller
     {
         // dd($request->all());
         try{
-            $logo = upload_avatar($request, 'logo');
+            DB::transaction(function() use ($request) {
+                $logo = upload_avatar($request, 'logo');
 
-            $event = new Event();
+                $event = new Event();
 
-            $event->season_id = $request->season_id;
-            $event->sport_id = $request->sport_id;
-            $event->logo = $logo;
-            $event->name = $request->name;
-            $event->start = $request->start;
-            $event->end = $request->end;
-            $event->description = $request->description;
-            $event->status = $request->status;
-            $event->save();
+                $event->season_id = $request->season_id;
+                $event->sport_id = $request->sport_id;
+                $event->logo = $logo;
+                $event->name = $request->name;
+                $event->start = $request->start;
+                $event->end = $request->end;
+                $event->description = $request->description;
+                $event->status = $request->status;
+                $event->save();
+
+                $event->divisions()->attach($request->divisions);
+                $event->venues()->attach($request->venues);
+            }, 5);
 
             toast('A New Event Has Been Created.', 'success');
             return redirect()->route('administration.event.index');
@@ -86,7 +98,9 @@ class EventController extends Controller
                             },
                             'sport' => function($sport) {
                                 $sport->select(['id', 'name']);
-                            }
+                            },
+                            'divisions',
+                            'venues'
                         ])
                         ->firstOrFail();
         return  view('administration.event.show', compact(['event']));
@@ -99,6 +113,8 @@ class EventController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
 
         $event = Event::whereId($event->id)->with([
                             'season' => function($season) {
@@ -106,10 +122,12 @@ class EventController extends Controller
                             },
                             'sport' => function($sport) {
                                 $sport->select(['id', 'name']);
-                            }
+                            },
+                            'divisions',
+                            'venues'
                         ])
                         ->firstOrFail();
-        return  view('administration.event.edit', compact(['event', 'seasons', 'sports']));
+        return  view('administration.event.edit', compact(['event', 'seasons', 'sports', 'divisions', 'venues']));
     }
 
     /**
@@ -119,19 +137,25 @@ class EventController extends Controller
     {
         // dd($request->all());
         try{
-            $logo = upload_avatar($request, 'logo');
+            DB::transaction(function() use ($request, $event) {
+                $logo = upload_avatar($request, 'logo');
 
-            $event->season_id = $request->season_id;
-            $event->sport_id = $request->sport_id;
-            if (isset($request->logo)) {
-                $event->logo = $logo;
-            }
-            $event->name = $request->name;
-            $event->start = $request->start;
-            $event->end = $request->end;
-            $event->description = $request->description;
-            $event->status = $request->status;
-            $event->save();
+                $event->season_id = $request->season_id;
+                $event->sport_id = $request->sport_id;
+                if (isset($request->logo)) {
+                    $event->logo = $logo;
+                }
+                $event->name = $request->name;
+                $event->start = $request->start;
+                $event->end = $request->end;
+                $event->description = $request->description;
+                $event->status = $request->status;
+                $event->save();
+
+                // Sync the divisions and venues in the pivot tables
+                $event->divisions()->sync($request->divisions);
+                $event->venues()->sync($request->venues);
+            }, 5);
 
             toast('Event Has Been Updated.', 'success');
             return redirect()->route('administration.event.show', ['event' => $event]);

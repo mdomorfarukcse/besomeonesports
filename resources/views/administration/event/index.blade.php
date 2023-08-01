@@ -62,6 +62,8 @@
                                 <th>Sl.</th>
                                 <th>Logo</th>
                                 <th>Name</th>
+                                <th>Divisions</th>
+                                <th>Venues</th>
                                 <th>Status</th>
                                 <th class="text-right">Actions</th>
                             </tr>
@@ -78,6 +80,8 @@
                                         <br>
                                         <small class="text-muted">{{ $event->season->name }} ({{ $event->sport->name }})</small>
                                     </td>
+                                    <td>{{ count($event->divisions) }}</td>
+                                    <td>{{ count($event->venues) }}</td>
                                     <td>{!! status($event->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">

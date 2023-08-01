@@ -121,7 +121,7 @@
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
                             </div>
-                        </div>                                      
+                        </div>
                         <div class="form-group col-md-4">
                             <label for="season_id">Season <span class="required">*</span></label>
                             <select class="select2-single form-control @error('season_id') is-invalid @enderror" name="season_id" required>
@@ -178,6 +178,30 @@
                                 <option value="Inactive">Inactive</option>
                             </select>
                             @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="divisions[]">Divisions <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
+                                <option value="">Select Divisions</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('divisions[]')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="venues[]">Venues <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple" required>
+                                <option value="">Select Venues</option>
+                                @foreach ($venues as $venue)
+                                    <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('venues[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>

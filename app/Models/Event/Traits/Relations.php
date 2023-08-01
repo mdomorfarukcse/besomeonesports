@@ -7,6 +7,7 @@ use App\Models\Season\Season;
 use App\Models\Sport\Sport;
 use App\Models\Team\Team;
 use App\Models\User;
+use App\Models\Venue\Venue;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -38,6 +39,14 @@ trait Relations
     }
 
     /**
+     * The teams that belong to the event.
+     */
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
      * The divisions that belong to the event.
      */
     public function divisions(): BelongsToMany
@@ -46,10 +55,10 @@ trait Relations
     }
 
     /**
-     * The teams that belong to the event.
+     * The venues that belong to the event.
      */
-    public function teams(): HasMany
+    public function venues(): BelongsToMany
     {
-        return $this->hasMany(Team::class);
+        return $this->belongsToMany(Venue::class);
     }
 }

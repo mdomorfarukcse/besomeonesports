@@ -37,6 +37,14 @@ class EventUpdateRequest extends FormRequest
             'end' => ['required', 'date', 'after_or_equal:start'],
             'description' => ['nullable', 'string'],
             'status' => ['required', 'in:Active,Inactive'],
+
+            // Add validation for the pivot table (division_event)
+            'divisions' => ['required', 'array'],
+            'divisions.*' => ['exists:divisions,id'],
+
+            // Add validation for the pivot table (event_venue)
+            'venues' => ['required', 'array'],
+            'venues.*' => ['exists:venues,id'],
         ];
     }
 
@@ -49,6 +57,12 @@ class EventUpdateRequest extends FormRequest
     {
         return [
             'status.in' => 'The Status should be Active or Inactive only.',
+            'divisions.required' => 'At least one division must be selected.',
+            'divisions.array' => 'Invalid format for divisions.',
+            'divisions.*.exists' => 'Selected division(s) do not exist.',
+            'venues.required' => 'At least one venue must be selected.',
+            'venues.array' => 'Invalid format for venues.',
+            'venues.*.exists' => 'Selected venue(s) do not exist.',
         ];
     }
 }
