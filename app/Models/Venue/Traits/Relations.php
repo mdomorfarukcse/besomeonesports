@@ -2,16 +2,16 @@
 
 namespace App\Models\Venue\Traits;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Event\Event;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
 {
     /**
-     * Get the user that owns the phone.
+     * The events that belong to the division.
      */
-    public function user(): BelongsTo
+    public function events(): BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Event::class);
     }
 }

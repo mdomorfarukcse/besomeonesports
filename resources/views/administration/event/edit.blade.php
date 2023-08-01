@@ -205,6 +205,34 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="divisions[]">Divisions <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
+                                <option value="">Select Divisions</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}" @if($event->divisions->contains('id', $division->id)) selected @endif>
+                                        {{ $division->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('divisions[]')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="venues[]">Venues <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple" required>
+                                <option value="">Select Venues</option>
+                                @foreach ($venues as $venue)
+                                    <option value="{{ $venue->id }}" @if($event->venues->contains('id', $venue->id)) selected @endif>
+                                        {{ $venue->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('venues[]')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
                         <div class="col-md-12 form-group">
                             <label for="description">Description</label>
                             <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Event Description">{{ $event->description }}</textarea>
