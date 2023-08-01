@@ -22,7 +22,25 @@ class EventStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'season_id'     => ['required', 'exists:seasons,id'],
+            'sport_id'      => ['required', 'exists:sports,id'],
+            'name'          => ['required', 'string', 'max:100', 'unique:events,name'],
+            'start'         => ['required', 'date'],
+            'end'           => ['required', 'date', 'after_or_equal:start'],
+            'description'   => ['nullable', 'string'],
+            'status'        => ['required', 'in:Active,Inactive'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }
 }

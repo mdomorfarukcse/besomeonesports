@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Administration\Event;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Administration\Event\EventStoreRequest;
+use Exception;
 use App\Models\Event\Event;
-use App\Models\Season\Season;
 use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
+use App\Models\Season\Season;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Event\EventStoreRequest;
 
 class EventController extends Controller
 {
@@ -35,7 +36,30 @@ class EventController extends Controller
      */
     public function store(EventStoreRequest $request)
     {
-        dd($request);
+        // dd($request->all());
+        try{
+            $logo = upload_avatar($request, 'logo');
+
+            $event = new Event();
+
+            $event->season_id = $request->season_id;
+            $event->sport_id = $request->sport_id;
+            $event->logo = $logo;
+            $event->name = $request->name;
+            $event->start = $request->start;
+            $event->end = $request->end;
+            $event->description = $request->description;
+            $event->status = $request->status;
+            $event->save();
+
+            toast('A New Event Has Been Created.', 'success');
+            return redirect()->route('administration.event.index');
+
+        } catch (Exception $e){
+            dd($e);
+            alert('DIvision Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
