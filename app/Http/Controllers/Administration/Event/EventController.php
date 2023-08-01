@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Administration\Event;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Event\EventStoreRequest;
+use App\Models\Event\Event;
+use App\Models\Season\Season;
+use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -20,21 +24,24 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('administration.event.create');
+        $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
+        $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+
+        return view('administration.event.create', compact(['seasons', 'sports']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
         //
     }
@@ -42,7 +49,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event)
     {
         //
     }
@@ -50,7 +57,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Event $event)
     {
         //
     }
@@ -58,7 +65,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
         //
     }
