@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\Season;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SeasonUpdateRequest extends FormRequest
@@ -21,8 +22,15 @@ class SeasonUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $seasonId = $this->route('season')->id;
+
         return [
-            'name' => ['required', 'string', 'unique:seasons,name'],
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('seasons')->ignore($seasonId),
+            ],
             'year' => ['required', 'numeric'],
             'start' => ['required', 'date', 'date_format:Y-m-d'],
             'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
