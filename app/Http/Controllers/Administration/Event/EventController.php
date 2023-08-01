@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Season\Season;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
+use App\Http\Requests\Administration\Event\EventUpdateRequest;
 
 class EventController extends Controller
 {
@@ -114,9 +115,32 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(EventUpdateRequest $request, Event $event)
     {
-        //
+        // dd($request->all());
+        try{
+            $logo = upload_avatar($request, 'logo');
+
+            $event->season_id = $request->season_id;
+            $event->sport_id = $request->sport_id;
+            if (isset($request->logo)) {
+                $event->logo = $logo;
+            }
+            $event->name = $request->name;
+            $event->start = $request->start;
+            $event->end = $request->end;
+            $event->description = $request->description;
+            $event->status = $request->status;
+            $event->save();
+
+            toast('Event Has Been Updated.', 'success');
+            return redirect()->route('administration.event.show', ['event' => $event]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('DIvision Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
