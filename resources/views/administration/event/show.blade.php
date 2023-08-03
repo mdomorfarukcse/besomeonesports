@@ -90,6 +90,10 @@
                                                         <td>{{ $event->name }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <th>Registration Fee</th>
+                                                        <td class="text-bold text-primary">${{ $event->registration_fee }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <th>Event Start Date</th>
                                                         <td>{{ $event->start }}</td>
                                                     </tr>

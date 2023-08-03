@@ -26,6 +26,7 @@ return new class extends Migration
 
             $table->string('logo')->nullable();
             $table->string('name', 100)->unique();
+            $table->double('registration_fee', 8, 2);
             $table->date('start');
             $table->date('end');
             $table->longText('description')->nullable();

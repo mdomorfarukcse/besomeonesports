@@ -33,6 +33,7 @@ class EventUpdateRequest extends FormRequest
                 'max:100',
                 Rule::unique('events')->ignore($eventId),
             ],
+            'registration_fee'  => ['required', 'numeric', 'between:0,999999.99'],
             'start' => ['required', 'date'],
             'end' => ['required', 'date', 'after_or_equal:start'],
             'description' => ['nullable', 'string'],

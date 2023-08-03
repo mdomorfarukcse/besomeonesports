@@ -21,7 +21,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'status'])
+        $events = Event::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'status'])
                         ->with([
                             'season' => function($season) {
                                 $season->select(['id', 'name']);
@@ -67,6 +67,7 @@ class EventController extends Controller
                 $event->sport_id = $request->sport_id;
                 $event->logo = $logo;
                 $event->name = $request->name;
+                $event->registration_fee = $request->registration_fee;
                 $event->start = $request->start;
                 $event->end = $request->end;
                 $event->description = $request->description;
@@ -146,6 +147,7 @@ class EventController extends Controller
                     $event->logo = $logo;
                 }
                 $event->name = $request->name;
+                $event->registration_fee = $request->registration_fee;
                 $event->start = $request->start;
                 $event->end = $request->end;
                 $event->description = $request->description;
