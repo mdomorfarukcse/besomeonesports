@@ -156,21 +156,21 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="start">Event Start Date <span class="required">*</span></label>
                             <input type="date" name="start" value="{{ old('start') }}" class="form-control @error('start') is-invalid @enderror" placeholder="2023-01-01" required/>
                             @error('start')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="end">Event End Date <span class="required">*</span></label>
                             <input type="date" name="end" value="{{ old('end') }}" class="form-control @error('end') is-invalid @enderror" placeholder="2023-01-01" required/>
                             @error('end')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>
@@ -180,6 +180,18 @@
                             @error('status')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="registration_fee">Registration Fee <span class="required">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" min="0" step="0.01" name="registration_fee" value="{{ old('registration_fee') }}" class="form-control @error('registration_fee') is-invalid @enderror" placeholder="99.99" required/>
+                                @error('registration_fee')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="divisions[]">Divisions <span class="required">*</span></label>

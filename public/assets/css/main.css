@@ -39,6 +39,11 @@ button:active {
 .form-control {
     border: 1px solid rgb(199 199 199);
 }
+.input-group-text {
+    border: 1px solid rgb(199 199 199);
+    background: #ffffff;
+    padding: 5px 10px;
+}
 .form-control[readonly] {
     background-color: #f7faff;
     border-color: #f7faff;

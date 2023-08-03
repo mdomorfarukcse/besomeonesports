@@ -32,7 +32,7 @@ class EventController extends Controller
                             'divisions',
                             'venues'
                         ])
-                        ->orderByDesc('created_at')
+                        ->orderBy('created_at', 'desc')
                         ->get();
         // dd($events);
         return view('administration.event.index', compact(['events']));
