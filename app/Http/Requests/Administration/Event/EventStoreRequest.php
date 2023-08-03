@@ -22,21 +22,22 @@ class EventStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'season_id'     => ['required', 'exists:seasons,id'],
-            'sport_id'      => ['required', 'exists:sports,id'],
-            'name'          => ['required', 'string', 'max:100', 'unique:events,name'],
-            'start'         => ['required', 'date'],
-            'end'           => ['required', 'date', 'after_or_equal:start'],
-            'description'   => ['nullable', 'string'],
-            'status'        => ['required', 'in:Active,Inactive'],
+            'season_id'         => ['required', 'exists:seasons,id'],
+            'sport_id'          => ['required', 'exists:sports,id'],
+            'name'              => ['required', 'string', 'max:100', 'unique:events,name'],
+            'registration_fee'  => ['required', 'numeric', 'between:0,999999.99'],
+            'start'             => ['required', 'date'],
+            'end'               => ['required', 'date', 'after_or_equal:start'],
+            'description'       => ['nullable', 'string'],
+            'status'            => ['required', 'in:Active,Inactive'],
 
             // Add validation for the pivot table (division_event)
-            'divisions'     => ['required', 'array'],
-            'divisions.*'   => ['exists:divisions,id'],
+            'divisions'         => ['required', 'array'],
+            'divisions.*'       => ['exists:divisions,id'],
 
             // Add validation for the pivot table (event_venue)
-            'venues'        => ['required', 'array'],
-            'venues.*'      => ['exists:venues,id'],
+            'venues'            => ['required', 'array'],
+            'venues.*'          => ['exists:venues,id'],
         ];
     }
 

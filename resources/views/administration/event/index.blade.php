@@ -62,6 +62,7 @@
                                 <th>Sl.</th>
                                 <th>Logo</th>
                                 <th>Name</th>
+                                <th>Reg. Fee</th>
                                 <th>Divisions</th>
                                 <th>Venues</th>
                                 <th>Status</th>
@@ -80,6 +81,7 @@
                                         <br>
                                         <small class="text-muted">{{ $event->season->name }} ({{ $event->sport->name }})</small>
                                     </td>
+                                    <td class="text-bold text-primary">${{ $event->registration_fee }}</td>
                                     <td>{{ count($event->divisions) }}</td>
                                     <td>{{ count($event->venues) }}</td>
                                     <td>{!! status($event->status) !!}</td>
