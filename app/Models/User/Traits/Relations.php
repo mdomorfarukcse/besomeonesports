@@ -5,6 +5,8 @@ namespace App\Models\User\Traits;
 use App\Models\Coach\Coach;
 use App\Models\Player\Player;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Event\Registration\EventRegistration;
 
 trait Relations
 {
@@ -22,5 +24,13 @@ trait Relations
     public function player(): HasOne
     {
         return $this->hasOne(Player::class);
+    }
+
+    /**
+     * Get the registrations (paid by) for the user.
+     */
+    public function registrations(): HasMany
+    {
+        return $this->hasMany(EventRegistration::class);
     }
 }
