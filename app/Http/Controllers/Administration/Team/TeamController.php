@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administration\Team;
 
 use App\Http\Controllers\Controller;
+use App\Models\Team\Team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -12,7 +13,9 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('administration.team.index');
+        $teams = Team::with(['event', 'players'])->get();
+        // dd($teams);
+        return view('administration.team.index', compact(['teams']));
     }
 
     /**
@@ -34,32 +37,32 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Team $team)
     {
-        //
+        dd($team);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Team $team)
     {
-        //
+        dd($team);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Team $team)
     {
-        //
+        dd($team);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Team $team)
     {
-        //
+        dd($team);
     }
 }

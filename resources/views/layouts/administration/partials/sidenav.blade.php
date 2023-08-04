@@ -105,8 +105,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.team.index') }}">Teams</a></li>
-                        <li><a href="{{ route('administration.team.create') }}">Add Team</a></li>
+                        <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
+                        <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                     </ul>
                 </li>
                 
