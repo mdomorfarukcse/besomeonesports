@@ -13,4 +13,15 @@ class EventRegistration extends Model
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
     protected $cascadeDeletes = [];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'event_id',
+        'player_id',
+        'paid_by',
+    ];
 }

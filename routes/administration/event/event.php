@@ -15,3 +15,13 @@ Route::controller(EventController::class)->prefix('event')->name('event.')->grou
     Route::post('/update/{event}', 'update')->name('update');
     Route::get('/destroy/{event}', 'destroy')->name('destroy');
 });
+
+/* ==============================================
+============< Event Registration Routes >============
+===============================================*/
+Route::prefix('event')
+        ->name('event.')
+        ->group(function () {
+            // Dashboard
+            include_once 'registration/event_registration.php';
+});

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->foreignId('paid_by')
                 ->constrained('users');
             
+            $table->unique(['event_id', 'player_id'], 'event_player_unique');
+
             $table->timestamps();
             $table->softDeletes();
         });
