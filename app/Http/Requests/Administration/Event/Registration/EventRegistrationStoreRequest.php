@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Administration\Event\Registration;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Event\Registration\EventRegistration;
 
 class EventRegistrationStoreRequest extends FormRequest
 {
@@ -22,7 +23,8 @@ class EventRegistrationStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'event_id' => 'required|exists:events,id',
+            'player_id' => 'required|exists:players,id',
         ];
     }
 }

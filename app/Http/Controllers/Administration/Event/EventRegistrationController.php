@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Event;
 
+use Exception;
+use App\Models\Event\Event;
+use App\Models\Player\Player;
 use App\Http\Controllers\Controller;
+use App\Models\Event\Registration\EventRegistration;
 use App\Http\Requests\Administration\Event\Registration\EventRegistrationStoreRequest;
 use App\Http\Requests\Administration\Event\Registration\EventRegistrationUpdateRequest;
-use App\Models\Event\Registration\EventRegistration;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventRegistrationController extends Controller
 {
@@ -31,15 +34,40 @@ class EventRegistrationController extends Controller
      */
     public function create()
     {
-        //
+        $events = Event::whereStatus('Active')->get();
+        $players = Player::whereStatus('Active')->get();
+        return view('administration.event.registration.create', compact(['events', 'players']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(EventRegistrationStoreRequest $request)
-    {
-        //
+    {        
+        $existingRegistration = EventRegistration::where('event_id', $request->event_id)
+            ->where('player_id', $request->player_id)
+            ->exists();
+            
+        if ($existingRegistration) {
+            alert('Event Registration Failed!', 'This Player Is Already Registered For This Event.', 'warning');
+            return redirect()->back()->withInput();
+        }
+
+        try{
+            EventRegistration::create([
+                'event_id' => $request->event_id,
+                'player_id' => $request->player_id,
+                'paid_by' => Auth::user()->id
+            ]);
+
+            toast('A New Player Has Been Registered for an Event.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+
+            dd($e);
+            alert('Event Registration Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Event'))
+@section('page_title', __('New Registration'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -86,13 +86,14 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Event') }}</b>
+    <b class="text-uppercase">{{ __('New Registration') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Event') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Registrations') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('New Registration') }}</li>
 @endsection
 
 
@@ -102,135 +103,49 @@
 
 <!-- Start Row -->
 <div class="row justify-content-center">
-    <div class="col-md-12">
-        <form action="{{ route('administration.event.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+    <div class="col-md-6">
+        <form action="{{ route('administration.event.registration.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">Create New Event</h5>
+                    <h5 class="card-title mb-0">New Registration</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">  
-                        <div class="col-md-12">
-                            <div class="logo-upload">
-                                <div class="logo-edit">
-                                    <input type="file" id="eventLogo" name="logo" accept=".png, .jpg, .jpeg" />
-                                    <label for="eventLogo"></label>
-                                </div>
-                                <div class="logo-preview">
-                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="season_id">Season <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('season_id') is-invalid @enderror" name="season_id" required>
-                                <option value="">Select Season</option>
-                                @foreach ($seasons as $season)
-                                    <option value="{{ $season->id }}">
-                                        {{ $season->name }}
-                                        ({{ $season->year }})
-                                    </option>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="event_id">Event <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
+                                <option value="">Select Event</option>
+                                @foreach ($events as $event)
+                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
                                 @endforeach
                             </select>
-                            @error('season_id')
+                            @error('event_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="sport_id">Sport <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id" required>
-                                <option value="">Select Sport</option>
-                                @foreach ($sports as $sport)
-                                    <option value="{{ $sport->id }}">{{ $sport->name }}</option>
+                        </div>                        
+                        <div class="form-group col-md-12">
+                            <label for="player_id">Player <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
+                                <option value="">Select Player</option>
+                                @foreach ($players as $player)
+                                    <option value="{{ $player->id }}">{{ $player->user->name }}</option>
                                 @endforeach
                             </select>
-                            @error('sport_id')
+                            @error('player_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023" required/>
-                            @error('name')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="start">Event Start Date <span class="required">*</span></label>
-                            <input type="date" name="start" value="{{ old('start') }}" class="form-control @error('start') is-invalid @enderror" placeholder="2023-01-01" required/>
-                            @error('start')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="end">Event End Date <span class="required">*</span></label>
-                            <input type="date" name="end" value="{{ old('end') }}" class="form-control @error('end') is-invalid @enderror" placeholder="2023-01-01" required/>
-                            @error('end')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="status">Status <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                            @error('status')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="registration_fee">Registration Fee <span class="required">*</span></label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
-                                </div>
-                                <input type="number" min="0" step="0.01" name="registration_fee" value="{{ old('registration_fee') }}" class="form-control @error('registration_fee') is-invalid @enderror" placeholder="99.99" required/>
-                                @error('registration_fee')
-                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="divisions[]">Divisions <span class="required">*</span></label>
-                            <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
-                                <option value="">Select Divisions</option>
-                                @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('divisions[]')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="venues[]">Venues <span class="required">*</span></label>
-                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple" required>
-                                <option value="">Select Venues</option>
-                                @foreach ($venues as $venue)
-                                    <option value="{{ $venue->id }}">{{ $venue->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('venues[]')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Event Description">{{ old('description') }}</textarea>
-                            @error('description')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
+                        </div>                        
                         
+                        @error('event_player_unique')
+                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                        @enderror
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
-                        <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Event</span>
+                        <i class="feather icon-check mr-1"></i>
+                        <span class="text-bold">Register Now</span>
                     </button>
                 </div>
             </div>

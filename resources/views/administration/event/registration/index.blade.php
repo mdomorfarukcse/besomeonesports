@@ -74,7 +74,7 @@
                                     <td>{{ $registration->player->user->name }}</td>
                                     <td>{{ $registration->event->name }}</td>
                                     <td>{{ $registration->paidBy->name }}</td>
-                                    <td>{{ $registration->created_at }}</td>
+                                    <td>{{ date_time_ago($registration->created_at) }}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
                                             <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
