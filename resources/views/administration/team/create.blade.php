@@ -5,201 +5,257 @@
 
 @endsection
 
-@section('page_title', __('Add Team'))
+@section('page_title', __('Create New Team'))
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- Datepicker css -->
+    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Select2 css -->
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
+
 
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+    .input-group-text {
+        border: 0px solid #d4d8de;
+        background: #f7faff;
+        color: #111;
+        padding-right: 0;
+        font-weight: bold;
+    }
+    .input-group .form-control[readonly] {
+        padding-left: 0;
+    }
+
+    /* Image Upload */
+    .logo-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+    }
+    .logo-upload .logo-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+    }
+    .logo-upload .logo-edit input {
+        display: none;
+    }
+    .logo-upload .logo-edit input + label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #ffffff;
+        border: 1px solid;
+        border-color: #a1a1a1;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+    }
+    .logo-upload .logo-edit input + label:hover {
+        background: #d8d8d8;
+        border-color: #a1a1a1;
+    }
+    .logo-upload .logo-edit input + label:after {
+        content: "\f040";
+        font-family: "FontAwesome";
+        color: #757575;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+    }
+    .logo-upload .logo-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #f8f8f8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .logo-upload .logo-preview > div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
     </style>
 @endsection
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Add Team') }}</b>
+    <b class="text-uppercase">{{ __('Create New Team') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Add Team') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Teams') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Team') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start Form -->
-<form>
-    <!-- Start row -->
-    <div class="row">
-        <!-- Start col -->
-        <div class="col-lg-8">
-            <div class="card m-b-30">
-                <div class="card-header">
-                    <h5 class="card-title">Add Team</h5>
+
+<!-- Start Row -->
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form action="{{ route('administration.team.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            @csrf
+            <div class="card border m-b-30">
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-0">Create New Team</h5>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="foremail">Team ID</label>
-                        <input type="text" class="form-control" id="foremail" value="33333" readonly />
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="team_id">Team ID (CID) <span class="required">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">BSTEAM</span>
+                                </div>
+                                <input type="text" name="team_id" value="{{ $team_id }}" readonly class="form-control text-bold @error('team_id') is-invalid @enderror" placeholder="BSTEAM202302011235" required/>
+                            </div>
+                            @error('team_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="event_id">Event <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
+                                <option value="">Select Event</option>
+                                @foreach ($events as $event)
+                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('event_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="division_id">Division <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
+                                <option value="">Select Division</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('division_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="coach_id">Coach</label>
+                            <select class="select2-single form-control @error('coach_id') is-invalid @enderror" name="coach_id">
+                                <option value="">Select Coach</option>
+                                @foreach ($coaches as $coach)
+                                    <option value="{{ $coach->id }}">{{ $coach->user->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('coach_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Chennai Super Kings" required/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="gender">Gender <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('gender') is-invalid @enderror" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            @error('sport_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="maximum_players">Max Players <span class="required">*</span></label>
+                            <input type="number" min="1" step="1" name="maximum_players" value="{{ old('maximum_players') }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
+                            @error('maximum_players')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="status">Status <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="">Select Status</option>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Team Description">{{ old('description') }}</textarea>
+                            @error('description')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        
                     </div>
-                    <div class="form-group">
-                        <label for="foremail">Event</label>
-                        <select name="" id="" class="form-control">
-                            <option value="651145">Backourt Alvin Classic</option>
-                            <option value="651146"> Be Someone Sports Friendswood Basketball League</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Division</label>
-                        <select name="" id="" class="form-control">
-                            <option value="651145">11u (Girls) (Inactive)</option>
-                            <option value="651146">12u (Girls) (Inactive)</option>
-                            <option value="651147">13u (Girls) (Inactive)</option>
-                            <option value="651148">14u (Girls) (Inactive)</option>
-                            <option value="651139">10u (Boys)</option>
-                            <option selected="selected" value="651141">11u (Boys)</option>
-                            <option value="651142">12u (Boys)</option>
-                            <option value="651143">13u (Boys)</option>
-                            <option value="651144">14u (Boys)</option>
-                            <option value="651554">15U Boys</option>
-                            <option value="651140">10u (Girls) (Inactive)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Name</label>
-                        <input type="text" class="form-control" id="foremail" />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Age</label>
-                        <select name="" id="" class="form-control">
-                            <option value=""> - Age - </option>
-                            <option value="43">Adult</option>
-                            <option value="42">19U</option>
-                            <option value="35">18U</option>
-                            <option value="12">17U</option>
-                            <option value="14">16U</option>
-                            <option value="16">15U</option>
-                            <option value="18">14U</option>
-                            <option value="20">13U</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="foremail">Grade</label>
-                        <select name="" id="" class="form-control">
-                            <option value=""> - No Grade - </option>
-                            <option value="1">12th</option>
-                            <option value="2">11th</option>
-                            <option value="3">10th</option>
-                            <option value="4">9th</option>
-                            <option value="5">8th</option>
-                            <option value="6">7th</option>
-                            <option value="7">6th</option>
-                            <option value="8">5th</option>
-                            <option value="9">4th</option>
-                            <option value="10">3rd</option>
-                            <option value="31">2nd</option>
-                            <option value="32">1st</option>
-                            <option value="33">K</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="foremail">Gender</label>
-                        <select name="" id="" class="form-control">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">City</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">State/Region</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Postal Code</label>
-                        <input type="text" class="form-control" id="foremail" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Season</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <select name="start" id="" class="form-control">
-                            <option>Start</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2023</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                        <span class="input-group-text">-</span>
-                        <select name="start" id="" class="form-control">
-                            <option>End</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2024</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Abbreviation</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">External Team ID</label>
-                        <input type="text" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="foremail">Status</label>
-                        <select class="form-control">
-                            <option selected="selected" value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Archived">Archived</option>
-                        </select>
-                    </div>
-                    <p class="text-red">More info on orginal site</p>
-                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
+                        <i class="feather icon-plus mr-1"></i>
+                        <span class="text-bold">Create New Team</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- End row -->
-</form>
+</div>
 
-
-
-<!-- End Form -->
-
+<!-- End Row -->
 @endsection
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
+        // File Uploder
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#eventLogo").change(function() {
+            readURL(this);
+        });
     </script>
 @endsection

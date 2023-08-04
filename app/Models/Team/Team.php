@@ -18,8 +18,8 @@ class Team extends Model
         parent::boot();
 
         static::creating(function ($team) {
-            // Prefix 'BSTEAM-' to the 'team_id' attribute
-            $team->team_id = 'BSTEAM-' . $team->team_id;
+            // Prefix 'BSTEAM' to the 'team_id' attribute
+            $team->team_id = 'BSTEAM' . $team->team_id;
         });
     }
 }
