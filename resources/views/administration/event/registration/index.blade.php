@@ -36,9 +36,9 @@
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.event.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.event.registration.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-plus"></i>
-        <b>Create New Event</b>
+        <b>Create New Registration</b>
     </a>
 @endsection
 
@@ -60,27 +60,22 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th>Player</th>
                                 <th>Event</th>
-                                <th>Paid By</th>
-                                <th>Registered At</th>
+                                <th>Total Registrations</th>
+                                <th>Total Teams</th>
                                 <th class="text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($registrations as $key => $registration)
+                            @foreach ($events as $key => $event)
                                 <tr>
-                                    <td class="fw-bold text-dark"><b>#{{ serial($registrations, $key) }}</b></th>
-                                    <td>{{ $registration->player->user->name }}</td>
-                                    <td>{{ $registration->event->name }}</td>
-                                    <td>{{ $registration->paidBy->name }}</td>
-                                    <td>{{ date_time_ago($registration->created_at) }}</td>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($events, $key) }}</b></th>
+                                    <td>{{ $event->name }}</td>
+                                    <td>{{ $event->registrations_count }}</td>
+                                    <td>{{ $event->teams_count }}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                            <a href="{{ route('administration.event.registration.show', ['event_id' => $event->id]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                 <i class="feather icon-info"></i>
                                             </a>
                                         </div>

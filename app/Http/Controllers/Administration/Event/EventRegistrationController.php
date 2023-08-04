@@ -17,16 +17,14 @@ class EventRegistrationController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $registrations = EventRegistration::with([
-                                                'event',
-                                                'player',
-                                                'paidBy'
-                                            ])
-                                            ->orderBy('created_at', 'desc')
-                                            ->get();
+    {        
+        $events = Event::has('registrations')
+                        ->withCount(['registrations', 'teams'])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
-        return view('administration.event.registration.index', compact(['registrations']));
+        // dd($events);
+        return view('administration.event.registration.index', compact(['events']));
     }
 
     /**
@@ -73,9 +71,18 @@ class EventRegistrationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EventRegistration $event_registration)
+    public function show($event_id)
     {
-        //
+        $event = Event::select(['id', 'name'])->whereId($event_id)->firstOrFail();
+        $registrations = EventRegistration::whereEventId($event_id)->with([
+                                                                    'event',
+                                                                    'player',
+                                                                    'paidBy'
+                                                                ])
+                                                                ->orderBy('created_at', 'desc')
+                                                                ->get();
+        // dd($registrations);
+        return view('administration.event.registration.show', compact(['event', 'registrations']));
     }
 
     /**

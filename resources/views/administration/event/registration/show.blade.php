@@ -5,10 +5,15 @@
 
 @endsection
 
-@section('page_title', __('Show Event'))
+@section('page_title', __('Show Registration'))
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- DataTables css -->
+    <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Responsive Datatable css -->
+    <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('custom_css')
@@ -20,23 +25,26 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Show Event') }}</b>
+    <b class="text-uppercase">{{ __('Show Registrations') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Registrations') }}</li>
     <li class="breadcrumb-item text-capitalize">
-        <a href="{{ route('administration.event.index') }}">{{ __('All Events') }}</a>
+        <a href="{{ route('administration.event.registration.index') }}">
+            {{ __('All Registrations') }}
+        </a>
     </li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Show Details') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Show Registrations') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.event.edit', ['event' => $event]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Event Info</b>
+    <a href="{{ route('administration.event.registration.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-arrow-left"></i>
+        <b>Back</b>
     </a>
 @endsection
 
@@ -44,127 +52,94 @@
 
 @section('content')
 
-<!-- Start Row -->
-<div class="row justify-content-center">
-    <div class="col-md-12">
-        <form action="{{ route('administration.event.update', ['event' => $event]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
-            @csrf
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div class="card border">
-                                <div class="card-header bg-primary-rgba border-bottom">
-                                    <h5 class="card-title text-primary mb-0">Event's Information</h5>
-                                </div>
-                                <div class="card-body py-2">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered mb-0">
-                                                <tbody>
-                                                    <tr class="text-center">
-                                                        <td colspan="2">
-                                                            <div class="user-avatar">
-                                                                <img src="{{ show_avatar($event->logo) }}" alt="Event Logo" class="img-thumbnail" width="250">
-                                                            </div>    
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Season</th>
-                                                        <td>
-                                                            <a href="{{ route('administration.season.show', ['season' => $event->season]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $event->season->name }} details" class="text-dark text-bold">
-                                                                {{ $event->season->name }}
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Sport</th>
-                                                        <td>
-                                                            <a href="{{ route('administration.sport.show', ['sport' => $event->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $event->sport->name }} details" class="text-dark text-bold">
-                                                                {{ $event->sport->name }}
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <td>{{ $event->name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Registration Fee</th>
-                                                        <td class="text-bold text-primary">${{ $event->registration_fee }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Event Start Date</th>
-                                                        <td>{{ $event->start }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Event End Date</th>
-                                                        <td>{{ $event->end }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Status</th>
-                                                        <td>{!! status($event->status) !!}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Divisions</th>
-                                                        <td>
-                                                            <ol>
-                                                                @foreach ($event->divisions as $division)
-                                                                    <li>
-                                                                        <a href="{{ route('administration.division.show', ['division' => $division]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $division->name }} details">
-                                                                            {{ $division->name }}
-                                                                        </a>    
-                                                                    </li>  
-                                                                @endforeach
-                                                            </ol>    
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Venues</th>
-                                                        <td>
-                                                            <ol>
-                                                                @foreach ($event->venues as $venue)
-                                                                    <li>
-                                                                        <a href="{{ route('administration.venue.show', ['venue' => $venue]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $venue->name }} details">
-                                                                            {{ $venue->name }}
-                                                                        </a>    
-                                                                    </li>  
-                                                                @endforeach
-                                                            </ol>    
-                                                        </td>
-                                                    </tr>
-                                                    @if (!empty($event->description))
-                                                        <tr>
-                                                            <th>Description</th>
-                                                            <td>{!! $event->description !!}</td>
-                                                        </tr>
-                                                    @endif
-                                                </tbody>
-                                            </table>
+<!-- Start row -->
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title">
+                    {{ __('Show Registrations of') }} 
+                    <span class="text-primary text-bold">{{ $event->name }}</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="default-datatable" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl.</th>
+                                <th>Avatar</th>
+                                <th>Player</th>
+                                <th>Paid By</th>
+                                <th>Registered At</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($registrations as $key => $registration)
+                                <tr>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($registrations, $key) }}</b></th>
+                                    <td>
+                                        <a href="{{ route('administration.player.show', ['player' => $registration->player->id]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$registration->player->user->name.'\'s Details') }}">
+                                            <img src="{{ show_avatar($registration->player->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('administration.player.show', ['player' => $registration->player->id]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$registration->player->user->name.'\'s Details') }}">
+                                            {{ $registration->player->user->name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $registration->paidBy->name }}</td>
+                                    <td>{{ date_time_ago($registration->created_at) }}</td>
+                                    <td class="text-right">
+                                        <div class="action-btn-group mr-3">
+                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                <i class="feather icon-trash-2"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                <i class="feather icon-info"></i>
+                                            </a>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
+    <!-- End col -->
 </div>
-
-<!-- End Row -->
+<!-- End row -->
 
 @endsection
 
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Datatable js -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-table-datatable.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
+        // Custom Script Here
+        /* -- Bootstrap Tooltip -- */
         $('[data-toggle="tooltip"]').tooltip();
     </script>
 @endsection
