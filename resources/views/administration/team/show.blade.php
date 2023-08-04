@@ -61,6 +61,10 @@
                                         <table class="table table-bordered mb-0">
                                             <tbody>
                                                 <tr>
+                                                    <th>Team ID</th>
+                                                    <td class="text-info text-bold">{{ $team->team_id }}</td>
+                                                </tr>
+                                                <tr>
                                                     <th>Name</th>
                                                     <td>{{ $team->name }}</td>
                                                 </tr>
@@ -70,7 +74,36 @@
                                                         <a href="{{ route('administration.event.show', ['event' => $team->event]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->event->name }} details" class="text-dark text-bold">
                                                             {{ $team->event->name }}
                                                         </a>
+                                                        <small>
+                                                            <a href="{{ route('administration.sport.show', ['sport' => $team->event->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->event->sport->name }} details" class="text-dark text-bold">
+                                                                ({{ $team->event->sport->name }})
+                                                            </a>
+                                                        </small>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Division</th>
+                                                    <td>
+                                                        <a href="{{ route('administration.division.show', ['division' => $team->division]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->division->name }} details" class="text-dark text-bold">
+                                                            {{ $team->division->name }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Coach</th>
+                                                    <td>
+                                                        <a href="{{ route('administration.coach.show', ['coach' => $team->coach]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->coach->user->name }} details" class="text-dark text-bold">
+                                                            {{ $team->coach->user->name }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Gender</th>
+                                                    <td>{{ $team->gender }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Maximum Players</th>
+                                                    <td>{{ $team->maximum_players }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Status</th>
