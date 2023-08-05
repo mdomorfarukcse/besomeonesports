@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Team'))
+@section('page_title', __('Update Team'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -96,13 +96,27 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Team') }}</b>
+    <b class="text-uppercase">{{ __('Update Team Information') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Teams') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Team') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.team.index') }}">{{ __('All Teams') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.team.show', ['team' => $team]) }}">{{ __('Show Details') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Edit Team Info') }}</li>
+@endsection
+
+
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.team.show', ['team' => $team]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-arrow-left"></i>
+        <b>Back</b>
+    </a>
 @endsection
 
 
@@ -113,32 +127,20 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.team.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.team.update', ['team' => $team]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">Create New Team</h5>
+                    <h5 class="card-title mb-0">Update Team</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="team_id">Team ID (CID) <span class="required">*</span></label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">BSTEAM</span>
-                                </div>
-                                <input type="text" name="team_id" value="{{ $team_id }}" readonly class="form-control text-bold @error('team_id') is-invalid @enderror" placeholder="BSTEAM202302011235" required/>
-                            </div>
-                            @error('team_id')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
                         <div class="form-group col-md-4">
                             <label for="event_id">Event <span class="required">*</span></label>
                             <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
-                                <option value="">Select Event</option>
+                                <option value="" disabled>Select Event</option>
                                 @foreach ($events as $event)
-                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                    <option value="{{ $event->id }}" @if ($event->id == $team->event_id) selected @endif>{{ $event->name }}</option>
                                 @endforeach
                             </select>
                             @error('event_id')
@@ -148,9 +150,9 @@
                         <div class="form-group col-md-4">
                             <label for="division_id">Division <span class="required">*</span></label>
                             <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
-                                <option value="">Select Division</option>
+                                <option value="" disabled>Select Division</option>
                                 @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                    <option value="{{ $division->id }}" @if ($division->id == $team->division_id) selected @endif>{{ $division->name }}</option>
                                 @endforeach
                             </select>
                             @error('division_id')
@@ -160,9 +162,9 @@
                         <div class="form-group col-md-4">
                             <label for="coach_id">Coach</label>
                             <select class="select2-single form-control @error('coach_id') is-invalid @enderror" name="coach_id">
-                                <option value="">Select Coach</option>
+                                <option value="" disabled>Select Coach</option>
                                 @foreach ($coaches as $coach)
-                                    <option value="{{ $coach->id }}">{{ $coach->user->name }}</option>
+                                    <option value="{{ $coach->id }}" @if ($coach->id == $team->coach_id) selected @endif>{{ $coach->user->name }}</option>
                                 @endforeach
                             </select>
                             @error('coach_id')
@@ -171,7 +173,7 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Chennai Super Kings" required/>
+                            <input type="text" name="name" value="{{ $team->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Chennai Super Kings" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -179,10 +181,10 @@
                         <div class="form-group col-md-3">
                             <label for="gender">Gender <span class="required">*</span></label>
                             <select class="select2-single form-control @error('gender') is-invalid @enderror" name="gender" required>
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="" disabled>Select Gender</option>
+                                <option value="Male" @if ($team->gender === 'Male') selected @endif>Male</option>
+                                <option value="Female" @if ($team->gender === 'Female') selected @endif>Female</option>
+                                <option value="Other" @if ($team->gender === 'Other') selected @endif>Other</option>
                             </select>
                             @error('sport_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -190,7 +192,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="maximum_players">Max Players <span class="required">*</span></label>
-                            <input type="number" min="1" step="1" name="maximum_players" value="{{ old('maximum_players') }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
+                            <input type="number" min="1" step="1" name="maximum_players" value="{{ $team->maximum_players }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
                             @error('maximum_players')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -198,9 +200,9 @@
                         <div class="form-group col-md-2">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
+                                <option value="" disabled>Select Status</option>
+                                <option value="Active" @if ($team->status === 'Active') selected @endif>Active</option>
+                                <option value="Inactive" @if ($team->status === 'Inactive') selected @endif>Inactive</option>
                             </select>
                             @error('status')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -208,7 +210,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Team Description">{{ old('description') }}</textarea>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Team Description">{!! $team->description !!}</textarea>
                             @error('description')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -219,7 +221,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Team</span>
+                        <span class="text-bold">Update Team</span>
                     </button>
                 </div>
             </div>
@@ -242,20 +244,5 @@
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
-        // File Uploder
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#eventLogo").change(function() {
-            readURL(this);
-        });
     </script>
 @endsection
