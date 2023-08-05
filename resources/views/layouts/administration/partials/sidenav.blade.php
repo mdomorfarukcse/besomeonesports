@@ -19,15 +19,29 @@
                     </a>
                 </li>
 
+                {{-- <li>
+                    <a href="{{ route('administration.chat.index') }}"> 
+                        <i class="sl-icon-bubbles"></i>
+                        <span>Messaging</span> 
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('administration.schedule.index') }}">
+                        <i class="sl-icon-pie-chart"></i>
+                        <span>Schedule</span> 
+                    </a>
+                </li> --}}
+                
                 <li>
                     <a href="javaScript:void();"> 
-                        <i class="sl-icon-layers"></i>
-                        <span>Seasons</span>
+                        <i class="sl-icon-people"></i>
+                        <span>Teams</span>
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.season.index') }}">All Seasons</a></li>
-                        <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
+                        <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
+                        <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                     </ul>
                 </li>
 
@@ -60,6 +74,18 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javaScript:void();"> 
+                        <i class="sl-icon-layers"></i>
+                        <span>Seasons</span>
+                        <i class="feather icon-chevron-right pull-right"></i> 
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('administration.season.index') }}">All Seasons</a></li>
+                        <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
+                    </ul>
+                </li>
                 
                 <li>
                     <a href="javaScript:void();"> 
@@ -68,8 +94,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.division.index') }}">Divisions</a></li>
-                        <li><a href="{{ route('administration.division.create') }}">Add Division</a></li>
+                        <li><a href="{{ route('administration.division.index') }}">All Divisions</a></li>
+                        <li><a href="{{ route('administration.division.create') }}">Add New Division</a></li>
                     </ul>
                 </li>
                 
@@ -100,40 +126,14 @@
                 
                 <li>
                     <a href="javaScript:void();"> 
-                        <i class="sl-icon-people"></i>
-                        <span>Teams</span>
-                        <i class="feather icon-chevron-right pull-right"></i> 
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
-                        <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <a href="javaScript:void();"> 
                         <i class="sl-icon-grid"></i>
                         <span>Venues</span>
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.venue.index') }}">Venues</a></li>
-                        <li><a href="{{ route('administration.venue.create') }}">Add Venue</a></li>
+                        <li><a href="{{ route('administration.venue.index') }}">All Venues</a></li>
+                        <li><a href="{{ route('administration.venue.create') }}">Add New Venue</a></li>
                     </ul>
-                </li>
-
-                <li>
-                    <a href="{{ route('administration.schedule.index') }}">
-                        <i class="sl-icon-pie-chart"></i>
-                        <span>Schedule</span> 
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('administration.chat.index') }}"> 
-                        <i class="sl-icon-bubbles"></i>
-                        <span>Messaging</span> 
-                    </a>
                 </li>
 
                 <li>
@@ -148,7 +148,7 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="javaScript:void();">
                         <i class="sl-icon-basket-loaded"></i>
                         <span>Shop</span>
@@ -159,9 +159,9 @@
                         <li><a href="{{ route('administration.product.create') }}">Product</a></li>
                         <li><a href="{{ route('administration.order.create') }}">Orders</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                @role('admin')
+                {{-- @role('admin')
                     <li>
                         <a href="javaScript:void(0);">
                             <i class="sl-icon-settings"></i>
@@ -206,7 +206,7 @@
                             </li>
                         </ul>
                     </li>
-                @endrole
+                @endrole --}}
             </ul>
         </div>
         <!-- End Navigationbar -->
