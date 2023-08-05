@@ -93,7 +93,12 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        dd($team);
+        // dd($team);
+        $events = Event::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+
+        return view('administration.team.edit', compact(['team', 'events', 'divisions', 'coaches']));
     }
 
     /**
@@ -101,7 +106,27 @@ class TeamController extends Controller
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
-        dd($request);
+        // dd($request);
+        try{
+            $team->event_id = $request->event_id;
+            $team->division_id = $request->division_id;
+            $team->coach_id = $request->coach_id;
+            $team->name = $request->name;
+            $team->gender = $request->gender;
+            $team->maximum_players = $request->maximum_players;
+            $team->status = $request->status;
+            $team->description = $request->description;
+            $team->save();
+
+            toast('The Team Information Has Been Updated.', 'success');
+            return redirect()->route('administration.team.show', ['team' => $team]);
+        } catch (Exception $e){
+
+            dd($e);
+            alert('Team Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+
+        }
     }
 
     /**
