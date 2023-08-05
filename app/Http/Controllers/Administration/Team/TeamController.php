@@ -8,9 +8,13 @@ use App\Models\Coach\Coach;
 use App\Models\Event\Event;
 use Illuminate\Http\Request;
 use App\Models\Division\Division;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Event\Registration\EventRegistration;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
+use App\Http\Requests\Administration\Team\AssignPlayerRequest;
+use App\Models\Player\Player;
 
 class TeamController extends Controller
 {
@@ -73,7 +77,15 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('administration.team.show', ['team' => $team]);
+        $players = EventRegistration::select(['id', 'event_id', 'player_id'])->with(['player'])->whereEventId($team->event_id)->get();
+        if ($team->maximum_players < count($team->players)) {
+            alert('Player Limit Crossed!', 'Maximum Player is '.$team->maximum_players.'. Please remove extra players', 'warning');
+        }
+
+        $teamPlayers = $team->players->pluck('id')->toArray();
+        // dd($teamPlayers);
+
+        return view('administration.team.show', compact(['team', 'players', 'teamPlayers']));
     }
 
     /**
@@ -90,6 +102,43 @@ class TeamController extends Controller
     public function update(TeamUpdateRequest $request, Team $team)
     {
         dd($request);
+    }
+
+    /**
+     * Assign player.
+     */
+    public function assignPlayer(AssignPlayerRequest $request, Team $team)
+    {
+        // dd($request);
+        try{
+            DB::transaction(function() use ($request, $team) {
+                $team->players()->syncWithoutDetaching($request->players);
+            }, 5);
+
+            toast('Players has been assigned to the team.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+            dd($e);
+            alert('Player assigning failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroyPlayer(Team $team, Player $player)
+    {
+        try{
+            $team->players()->detach($player);
+
+            toast('Players has been removed from the team.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+            dd($e);
+            alert('Player removing failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

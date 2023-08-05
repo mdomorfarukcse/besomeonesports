@@ -13,5 +13,7 @@ Route::controller(TeamController::class)->prefix('team')->name('team.')->group(f
     Route::get('/show/{team}', 'show')->name('show');
     Route::get('/edit/{team}', 'edit')->name('edit');
     Route::post('/update/{team}', 'update')->name('update');
+    Route::post('/assign/player/{team}', 'assignPlayer')->name('assign');
+    Route::get('/destroy/player/{team}/{player}', 'destroyPlayer')->name('destroy.player');
     Route::get('/destroy/{team}', 'destroy')->name('destroy');
 });
