@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="https://oxenticstemplates.biz/templatemonster/gambolsports/basketball/index.html" method="get">
+                <form action="#" method="get">
                     <div class="com-div-md">
                         <h5 class="text-center mb-3">Forget Your Password?</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -30,7 +30,8 @@
         <div class="modal-content">
             <div class="modal-header"></div>
             <div class="modal-body">
-                <form action="https://oxenticstemplates.biz/templatemonster/gambolsports/basketball/index.html" method="get">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div id="login-td-div" class="com-div-md">
                         <h5 class="text-center mb-3">Login</h5>
                         <button type="button" class="close" data-bs-dismiss="modal">
@@ -39,10 +40,20 @@
                         <div class="login-modal-pn">
                             <div class="cm-select-login mt-3">
                                 <div class="country-dp">
-                                    <input type="email" name="user" class="form-control" placeholder="Username Or Email" required />
+                                    <input type="email" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required/>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="phone-div">
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required />
+                                    <input type="password" name="password" class="form-control @error('email') is-invalid @enderror" placeholder="Password" required/>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -66,7 +77,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="https://oxenticstemplates.biz/templatemonster/gambolsports/basketball/index.html" method="get">
+                <form action="#" method="get">
                     <div class="com-div-md">
                         <h5 class="text-center mb-3">Become A Member</h5>
                         <button type="button" class="close" data-bs-dismiss="modal">
