@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 50);
             $table->string('latitude', 100)->nullable();
-            $table->string('Longitude', 100)->nullable();
+            $table->string('longitude', 100)->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();
