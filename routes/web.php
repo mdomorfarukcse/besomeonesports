@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*==============================================================
+======================< Homepage Routes >=================
+==============================================================*/
+Route::middleware(['web'])->group(function () {
+    include_once 'frontend/frontend.php';
+});
 
 /*==============================================================
 ======================< Administration Routes >=================
