@@ -17,24 +17,9 @@
                     <a href="{{ route('administration.dashboard.index') }}">
                         <i class="sl-icon-speedometer"></i>
                         <span>{{ __('Dashboard') }}</span>
-                        <span class="badge badge-success pull-right">{{ __('New') }}</span>
+                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
                     </a>
                 </li>
-
-                {{-- <li>
-                    <a href="{{ route('administration.chat.index') }}"> 
-                        <i class="sl-icon-bubbles"></i>
-                        <span>Messaging</span> 
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('administration.schedule.index') }}">
-                        <i class="sl-icon-pie-chart"></i>
-                        <span>Schedule</span> 
-                    </a>
-                </li> --}}
-                
                 <li>
                     <a href="javaScript:void();"> 
                         <i class="sl-icon-people"></i>
@@ -149,19 +134,50 @@
                         <li><a href="{{ route('administration.sport.create') }}">Create New Sport</a></li>
                     </ul>
                 </li>
-
-                {{-- <li>
+                <li>
                     <a href="javaScript:void();">
                         <i class="sl-icon-basket-loaded"></i>
                         <span>Shop</span>
                         <i class="feather icon-chevron-right pull-right"></i> 
+                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="{{ route('administration.product.create') }}">Product</a></li>
-                        <li><a href="{{ route('administration.order.create') }}">Orders</a></li>
+                        <li><a href="{{ route('administration.product.index') }}">Product</a></li>
+                        <li><a href="{{ route('administration.order.index') }}">Orders</a></li>
                     </ul>
-                </li> --}}
+                </li>
+                <li>
+                    <a href="{{ route('administration.chat.index') }}"> 
+                        <i class="sl-icon-bubbles"></i>
+                        <span>Messaging</span> 
+                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('administration.schedule.index') }}">
+                        <i class="sl-icon-pie-chart"></i>
+                        <span>Schedule</span> 
+                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/"> 
+                        <i class="sl-icon-home"></i>
+                        <span>Website</span> 
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/logout"> 
+                        <i class="sl-icon-close"></i>
+                        <span>Logout</span> 
+                    </a>
+                </li>
+                
+
+                
 
                 {{-- @role('admin')
                     <li>
