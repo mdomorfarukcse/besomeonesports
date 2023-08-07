@@ -10,7 +10,7 @@
         <meta name="keywords" content="admin, admin panel, admin template, admin dashboard, responsive, bootstrap 4, ui kits, ecommerce, web app, crm, cms, html, sass support, scss" />
         <meta name="author" content="Themesbox" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-        <title>{{ __('Project_Name') }} || {{ __('LOGIN') }}</title>
+        <title>{{ config('app.name') }} || {{ __('LOGIN') }}</title>
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
         <!-- Start css -->
@@ -40,7 +40,7 @@
                                             @csrf
                                             <div class="form-head">
                                                 <a href="/" class="logo">
-                                                    <img src="{{ asset('assets/images/logo.svg') }}" class="img-fluid" alt="logo" />
+                                                    <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" />
                                                 </a>
                                             </div>
 
