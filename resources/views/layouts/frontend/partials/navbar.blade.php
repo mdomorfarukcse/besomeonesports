@@ -17,7 +17,7 @@
                         <a class="nav-link {{ Request::is('events*') ? 'active' : '' }}" href="#">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="#">Shop</a>
+                        <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="{{ route('frontend.shop.index') }}">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('contact*') ? 'active' : '' }}" href="{{ route('frontend.contact.index') }}">Contact</a>

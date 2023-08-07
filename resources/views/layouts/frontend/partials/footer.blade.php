@@ -67,7 +67,7 @@
                                     <a href="{{ route('frontend.about.index') }}">Events</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.about.index') }}">Shop</a>
+                                    <a href="{{ route('frontend.shop.index') }}">Shop</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('frontend.contact.index') }}">Contact</a>
