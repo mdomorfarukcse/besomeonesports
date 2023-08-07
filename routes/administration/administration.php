@@ -32,6 +32,9 @@ Route::prefix('administration')
             // Venue
             include_once 'venue/venue.php';
             
+            // court
+            include_once 'court/court.php';
+            
             // Schedule
             include_once 'schedule/schedule.php';
 

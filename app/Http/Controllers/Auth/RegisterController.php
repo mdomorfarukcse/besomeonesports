@@ -75,11 +75,13 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        $role = isset($request->role) ? $request->role : 'player';
+        
         $response = Http::post(config('app.url').'/api/register', [
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'role' => $request->role, // Assuming the role is provided in the request
+            'role' => $role, // Assuming the role is provided in the request
         ]);
 
         // Check if the request was successful
