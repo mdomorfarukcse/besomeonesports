@@ -18,6 +18,10 @@
         <!-- Start navbar -->
         @include('layouts.frontend.partials.navbar')
         <!-- End navbar -->
+
+        <!-- Start Breadcrumbbar -->
+        @include('layouts.frontend.partials.breadcrumb')
+        <!-- End Breadcrumbbar -->
         
         <!-- Start row -->
         @yield('content')
@@ -31,6 +35,10 @@
         <!-- Start Auth Modals -->
         @include('layouts.frontend.partials.auth_modals')
         <!-- End Auth Modals -->
+
+        <!-- Start Mobile Menu -->
+        @include('layouts.frontend.partials.mobile_menu')
+        <!-- End Mobile Menu -->
 
         <!-- Start js -->
         @include('layouts.frontend.partials.scripts')
