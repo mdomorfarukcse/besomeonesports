@@ -30,6 +30,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('administration.dashboard.index') }}">Dashboard</a>
+                        </li>
+                    @else
+                        <li>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn login-btn-links">
+                                <span class="m-0 oipn">
+                                    <img src="{{ asset('frontend/images/747376.png') }}" alt="pnm" />
+                                </span>
+                            </button>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             <div class="right-top">
@@ -90,13 +103,6 @@
                                 <a href="#" class="btn check-drop-bn"> Check out </a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn login-btn-links">
-                            <span class="m-0 oipn">
-                                <img src="{{ asset('frontend/images/747376.png') }}" alt="pnm" />
-                            </span>
-                        </button>
                     </li>
                 </ul>
             </div>

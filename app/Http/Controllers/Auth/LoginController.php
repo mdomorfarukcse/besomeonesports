@@ -95,7 +95,7 @@ class LoginController extends Controller
                 $request->session()->regenerateToken();
                 Auth::guard('web')->logout();
 
-                return redirect()->route('login')->with('message', 'Logged out successfully');
+                return redirect()->route('frontend.homepage.index')->with('message', 'Logged out successfully');
             }
         }
 
