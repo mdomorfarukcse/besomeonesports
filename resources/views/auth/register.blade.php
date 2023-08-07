@@ -38,8 +38,6 @@
                                     <div class="card-body">
                                         <form method="POST" action="{{ route('register') }}">
                                             @csrf
-
-                                            <input type="hidden" name="role" value="user">
                                             <div class="form-head">
                                                 <a href="/" class="logo">
                                                     <img src="{{ asset('assets/images/logo.svg') }}" class="img-fluid" alt="logo" />
