@@ -170,7 +170,7 @@
                 </li>
                 
                 <li>
-                    <a href="/logout"> 
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> 
                         <i class="sl-icon-close"></i>
                         <span>Logout</span> 
                     </a>
