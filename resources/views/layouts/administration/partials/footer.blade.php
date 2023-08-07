@@ -1,7 +1,7 @@
 <!-- Start Footerbar -->
 <div class="footerbar">
     <footer class="footer">
-        <p class="mb-0">© 2020 Orbiter - All Rights Reserved.</p>
+        <p class="mb-0"> ©2023, Be Someone Sports All Rights Reserved. Developed by SpaceCenterSystems</p>
     </footer>
 </div>
 <!-- End Footerbar -->

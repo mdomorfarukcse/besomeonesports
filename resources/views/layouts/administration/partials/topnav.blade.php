@@ -34,12 +34,12 @@
                         <div class="profilebar">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="https://loremflickr.com/500/500/girl/all" class="img-fluid rounded-circle" alt="profile" /><span class="feather icon-chevron-down live-icon"></span>
+                                    <img src="{{ asset('assets/images/users/men.svg') }}" class="img-fluid rounded-circle" alt="profile" /><span class="feather icon-chevron-down live-icon"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                     <div class="dropdown-item">
                                         <div class="profilename pt-3">
-                                            <img src="https://loremflickr.com/500/500/girl/all" class="img-fluid rounded-circle" alt="profile" />
+                                            <img src="{{ asset('assets/images/users/men.svg') }}" class="img-fluid rounded-circle" alt="profile" />
                                             <h5>{{ Auth::user()->name }}</h5>
                                             <small class="text-muted text-capitalize">{{ Auth::user()->roles[0]->name }}</small>
                                         </div>

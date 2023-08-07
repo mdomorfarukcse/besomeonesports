@@ -64,7 +64,7 @@
                             <a data-bs-toggle="modal" class="regster-bn" data-bs-target="#lostpsModal" data-bs-dismiss="modal"> Lost Password ? </a>
                         </p>
 
-                        <p class="text-center mt-3">Do not have an account? <a data-bs-toggle="modal" class="regster-bn" data-bs-target="#memberModal" data-bs-dismiss="modal"> Register </a></p>
+                        <p class="text-center mt-3">Do not have an account? <a href="/register"> Register </a></p>
                     </div>
                 </form>
             </div>
