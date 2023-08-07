@@ -12,5 +12,5 @@ class Venue extends Model
 {
     use HasFactory, Relations, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = [];
+    protected $cascadeDeletes = ['courts'];
 }
