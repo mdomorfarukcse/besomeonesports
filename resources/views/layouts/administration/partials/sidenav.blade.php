@@ -138,13 +138,55 @@
                     <a href="javaScript:void();">
                         <i class="sl-icon-basket-loaded"></i>
                         <span>Shop</span>
-                        <i class="feather icon-chevron-right pull-right"></i> 
-                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
+                        <i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="{{ route('administration.product.index') }}">Product</a></li>
-                        <li><a href="{{ route('administration.order.index') }}">Orders</a></li>
+                        <li>
+                            <a href="#">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('administration.order.index') }}">
+                                Orders
+                            </a>
+                        </li>                    
+                        <li>
+                            <a href="javaScript:void(0);">
+                                {{ __('Products') }}
+                                <i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li>
+                                    <a href="{{ route('administration.product.index') }}">
+                                        {{ __('All Products') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administration.product.index') }}">
+                                        {{ __('Add New Product') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javaScript:void(0);">
+                                {{ __('Categories') }}
+                                <i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li>
+                                    <a href="{{ route('administration.product.index') }}">
+                                        {{ __('All Categories') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administration.product.index') }}">
+                                        {{ __('Add New Category') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
