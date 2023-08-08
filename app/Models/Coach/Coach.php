@@ -19,8 +19,8 @@ class Coach extends Model
         parent::boot();
 
         static::creating(function ($coach) {
-            // Prefix 'BSCOACH' to the 'coach_id' attribute
-            $coach->coach_id = 'BSCOACH' . $coach->coach_id;
+            // Prefix 'BSSCOACH' to the 'coach_id' attribute
+            $coach->coach_id = 'BSSCOACH' . $coach->coach_id;
         });
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id', 18)->min(18)->max(18)->unique();
+
             $table->foreignId('product_id')
                   ->constrained()
                   ->onUpdate('cascade')
@@ -28,7 +30,15 @@ return new class extends Migration
             $table->integer('total_price')->comment('Quantity * CurrentPrice');
             $table->text('address');
             $table->string('contact_number');
-            $table->enum('status', ['Active', 'Running', 'Delivery', 'Completed', 'Canceled'])->default('Active');
+
+            $table->enum('status', [
+                            'Active', 
+                            'Running', 
+                            'Delivery', 
+                            'Completed', 
+                            'Canceled'
+                        ])->default('Active');
+
             $table->timestamps();
             $table->softDeletes();
         });

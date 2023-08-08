@@ -19,8 +19,8 @@ class Player extends Model
         parent::boot();
 
         static::creating(function ($player) {
-            // Prefix 'BSPLAYER' to the 'player_id' attribute
-            $player->player_id = 'BSPLAYER' . $player->player_id;
+            // Prefix 'BSSPLAYER' to the 'player_id' attribute
+            $player->player_id = 'BSSPLAYER' . $player->player_id;
         });
     }
 }

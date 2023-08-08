@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id', 19)->min(19)->max(19)->unique();
+            $table->string('product_id', 20)->min(20)->max(20)->unique();
             $table->string('name');
             $table->integer('quantity')->default(1);
             $table->float('purchase_price', 8, 2);
