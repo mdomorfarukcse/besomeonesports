@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Administration\Order;
+namespace App\Http\Controllers\Administration\Shop\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('administration.order.index');
+        return view('administration.shop.category.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('administration.order.index');
+        return view('administration.shop.category.create');
     }
 
     /**

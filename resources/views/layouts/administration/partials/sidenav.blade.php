@@ -142,12 +142,12 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li>
-                            <a href="#">
+                            <a href="{{ route('administration.shop.dashboard.index') }}">
                                 Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('administration.order.index') }}">
+                            <a href="{{ route('administration.shop.order.index') }}">
                                 Orders
                             </a>
                         </li>                    
@@ -158,12 +158,12 @@
                             </a>
                             <ul class="vertical-submenu">
                                 <li>
-                                    <a href="{{ route('administration.product.index') }}">
+                                    <a href="{{ route('administration.shop.product.index') }}">
                                         {{ __('All Products') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('administration.product.index') }}">
+                                    <a href="{{ route('administration.shop.product.create') }}">
                                         {{ __('Add New Product') }}
                                     </a>
                                 </li>
@@ -176,12 +176,12 @@
                             </a>
                             <ul class="vertical-submenu">
                                 <li>
-                                    <a href="{{ route('administration.product.index') }}">
+                                    <a href="{{ route('administration.shop.category.index') }}">
                                         {{ __('All Categories') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('administration.product.index') }}">
+                                    <a href="{{ route('administration.shop.category.create') }}">
                                         {{ __('Add New Category') }}
                                     </a>
                                 </li>

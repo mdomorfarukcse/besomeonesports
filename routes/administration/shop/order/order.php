@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Administration\Order\OrderController;
+use App\Http\Controllers\Administration\Shop\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /* ==============================================
@@ -8,5 +8,4 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
 });

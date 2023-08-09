@@ -41,11 +41,8 @@ Route::prefix('administration')
             // Chat
             include_once 'chat/chat.php';
             
-            // Product
-            include_once 'product/product.php';
-            
-            // Order
-            include_once 'order/order.php';
+            // shop
+            include_once 'shop/shop.php';
             
             // Sport
             include_once 'sport/sport.php';

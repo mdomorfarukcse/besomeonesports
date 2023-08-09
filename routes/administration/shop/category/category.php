@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Administration\Product\ProductController;
+use App\Http\Controllers\Administration\Shop\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /* ==============================================
-===============< Product Routes >==============
+===============< Category Routes >==============
 ===============================================*/
-Route::controller(ProductController::class)->prefix('product')->name('product.')->group(function () {
+Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
 });
