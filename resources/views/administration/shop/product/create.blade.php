@@ -119,8 +119,11 @@
                         </div>
                         <div class="col-md-12">
                             <div class="product-image-upload form-group">
-                                <label for="images">Upload File(s)</label>
+                                <label for="images">Upload Product Images <span class="required">*</span></label>
                                 <input type="file" accept="image/jpeg,image/png,image/gif" multiple id="images" name="images[]" class="form-control file-uploader" placeholder="Ex: Upload Images" required>
+                                @error('images[]')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group col-md-12">
