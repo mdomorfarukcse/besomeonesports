@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Administration\Shop\Category;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Shop\Category\Category;
+use App\Http\Requests\Administration\Shop\Category\CategoryStoreRequest;
+use App\Http\Requests\Administration\Shop\Category\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -12,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('administration.shop.category.index');
+        $categories = Category::select(['id','name','status'])->orderBy('created_at', 'desc')->get();
+        return view('administration.shop.category.index', compact(['categories']));
     }
 
     /**
@@ -26,15 +31,29 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        //
+        // dd($request->all());
+        try{
+            Category::create([
+                'name' => $request->name,
+                'status' => $request->status,
+                'description' => $request->description
+            ]);
+
+            toast('A New Category Has Been Created.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+            dd($e);
+            alert('Category Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
         //
     }
@@ -42,7 +61,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
         //
     }
@@ -50,7 +69,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         //
     }
@@ -58,7 +77,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
         //
     }

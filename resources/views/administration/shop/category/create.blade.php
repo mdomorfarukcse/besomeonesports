@@ -5,11 +5,16 @@
 
 @endsection
 
-@section('page_title', __('Dashboard'))
+@section('page_title', __('Create New Category'))
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- Datepicker css -->
+    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Select2 css -->
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
+
 
 @section('custom_css')
     {{--  External CSS  --}}
@@ -20,143 +25,80 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Dashboard') }}</b>
+    <b class="text-uppercase">{{ __('Create New Category') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Dashboard') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Shops') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Categories') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Category') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start row -->
-<div class="row">
-    <!-- Start col -->
-    <div class="col-lg-6">
-        <div class="card m-b-30">
-            <div class="card-header">
-                <h5 class="card-title">Add Season</h5>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="forsport">Sports</label>
-                        <select name="status" class="form-control" id="forsport" required>
-                            <option value="">Select A Sport</option>
-                            <option value="5">Baseball</option>
-                            <option value="1">Basketball</option>
-                            <option value="18">Bocce</option>
-                            <option value="19">Bowling</option>
-                            <option value="14">Cornhole</option>
-                            <option value="15">Dodgeball</option>
-                            <option value="41">Dominoes</option>
-                            <option value="13">Field Hockey</option>
-                            <option value="20">Floor Hockey</option>
-                            <option value="2">Football</option>
-                            <option value="9">Futsal</option>
-                            <option value="21">Golf</option>
-                            <option value="4">Hockey</option>
-                            <option value="10">Kickball</option>
-                            <option value="6">Lacrosse</option>
-                            <option value="25">Pickleball</option>
-                            <option value="23">Rugby</option>
-                            <option value="7">Soccer</option>
-                            <option value="8">Softball</option>
-                            <option value="26">Spikeball</option>
-                            <option value="22">Swimming</option>
-                            <option value="16">Tennis</option>
-                            <option value="17">Track &amp; Field</option>
-                            <option value="24">Ultimate</option>
-                            <option value="3">Volleyball</option>
-                            <option value="11">Water Polo</option>
-                            <option value="12">Wrestling</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Type</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">New</option>
-                            <option value="">Copy</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Season Name</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <select name="start" id="" class="form-control">
-                            <option>Start</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2023</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                        <span class="input-group-text">-</span>
-                        <select name="start" id="" class="form-control">
-                            <option>End</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2024</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                        <div class="input-group-append">
-                            <input type="text" class="form-control" placeholder="Session (Spring, Fall)" />
+
+<!-- Start Row -->
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form action="{{ route('administration.shop.category.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            @csrf
+            <div class="card border m-b-30">
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-0">Create New Category</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Ex. 12U, Second Grade" required/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="status">Status <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="">Select Status</option>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('description') }}</textarea>
+                            @error('description')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        
                     </div>
-                    <div class="form-group">
-                        <label for="foremail">Date Range</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="date" class="form-control" name="start_date" />
-                        <span class="input-group-text">-</span>
-                        <input type="date" class="form-control" name="end_date" />
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Status</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">Active</option>
-                            <option value="">In-Active</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Default</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">Yes</option>
-                            <option value="">No</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
+                        <i class="feather icon-plus mr-1"></i>
+                        <span class="text-bold">Create New Category</span>
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- End col -->
 </div>
 
-<!-- End row -->
-
+<!-- End Row -->
 @endsection
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')

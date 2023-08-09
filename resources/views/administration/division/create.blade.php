@@ -30,6 +30,7 @@
 
 
 @section('breadcrumb')
+    <li class="breadcrumb-item text-capitalize">{{ __('Divisions') }}</li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Create New Division') }}</li>
 @endsection
 
@@ -80,7 +81,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Sport</span>
+                        <span class="text-bold">Create New Division</span>
                     </button>
                 </div>
             </div>
