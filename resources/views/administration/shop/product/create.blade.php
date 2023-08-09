@@ -5,163 +5,257 @@
 
 @endsection
 
-@section('page_title', __('Dashboard'))
+@section('page_title', __('Create New Product'))
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- Datepicker css -->
+    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Select2 css -->
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
+
 
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+    .product-id .input-group-text {
+        border: 0px solid #d4d8de;
+        background: #f7faff;
+        color: #111;
+        padding-right: 0;
+        font-weight: bold;
+    }
+    .product-id .input-group .form-control[readonly] {
+        padding-left: 0;
+    }
+
+    /* Image Upload */
+    .logo-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+    }
+    .logo-upload .logo-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+    }
+    .logo-upload .logo-edit input {
+        display: none;
+    }
+    .logo-upload .logo-edit input + label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #ffffff;
+        border: 1px solid;
+        border-color: #a1a1a1;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+    }
+    .logo-upload .logo-edit input + label:hover {
+        background: #d8d8d8;
+        border-color: #a1a1a1;
+    }
+    .logo-upload .logo-edit input + label:after {
+        content: "\f040";
+        font-family: "FontAwesome";
+        color: #757575;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+    }
+    .logo-upload .logo-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #f8f8f8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .logo-upload .logo-preview > div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
     </style>
 @endsection
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Dashboard') }}</b>
+    <b class="text-uppercase">{{ __('Create New Product') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Dashboard') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Shop') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Products') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Product') }}</li>
 @endsection
 
 
 
 @section('content')
 
-<!-- Start row -->
-<div class="row">
-    <!-- Start col -->
-    <div class="col-lg-6">
-        <div class="card m-b-30">
-            <div class="card-header">
-                <h5 class="card-title">Add Season</h5>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="forsport">Sports</label>
-                        <select name="status" class="form-control" id="forsport" required>
-                            <option value="">Select A Sport</option>
-                            <option value="5">Baseball</option>
-                            <option value="1">Basketball</option>
-                            <option value="18">Bocce</option>
-                            <option value="19">Bowling</option>
-                            <option value="14">Cornhole</option>
-                            <option value="15">Dodgeball</option>
-                            <option value="41">Dominoes</option>
-                            <option value="13">Field Hockey</option>
-                            <option value="20">Floor Hockey</option>
-                            <option value="2">Football</option>
-                            <option value="9">Futsal</option>
-                            <option value="21">Golf</option>
-                            <option value="4">Hockey</option>
-                            <option value="10">Kickball</option>
-                            <option value="6">Lacrosse</option>
-                            <option value="25">Pickleball</option>
-                            <option value="23">Rugby</option>
-                            <option value="7">Soccer</option>
-                            <option value="8">Softball</option>
-                            <option value="26">Spikeball</option>
-                            <option value="22">Swimming</option>
-                            <option value="16">Tennis</option>
-                            <option value="17">Track &amp; Field</option>
-                            <option value="24">Ultimate</option>
-                            <option value="3">Volleyball</option>
-                            <option value="11">Water Polo</option>
-                            <option value="12">Wrestling</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Type</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">New</option>
-                            <option value="">Copy</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="foremail">Season Name</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <select name="start" id="" class="form-control">
-                            <option>Start</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2023</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                        <span class="input-group-text">-</span>
-                        <select name="start" id="" class="form-control">
-                            <option>End</option>
-                            <option>2026</option>
-                            <option>2025</option>
-                            <option>2024</option>
-                            <option selected="selected">2024</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                        <div class="input-group-append">
-                            <input type="text" class="form-control" placeholder="Session (Spring, Fall)" />
+
+<!-- Start Row -->
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form action="{{ route('administration.shop.product.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            @csrf
+            <div class="card border m-b-30">
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-0">Create New Product</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group product-id">
+                            <label for="product_id">Product ID (CID) <span class="required">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">BSSPRODUCT</span>
+                                </div>
+                                <input type="text" name="product_id" value="{{ $product_id }}" readonly class="form-control text-bold @error('product_id') is-invalid @enderror" placeholder="BSSPRODUCT202302011235" required/>
+                            </div>
+                            @error('product_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
+                        <div class="col-md-12">
+                            <div class="logo-upload">
+                                <div class="logo-edit">
+                                    <input type="file" id="eventLogo" name="logo" accept=".png, .jpg, .jpeg" multiple />
+                                    <label for="eventLogo"></label>
+                                </div>
+                                <div class="logo-preview">
+                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="categories[]">Categories <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('categories[]') is-invalid @enderror" name="categories[]" multiple="multiple" required>
+                                <option value="" disabled>Select Categories</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('categories[]')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="name">Product Name <span class="required">*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Be Someone Sports Hoodie Fire & Ice" required/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="quantity">Quantity <span class="required">*</span></label>
+                            <input type="number" min="0" step="1" name="quantity" value="{{ old('quantity') }}" class="form-control @error('quantity') is-invalid @enderror" placeholder="200" required/>
+                            @error('quantity')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="purchase_price">Purchase Price <span class="required">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" min="0" step="0.01" name="purchase_price" value="{{ old('purchase_price') }}" class="form-control @error('purchase_price') is-invalid @enderror" placeholder="199" required/>
+                                @error('purchase_price')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="price">Selling Price <span class="required">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" min="0" step="0.01" name="price" value="{{ old('price') }}" class="form-control @error('price') is-invalid @enderror" placeholder="599" required/>
+                                @error('price')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="status">Status <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="" disabled>Select Status</option>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Description">{{ old('description') }}</textarea>
+                            @error('description')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        
                     </div>
-                    <div class="form-group">
-                        <label for="foremail">Date Range</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="date" class="form-control" name="start_date" />
-                        <span class="input-group-text">-</span>
-                        <input type="date" class="form-control" name="end_date" />
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Status</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">Active</option>
-                            <option value="">In-Active</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="forstatus">Default</label>
-                        <select name="status" class="form-control" id="forstatus" required>
-                            <option value="">Select A Option</option>
-                            <option value="">Yes</option>
-                            <option value="">No</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
+                        <i class="feather icon-plus mr-1"></i>
+                        <span class="text-bold">Create New Product</span>
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- End col -->
 </div>
 
-<!-- End row -->
-
+<!-- End Row -->
 @endsection
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
+        // File Uploder
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#eventLogo").change(function() {
+            readURL(this);
+        });
     </script>
 @endsection
