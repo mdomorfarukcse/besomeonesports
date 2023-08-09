@@ -29,6 +29,9 @@ class ProductStoreRequest extends FormRequest
             'price' => ['required', 'numeric', 'min:0'],
             'description' => ['required', 'string'],
             'status' => ['required', 'in:Active,Inactive'],
+
+            'images' => ['required', 'array'],
+            'images.*' => ['image', 'mimes:jpeg,png,gif', 'max:2048'], // Max size: 2MB
         ];
     }
 
@@ -46,6 +49,12 @@ class ProductStoreRequest extends FormRequest
             'purchase_price.min' => 'The Purchase Price must be at least 0.',
             'price.min' => 'The Price must be at least 0.',
             'status.in' => 'The Status should be either Active or Inactive.',
+
+            'images.required' => 'At least one image is required.',
+            'images.array' => 'Invalid data provided for images.',
+            'images.*.image' => 'The uploaded file must be an image.',
+            'images.*.mimes' => 'Only JPEG, PNG, and GIF image formats are allowed.',
+            'images.*.max' => 'Each image should not exceed 2MB in size.',
         ];
     }
 

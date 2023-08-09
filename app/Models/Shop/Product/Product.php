@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
-    protected $cascadeDeletes = ['orders'];
+    protected $cascadeDeletes = ['orders', 'images'];
 
     protected static function boot()
     {

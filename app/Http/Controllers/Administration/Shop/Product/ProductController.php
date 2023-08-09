@@ -52,6 +52,13 @@ class ProductController extends Controller
                 $product->save();
 
                 $product->categories()->attach($request->categories);
+
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $imagePath = $image->store('public/products/' . $product->product_id); // Store in folder structure
+                        $product->images()->create(['path' => $imagePath]);
+                    }
+                }
             }, 5);
 
             toast('A New Product Has Been Created.', 'success');
