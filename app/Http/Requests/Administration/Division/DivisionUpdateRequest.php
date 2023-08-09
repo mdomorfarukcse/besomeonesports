@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\Division;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DivisionUpdateRequest extends FormRequest
@@ -21,8 +22,15 @@ class DivisionUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $divisionId = $this->route('division')->id;
+
         return [
-            'name' => ['required', 'string', 'unique:divisions,name'],
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('divisions')->ignore($divisionId),
+            ],
             "status" => ['required','in:Active,Inactive'],
         ];
     }

@@ -55,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('administration.shop.category.show', compact(['category']));
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('administration.shop.category.edit', compact(['category']));
     }
 
     /**
@@ -71,7 +71,21 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, Category $category)
     {
-        //
+        // dd($request->all());
+        try{
+            $category->update([
+                'name' => $request->name,
+                'status' => $request->status,
+                'description' => $request->description,
+            ]);
+
+            toast('Category updated successfully.', 'success');
+            return redirect()->route('administration.shop.category.show', ['category' => $category]);
+        } catch (Exception $e){
+            dd($e);
+            alert('Category Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
