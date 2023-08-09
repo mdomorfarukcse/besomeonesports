@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with(['images'])->get();
         return view('administration.shop.product.index', compact(['products']));
     }
 
@@ -55,8 +55,13 @@ class ProductController extends Controller
 
                 if ($request->hasFile('images')) {
                     foreach ($request->file('images') as $image) {
-                        $imagePath = $image->store('public/products/' . $product->product_id); // Store in folder structure
-                        $product->images()->create(['path' => $imagePath]);
+                        $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                        $imageStorePath = 'public/products/' . $product->product_id;
+                        $image->storeAs($imageStorePath, $imageName);
+                
+                        $product->images()->create([
+                            'path' => 'products/' . $product->product_id . '/' . $imageName,
+                        ]);
                     }
                 }
             }, 5);
