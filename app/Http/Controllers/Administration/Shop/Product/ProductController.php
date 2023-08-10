@@ -10,6 +10,7 @@ use App\Models\Shop\Product\Product;
 use App\Models\Shop\Category\Category;
 use App\Http\Requests\Administration\Shop\Product\ProductStoreRequest;
 use App\Http\Requests\Administration\Shop\Product\ProductUpdateRequest;
+use App\Models\Shop\Product\Images\ProductImage;
 
 class ProductController extends Controller
 {
@@ -115,6 +116,23 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy_image(ProductImage $image)
+    {
+        try {
+            $image->delete();
+
+            toast('Image Has Been Deleted.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Image Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     

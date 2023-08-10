@@ -95,15 +95,11 @@
                                                 <tr>
                                                     <th>Categories</th>
                                                     <td>
-                                                        <ol>
-                                                            @foreach ($product->categories as $category)
-                                                                <li>
-                                                                    <a href="{{ route('administration.shop.category.show', ['category' => $category]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $category->name }} details">
-                                                                        {{ $category->name }}
-                                                                    </a>    
-                                                                </li>  
-                                                            @endforeach
-                                                        </ol>    
+                                                        @foreach ($product->categories as $category)
+                                                            <a href="{{ route('administration.shop.category.show', ['category' => $category]) }}" target="_blank" class="badge badge-dark text-bold py-1 px-2" data-toggle="tooltip" data-placement="top" title="Click to see {{ $category->name }} details">
+                                                                {{ $category->name }}
+                                                            </a>
+                                                        @endforeach
                                                     </td>
                                                 </tr>
                                                 @if (!empty($product->description))
@@ -131,7 +127,7 @@
                                         <div class="col-md-3">
                                             <div class="product_image">
                                                 <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" class="img-thumbnail">
-                                                <a href="#" class="btn btn-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');" style="position: absolute; right: 20px; top: 5px;">
+                                                <a href="{{ route('administration.shop.product.destroy.image', ['image' => $image]) }}" class="btn btn-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');" style="position: absolute; right: 20px; top: 5px;">
                                                     <i class="feather icon-trash-2"></i>
                                                 </a>
                                             </div>

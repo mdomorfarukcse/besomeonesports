@@ -14,4 +14,5 @@ Route::controller(ProductController::class)->prefix('product')->name('product.')
     Route::get('/edit/{product}', 'edit')->name('edit');
     Route::post('/update/{product}', 'update')->name('update');
     Route::get('/destroy/{product}', 'destroy')->name('destroy');
+    Route::get('/destroy/image/{image}', 'destroy_image')->name('destroy.image');
 });
