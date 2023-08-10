@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administration\Shop\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop\Order\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('administration.shop.order.index');
+        $orders = Order::with(['product', 'user'])->orderBy('created_at', 'desc')->get();
+        return view('administration.shop.order.index', compact(['orders']));
     }
 
     /**
@@ -34,7 +36,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order $order)
     {
         //
     }
@@ -42,7 +44,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Order $order)
     {
         //
     }
@@ -50,7 +52,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -58,7 +60,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $order)
     {
         //
     }

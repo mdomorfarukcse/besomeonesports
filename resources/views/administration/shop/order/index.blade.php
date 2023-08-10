@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('All Order'))
+@section('page_title', __('All Orders'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,13 +25,14 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Order') }}</b>
+    <b class="text-uppercase">{{ __('All Orders') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Order') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Order') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Shop') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Orders') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('All Orders') }}</li>
 @endsection
 
 
@@ -55,84 +56,65 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-borderless">
+                    <table id="default-datatable" class="display table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Invoice</th>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Total</th>
-                                <th>Warehouse</th>
+                                <th>#</th>
+                                <th>ORDER-ID</th>
+                                <th>Order By</th>
+                                <th>Product Name</th>
+                                <th>Total Price</th>
+                                <th>Ordered At</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">#o2599</th>
-                                <td>11</td>
-                                <td>Amy Adams</td>
-                                <td>02/06/2019</td>
-                                <td>$1,95,000</td>
-                                <td>Boston</td>
-                                <td><span class="badge badge-primary-inverse">Processing</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2600</th>
-                                <td>12</td>
-                                <td>Shiva Radharaman</td>
-                                <td>01/06/2019</td>
-                                <td>$85,000</td>
-                                <td>Washington DC</td>
-                                <td><span class="badge badge-secondary-inverse">Shipped</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2601</th>
-                                <td>13</td>
-                                <td>Ryan Smith</td>
-                                <td>28/05/2019</td>
-                                <td>$70,000</td>
-                                <td>San Francisco</td>
-                                <td><span class="badge badge-success-inverse">Completed</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2602</th>
-                                <td>14</td>
-                                <td>James Witherspon</td>
-                                <td>21/05/2019</td>
-                                <td>$1,25,000</td>
-                                <td>Las Vegas</td>
-                                <td><span class="badge badge-warning-inverse">Refunded</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($orders as $key => $order)
+                                <tr>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($orders, $key) }}</b></th>
+                                    <td class="text-bold text-primary">{{ $order->order_id }}</td>
+                                    <td>
+                                        {{ $order->user->name }}
+                                        <br>
+                                        <small class="text-muted">
+                                            <a href="mailto:{{ $order->user->email }}">
+                                                {{ $order->user->email }}
+                                            </a>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {{ $order->product->name }}
+                                        @if ($order->quantity > 1)
+                                            <br>
+                                            <small class="text-muted">Total: {{ $order->quantity }}</small>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        ${{ $order->total_price }}
+                                        @if ($order->quantity > 1)
+                                            <br>
+                                            <small class="text-muted">${{ $order->current_price }}*{{ $order->quantity }}</small>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ show_date($order->created_at) }}
+                                        <br>
+                                        <small class="text-muted">at {{ show_time($order->created_at) }}</small>
+                                    </td>
+                                    <td>{!! status($order->status) !!}</td>
+                                    <td class="text-right">
+                                        <div class="action-btn-group mr-3">
+                                            {{-- <a href="{{ route('administration.shop.product.destroy', ['product' => $product]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                <i class="feather icon-trash-2"></i>
+                                            </a> --}}
+                                            <a href="{{ route('administration.shop.order.show', ['order' => $order]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                <i class="feather icon-info"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -148,12 +130,28 @@
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Datatable js -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-table-datatable.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
+        /* -- Bootstrap Tooltip -- */
+        $('[data-toggle="tooltip"]').tooltip();
     </script>
 @endsection

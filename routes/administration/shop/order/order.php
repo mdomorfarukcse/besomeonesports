@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/show/{order}', 'show')->name('show');
 });

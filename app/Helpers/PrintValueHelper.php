@@ -11,11 +11,19 @@ if (!function_exists('status')) {
     function status($status)
     {
         if ($status === 'Active') {
-            return '<span class="badge badge-success">Active</span>';
+            return '<span class="badge badge-success-inverse text-bold text-uppercase p-1">Active</span>';
         } elseif ($status === 'Inactive') {
-            return '<span class="badge badge-danger">Inactive</span>';
+            return '<span class="badge badge-danger-inverse text-bold text-uppercase p-1">Inactive</span>';
+        } elseif ($status === 'Running') {
+            return '<span class="badge badge-primary-inverse text-bold text-uppercase p-1">Running</span>';
+        } elseif ($status === 'Delivery') {
+            return '<span class="badge badge-info-inverse text-bold text-uppercase p-1">Delivery</span>';
+        } elseif ($status === 'Completed') {
+            return '<span class="badge badge-success-inverse text-bold text-uppercase p-1">Completed</span>';
+        } elseif ($status === 'Canceled') {
+            return '<span class="badge badge-danger-inverse text-bold text-uppercase p-1">Canceled</span>';
         } else {
-            return '<span class="badge badge-warning">Banned</span>';
+            return '<span class="badge badge-warning-inverse text-bold text-uppercase p-1">Banned</span>';
         }
     }  
 }
