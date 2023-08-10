@@ -15,12 +15,12 @@ return new class extends Migration
             $table->foreignId('product_id')
                   ->constrained()
                   ->onUpdate('cascade')
-                  ->onDelete('restrict');
+                  ->onDelete('cascade');
 
             $table->foreignId('category_id')
                   ->constrained()
                   ->onUpdate('cascade')
-                  ->onDelete('restrict');
+                  ->onDelete('cascade');
             
             $table->primary(['product_id', 'category_id'], 'product_category_unique');
         });

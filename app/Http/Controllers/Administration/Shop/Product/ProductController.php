@@ -99,7 +99,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::select(['id', 'name'])->orderBy('name', 'asc')->get();
+        return view('administration.shop.product.edit', compact(['categories', 'product']));
     }
 
     /**
@@ -107,7 +108,40 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, Product $product)
     {
-        dd($request->all());
+        // dd($request->all());
+        try{
+            DB::transaction(function() use ($request, $product) {
+                $product->name = $request->name;
+                $product->quantity = $request->quantity;
+                $product->purchase_price = $request->purchase_price;
+                $product->price = $request->price;
+                $product->status = $request->status;
+                $product->description = $request->description;
+                $product->save();
+                
+                $product->categories()->sync($request->categories);
+
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                        $imageStorePath = 'public/products/' . $product->product_id;
+                        $image->storeAs($imageStorePath, $imageName);
+                
+                        $product->images()->create([
+                            'path' => 'products/' . $product->product_id . '/' . $imageName,
+                        ]);
+                    }
+                }
+            }, 5);
+
+            toast('Product Has Been Updated.', 'success');
+            return redirect()->route('administration.shop.product.show', ['product' => $product]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Product Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
