@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Administration\Shop\Order;
 
-use App\Http\Controllers\Controller;
-use App\Models\Shop\Order\Order;
+use Exception;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
+use App\Models\Shop\Order\Order;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -22,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('administration.shop.order.create');
+        // 
     }
 
     /**
@@ -38,7 +40,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('administration.shop.order.show', compact(['order']));
     }
 
     /**
@@ -63,5 +65,29 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    /**
+     * Change Status
+     */
+    public function status(Order $order, $status)
+    {
+        try {
+            // Validate the status
+            $validStatuses = ['Active', 'Running', 'Delivery', 'Completed', 'Canceled'];
+            if (!in_array($status, $validStatuses)) {
+                throw new InvalidArgumentException('Invalid status provided.');
+            }
+            
+            $order->status = $status;
+            $order->save();
+
+            toast('Status Has Been Changed To '.$status,'success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Status Updating Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

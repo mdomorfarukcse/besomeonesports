@@ -85,10 +85,8 @@
                                     </td>
                                     <td>
                                         {{ $order->product->name }}
-                                        @if ($order->quantity > 1)
-                                            <br>
-                                            <small class="text-muted">Total: {{ $order->quantity }}</small>
-                                        @endif
+                                        <br>
+                                        <small class="text-muted">{{ $order->product->product_id }}</small>
                                     </td>
                                     <td>
                                         ${{ $order->total_price }}
