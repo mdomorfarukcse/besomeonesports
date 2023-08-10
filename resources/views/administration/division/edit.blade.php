@@ -72,8 +72,8 @@
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
+                                <option value="Active" @selected($division->status === 'Active')>Active</option>
+                                <option value="Inactive" @selected($division->status === 'Inactive')>Inactive</option>
                             </select>
                             @error('status')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

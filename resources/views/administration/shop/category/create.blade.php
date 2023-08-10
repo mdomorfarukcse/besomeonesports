@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Division'))
+@section('page_title', __('Create New Category'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,13 +25,14 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Division') }}</b>
+    <b class="text-uppercase">{{ __('Create New Category') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Divisions') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Division') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Shops') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Categories') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Category') }}</li>
 @endsection
 
 
@@ -42,11 +43,11 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.division.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.shop.category.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">Create New Division</h5>
+                    <h5 class="card-title mb-0">Create New Category</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -81,7 +82,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Division</span>
+                        <span class="text-bold">Create New Category</span>
                     </button>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Administration\Division;
+namespace App\Http\Requests\Administration\Shop\Category;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DivisionUpdateRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,14 @@ class DivisionUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $divisionId = $this->route('division')->id;
+        $categoryId = $this->route('category')->id;
 
         return [
             'name' => [
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('divisions')->ignore($divisionId),
+                Rule::unique('categories')->ignore($categoryId),
             ],
             "status" => ['required','in:Active,Inactive'],
         ];

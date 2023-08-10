@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Models\Coach;
+namespace App\Models\Shop\Product;
 
-use App\Models\Coach\Traits\Relations;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shop\Product\Traits\Relations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Coach extends Model
+class Product extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes, Relations;
 
-    protected $cascadeDeletes = ['user'];
+    protected $cascadeDeletes = ['orders', 'images'];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($coach) {
-            // Prefix 'BSSCOACH' to the 'coach_id' attribute
-            $coach->coach_id = 'BSSCOACH' . $coach->coach_id;
+        static::creating(function ($product) {
+            // Prefix 'BSSPRODUCT' to the 'product_id' attribute
+            $product->product_id = 'BSSPRODUCT' . $product->product_id;
         });
     }
 }
