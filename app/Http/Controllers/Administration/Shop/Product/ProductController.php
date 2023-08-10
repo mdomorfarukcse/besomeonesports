@@ -81,7 +81,16 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product = Product::whereId($product->id)->with([
+                            'categories' => function($categories) {
+                                $categories->select(['id', 'name']);
+                            },
+                            'images'
+                        ])
+                        ->firstOrFail();
+        // dd($product);
+
+        return  view('administration.shop.product.show', compact(['product']));
     }
 
     /**

@@ -90,6 +90,14 @@
 @endsection
 
 
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.shop.product.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="sl-icon-basket-loaded"></i>
+        <b>All Products</b>
+    </a>
+@endsection
+
+
 
 @section('content')
 
