@@ -93,6 +93,26 @@
                                                     <td>{!! status($product->status) !!}</td>
                                                 </tr>
                                                 <tr>
+                                                    <th>Colors</th>
+                                                    <td>
+                                                        @foreach (json_decode($product->colors) as $color)
+                                                            <span class="badge badge-dark-inverse text-bold py-1 px-2">
+                                                                {{ $color }}
+                                                            </span>
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sizes</th>
+                                                    <td>
+                                                        @foreach (json_decode($product->sizes) as $size)
+                                                            <span class="badge badge-dark-inverse text-bold py-1 px-2">
+                                                                {{ $size }}
+                                                            </span>
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <th>Categories</th>
                                                     <td>
                                                         @foreach ($product->categories as $category)

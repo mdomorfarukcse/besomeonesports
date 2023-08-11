@@ -28,6 +28,8 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->integer('current_price')->comment('Current Product Price / Unit');
             $table->integer('total_price')->comment('Quantity * CurrentPrice');
+            $table->string('color')->nullable();
+            $table->string('size')->nullable();
             $table->text('address');
             $table->string('contact_number');
 

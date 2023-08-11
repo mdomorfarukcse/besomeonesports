@@ -13,6 +13,9 @@
     <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Select2 css -->
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Tagsinput css -->
+    <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 
@@ -149,6 +152,28 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="colors">Colors <span class="required">*</span></label>
+                            <select name="colors[]" id="colors" class="form-control @error('colors') is-invalid @enderror" multiple="multiple">
+                                @foreach (json_decode($product->colors) as $selectedColor)
+                                    <option value="{{ $selectedColor }}" selected>{{ $selectedColor }}</option>
+                                @endforeach
+                            </select>
+                            @error('colors')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="sizes">Sizes <span class="required">*</span></label>
+                            <select name="sizes[]" id="sizes" class="form-control @error('sizes') is-invalid @enderror" multiple="multiple">
+                                @foreach (json_decode($product->sizes) as $selectedSize)
+                                    <option value="{{ $selectedSize }}" selected>{{ $selectedSize }}</option>
+                                @endforeach
+                            </select>
+                            @error('sizes')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
                         <div class="form-group col-md-3">
                             <label for="quantity">Quantity <span class="required">*</span></label>
                             <input type="number" min="0" step="1" name="quantity" value="{{ $product->quantity }}" class="form-control @error('quantity') is-invalid @enderror" placeholder="200" required/>
@@ -219,13 +244,26 @@
 @section('script_links')
     {{--  External Javascript Links --}}
     <!-- Select2 js -->
+    <!-- Tagsinput js -->
+    <script src="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-tagsinput/typeahead.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script> 
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
-        // Custom Script Here
+        // Apply Select2 to the colors input field
+        $(document).ready(function() {
+            $('#colors').select2({
+                tags: true, // Allow creating new tags
+                tokenSeparators: [','], // Allow multiple tags separated by commas
+            });
+            $('#sizes').select2({
+                tags: true, // Allow creating new tags
+                tokenSeparators: [','], // Allow multiple tags separated by commas
+            });
+        });
     </script>
 @endsection

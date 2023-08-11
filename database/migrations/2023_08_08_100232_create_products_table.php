@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->float('purchase_price', 8, 2);
             $table->float('price', 8, 2);
+            $table->json('colors')->nullable();
+            $table->json('sizes')->nullable();
             $table->longText('description');
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();

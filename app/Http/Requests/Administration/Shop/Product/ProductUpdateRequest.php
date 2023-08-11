@@ -26,6 +26,8 @@ class ProductUpdateRequest extends FormRequest
             'quantity' => ['required', 'integer', 'min:1'],
             'purchase_price' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
+            'colors' => ['nullable', 'array'],
+            'sizes' => ['nullable', 'array'],
             'description' => ['required', 'string'],
             'status' => ['required', 'in:Active,Inactive'],
 
@@ -45,6 +47,8 @@ class ProductUpdateRequest extends FormRequest
             'quantity.min' => 'The Quantity must be at least 1.',
             'purchase_price.min' => 'The Purchase Price must be at least 0.',
             'price.min' => 'The Price must be at least 0.',
+            'colors.array' => 'The colors must be in valid array format if provided.',
+            'sizes.array' => 'The sizes must be in valid array format if provided.',
             'status.in' => 'The Status should be either Active or Inactive.',
             
             'images.array' => 'Invalid data provided for images.',

@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['images'])->get();
+        // dd(json_decode($products->first()->colors, true));
         return view('administration.shop.product.index', compact(['products']));
     }
 
@@ -38,7 +39,8 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        // dd($request->all());
+        // $colorsJson = json_encode($request->colors);
+        // dd($request->all(), $colorsJson);
         try{
             DB::transaction(function() use ($request) {
                 $product = new Product();
@@ -48,6 +50,8 @@ class ProductController extends Controller
                 $product->quantity = $request->quantity;
                 $product->purchase_price = $request->purchase_price;
                 $product->price = $request->price;
+                $product->colors = json_encode($request->colors);
+                $product->sizes = json_encode($request->sizes);
                 $product->status = $request->status;
                 $product->description = $request->description;
                 $product->save();
@@ -108,13 +112,16 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, Product $product)
     {
-        // dd($request->all());
+        // $colorsJson = json_encode($request->colors);
+        // dd($request->all(), $colorsJson);
         try{
             DB::transaction(function() use ($request, $product) {
                 $product->name = $request->name;
                 $product->quantity = $request->quantity;
                 $product->purchase_price = $request->purchase_price;
                 $product->price = $request->price;
+                $product->colors = json_encode($request->colors);
+                $product->sizes = json_encode($request->sizes);
                 $product->status = $request->status;
                 $product->description = $request->description;
                 $product->save();
