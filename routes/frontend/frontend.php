@@ -26,4 +26,6 @@ Route::name('frontend.')->group(function () {
     include_once 'faqs/faqs.php';
     // App Info
     include_once 'appinfo/appinfo.php';
+    // App Info
+    include_once 'sponsors/sponsors.php';
 });
