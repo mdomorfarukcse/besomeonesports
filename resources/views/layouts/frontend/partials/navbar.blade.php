@@ -48,6 +48,9 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ Request::is('gallery*') ? 'active' : '' }}" href="{{ route('frontend.gallery.index') }}">Gallery</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="{{ route('frontend.shop.index') }}">Shop</a>
                     </li>
                     <li class="nav-item">

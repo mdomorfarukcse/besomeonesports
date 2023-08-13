@@ -32,4 +32,6 @@ Route::name('frontend.')->group(function () {
     include_once 'press/press.php';
     // Blog
     include_once 'blog/blog.php';
+    // Blog
+    include_once 'gallery/gallery.php';
 });
