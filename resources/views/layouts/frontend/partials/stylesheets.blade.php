@@ -14,7 +14,35 @@
 <link href="{{ asset('frontend/css/all.min.css') }}" rel="stylesheet"/>
 
 @yield('css_links')
+<style>
+    .join-btn {
+        background: #ee1d36;
+        padding: 5px 17px !important;
+        color: #fff !important;
+        margin: 0 15px !important;
+        transition: all 0.5s;
+        border: solid 2px #ee1d36 !important;
+    }
+    .navbar-nav li:hover > ul.dropdown-menu {
+        display: block;
+    }
+    .dropdown-submenu {
+        position:relative;
+    }
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top:-6px;
+    }
 
+    /* rotate caret on hover */
+    .dropdown-menu > li > a:hover:after {
+        text-decoration: underline;
+        transform: rotate(-90deg);
+    } 
+    
+
+</style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>
 
 @yield('custom_css')
