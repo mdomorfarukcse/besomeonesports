@@ -40,21 +40,11 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
+                        <a class="nav-link dropdown-toggle {{ Request::is('press*') || Request::is('blog*') ? 'active' : '' }}"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Press Releases</a></li>
-                            <li><a class="dropdown-item" href="#">Blogs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Press Releases</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
                             <li><a class="dropdown-item" href="#">Media Inquiries</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('event*') ? 'active' : '' }}" href="{{ route('frontend.event.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">City</a></li>
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Locations</a></li>
-                            <li><a class="dropdown-item" href="#">Rules</a></li>
-                            <li><a class="dropdown-item" href="#">Standings</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
