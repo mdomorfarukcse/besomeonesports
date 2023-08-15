@@ -11,10 +11,44 @@
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.homepage.index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('about*') ? 'active' : '' }}" href="{{ route('frontend.about.index') }}">About Us</a>
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('about*') || Request::is('mission*') || Request::is('our-team*')  || Request::is('testimonials*') || Request::is('faqs*') || Request::is('app-info*') ? 'active' : '' }}" href="{{ route('frontend.about.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> About Us </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ route('frontend.mission.index') }}">Mission</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Team</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}#">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('event*') ? 'active' : '' }}" href="{{ route('frontend.event.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">City</a></li>
+                            <li><a class="dropdown-item" href="#">Sport</a></li>
+                            <li><a class="dropdown-item" href="#">Locations</a></li>
+                            <li><a class="dropdown-item" href="#">Rules</a></li>
+                            <li><a class="dropdown-item" href="#">Standings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Partners </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item " href="{{ route('frontend.sponsors.index') }}" >Sponsors</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('press*') || Request::is('blog*') ? 'active' : '' }}"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Press Releases</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
+                            <li><a class="dropdown-item" href="#">Media Inquiries</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('event*') ? 'active' : '' }}" href="{{ route('frontend.event.index') }}">Events</a>
+                        <a class="nav-link {{ Request::is('gallery*') ? 'active' : '' }}" href="{{ route('frontend.gallery.index') }}">Gallery</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="{{ route('frontend.shop.index') }}">Shop</a>
@@ -27,13 +61,10 @@
                             <a class="nav-link" href="{{ route('administration.dashboard.index') }}">Dashboard</a>
                         </li>
                     @else
-                        <li>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn login-btn-links">
-                                <span class="m-0 oipn">
-                                    <img src="{{ asset('frontend/images/747376.png') }}" alt="pnm" />
-                                </span>
-                            </button>
+                        <li class="nav-item">
+                            <a class="nav-link btn join-btn" data-bs-toggle="modal" data-bs-target="#loginModal">join Now</a>
                         </li>
+                        
                     @endauth
                 </ul>
             </div>
