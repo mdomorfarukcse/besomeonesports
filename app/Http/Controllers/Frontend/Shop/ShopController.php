@@ -29,8 +29,13 @@ class ShopController extends Controller
                             'images'
                         ])
                         ->firstOrFail();
-        // dd($product);
 
-        return  view('frontend.shop.show', compact(['product']));
+        $products = Product::whereHas('categories', function($query) use ($product) {
+            $query->whereIn('categories.id', $product->categories->pluck('id'));
+        })->get();                        
+                        
+        // dd($products);
+
+        return  view('frontend.shop.show', compact(['product', 'products']));
     }
 }

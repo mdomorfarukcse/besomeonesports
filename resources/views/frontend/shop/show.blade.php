@@ -15,6 +15,18 @@
     {{--  External CSS  --}}
     <style>
         /* Custom CSS Here */
+        .item {
+            margin: 0 5px;
+        }
+        .thum-pic-slide figure {
+            height: 150px;
+        }
+        .owl-carousel .owl-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 @endsection
 
@@ -39,127 +51,65 @@
                     <div class="col-lg-6">
                         <div class="products-slide-1">
                             <div id="sync1" class="owl-carousel owl-theme">
-                                <div class="item">
-                                    <a href="{{ asset('frontend/images/botsman1.png') }}" data-fancybox="" class="mian-ppic">
-                                        <img src="{{ asset('frontend/images/botsman1.png') }}" alt="re3" />
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('frontend/images/botsmann1.png') }}" data-fancybox="" class="mian-ppic">
-                                        <img src="{{ asset('frontend/images/botsmann1.png') }}" alt="re2" />
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('frontend/images/botsmann2.png') }}" data-fancybox="" class="mian-ppic">
-                                        <img src="{{ asset('frontend/images/botsmann2.png') }}" alt="re" />
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('frontend/images/botsmann3.png') }}" data-fancybox="" class="mian-ppic">
-                                        <img src="{{ asset('frontend/images/botsmann3.png') }}" alt="re4" />
-                                    </a>
-                                </div>
+                                @foreach ($product->images as $sl => $image)
+                                    <div class="item">
+                                        <a href="{{ asset('storage/' . $image->path) }}" data-fancybox="" class="mian-ppic">
+                                            <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" />
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <div id="sync2" class="owl-carousel owl-theme">
-                                <div class="item">
-                                    <div class="thum-pic-slide">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="re3" />
-                                        </figure>
+                                @foreach ($product->images as $sl => $image)
+                                    <div class="item">
+                                        <div class="thum-pic-slide">
+                                            <figure>
+                                                <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" />
+                                            </figure>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="thum-pic-slide">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/botsmann1.png') }}" alt="re2" />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="thum-pic-slide">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/botsmann2.png') }}" alt="re" />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="thum-pic-slide">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/botsmann3.png') }}" alt="re4" />
-                                        </figure>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="menu-dl-right mt-5 mt-lg-0">
-                            <h2 class="comon-heading m-0">New adipiscing Shoes</h2>
-                            <h3 class="price-dlm">$ 20.50</h3>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. ipsum primis in faucibus orci luctus et
-                                ultricesLorem Ipsum is
-                            </p>
-                            <h5>Size Of Crust</h5>
-                            <ul class="list-unstyled d-flex sixe-menu-q">
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            7cm
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            8cm
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" />
-                                        <label class="form-check-label" for="flexRadioDefault3">
-                                            10cm
-                                        </label>
-                                    </div>
-                                </li>
+                        <div class="menu-dl-right mt-5">
+                            <h2 class="comon-heading m-0">{{ $product->name }}</h2>
+                            <h3 class="price-dlm">${{ $product->price }}</h3>
+                            <h5>Size</h5>
+                            <ul class="list-unstyled d-flex sixe-menu-q size-checkbox">
+                                @foreach (json_decode($product->sizes) as $key => $size)
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" />
+                                            <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <h5>Color</h5>
+                            <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
+                                @foreach (json_decode($product->colors) as $key => $color)
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" />
+                                            <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                             <h5>Quantity</h5>
 
                             <div class="quantity-control" data-quantity="">
                                 <button class="quantity-btn" data-quantity-minus="">
-                                    <svg viewBox="0 0 409.6 409.6">
-                                        <g>
-                                            <g>
-                                                <path d="M392.533,187.733H17.067C7.641,187.733,0,195.374,0,204.8s7.641,17.067,17.067,17.067h375.467 c9.426,0,17.067-7.641,17.067-17.067S401.959,187.733,392.533,187.733z" />
-                                            </g>
-                                        </g>
-                                    </svg>
+                                    <div class="fa fa-minus text-dark"></div>
                                 </button>
                                 <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="quantity" />
                                 <button class="quantity-btn" data-quantity-plus="">
-                                    <svg viewBox="0 0 426.66667 426.66667">
-                                        <path
-                                            d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0"
-                                        />
-                                    </svg>
+                                    <div class="fa fa-plus text-dark"></div>
                                 </button>
                             </div>
-
-                            <h5 class="mt-3">
-                                Share This :
-                                <ul class="list-unstyled share-links mt-3">
-                                    <li class="d-flex">
-                                        <a href="#"> <i class="fab fa-facebook-f"></i> </a>
-                                        <a href="#"> <i class="fab fa-twitter"></i> </a>
-                                        <a href="#"> <i class="fab fa-google-plus-g"></i> </a>
-                                    </li>
-                                </ul>
-                            </h5>
 
                             <button class="btn crat-btnh mt-5">
                                 <span> <i class="fas fa-shopping-cart"></i> </span> Add to Cart
@@ -171,11 +121,7 @@
                 <div class="bottom-details mt-5">
                     <h2 class="comon-heading m-0">Description</h2>
                     <hr />
-                    <p>
-                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-                        semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies
-                        eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                    </p>
+                    <p>{!! $product->description !!}</p>
                 </div>
 
                 <div class="related-produc d-inline-block w-100">
@@ -206,23 +152,10 @@
                             </div>
                             <div class="text-details-div text-center mt-3">
                                 <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <span class="d-block rat-text">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <h3 class="price-text1"><span class="text-decoration-line-through">$ 20.00 </span> $30.00</h3>
-                                <a href="#" class="btn cart-bthn mt-3">
+                                <h3 class="price-text1">$30.00</h3>
+                                <a href="#" target="_blank" class="btn cart-bthn mt-3">
                                     <span> Add to cart </span>
-                                    <span class="ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                                            />
-                                        </svg>
-                                    </span>
+                                    <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </div>
                         </div>
@@ -577,6 +510,7 @@
         // quantity
         (function () {
             "use strict";
+
             var jQueryPlugin = (window.jQueryPlugin = function (ident, func) {
                 return function (arg) {
                     if (this.length > 1) {
@@ -589,7 +523,7 @@
                         });
 
                         return this;
-                    } else if (this.length == 1) {
+                    } else if (this.length === 1) {
                         if (!this.data(ident)) {
                             this.data(ident, func(this, arg));
                         }
@@ -602,21 +536,35 @@
 
         (function () {
             "use strict";
-            function Guantity($root) {
-                const element = $root;
-                const quantity = $root.first("data-quantity");
+
+            function Guantity($root, maxQuantity) {
                 const quantity_target = $root.find("[data-quantity-target]");
                 const quantity_minus = $root.find("[data-quantity-minus]");
                 const quantity_plus = $root.find("[data-quantity-plus]");
-                var quantity_ = quantity_target.val();
+                var quantity_ = parseInt(quantity_target.val());
+
                 $(quantity_minus).click(function () {
-                    quantity_target.val(--quantity_);
+                    if (quantity_ > 1) {
+                        quantity_--;
+                        quantity_target.val(quantity_);
+                    }
                 });
+
                 $(quantity_plus).click(function () {
-                    quantity_target.val(++quantity_);
+                    if (quantity_ < maxQuantity) {
+                        quantity_++;
+                        quantity_target.val(quantity_);
+                    }
                 });
             }
-            $.fn.Guantity = jQueryPlugin("Guantity", Guantity);
+
+            // Assuming $product is a JavaScript object containing the product details.
+            var maxQuantity = parseInt("{{ $product->quantity }}");
+
+            $.fn.Guantity = jQueryPlugin("Guantity", function ($root) {
+                return Guantity($root, maxQuantity);
+            });
+
             $("[data-quantity]").Guantity();
         })();
     </script>
@@ -624,10 +572,18 @@
     <script>
         //  size js
         $(document).ready(function () {
-            var selector = ".sixe-menu-q li";
+            var sizeSelector = ".size-checkbox li";
 
-            $(selector).on("click", function () {
-                $(selector).removeClass("active");
+            $(sizeSelector).on("click", function () {
+                $(sizeSelector).removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+        $(document).ready(function () {
+            var colorSelector = ".color-checkbox li";
+
+            $(colorSelector).on("click", function () {
+                $(colorSelector).removeClass("active");
                 $(this).addClass("active");
             });
         });
