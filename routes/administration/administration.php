@@ -11,6 +11,9 @@ Route::prefix('administration')
             // Dashboard
             include_once 'dashboard/dashboard.php';
             
+            // profile
+            include_once 'profile/profile.php';
+            
             // Seasons
             include_once 'season/season.php';
 

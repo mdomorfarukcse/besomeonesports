@@ -47,7 +47,7 @@
                                     <div class="userbox">
                                         <ul class="list-unstyled mb-0">
                                             <li class="media dropdown-item">
-                                                <a href="#" class="profile-icon">
+                                                <a href="{{ route('administration.profile.index') }}" class="profile-icon">
                                                     <i class="feather icon-user"></i>
                                                     My Profile
                                                 </a>
