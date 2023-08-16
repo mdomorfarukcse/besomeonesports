@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop\Product\Product;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -12,6 +13,24 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('frontend.shop.index');
+        $products = Product::with(['images', 'categories'])->paginate(12);;
+        return view('frontend.shop.index', compact(['products']));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Product $product)
+    {
+        $product = Product::whereId($product->id)->with([
+                            'categories' => function($categories) {
+                                $categories->select(['id', 'name']);
+                            },
+                            'images'
+                        ])
+                        ->firstOrFail();
+        // dd($product);
+
+        return  view('frontend.shop.show', compact(['product']));
     }
 }
