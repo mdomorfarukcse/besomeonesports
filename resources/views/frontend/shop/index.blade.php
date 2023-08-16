@@ -65,7 +65,7 @@
                                     @foreach ($products as $product) 
                                         <div class="item list-item col-md-4 view-group grid-group-item collist">
                                             <div class="comon-items-d1">
-                                                <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="left-div-list">
+                                                <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
                                                     <figure class="mb-0">
                                                         @if ($product->images->count() > 0)
                                                             <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
@@ -86,7 +86,7 @@
                                                             @endforeach
                                                         </h6>
                                                     </div>
-                                                    <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="titel-product">
+                                                    <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="titel-product">
                                                         {{ print_one_line($product->name) }}
                                                     </a>
         

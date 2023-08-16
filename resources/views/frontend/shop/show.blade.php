@@ -132,197 +132,27 @@
                     <span class="bgi-text light-tsext01"> Products</span>
 
                     <div class="shop-slider owl-carousel owl-theme mt-5">
-                        <div class="comon-section1-shop">
-                            <div class="top-imgb-box">
-                                <figure>
-                                    <img src="images/5888851cbc2fc2ef3a186098.png" alt="shop1" />
-                                </figure>
-                                <ul class="hover-list2">
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                        @foreach ($products as $key => $data) 
+                            <div class="comon-section1-shop">
+                                <div class="top-imgb-box">
+                                    <figure>
+                                        @if ($data->images->count() > 0)
+                                            <img src="{{ asset('storage/' . $data->images->first()->path) }}" alt="shop1" />
+                                        @else
+                                            <p>No images available</p>
+                                        @endif
+                                    </figure>
+                                </div>
+                                <div class="text-details-div text-center mt-3">
+                                    <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" target="_blank" class="titel-text1">{{ print_one_line($data->name, 30) }}</a>
+                                    <h3 class="price-text1">${{ $data->price }}</h3>
+                                    <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" target="_blank" target="_blank" class="btn cart-bthn mt-3">
+                                        <span> Add to cart </span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-details-div text-center mt-3">
-                                <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <h3 class="price-text1">$30.00</h3>
-                                <a href="#" target="_blank" class="btn cart-bthn mt-3">
-                                    <span> Add to cart </span>
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="comon-section1-shop">
-                            <div class="top-imgb-box">
-                                <figure>
-                                    <img src="images/ballsd.png" alt="shop1" />
-                                </figure>
-                                <ul class="hover-list2">
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="text-details-div text-center mt-3">
-                                <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <span class="d-block rat-text">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <h3 class="price-text1"><span class="text-decoration-line-through">$ 20.00 </span> $30.00</h3>
-                                <a href="#" class="btn cart-bthn mt-3">
-                                    <span> Add to cart </span>
-                                    <span class="ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="comon-section1-shop">
-                            <div class="top-imgb-box">
-                                <figure>
-                                    <img src="images/botsman1.png" alt="shop1" />
-                                </figure>
-                                <ul class="hover-list2">
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="text-details-div text-center mt-3">
-                                <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <span class="d-block rat-text">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <h3 class="price-text1"><span class="text-decoration-line-through">$ 20.00 </span> $30.00</h3>
-                                <a href="#" class="btn cart-bthn mt-3">
-                                    <span> Add to cart </span>
-                                    <span class="ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="comon-section1-shop">
-                            <div class="top-imgb-box">
-                                <figure>
-                                    <img src="images/football_boots_PNG37.png" alt="shop1" />
-                                </figure>
-                                <ul class="hover-list2">
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="text-details-div text-center mt-3">
-                                <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <span class="d-block rat-text">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <h3 class="price-text1"><span class="text-decoration-line-through">$ 20.00 </span> $30.00</h3>
-                                <a href="#" class="btn cart-bthn mt-3">
-                                    <span> Add to cart </span>
-                                    <span class="ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="comon-section1-shop">
-                            <div class="top-imgb-box">
-                                <figure>
-                                    <img src="images/botsman1.png" alt="shop1" />
-                                </figure>
-                                <ul class="hover-list2">
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-comnb">
-                                            <i class="fas fa-heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="text-details-div text-center mt-3">
-                                <a href="#" class="titel-text1"> Junior Jusrssy </a>
-                                <span class="d-block rat-text">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <h3 class="price-text1"><span class="text-decoration-line-through">$ 20.00 </span> $30.00</h3>
-                                <a href="#" class="btn cart-bthn mt-3">
-                                    <span> Add to cart </span>
-                                    <span class="ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 
