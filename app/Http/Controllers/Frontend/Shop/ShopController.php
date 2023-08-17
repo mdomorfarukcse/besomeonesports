@@ -38,4 +38,12 @@ class ShopController extends Controller
 
         return  view('frontend.shop.show', compact(['product', 'products']));
     }
+
+    /**
+     * add_to_cart
+     */
+    public function add_to_cart(Request $request, Product $product)
+    {
+        dd($request->all(), $product);
+    }
 }

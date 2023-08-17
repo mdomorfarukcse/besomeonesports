@@ -74,47 +74,50 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="menu-dl-right mt-5">
-                            <h2 class="comon-heading m-0">{{ $product->name }}</h2>
-                            <h3 class="price-dlm">${{ $product->price }}</h3>
-                            <h5>Size</h5>
-                            <ul class="list-unstyled d-flex sixe-menu-q size-checkbox">
-                                @foreach (json_decode($product->sizes) as $key => $size)
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" />
-                                            <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <h5>Color</h5>
-                            <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
-                                @foreach (json_decode($product->colors) as $key => $color)
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" />
-                                            <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <h5>Quantity</h5>
-
-                            <div class="quantity-control" data-quantity="">
-                                <button class="quantity-btn" data-quantity-minus="">
-                                    <div class="fa fa-minus text-dark"></div>
-                                </button>
-                                <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="quantity" />
-                                <button class="quantity-btn" data-quantity-plus="">
-                                    <div class="fa fa-plus text-dark"></div>
+                        <form action="{{ route('frontend.shop.add_to_cart', ['product' => $product]) }}" method="post">
+                            @csrf
+                            <div class="menu-dl-right mt-5">
+                                <h2 class="comon-heading m-0">{{ $product->name }}</h2>
+                                <h3 class="price-dlm">${{ $product->price }}</h3>
+                                <h5>Size</h5>
+                                <ul class="list-unstyled d-flex sixe-menu-q size-checkbox">
+                                    @foreach (json_decode($product->sizes) as $key => $size)
+                                        <li>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" />
+                                                <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <h5>Color</h5>
+                                <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
+                                    @foreach (json_decode($product->colors) as $key => $color)
+                                        <li>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" />
+                                                <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <h5>Quantity</h5>
+    
+                                <div class="quantity-control" data-quantity="">
+                                    <button type="button" class="quantity-btn" data-quantity-minus="">
+                                        <div class="fa fa-minus text-dark"></div>
+                                    </button>
+                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" />
+                                    <button type="button" class="quantity-btn" data-quantity-plus="">
+                                        <div class="fa fa-plus text-dark"></div>
+                                    </button>
+                                </div>
+    
+                                <button class="btn crat-btnh mt-5" type="submit">
+                                    <span> <i class="fas fa-shopping-cart"></i> </span> Add to Cart
                                 </button>
                             </div>
-
-                            <button class="btn crat-btnh mt-5">
-                                <span> <i class="fas fa-shopping-cart"></i> </span> Add to Cart
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
