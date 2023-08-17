@@ -44,6 +44,8 @@ class ShopController extends Controller
      */
     public function add_to_cart(Request $request, Product $product)
     {
-        dd($request->all(), $product);
+        // dd($request->all(), $product);
+        alert('Under Development', 'Developer is working on this feature. Please wait...', 'warning');
+        return redirect()->back();
     }
 }
