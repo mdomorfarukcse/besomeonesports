@@ -83,3 +83,31 @@ if (!function_exists('serial')) {
     }
 }  
 
+
+if (!function_exists('print_one_line')) {
+    /**
+     * Truncates a string to fit within a maximum length, adding ellipsis if necessary.
+     *
+     * @param string $value The input string to be truncated.
+     * @param int $max_length The maximum length of the output string.
+     * @return string The truncated string with optional ellipsis.
+     */
+    function print_one_line(string $value, int $max_length = 50): string {
+        // Replace newlines with spaces
+        $value = str_replace(["\r", "\n"], ' ', $value);
+        
+        // Strip HTML tags
+        $value = strip_tags($value);
+        
+        // Trim whitespace
+        $value = trim($value);
+        
+        // Check if the value exceeds the maximum length
+        if (mb_strlen($value) > $max_length) {
+            // Truncate the string and add ellipsis
+            $value = mb_substr($value, 0, $max_length - 3) . '...';
+        }
+        
+        return $value;
+    }
+}
