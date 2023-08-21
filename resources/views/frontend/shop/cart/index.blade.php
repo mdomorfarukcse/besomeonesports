@@ -123,7 +123,7 @@
 
                                         <div class="quantity-field">
                                             <button class="value-button decrease-button" onclick="decreaseValue(this)" title="Decrease Item">-</button>
-                                            <div class="number">0</div>
+                                            <div class="number">{{ $item['quantity'] }}</div>
                                             <button class="value-button increase-button" onclick="increaseValue(this, {{ $product->quantity }})" title="Increase Item">+</button>
                                         </div>
                                     </div>
