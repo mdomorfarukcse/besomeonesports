@@ -15,21 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('order_id', 18)->min(18)->max(18)->unique();
 
-            $table->foreignId('product_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-
             $table->foreignId('user_id')
+                  ->nullable()
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
             
-            $table->integer('quantity')->default(1);
-            $table->integer('current_price')->comment('Current Product Price / Unit');
-            $table->integer('total_price')->comment('Quantity * CurrentPrice');
-            $table->string('color')->nullable();
-            $table->string('size')->nullable();
+            $table->float('total_price', 8, 2)->comment('Sum of Total Product\'s Current Price');
+
+            $table->string('name')->nullable();
+            $table->string('email');
             $table->text('address');
             $table->string('contact_number');
 
