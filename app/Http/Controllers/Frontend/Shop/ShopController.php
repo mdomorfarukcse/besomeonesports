@@ -44,8 +44,46 @@ class ShopController extends Controller
      */
     public function add_to_cart(Request $request, Product $product)
     {
-        // dd($request->all(), $product);
-        alert('Under Development', 'Developer is working on this feature. Please wait...', 'warning');
+        // Retrieve the current cart items from the session
+        $cartItems = session('cart', []);
+
+        // Get the product ID, color, size, and quantity from the request
+        $productId = $product->id;
+        $color = $request->input('product_size', 'N/A'); // Default to 'N/A' if not provided
+        $size = $request->input('product_color', 'N/A');   // Default to 'N/A' if not provided
+        $quantity = $request->input('porduct_quantity', 1); // Default quantity is 1 if not provided
+
+        // Calculate the total price for this item
+        $price = $product->price;
+        $total = $quantity * $price;
+
+        // Create a unique identifier for this item based on product ID, color, and size
+        $itemKey = "$productId-$color-$size";
+
+        // dd($cartItems);
+
+        // Check if the key exists in the $cartItems array
+        if (array_key_exists($itemKey, $cartItems)) {
+            // If it does, update the quantity and total
+            $cartItems[$itemKey]['quantity'] += $quantity;
+            $cartItems[$itemKey]['total'] += $total;
+        } else {
+            // If it's not, add it to the cart
+            $item = [
+                'product_id' => $productId,
+                'color' => $color,
+                'size' => $size,
+                'quantity' => $quantity,
+                'price' => $price,
+                'total' => $total,
+            ];
+            $cartItems[$itemKey] = $item;
+        }
+
+        // Store the updated cart items in the session
+        session(['cart' => $cartItems]);
+
+        toast('The Item Has Been Added to Your Cart.','success');
         return redirect()->back();
     }
 }
