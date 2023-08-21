@@ -22,7 +22,7 @@ class CoachStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'coach_id' => ['required', 'string', 'unique:coaches,coach_id', 'max:17'],
+            'coach_id' => ['required', 'string', 'unique:coaches,coach_id'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             "position" => ['required'],

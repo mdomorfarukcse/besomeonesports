@@ -22,7 +22,7 @@ class PlayerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'player_id' => ['required', 'string', 'unique:players,player_id', 'max:18'],
+            'player_id' => ['required', 'string', 'unique:players,player_id'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             "first_name" => ['required', 'max:50'],

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('team_id', 20)->unique();
+            $table->string('team_id')->unique();
             
             $table->foreignId('event_id')
                   ->constrained()

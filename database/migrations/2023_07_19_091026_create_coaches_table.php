@@ -19,7 +19,7 @@ return new class extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('restrict');
 
-            $table->string('coach_id', 17)
+            $table->string('coach_id')
                   ->unique()
                   ->comment('The Coach ID Prefix Should be BSSCOACH. The coach ID Example: BSSCOACH202302010001');
 

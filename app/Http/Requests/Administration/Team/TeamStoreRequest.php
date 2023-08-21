@@ -22,7 +22,7 @@ class TeamStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'team_id' => 'required|string|unique:teams,team_id|max:20',
+            'team_id' => 'required|string|unique:teams,team_id',
             'event_id' => 'required|exists:events,id|integer',
             'division_id' => 'required|exists:divisions,id|integer',
             'coach_id' => 'nullable|exists:coaches,id|integer',
