@@ -33,10 +33,11 @@
         .comon-items-d1 h6 .category {
             color: #ffffff;
             background-color: #00aeee;
-            padding: 3px 5px;
+            padding: 3px;
             margin: 0 3px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
+            line-height: 30px;
         }
     </style>
 @endsection
@@ -63,7 +64,7 @@
                             <div class="d-none d-md-block">
                                 <div class="row g-lg-4">
                                     @foreach ($products as $product) 
-                                        <div class="item list-item col-md-4 view-group grid-group-item collist">
+                                        <div class="item list-item col-md-4 view-group grid-group-item collist text-center">
                                             <div class="comon-items-d1">
                                                 <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
                                                     <figure class="mb-0">
@@ -94,13 +95,6 @@
                                                         {{ print_one_line($product->description, 110) }}
                                                     </p>
                                                     <h2>${{ $product->price }}</h2>
-        
-                                                    <div class="d-flex mt-3 align-items-center justify-content-between">
-                                                        <button type="button" class="btn view-products mt-0">
-                                                            Add To Cart
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
