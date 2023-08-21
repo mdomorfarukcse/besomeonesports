@@ -71,7 +71,7 @@
             <div class="right-top">
                 <ul class="d-flex align-items-center">
                     <li class="position-relative">
-                        <a href="#" class="btn cart-btn-links" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                        <a href="{{ route('frontend.shop.cart.index') }}" class="btn cart-btn-links">
                             <span>{{ count(session('cart', [])) }}</span>
                             <span class="m-0 ion-0">
                                 <img src="{{ asset('frontend/images/2832495.png') }}" alt="pnm" />

@@ -8,7 +8,7 @@
             <h1 class="text-center">@yield('page_name')</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     @yield('breadcrumb')
                 </ol>
             </nav>
