@@ -91,8 +91,7 @@ class CoachController extends Controller
             toast('A New Coach Has Been Created.','success');
             return redirect()->route('administration.coach.index');
         } catch (Exception $e) {
-            // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            // dd($e);
+            dd($e);
             alert('Coach Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
