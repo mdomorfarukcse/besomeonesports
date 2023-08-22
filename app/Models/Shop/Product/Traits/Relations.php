@@ -19,18 +19,18 @@ trait Relations
     }
     
     /**
-     * The orders that belong to the product.
-     */
-    public function orders(): HasMany
-    {
-        return $this->hasMany(Order::class);
-    }
-    
-    /**
      * The images that belong to the product.
      */
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class);
+    }
+
+    /**
+     * The orders that belong to the product.
+     */
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
     }
 }

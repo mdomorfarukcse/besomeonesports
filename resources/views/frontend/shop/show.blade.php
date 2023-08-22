@@ -27,6 +27,9 @@
             height: 100%;
             object-fit: cover;
         }
+        .comon-section1-shop {
+            height: 350px;
+        }
     </style>
 @endsection
 
@@ -84,7 +87,7 @@
                                     @foreach (json_decode($product->sizes) as $key => $size)
                                         <li>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" />
+                                                <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" required/>
                                                 <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
                                             </div>
                                         </li>
@@ -95,7 +98,7 @@
                                     @foreach (json_decode($product->colors) as $key => $color)
                                         <li>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" />
+                                                <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" required/>
                                                 <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
                                             </div>
                                         </li>
@@ -107,7 +110,7 @@
                                     <button type="button" class="quantity-btn" data-quantity-minus="">
                                         <div class="fa fa-minus text-dark"></div>
                                     </button>
-                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" />
+                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" required/>
                                     <button type="button" class="quantity-btn" data-quantity-plus="">
                                         <div class="fa fa-plus text-dark"></div>
                                     </button>
@@ -149,71 +152,9 @@
                                 <div class="text-details-div text-center mt-3">
                                     <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" target="_blank" class="titel-text1">{{ print_one_line($data->name, 30) }}</a>
                                     <h3 class="price-text1">${{ $data->price }}</h3>
-                                    <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" target="_blank" target="_blank" class="btn cart-bthn mt-3">
-                                        <span> Add to cart </span>
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </a>
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                </div>
-
-                <div class="related-prodcus-slide">
-                    <div class="best-sl-m2 mt-4 owl-carousel owl-theme">
-                        <div class="produc-div">
-                            <figure>
-                                <img src="images/s1.html" alt="pic" />
-                                <span class="btn cart-bn"> <i class="bi bi-basket2-fill"></i> </span>
-                            </figure>
-                            <a href="#" class="sm-titel-2">Shoes</a>
-                            <a href="products-details-2.html" class="mt-3 pro-titel"> Pineapple Express </a>
-
-                            <h4>$15</h4>
-                        </div>
-
-                        <div class="produc-div">
-                            <figure>
-                                <img src="images/s2.html" alt="pic" />
-                                <span class="btn cart-bn"> <i class="bi bi-basket2-fill"></i> </span>
-                            </figure>
-                            <a href="#" class="sm-titel-2">Shoes</a>
-                            <a href="products-details-2.html" class="mt-3 pro-titel"> Pineapple Express </a>
-
-                            <h4>$15</h4>
-                        </div>
-
-                        <div class="produc-div">
-                            <figure>
-                                <img src="images/s3.html" alt="pic" />
-                                <span class="btn cart-bn"> <i class="bi bi-basket2-fill"></i> </span>
-                            </figure>
-                            <a href="#" class="sm-titel-2">Shoes</a>
-                            <a href="products-details-2.html" class="mt-3 pro-titel"> Pineapple Express </a>
-
-                            <h4>$15</h4>
-                        </div>
-
-                        <div class="produc-div">
-                            <figure>
-                                <img src="images/s5.html" alt="pic" />
-                                <span class="btn cart-bn"> <i class="bi bi-basket2-fill"></i> </span>
-                            </figure>
-                            <a href="#" class="sm-titel-2">Shoes</a>
-                            <a href="products-details-2.html" class="mt-3 pro-titel"> Pineapple Express </a>
-
-                            <h4>$15</h4>
-                        </div>
-                        <div class="produc-div">
-                            <figure>
-                                <img src="images/shoes3.html" alt="pic" />
-                                <span class="btn cart-bn"> <i class="bi bi-basket2-fill"></i> </span>
-                            </figure>
-                            <a href="#" class="sm-titel-2">Shoes</a>
-                            <a href="products-details-2.html" class="mt-3 pro-titel"> Pineapple Express </a>
-
-                            <h4>$15</h4>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -242,7 +183,7 @@
             sync1
                 .owlCarousel({
                     items: 1,
-                    slideSpeed: 2000,
+                    slideSpeed: 5000,
                     nav: false,
                     autoplay: false,
                     dots: false,
@@ -259,8 +200,8 @@
                     items: slidesPerPage,
                     dots: true,
                     nav: false,
-                    smartSpeed: 200,
-                    slideSpeed: 500,
+                    smartSpeed: 500,
+                    slideSpeed: 1000,
                     slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
                     responsiveRefreshRate: 100,
                 })

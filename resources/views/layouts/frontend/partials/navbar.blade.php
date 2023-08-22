@@ -70,62 +70,13 @@
             </div>
             <div class="right-top">
                 <ul class="d-flex align-items-center">
-                    <li class="dropdown position-relative">
-                        <button type="button" class="btn cart-btn-links" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                            <span>2</span>
+                    <li class="position-relative">
+                        <a href="{{ route('frontend.shop.cart.index') }}" class="btn cart-btn-links">
+                            <span>{{ count(session('cart', [])) }}</span>
                             <span class="m-0 ion-0">
                                 <img src="{{ asset('frontend/images/2832495.png') }}" alt="pnm" />
                             </span>
-                        </button>
-
-                        <ul class="dropdown-menu shadow cart-dropdown-ne">
-                            <li>
-                                <div class="comon-cart-ps">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="#" class="products-sm-pic">
-                                            <figure>
-                                                <img src="{{ asset('frontend/images/botsman1.png') }}" alt="bn" />
-                                            </figure>
-                                        </a>
-                                        <div class="cart-ps-details">
-                                            <a href="#" class="titel-crt-products">
-                                                Junior Shoes
-                                            </a>
-                                            <h6>$10.52</h6>
-                                        </div>
-                                        <a href="#" class="close-crt"> <i class="fas fa-close"></i> </a>
-                                    </div>
-                                </div>
-                                <div class="comon-cart-ps">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="#" class="products-sm-pic">
-                                            <figure>
-                                                <img src="{{ asset('frontend/images/127-1276644_american-football-png-picture-american-football-ball-png.png') }}" alt="bn" />
-                                            </figure>
-                                        </a>
-                                        <div class="cart-ps-details">
-                                            <a href="#" class="titel-crt-products">
-                                                SE Wooden
-                                            </a>
-                                            <h6>$20.52</h6>
-                                        </div>
-                                        <a href="#" class="close-crt"> <i class="fas fa-close"></i> </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="sub-total-products d-flex align-items-center justify-content-between">
-                                    <h6>Subtotal:</h6>
-                                    <h4>$30.52</h4>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" class="btn cart-drop-bn"> View Cart </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn check-drop-bn"> Check out </a>
-                            </li>
-                        </ul>
+                        </a>
                     </li>
                     <li>
                         <button type="button" class="btn bar-btn-links" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightmobile">
