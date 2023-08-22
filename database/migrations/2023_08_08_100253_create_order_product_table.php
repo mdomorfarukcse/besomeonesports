@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->float('price', 8, 2)->comment('Current Product Price / Unit');
             $table->float('total', 8, 2)->comment('Quantity * CurrentPrice');
+            
+            $table->primary(['order_id', 'product_id', 'color', 'size'], 'order_product_color_size_unique');
         });
     }
 
