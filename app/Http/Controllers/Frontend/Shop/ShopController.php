@@ -58,7 +58,8 @@ class ShopController extends Controller
         $total = $quantity * $price;
 
         // Create a unique identifier for this item based on product ID, color, and size
-        $itemKey = $productId.$color.$size;
+        // $itemKey = $productId.$color.$size;
+        $itemKey = $productId . str_replace([' ', '-', '_', '#', '@', '!'], '', $color) . str_replace([' ', '-', '_', '#', '@', '!'], '', $size);
 
         // dd($cartItems);
 
@@ -130,7 +131,29 @@ class ShopController extends Controller
             toast('The Cart Item Has Been Removed.','success');
             return redirect()->back();
         }
+    }
 
+    public function update_cart(Request $request)
+    {
+        // Retrieve the cart items from the session
+        $cartItems = session('cart', []);
 
+        // Get the updated cart data from the form submission
+        $updatedCart = $request->input('cart', []);
+        // dd($cartItems, $updatedCart);
+
+        // Loop through the updated cart data and update the session cart
+        foreach ($updatedCart as $itemKey => $updatedItem) {
+            if (isset($cartItems[$itemKey])) {
+                $cartItems[$itemKey]['quantity'] = $updatedItem['quantity'];
+                $cartItems[$itemKey]['total'] = $updatedItem['quantity'] * $cartItems[$itemKey]['price'];
+            }
+        }
+
+        // Store the updated cart items in the session
+        session(['cart' => $cartItems]);
+
+        toast('The Cart Has Been Updated.','success');
+        return redirect()->back();
     }
 }

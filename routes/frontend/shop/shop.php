@@ -11,6 +11,7 @@ Route::controller(ShopController::class)->prefix('shop')->name('shop.')->group(f
     Route::get('/show/{product}', 'show')->name('show');
     Route::post('/add_to_cart/{product}', 'add_to_cart')->name('add_to_cart');
     Route::get('/cart', 'show_cart')->name('cart.index');
+    Route::post('/cart/update', 'update_cart')->name('cart.update');
     Route::get('/cart/checkout', 'show_checkout')->name('cart.checkout');
     Route::post('/cart/checkout/store', 'confirm_order')->name('cart.checkout.store');
     Route::get('/clear', 'clear_cart')->name('cart.clear');

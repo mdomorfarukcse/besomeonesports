@@ -55,80 +55,85 @@
                                 </span>
                             </h2>
 
+                            <form action="{{ route('frontend.shop.cart.update') }}" method="post">
+                            @csrf
+                                @foreach ($cart_items as $itemKey => $item)
+                                    @php
+                                        $product = product_info($item['product_id']);
 
-                            @foreach ($cart_items as $itemKey => $item)
-                                @php
-                                    $product = product_info($item['product_id']);
-
-                                    $subtotal += $item['total'];
-                                @endphp
-                                <div class="comon-items-cart">
-                                    <div class="left-section-div">
-                                        <figure>
-                                            @if ($product->images->count() > 0)
-                                                <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
-                                            @else
-                                                <p>No images available</p>
-                                            @endif
-                                        </figure>
-                                        <div class="products-cart1">
-                                            <h5>{{ print_one_line($product->name, 20) }}</h5>
-                                            <ul>
-                                                @if (!is_null($item['color']))
+                                        $subtotal += $item['total'];
+                                    @endphp
+                                    <div class="comon-items-cart">
+                                        <div class="left-section-div">
+                                            <figure>
+                                                @if ($product->images->count() > 0)
+                                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
+                                                @else
+                                                    <p>No images available</p>
+                                                @endif
+                                            </figure>
+                                            <div class="products-cart1">
+                                                <h5>{{ print_one_line($product->name, 20) }}</h5>
+                                                <ul>
+                                                    @if (!is_null($item['color']))
+                                                        <li>
+                                                            <span>
+                                                                Color:
+                                                            </span>
+                                                            <span>
+                                                                {{ $item['color'] }}
+                                                            </span>
+                                                        </li>
+                                                    @endif
+                                                    @if (!is_null($item['size']))
+                                                        <li>
+                                                            <span>
+                                                                Size:
+                                                            </span>
+                                                            <span>
+                                                                {{ $item['size'] }}
+                                                            </span>
+                                                        </li>
+                                                    @endif
                                                     <li>
                                                         <span>
-                                                            Color:
+                                                            Price:
                                                         </span>
                                                         <span>
-                                                            {{ $item['color'] }}
+                                                            ${{ $item['price'] }}
                                                         </span>
                                                     </li>
-                                                @endif
-                                                @if (!is_null($item['size']))
                                                     <li>
                                                         <span>
-                                                            Size:
+                                                            Quantity
                                                         </span>
                                                         <span>
-                                                            {{ $item['size'] }}
+                                                            {{ $item['quantity'] }}
                                                         </span>
                                                     </li>
-                                                @endif
-                                                <li>
-                                                    <span>
-                                                        Price:
-                                                    </span>
-                                                    <span>
-                                                        ${{ $item['price'] }}
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        Quantity
-                                                    </span>
-                                                    <span>
-                                                        {{ $item['quantity'] }}
-                                                    </span>
-                                                </li>
-                                            </ul>
+                                                </ul>
 
-                                            <a href="{{ route('frontend.shop.cart.clear.item', ['itemKey' => $itemKey]) }}" onclick="return confirm('Are you sure want to remove the item from cart?');" class="btn remove-btn p-0 mt-2 text-danger">
-                                                <span> <i class="fas fa-trash"></i> </span> Remove
-                                            </a>
+                                                <a href="{{ route('frontend.shop.cart.clear.item', ['itemKey' => $itemKey]) }}" onclick="return confirm('Are you sure want to remove the item from cart?');" class="btn remove-btn p-0 mt-2 text-danger">
+                                                    <span> <i class="fas fa-trash"></i> </span> Remove
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="crat-linl-pay">
+                                            <h4>${{ $item['total'] }}</h4>
+
+                                            <div class="quantity-field">
+                                                <button type="button" class="value-button decrease-button" onclick="decreaseValue(this)" title="Decrease Item">-</button>
+                                                <div class="number">{{ $item['quantity'] }}</div>
+                                                <input type="hidden" name="cart[{{ $itemKey }}][quantity]" value="{{ $item['quantity'] }}" class="number-input">
+                                                <button type="button" class="value-button increase-button" onclick="increaseValue(this, {{ $product->quantity }})" title="Increase Item">+</button>
+                                            </div>
                                         </div>
                                     </div>
+                                @endforeach
 
-                                    <div class="crat-linl-pay">
-                                        <h4>${{ $item['total'] }}</h4>
-
-                                        <div class="quantity-field">
-                                            <button class="value-button decrease-button" onclick="decreaseValue(this)" title="Decrease Item">-</button>
-                                            <div class="number">{{ $item['quantity'] }}</div>
-                                            <button class="value-button increase-button" onclick="increaseValue(this, {{ $product->quantity }})" title="Increase Item">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                                <button type="submit" class="btn btn-dark mb-5" style="float: right;">Update Cart</button>
+                            </form>
                         </div>
                     </div>
 
@@ -173,18 +178,22 @@
     <script>
         function increaseValue(button, limit) {
             const numberShowingDiv = button.parentElement.querySelector(".number");
+            const numberInput = button.parentElement.querySelector(".number-input");
             var value = parseInt(numberShowingDiv.innerHTML, 10);
             if (isNaN(value)) value = 0;
             if (limit && value >= limit) return;
             numberShowingDiv.innerHTML = value + 1;
+            numberInput.value = value + 1;
         }
 
         function decreaseValue(button) {
             const numberShowingDiv = button.parentElement.querySelector(".number");
+            const numberInput = button.parentElement.querySelector(".number-input");
             var value = parseInt(numberShowingDiv.innerHTML, 10);
             if (isNaN(value)) value = 0;
             if (value > 0) {
                 numberShowingDiv.innerHTML = value - 1;
+                numberInput.value = value - 1;
             }
         }
     </script>
