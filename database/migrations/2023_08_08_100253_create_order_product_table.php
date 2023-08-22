@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-
+        Schema::create('order_product', function (Blueprint $table) {
             $table->foreignId('order_id')
                   ->constrained()
                   ->onUpdate('cascade')
@@ -29,9 +27,6 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->float('price', 8, 2)->comment('Current Product Price / Unit');
             $table->float('total', 8, 2)->comment('Quantity * CurrentPrice');
-
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -40,9 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
-        Schema::table("order_items", function ($table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('order_product');
     }
 };

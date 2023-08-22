@@ -87,7 +87,7 @@
                                     @foreach (json_decode($product->sizes) as $key => $size)
                                         <li>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" />
+                                                <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" required/>
                                                 <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
                                             </div>
                                         </li>
@@ -98,7 +98,7 @@
                                     @foreach (json_decode($product->colors) as $key => $color)
                                         <li>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" />
+                                                <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" required/>
                                                 <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
                                             </div>
                                         </li>
@@ -110,7 +110,7 @@
                                     <button type="button" class="quantity-btn" data-quantity-minus="">
                                         <div class="fa fa-minus text-dark"></div>
                                     </button>
-                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" />
+                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" required/>
                                     <button type="button" class="quantity-btn" data-quantity-plus="">
                                         <div class="fa fa-plus text-dark"></div>
                                     </button>

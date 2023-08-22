@@ -9,15 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
-{
-    /**
-     * Get the product that owns the order.
-     */
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
-    }
-    
+{    
     /**
      * Get the user that owns the order.
      */
@@ -27,10 +19,10 @@ trait Relations
     }
 
     /**
-     * The items that belong to the order.
+     * The products that belong to the order.
      */
-    public function items(): BelongsToMany
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany(OrderItem::class);
+        return $this->belongsToMany(Product::class);
     }
 }
