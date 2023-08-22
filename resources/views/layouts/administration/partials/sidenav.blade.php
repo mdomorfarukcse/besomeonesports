@@ -205,6 +205,17 @@
                     </a>
                 </li>
                 <li>
+                    <a href="javaScript:void();"> 
+                        <i class="sl-icon-layers"></i>
+                        <span>Frontend</span>
+                        <i class="feather icon-chevron-right pull-right"></i> 
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('administration.faq.index') }}">Faqs</a></li>
+                        <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="/"> 
                         <i class="sl-icon-home"></i>
                         <span>Website</span> 

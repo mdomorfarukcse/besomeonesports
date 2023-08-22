@@ -19,11 +19,15 @@
             background: #fff;
             display: inline-block;
             width: 100%;
-            padding: 30px;
+            padding: 15px;
             height: 150px;
             border-radius: 10px;
             border: 1px solid #333;
             margin-bottom: 20px;
+        }
+        .single_sponsor img{
+            height: 120px;
+            width: 100%;
         }
         .mb-50{
             margin-bottom: 50px;
@@ -56,45 +60,15 @@
                             <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
                             <h2 class="comon-heading m-0">Sponsors</h2>
                         </div>
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
+
+                        @foreach ($sponsors as $key => $sponsor)
+                            <div class="col-md-2">
+                                <div class="single_sponsor">
+                                    <img src="{{ show_avatar($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="single_sponsor">
-                                <img src="{{ asset('frontend/images/brand_food2.jpg') }}" alt="jok"/>
-                            </div>
-                        </div>
-                        
+                        @endforeach
+                            
                         
                     </div>
                 </div>
