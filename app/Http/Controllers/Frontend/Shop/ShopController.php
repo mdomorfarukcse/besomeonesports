@@ -49,8 +49,8 @@ class ShopController extends Controller
 
         // Get the product ID, color, size, and quantity from the request
         $productId = $product->id;
-        $color = $request->product_size ?? NULL;
-        $size = $request->product_color ?? NULL;
+        $size = $request->product_size ?? NULL;
+        $color = $request->product_color ?? NULL;
         $quantity = $request->porduct_quantity ?? 1;
 
         // Calculate the total price for this item
@@ -99,7 +99,9 @@ class ShopController extends Controller
 
     public function show_checkout() {
         $cart_items = session('cart', []);
-        return view('frontend.shop.cart.index', compact(['cart_items']));
+        $subtotal = 0;
+
+        return view('frontend.shop.cart.checkout', compact(['cart_items', 'subtotal']));
     }
 
 
