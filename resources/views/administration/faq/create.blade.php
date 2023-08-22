@@ -49,7 +49,7 @@
                         <div class="col-md-12">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Create New Sport</h5>
+                                    <h5 class="card-title mb-0">Create New Faq</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -76,7 +76,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Sport</span>
+                        <span class="text-bold">Create New Faq</span>
                     </button>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Sponsors;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sponsor\Sponsor;
 use Illuminate\Http\Request;
 
 class SponsorsController extends Controller
@@ -11,7 +12,8 @@ class SponsorsController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('frontend.sponsors.index');
+    {   
+        $sponsors = Sponsor::all();
+        return view('frontend.sponsors.index', compact(['sponsors']));
     }
 }

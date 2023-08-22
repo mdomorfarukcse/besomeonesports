@@ -39,7 +39,6 @@ class FaqController extends Controller
             $data = $request->all();
             Faq::create([
                 'name' => $data['name'],
-                'status' => $data['status'],
                 'description' => $data['description'],
             ]);
             toast('A New Faqs Has Been Created.', 'success');
@@ -74,7 +73,6 @@ class FaqController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'status' => 'required',
             'description' => 'required|string'
         ]);
         try {
