@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Frontend\Shop;
 
+use Exception;
+use Illuminate\Http\Request;
+use App\Models\Shop\Order\Order;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Product\Product;
-use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -106,7 +109,44 @@ class ShopController extends Controller
 
 
     public function confirm_order(Request $request) {
-        dd($request);
+        // dd($request, session('cart', []));
+
+        try {
+            DB::transaction(function() use ($request) {
+                $order = new Order();
+                $order->order_id = $this->generateUniqueID();
+                $order->user_id = auth() ? auth()->user()->id : NULL; // Replace with your user identification logic
+                $order->total_price = $request->sub_total; // Replace with the actual total price
+                $order->name = $request->input('name');
+                $order->email = $request->input('email');
+                $order->address = $request->input('address');
+                $order->contact_number = $request->input('contact_number');
+                $order->tracking_id = rand(1, 1111); // Implement a function to generate a unique tracking ID
+                $order->save();
+
+                
+                $cartItems = session('cart', []);
+                foreach ($cartItems as $itemKey => $cartItem) {
+                    $order->products()->attach($cartItem['product_id'], [
+                        'color' => $cartItem['color'],
+                        'size' => $cartItem['size'],
+                        'quantity' => $cartItem['quantity'],
+                        'price' => $cartItem['price'],
+                        'total' => $cartItem['total'],
+                    ]);
+                }
+            }, 5);
+
+            // Clear the cart session data
+            session()->forget('cart');
+
+            toast('Order Has Been Placed.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
 
@@ -157,5 +197,37 @@ class ShopController extends Controller
 
         toast('The Cart Has Been Updated.','success');
         return redirect()->back();
+    }
+
+
+
+    // Generate a unique ID with a minimum and maximum length of 10 characters
+    private function generateUniqueID() {
+        $length = 10;
+        $timestampLength = 13; // Length of the timestamp in milliseconds
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    
+        // Get the current timestamp in milliseconds
+        $timestamp = round(microtime(true) * 1000);
+    
+        // Convert the timestamp to a string and remove the decimal point
+        $timestampString = str_replace('.', '', (string)$timestamp);
+    
+        // Calculate the number of characters needed to fill the remaining length
+        $charactersNeeded = $length - $timestampLength;
+    
+        // Ensure we have enough characters to fill the length
+        while (strlen($timestampString) < $charactersNeeded) {
+            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
+            $timestampString .= $randomCharacter;
+        }
+    
+        // Convert the timestamp to all capital letters
+        $timestampString = strtoupper($timestampString);
+    
+        // Combine the timestamp with the random characters and take the first $length characters
+        $uniqueID = substr($timestampString, 0, $length);
+    
+        return $uniqueID;
     }
 }
