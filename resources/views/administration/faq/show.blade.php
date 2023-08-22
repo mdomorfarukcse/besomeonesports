@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Show Sport'))
+@section('page_title', __('Show Faq'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -20,23 +20,23 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Show Sport') }}</b>
+    <b class="text-uppercase">{{ __('Show Faq') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Sports') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Faqs') }}</li>
     <li class="breadcrumb-item text-capitalize">
-        <a href="{{ route('administration.sport.index') }}">{{ __('All Sports') }}</a>
+        <a href="{{ route('administration.faq.index') }}">{{ __('All Faq') }}</a>
     </li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Show Details') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.sport.edit', ['sport' => $sport]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.faq.edit', ['faq' => $faq]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-pen"></i>
-        <b>Edit Sport Info</b>
+        <b>Edit Faq Info</b>
     </a>
 @endsection
 
@@ -47,7 +47,7 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.sport.update', ['sport' => $sport]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.faq.update', ['faq' => $faq]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-body">
@@ -55,7 +55,7 @@
                         <div class="col-md-12">
                             <div class="card border">
                                 <div class="card-header bg-primary-rgba border-bottom">
-                                    <h5 class="card-title text-primary mb-0">Sports's Information</h5>
+                                    <h5 class="card-title text-primary mb-0">Faq's Information</h5>
                                 </div>
                                 <div class="card-body py-2">
                                     <div class="row">
@@ -63,16 +63,16 @@
                                             <table class="table table-bordered mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Sport Name</th>
-                                                        <td>{{ $sport->name }}</td>
+                                                        <th>Name</th>
+                                                        <td>{{ $faq->name }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Description</th>
-                                                        <td>{{ $sport->description }}</td>
+                                                        <td>{{ $faq->description }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Status</th>
-                                                        <td>{!! status($sport->status) !!}</td>
+                                                        <td>{!! status($faq->status) !!}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

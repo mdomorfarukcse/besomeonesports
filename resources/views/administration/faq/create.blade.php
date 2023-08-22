@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Sport'))
+@section('page_title', __('Create New Faq'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,12 +25,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Sport') }}</b>
+    <b class="text-uppercase">{{ __('Create New Faq') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Sport') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Faq') }}</li>
 @endsection
 
 
@@ -41,7 +41,7 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.sport.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.faq.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-body">
@@ -55,7 +55,7 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label for="name">Name <span class="required">*</span></label>
-                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Tennies" required/>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="How can I prticipate in a league?" required/>
                                             @error('name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -73,12 +73,11 @@
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="description">Description</label>
-                                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('description') }}</textarea>
+                                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Details">{{ old('description') }}</textarea>
                                             @error('description')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>

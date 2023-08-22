@@ -52,4 +52,11 @@ Route::prefix('administration')
 
             // Settings
             include_once 'settings/settings.php';
+
+            // Faq
+            include_once 'faq/faq.php';
+
+            // Sponsor
+            include_once 'sponsor/sponsor.php';
+
         });
