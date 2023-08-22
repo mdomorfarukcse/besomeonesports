@@ -37,45 +37,36 @@ class SponsorController extends Controller
         ]);
 
         try {
-            Sponsor::create();
-            toast('A New Faqs Has Been Created.', 'success');
+            $avatar = upload_avatar($request, 'avatar');
+            $data = $request->all();
+            Sponsor::create([
+                'name' => $data['name'],
+                'avatar' => $avatar,
+                'status' => $data['status'],
+            ]);
+            toast('A New Sponsor Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
             dd($e);
-            alert('Faq Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Sponsor Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sponsor $sponsor)
     {
-        //
+        try {
+            $sponsor->delete();
+
+            toast('Sponsor Has Been Deleted.','success');
+            return redirect()->route('administration.sponsor.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Sponsor Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

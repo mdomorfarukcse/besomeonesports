@@ -53,21 +53,10 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-12 form-group">
                                             <label for="name">Name <span class="required">*</span></label>
                                             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="How can I prticipate in a league?" required/>
                                             @error('name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="status">Status <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                                <option value="">Select Status</option>
-                                                <option value="Active" selected>Active</option>
-                                                <option value="Inactive">Inactive</option>
-                                            </select>
-                                            @error('status')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

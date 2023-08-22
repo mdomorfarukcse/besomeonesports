@@ -70,10 +70,6 @@
                                                         <th>Description</th>
                                                         <td>{{ $faq->description }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>Status</th>
-                                                        <td>{!! status($faq->status) !!}</td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>

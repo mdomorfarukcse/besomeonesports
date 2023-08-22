@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Avatar</th>
+                                <th>Logo</th>
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th class="text-right">Actions</th>
@@ -70,15 +70,15 @@
                             @foreach ($sponsors as $key => $sponsor)
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($sponsors, $key) }}</b></th>
+                                    <td>
+                                        <img src="{{ show_avatar($sponsor->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                    </td>
                                     <td>{{ $sponsor->name }}</td>
                                     <td>{!! status($sponsor->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
                                             <a href="{{ route('administration.sponsor.destroy', ['sponsor' => $sponsor]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                 <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="{{ route('administration.sponsor.show', ['sponsor' => $sponsor]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
                                             </a>
                                         </div>
                                     </td>
