@@ -8,6 +8,7 @@ use App\Models\Shop\Order\Order;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Product\Product;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -112,39 +113,55 @@ class ShopController extends Controller
         // dd($request, session('cart', []));
 
         try {
-            DB::transaction(function() use ($request) {
+            DB::transaction(function () use ($request) {
                 $order = new Order();
                 $order->order_id = $this->generateUniqueID();
-                $order->user_id = auth() ? auth()->user()->id : NULL; // Replace with your user identification logic
-                $order->total_price = $request->sub_total; // Replace with the actual total price
+                $order->user_id = isset($request->user_id) ? decrypt($request->user_id) : null;
+                $order->total_price = $request->sub_total;
                 $order->name = $request->input('name');
                 $order->email = $request->input('email');
                 $order->address = $request->input('address');
                 $order->contact_number = $request->input('contact_number');
-                $order->tracking_id = rand(1, 1111); // Implement a function to generate a unique tracking ID
+                $order->tracking_id = rand(1, 1111);
                 $order->save();
-
-                
-                $cartItems = session('cart', []);
+        
+                $cartItems = Session::get('cart', []);
                 foreach ($cartItems as $itemKey => $cartItem) {
-                    $order->products()->attach($cartItem['product_id'], [
-                        'color' => $cartItem['color'],
-                        'size' => $cartItem['size'],
-                        'quantity' => $cartItem['quantity'],
-                        'price' => $cartItem['price'],
-                        'total' => $cartItem['total'],
-                    ]);
+                    // Retrieve the product and check if it exists
+                    $product = Product::find($cartItem['product_id']);
+                    if ($product) {
+                        // Check if there is enough quantity in stock
+                        if ($product->quantity >= $cartItem['quantity']) {
+                            // Decrease the product quantity
+                            $product->quantity -= $cartItem['quantity'];
+                            $product->save();
+        
+                            // Attach the product to the order
+                            $order->products()->attach($cartItem['product_id'], [
+                                'color' => $cartItem['color'],
+                                'size' => $cartItem['size'],
+                                'quantity' => $cartItem['quantity'],
+                                'price' => $cartItem['price'],
+                                'total' => $cartItem['total'],
+                            ]);
+                        } else {
+                            // Handle the case where the product quantity is insufficient
+                            throw new Exception('Insufficient product quantity in stock.');
+                        }
+                    } else {
+                        // Handle the case where the product does not exist
+                        throw new Exception('Product not found.');
+                    }
                 }
             }, 5);
-
+        
             // Clear the cart session data
-            session()->forget('cart');
-
+            Session::forget('cart');
+        
             toast('Order Has Been Placed.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
-            alert('Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Failed!', $e->getMessage(), 'error');
             return redirect()->back()->withInput();
         }
     }
