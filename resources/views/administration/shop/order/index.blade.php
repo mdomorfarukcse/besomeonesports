@@ -62,7 +62,7 @@
                                 <th>#</th>
                                 <th>ORDER-ID</th>
                                 <th>Order By</th>
-                                <th>Product Name</th>
+                                <th>Products</th>
                                 <th>Total Price</th>
                                 <th>Ordered At</th>
                                 <th>Status</th>
@@ -75,25 +75,19 @@
                                     <td class="fw-bold text-dark"><b>#{{ serial($orders, $key) }}</b></th>
                                     <td class="text-bold text-primary">{{ $order->order_id }}</td>
                                     <td>
-                                        {{ $order->user->name }}
+                                        {{ $order->name }}
                                         <br>
                                         <small class="text-muted">
-                                            <a href="mailto:{{ $order->user->email }}">
-                                                {{ $order->user->email }}
+                                            <a href="mailto:{{ $order->email }}">
+                                                {{ $order->email }}
                                             </a>
                                         </small>
                                     </td>
                                     <td>
-                                        {{ $order->product->name }}
-                                        <br>
-                                        <small class="text-muted">{{ $order->product->product_id }}</small>
+                                        {{ count($order->products) }} Item(s)
                                     </td>
                                     <td>
                                         ${{ $order->total_price }}
-                                        @if ($order->quantity > 1)
-                                            <br>
-                                            <small class="text-muted">${{ $order->current_price }}*{{ $order->quantity }}</small>
-                                        @endif
                                     </td>
                                     <td>
                                         {{ show_date($order->created_at) }}

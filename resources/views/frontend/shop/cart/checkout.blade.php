@@ -170,11 +170,11 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($cart_items as $itemKey => $item)
-                                                    @php
-                                                        $product = product_info($item['product_id']);
+                                                        @php
+                                                            $product = product_info($item['product_id']);
 
-                                                        $subtotal += $item['total'];
-                                                    @endphp
+                                                            $subtotal += $item['total'];
+                                                        @endphp
                                                         <tr>
                                                             <td>
                                                                 <b>{{ print_one_line($product->name, 20) }}</b>
@@ -199,6 +199,16 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    {{-- ============< Hidden Values >==================== --}}
+                                    <input type="hidden" name="sub_total" value="{{ $subtotal }}">
+                                    @auth
+                                        <input type="hidden" name="user_id" value="{{ encrypt(auth()->user()->id) }}">
+                                    {{-- @else
+                                        <input type="hidden" name="user_id" value="{{ NULL }}"> --}}
+                                    @endauth
+                                    {{-- ============< Hidden Values >==================== --}}
+
                                     <button type="submit" class="form-wizard-next-btn btn w-100 text-center mt-3">Pay & Confirm Now</button>
                                 </div>
                             </div>

@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['product', 'user'])->orderBy('created_at', 'desc')->get();
+        $orders = Order::with(['products', 'user'])->orderBy('created_at', 'desc')->get();
         return view('administration.shop.order.index', compact(['orders']));
     }
 

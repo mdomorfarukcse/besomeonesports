@@ -17,3 +17,8 @@ Route::controller(ShopController::class)->prefix('shop')->name('shop.')->group(f
     Route::get('/clear', 'clear_cart')->name('cart.clear');
     Route::get('/clear/item/{itemKey}', 'clear_cart_item')->name('cart.clear.item');
 });
+
+Route::name('shop.')->group(function () {
+    // order
+    include_once 'order/order.php';
+});
