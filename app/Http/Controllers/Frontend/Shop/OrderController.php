@@ -18,4 +18,11 @@ class OrderController extends Controller
 
         return view('frontend.shop.order.show', compact(['order']));
     }
+    
+    public function track(Request $request) {
+        $this->validate($request, [
+            'order_id' => 'required|exists:orders,order_id'
+        ]);
+        return redirect()->route('frontend.shop.order.show', ['order_id' => encrypt($request->order_id)]);
+    }
 }
