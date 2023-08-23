@@ -82,18 +82,40 @@
                                                 <tr>
                                                     <th>Product</th>
                                                     <td class="text-dark text-bold">
-                                                        {{ $order->product->name }}
+                                                        {{-- {{ $order->product->name }}
                                                         <br>
-                                                        <small class="text-primary">{{ $order->product->product_id }}</small>
+                                                        <small class="text-primary">{{ $order->product->product_id }}</small> --}}
+                                                        <ol>
+                                                            @foreach ($order->products as $product)
+                                                                <li>
+                                                                    <a href="{{ route('administration.shop.product.show', ['product' => $product]) }}" class="text-info">
+                                                                        <b>{{ $product->name }}</b>
+                                                                    </a>
+                                                                    <p>
+                                                                        <small class="text-muted">
+                                                                            <span class="text-bold">Price: </span> {{ $product->pivot->price }}
+                                                                        </small>
+                                                                        |
+                                                                        <small class="text-muted">
+                                                                            <span class="text-bold">Quantity: </span> {{ $product->pivot->quantity }}
+                                                                        </small>
+                                                                        |
+                                                                        <small class="text-muted">
+                                                                            <span class="text-bold">Color: </span> {{ $product->pivot->color }}
+                                                                        </small>
+                                                                        |
+                                                                        <small class="text-muted">
+                                                                            <span class="text-bold">Size: </span> {{ $product->pivot->size }}
+                                                                        </small>
+                                                                        |
+                                                                        <small class="text-muted">
+                                                                            <span class="text-bold">Total: </span> {{ $product->pivot->total }}
+                                                                        </small>
+                                                                    </p>
+                                                                </li>
+                                                            @endforeach
+                                                        </ol>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Product Price</th>
-                                                    <td>{{ $order->current_price }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Total Items</th>
-                                                    <td>{{ $order->quantity }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Total Price</th>
@@ -127,19 +149,25 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Customer Name</th>
-                                                    <td class="text-dark text-bold">
-                                                        {{ $order->user->name }}
-                                                        <br>
-                                                        <small class="text-dark text-capitalize">
-                                                            Role: {{ $order->user->roles->first()->name }}
-                                                        </small>
-                                                    </td>
+                                                    @auth
+                                                        <td class="text-dark text-bold">
+                                                            {{ $order->user->name }}
+                                                            <br>
+                                                            <small class="text-dark text-capitalize">
+                                                                Role: {{ $order->user->roles->first()->name }}
+                                                            </small>
+                                                        </td>
+                                                    @else
+                                                        <td class="text-dark text-bold">
+                                                            {{ $order->name }}
+                                                        </td>
+                                                    @endauth
                                                 </tr>
                                                 <tr>
                                                     <th>Email</th>
                                                     <td>
-                                                        <a href="mailto:{{ $order->user->email }}" data-toggle="tooltip" data-placement="top" title="{{ __('Click Here To Send Mail') }}">
-                                                            {{ $order->user->email }}
+                                                        <a href="mailto:{{ $order->email }}" data-toggle="tooltip" data-placement="top" title="{{ __('Click Here To Send Mail') }}">
+                                                            {{ $order->email }}
                                                         </a>
                                                     </td>
                                                 </tr>
