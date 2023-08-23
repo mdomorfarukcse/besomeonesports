@@ -5,15 +5,12 @@
 
 @endsection
 
-@section('page_title', __('All Order'))
+@section('page_title', 'Shop | Dashboard')
 
 @section('css_links')
     {{--  External CSS  --}}
-    <!-- DataTables css -->
-    <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- Responsive Datatable css -->
-    <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Apex css -->
+    <link href="{{ asset('assets/plugins/apexcharts/apexcharts.css') }}" rel="stylesheet">
 @endsection
 
 @section('custom_css')
@@ -25,130 +22,163 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Order') }}</b>
+    <b class="text-uppercase">{{ __('Shop Dashboard') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Order') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Order') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Shop') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Dashboard') }}</li>
 @endsection
-
-
 
 
 
 @section('content')
 
 <!-- Start row -->
-<!-- Start row -->
 <div class="row">
     <!-- Start col -->
-    <div class="col-lg-12">
+    <div class="col-lg-12 col-xl-12">
+        <!-- Start row -->
+        <div class="row">
+            <div class="col-lg-4">
+                <a href="{{ route('administration.shop.order.index') }}">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <span class="action-icon badge badge-primary-inverse mr-0">
+                                        <i class="feather icon-feather"></i>
+                                    </span>
+                                </div>
+                                <div class="col-7 text-right">
+                                    <h5 class="card-title font-14">Total Orders</h5>
+                                    <h4 class="mb-0">{{ $dashboard['total_orders'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <span class="font-13">Today's Orders</span>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span class="badge badge-primary">
+                                        <i class="feather icon-feather mr-1"></i>{{ $dashboard['today_orders'] }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4">
+                <a href="{{ route('administration.shop.order.index') }}">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <span class="action-icon badge badge-success-inverse mr-0">
+                                        <i class="feather icon-dollar-sign"></i>
+                                    </span>
+                                </div>
+                                <div class="col-7 text-right">
+                                    <h5 class="card-title font-14">Total Sale</h5>
+                                    <h4 class="mb-0">${{ $dashboard['total_sale'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <span class="font-13">Today's Sale</span>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span class="badge badge-success">
+                                        <i class="feather icon-dollar-sign mr-1"></i>{{ $dashboard['today_sale'] }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4">
+                <a href="{{ route('administration.shop.product.index') }}">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <span class="action-icon badge badge-warning-inverse mr-0">
+                                        <i class="feather icon-umbrella"></i>
+                                    </span>
+                                </div>
+                                <div class="col-7 text-right">
+                                    <h5 class="card-title font-14">Total Products</h5>
+                                    <h4 class="mb-0">{{ $dashboard['total_products'] }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <span class="font-13">Total Categories</span>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span class="badge badge-warning">
+                                        <i class="feather icon-tag mr-1"></i>{{ $dashboard['total_categories'] }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- End row -->
+    </div>
+    
+
+    {{-- <div class="col-12">
         <div class="card m-b-30">
             <div class="card-header">
                 <div class="row align-items-center">
-                    <div class="col-6">
-                        <h5 class="card-title mb-0">All Orders</h5>
+                    <div class="col-9">
+                        <h5 class="card-title mb-0">Annual Revenue</h5>
+                    </div>
+                    <div class="col-3">
+                        <div class="dropdown">
+                            <button class="btn btn-link p-0 font-18 float-right" type="button" id="widgetStudent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="feather icon-more-horizontal-"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="widgetStudent">
+                                <a class="dropdown-item font-13" href="#">Refresh</a>
+                                <a class="dropdown-item font-13" href="#">Export</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Invoice</th>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Total</th>
-                                <th>Warehouse</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">#o2599</th>
-                                <td>11</td>
-                                <td>Amy Adams</td>
-                                <td>02/06/2019</td>
-                                <td>$1,95,000</td>
-                                <td>Boston</td>
-                                <td><span class="badge badge-primary-inverse">Processing</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2600</th>
-                                <td>12</td>
-                                <td>Shiva Radharaman</td>
-                                <td>01/06/2019</td>
-                                <td>$85,000</td>
-                                <td>Washington DC</td>
-                                <td><span class="badge badge-secondary-inverse">Shipped</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2601</th>
-                                <td>13</td>
-                                <td>Ryan Smith</td>
-                                <td>28/05/2019</td>
-                                <td>$70,000</td>
-                                <td>San Francisco</td>
-                                <td><span class="badge badge-success-inverse">Completed</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#o2602</th>
-                                <td>14</td>
-                                <td>James Witherspon</td>
-                                <td>21/05/2019</td>
-                                <td>$1,25,000</td>
-                                <td>Las Vegas</td>
-                                <td><span class="badge badge-warning-inverse">Refunded</span></td>
-                                <td>
-                                    <div class="button-list">
-                                        <a href="#" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                                        <a href="#" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body py-0 pl-0 pr-2">
+                <div id="apex-area-chart"></div>
             </div>
         </div>
-    </div>
-    <!-- End col -->
+    </div> --}}
 </div>
-<!-- End row -->
 <!-- End row -->
 
 @endsection
 
 
 @section('script_links')
-    {{--  External Javascript Links --}}   
+    {{--  External Javascript Links --}}
+    <!-- Apex js -->
+    <script src="{{ asset('assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/apexcharts/irregular-data-series.js') }}"></script>
+    <!-- Custom Dashboard js -->   
+    <script src="{{ asset('assets/js/custom/custom-dashboard-school.js') }}"></script>    
 @endsection
 
 @section('custom_script')

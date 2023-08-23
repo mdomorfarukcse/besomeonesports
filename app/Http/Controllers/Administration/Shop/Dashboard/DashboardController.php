@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Administration\Shop\Dashboard;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Shop\Order\Order;
+use App\Http\Controllers\Controller;
+use App\Models\Shop\Category\Category;
+use App\Models\Shop\Product\Product;
 
 class DashboardController extends Controller
 {
@@ -12,7 +16,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('administration.shop.dashboard.index');
+        // Get the current date
+        $currentDate = Carbon::today();
+        
+        $dashboard = [
+            'total_orders' => Order::count(),
+            'today_orders' => Order::whereDate('created_at', $currentDate)->count(),
+            'total_sale' => Order::sum('total_price'),
+            'today_sale' => Order::whereDate('created_at', $currentDate)->sum('total_price'),
+            'total_products' => Product::count(),
+            'total_categories' => Category::count(),
+        ];
+
+        // dd($dashboard);
+        return view('administration.shop.dashboard.index', compact(['dashboard']));
     }
 
     /**
