@@ -110,10 +110,9 @@ class ShopController extends Controller
 
 
     public function confirm_order(Request $request) {
-        // dd($request, session('cart', []));
-
+        $order = null;
         try {
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, &$order) {
                 $order = new Order();
                 $order->order_id = $this->generateUniqueID();
                 $order->user_id = isset($request->user_id) ? decrypt($request->user_id) : null;
@@ -124,7 +123,7 @@ class ShopController extends Controller
                 $order->contact_number = $request->input('contact_number');
                 $order->tracking_id = rand(1, 1111);
                 $order->save();
-        
+    
                 $cartItems = Session::get('cart', []);
                 foreach ($cartItems as $itemKey => $cartItem) {
                     // Retrieve the product and check if it exists
@@ -135,7 +134,7 @@ class ShopController extends Controller
                             // Decrease the product quantity
                             $product->quantity -= $cartItem['quantity'];
                             $product->save();
-        
+    
                             // Attach the product to the order
                             $order->products()->attach($cartItem['product_id'], [
                                 'color' => $cartItem['color'],
@@ -154,17 +153,22 @@ class ShopController extends Controller
                     }
                 }
             }, 5);
-        
-            // Clear the cart session data
-            Session::forget('cart');
-        
-            toast('Order Has Been Placed.','success');
-            return redirect()->back();
+    
+            if ($order) {
+                // Clear the cart session data
+                Session::forget('cart');
+    
+                toast('Order Has Been Placed.','success');
+                return redirect()->route('frontend.shop.order.show', ['order_id' => encrypt($order->order_id)]);
+            } else {
+                throw new Exception('Order not found.');
+            }
         } catch (Exception $e) {
             alert('Failed!', $e->getMessage(), 'error');
             return redirect()->back()->withInput();
         }
     }
+    
 
 
     public function clear_cart() {
