@@ -37,7 +37,7 @@
 @section('breadcrumb_buttons')
     <a href="{{ route('administration.shop.product.edit', ['product' => $product]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-pen"></i>
-        <b>Edit Event Info</b>
+        <b>Edit Product Info</b>
     </a>
 @endsection
 

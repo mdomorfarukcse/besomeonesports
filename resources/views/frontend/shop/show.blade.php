@@ -30,6 +30,12 @@
         .comon-section1-shop {
             height: 350px;
         }
+        .sixe-menu-q .form-check{
+            width: auto !important;
+        }
+        .sixe-menu-q .form-check .form-check-input,.sixe-menu-q .form-check .form-check-label  {
+            width: auto !important;
+        }
     </style>
 @endsection
 
