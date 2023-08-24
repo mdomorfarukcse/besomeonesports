@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         SportFactory::factoryForModel(Sport::class)->count(10)->create();
-        // VenueFactory::factoryForModel(Venue::class)->count(10)->create();
+        VenueFactory::factoryForModel(Venue::class)->count(10)->create();
         // CoachFactory::factoryForModel(User::class)->count(10)->create();
         // PlayerFactory::factoryForModel(User::class)->count(10)->create();
         // DivisionFactory::factoryForModel(Division::class)->count(10)->create();
