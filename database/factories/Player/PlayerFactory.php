@@ -2,6 +2,10 @@
 
 namespace Database\Factories\Player;
 
+use App\Models\Player\Player;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,11 @@ class PlayerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => encrypt('12345678'),
+            'remember_token' => Str::random(10),
         ];
     }
 }
