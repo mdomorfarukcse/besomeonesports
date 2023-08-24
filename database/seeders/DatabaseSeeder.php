@@ -23,8 +23,21 @@ use Database\Factories\Shop\ProductFactory;
 use Database\Factories\Sport\SportFactory;
 use Database\Factories\Team\TeamFactory;
 use Database\Factories\Venue\VenueFactory;
+use Database\Seeders\Coach\CoachSeeder;
+use Database\Seeders\Division\DivisionSeeder;
+use Database\Seeders\Event\EventSeeder;
+use Database\Seeders\Frontend\FaqSeeder;
+use Database\Seeders\Frontend\SponsorSeeder;
+use Database\Seeders\Player\PlayerSeeder;
+use Database\Seeders\Season\SeasonSeeder;
+use Database\Seeders\Shop\CategorySeeder;
+use Database\Seeders\Shop\OrderSeeder;
+use Database\Seeders\Shop\ProductSeeder;
+use Database\Seeders\Sport\SportSeeder;
+use Database\Seeders\Team\TeamSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\user\UserSeeder;
+use Database\Seeders\Venue\VenueSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,8 +48,22 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
 
-        SportFactory::factoryForModel(Sport::class)->count(10)->create();
-        VenueFactory::factoryForModel(Venue::class)->count(10)->create();
+        $this->call(SportSeeder::class);
+        $this->call(VenueSeeder::class);
+        $this->call(CoachSeeder::class);
+        $this->call(PlayerSeeder::class);
+        $this->call(DivisionSeeder::class);
+        $this->call(SeasonSeeder::class);
+        $this->call(EventSeeder::class);
+        $this->call(TeamSeeder::class);
+        
+        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(OrderSeeder::class);
+
+        $this->call(FaqSeeder::class);
+        $this->call(SponsorSeeder::class);
+
         // CoachFactory::factoryForModel(User::class)->count(10)->create();
         // PlayerFactory::factoryForModel(User::class)->count(10)->create();
         // DivisionFactory::factoryForModel(Division::class)->count(10)->create();
