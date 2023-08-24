@@ -63,8 +63,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FaqSeeder::class);
         $this->call(SponsorSeeder::class);
-
-        // CategoryFactory::factoryForModel(Category::class)->count(50)->create();
+        
         // ProductFactory::factoryForModel(Product::class)->count(50)->create();
         // OrderFactory::factoryForModel(Order::class)->count(100)->create();
     }
