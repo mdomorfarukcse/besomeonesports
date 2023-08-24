@@ -2,8 +2,10 @@
 
 namespace Database\Seeders\Division;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Division\Division;
+use Database\Factories\Division\DivisionFactory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DivisionSeeder extends Seeder
 {
@@ -12,6 +14,6 @@ class DivisionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DivisionFactory::factoryForModel(Division::class)->count(10)->create();
     }
 }

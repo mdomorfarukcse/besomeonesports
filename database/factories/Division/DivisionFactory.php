@@ -17,7 +17,9 @@ class DivisionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'description' => fake()->realText(100),
+            'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
 }
