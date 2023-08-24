@@ -67,7 +67,6 @@ class DatabaseSeeder extends Seeder
         // CoachFactory::factoryForModel(User::class)->count(10)->create();
         // PlayerFactory::factoryForModel(User::class)->count(10)->create();
         
-        // EventFactory::factoryForModel(Event::class)->count(10)->create();
         // TeamFactory::factoryForModel(Team::class)->count(10)->create();
 
         // CategoryFactory::factoryForModel(Category::class)->count(50)->create();
