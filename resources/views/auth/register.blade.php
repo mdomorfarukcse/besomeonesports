@@ -47,6 +47,20 @@
                                             <h4 class="text-primary my-4"><b>{{ __('REGISTER') }}</b></h4>
 
                                             <div class="form-group">
+                                                <select name="role" class="form-control @error('role') is-invalid @enderror" required>
+                                                    <option value="" selected disabled>Select Role</option>
+                                                    <option value="user">User</option>
+                                                    <option value="player">Player</option>
+                                                </select>
+
+                                                @error('role')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
                                                 <input type="text" value="{{ old('name') }}" name="name" autocomplete="off" autofocus class="form-control @error('name') is-invalid @enderror" placeholder="{{ __('Full Name') }}" tabindex="0" required>
 
                                                 @error('name')

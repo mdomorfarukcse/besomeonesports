@@ -44,6 +44,12 @@ class UserSeeder extends Seeder
             $user_read
         ]);
 
+        $user_role = Role::create(['name' => 'user']);
+        $user_role->givePermissionTo([
+            $user_index,
+            $user_read
+        ]);
+
         $admin = User::create([
             'name' => 'Demo Admin',
             'email' => 'admin@mail.com',

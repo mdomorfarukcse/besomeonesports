@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            "role" => ['required','in:player,user'],
         ]);
     }
 
@@ -75,6 +76,18 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:player,user',
+        ], [
+            'email.unique' => 'This email is already registered.',
+            'role.in' => 'The role should only Player or User.',
+            'password.confirmed' => 'Password confirmation does not match.',
+        ]);
+
         $role = isset($request->role) ? $request->role : 'player';
         
         $response = Http::post(config('app.url').'/api/register', [
