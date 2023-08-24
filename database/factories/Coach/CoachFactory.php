@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Coach;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class CoachFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => encrypt('12345678'),
+            'remember_token' => Str::random(10),
         ];
     }
 }
