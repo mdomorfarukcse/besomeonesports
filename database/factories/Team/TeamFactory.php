@@ -19,7 +19,7 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'team_id' => $this->generateUniqueID(). rand(1, 9). fake()->word(),
+            'team_id' => $this->generateUniqueID(). rand(11, 99999). fake()->word(),
             'event_id' => rand(1, 9),
             'division_id' => rand(1, 9),
             'coach_id' => rand(1, 9),
