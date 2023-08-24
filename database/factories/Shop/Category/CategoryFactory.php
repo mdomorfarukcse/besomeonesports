@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Shop;
+namespace Database\Factories\Shop\Category;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +17,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->words(3, true),
+            'description' => fake()->realText(200),
+            'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
 }
