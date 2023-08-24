@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeasonSeeder::class);
         $this->call(EventSeeder::class);
         $this->call(TeamSeeder::class);
-        
+
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(OrderSeeder::class);
@@ -66,8 +66,7 @@ class DatabaseSeeder extends Seeder
 
         // CoachFactory::factoryForModel(User::class)->count(10)->create();
         // PlayerFactory::factoryForModel(User::class)->count(10)->create();
-        // DivisionFactory::factoryForModel(Division::class)->count(10)->create();
-        // SeasonFactory::factoryForModel(Season::class)->count(10)->create();
+        
         // EventFactory::factoryForModel(Event::class)->count(10)->create();
         // TeamFactory::factoryForModel(Team::class)->count(10)->create();
 

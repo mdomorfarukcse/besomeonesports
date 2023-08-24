@@ -2,8 +2,10 @@
 
 namespace Database\Seeders\Season;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Season\Season;
 use Illuminate\Database\Seeder;
+use Database\Factories\Season\SeasonFactory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SeasonSeeder extends Seeder
 {
@@ -12,6 +14,6 @@ class SeasonSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        SeasonFactory::factoryForModel(Season::class)->count(10)->create();
     }
 }

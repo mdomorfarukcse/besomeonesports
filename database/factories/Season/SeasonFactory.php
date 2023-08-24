@@ -17,7 +17,11 @@ class SeasonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->words(3, true),
+            'year' => fake()->year(),
+            'start' => fake()->date(),
+            'end' => fake()->date(),
+            'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
 }
