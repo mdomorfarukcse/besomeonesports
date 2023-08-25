@@ -104,38 +104,32 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <form action="{{ route('administration.event.registration.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.event.registration.store', ['event' => $event]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
+            @role('player')
+                <input type="hidden" name="player_id" value="{{ encrypt(auth()->user()->player->id) }}">
+            @endrole
+            <input type="hidden" name="paid_by" value="{{ encrypt(auth()->user()->id) }}">
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
                     <h5 class="card-title mb-0">New Registration</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="event_id">Event <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
-                                <option value="">Select Event</option>
-                                @foreach ($events as $event)
-                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('event_id')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>                        
-                        <div class="form-group col-md-12">
-                            <label for="player_id">Player <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
-                                <option value="">Select Player</option>
-                                @foreach ($players as $player)
-                                    <option value="{{ $player->id }}">{{ $player->user->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('player_id')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>                        
+                        @role('admin')
+                            <div class="form-group col-md-12">
+                                <label for="player_id">Player <span class="required">*</span></label>
+                                <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
+                                    <option value="">Select Player</option>
+                                    @foreach ($players as $player)
+                                        <option value="{{ $player->id }}">{{ $player->user->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('player_id')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
+                            </div>
+                        @endrole
                         
                         @error('event_player_unique')
                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

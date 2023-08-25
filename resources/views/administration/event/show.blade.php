@@ -160,10 +160,10 @@
                         <h5 class="card-title mb-0 text-bold">Registered Players</h5>
                     </div>
                     <div class="col-5">
-                        <button class="btn btn-outline-success btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addPlayersModal">
+                        <a href="{{ route('administration.event.registration', ['event' => $event]) }}" class="btn btn-outline-success btn-sm float-right font-13">
                             <i class="la la-check"></i>
                             Register Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
 use App\Http\Requests\Administration\Event\EventUpdateRequest;
+use App\Models\Player\Player;
 
 class EventController extends Controller
 {
@@ -184,5 +185,24 @@ class EventController extends Controller
             alert('Event Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
+    }
+
+
+
+    /**
+     * Event Registration Form
+     */
+    public function registration(Event $event) {
+        $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        // dd($players);
+        return view('administration.event.registration.create', compact(['event', 'players']));
+    }
+
+
+    /**
+     * Event Registration Store
+     */
+    public function register_player(Request $request, Event $event) {
+        dd($request->all(), $event);
     }
 }

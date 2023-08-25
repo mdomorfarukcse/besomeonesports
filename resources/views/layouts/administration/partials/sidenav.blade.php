@@ -41,24 +41,6 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('administration.event.index') }}">All Events</a></li>
                         <li><a href="{{ route('administration.event.create') }}">Create New Event</a></li>
-                    
-                        <li>
-                            <a href="javaScript:void(0);">{{ __('Registration') }}
-                                <i class="feather icon-chevron-right pull-right"></i>
-                            </a>
-                            <ul class="vertical-submenu">
-                                <li>
-                                    <a href="{{ route('administration.event.registration.index') }}">
-                                        {{ __('All Registrations') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('administration.event.registration.create') }}">
-                                        {{ __('New Registration') }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
 
