@@ -2,8 +2,9 @@
 
 namespace Database\Seeders\Frontend;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Faq\Faq;
 use Illuminate\Database\Seeder;
+use Database\Factories\Faq\FaqFactory;
 
 class FaqSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class FaqSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        FaqFactory::factoryForModel(Faq::class)->count(20)->create();
     }
 }

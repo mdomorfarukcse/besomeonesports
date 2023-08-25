@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Frontend;
+namespace Database\Factories\Sponsor;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +17,9 @@ class SponsorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'avatar' => fake()->word(),
+            'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
 }

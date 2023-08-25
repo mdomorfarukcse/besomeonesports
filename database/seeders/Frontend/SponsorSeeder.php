@@ -2,7 +2,8 @@
 
 namespace Database\Seeders\Frontend;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Sponsor\Sponsor;
+use Database\Factories\Sponsor\SponsorFactory;
 use Illuminate\Database\Seeder;
 
 class SponsorSeeder extends Seeder
@@ -12,6 +13,6 @@ class SponsorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        SponsorFactory::factoryForModel(Sponsor::class)->count(10)->create();
     }
 }

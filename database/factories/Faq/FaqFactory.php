@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Frontend;
+namespace Database\Factories\Faq;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +17,9 @@ class FaqFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->realText(50),
+            'description' => fake()->sentence(rand(200, 500), true),
+            'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
 }
