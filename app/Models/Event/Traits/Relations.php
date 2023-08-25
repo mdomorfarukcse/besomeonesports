@@ -4,6 +4,7 @@ namespace App\Models\Event\Traits;
 
 use App\Models\Division\Division;
 use App\Models\Event\Registration\EventRegistration;
+use App\Models\Player\Player;
 use App\Models\Season\Season;
 use App\Models\Sport\Sport;
 use App\Models\Team\Team;
@@ -64,10 +65,10 @@ trait Relations
     }
 
     /**
-     * Get the registrations for the event.
+     * Get the players for the event.
      */
-    public function registrations(): HasMany
+    public function players(): BelongsToMany
     {
-        return $this->hasMany(EventRegistration::class);
+        return $this->belongsToMany(Player::class);
     }
 }

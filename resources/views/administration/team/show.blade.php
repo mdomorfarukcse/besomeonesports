@@ -222,9 +222,9 @@
                                     <option value="" disabled>Select Players</option>
                                     @foreach ($players as $player)
                                         @php
-                                            $isSelected = in_array($player->player_id, $teamPlayers) ? 'selected' : '';
+                                            $isSelected = in_array($player->id, $teamPlayers) ? 'selected' : '';
                                         @endphp
-                                        <option value="{{ $player->player_id }}" {{ $isSelected }}>{{ $player->player->user->name }}</option>
+                                        <option value="{{ $player->id }}" {{ $isSelected }}>{{ $player->user->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('players[]')

@@ -151,6 +151,57 @@
             </div>
         </form>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <h5 class="card-title mb-0 text-bold">Registered Players</h5>
+                    </div>
+                    <div class="col-5">
+                        <button class="btn btn-outline-success btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addPlayersModal">
+                            <i class="la la-check"></i>
+                            Register Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="default-datatable" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- @foreach ($team->players as $key => $player) --}}
+                                <tr>
+                                    <td class="fw-bold text-dark"><b>#1</b></th>
+                                    <td>
+                                        <span class="text-dark text-capitalize">Name</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="action-btn-group mr-3">
+                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                <i class="feather icon-trash-2"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                <i class="feather icon-info"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{-- @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- End Row -->
