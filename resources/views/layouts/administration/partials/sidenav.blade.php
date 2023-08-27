@@ -216,6 +216,17 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="javaScript:void();"> 
+                        <i class="sl-icon-layers"></i>
+                        <span>Role & Permission</span>
+                        <i class="feather icon-chevron-right pull-right"></i> 
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="">All Permission</a></li>
+                        <li><a href="">Sponsors</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="/"> 
                         <i class="sl-icon-home"></i>
                         <span>Website</span> 
