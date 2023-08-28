@@ -223,7 +223,7 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('administration.permission.index') }}">All Permission</a></li>
-                        <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
+                        <li><a href="{{ route('administration.role.index') }}">Roles</a></li>
                     </ul>
                 </li>
                 <li>
