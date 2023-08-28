@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Administration\Role;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use DB;
 
 class RoleController extends Controller
 {
@@ -85,5 +87,64 @@ class RoleController extends Controller
             alert('Role Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
+    }
+    /////// Add Role Permission All method /////////////
+    public function AddRolesPermission()
+    {
+        $roles = Role::all();
+        $permissions = Permission::all();
+        $permission_groups = User::getpermissionGroups();
+        return view('administration.role.add_roles_permission', compact('roles','permissions','permission_groups'));
+    }
+
+    public function StoreRolesPermission(Request $request)
+    {
+        try {
+            $data = array();
+            $permissions = $request->permission;
+            foreach($permissions as $key => $item){
+                $data['role_id'] = $request->role_id;
+                $data['permission_id'] = $item;
+                DB::table('role_has_permissions')->insert($data);
+            }
+            toast('A New Role Permission Has Been Created.', 'success');
+            return redirect()->route('administration.role.all.rolepermission');
+        } catch (Exception $e){
+            dd($e);
+            alert('Role Permission Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function AllRolesPermission(){
+        $roles = Role::all();
+        return view('administration.role.all_roles_permission', compact('roles'));
+    }
+
+    public function EditRolesPermission($id)
+    {
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+        $permission_groups = User::getpermissionGroups();
+        return view('administration.role.edit_roles_permission', compact('role','permissions','permission_groups'));
+    }
+    public function UpdateRolesPermission(Request $request, Role $role)
+    {
+        try {
+            $role->update($request->all());
+            toast('Role Has Been Updated.', 'success');
+            return redirect()->route('administration.role.show', ['role' => $role]);
+        } catch (Exception $e){
+            dd($e);
+            alert('Role update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
+    public function ShowRolesPermission($id)
+    {
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+        $permission_groups = User::getpermissionGroups();
+        return view('administration.role.show_roles_permission', compact('role','permissions','permission_groups'));
     }
 }

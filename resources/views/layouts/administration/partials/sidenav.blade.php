@@ -224,6 +224,8 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('administration.permission.index') }}">All Permission</a></li>
                         <li><a href="{{ route('administration.role.index') }}">Roles</a></li>
+                        <li><a href="{{ route('administration.role.add.rolepermission') }}">Role in Permission</a></li>
+                        <li><a href="{{ route('administration.role.all.rolepermission') }}">All Roles in Permission</a></li>
                     </ul>
                 </li>
                 <li>
