@@ -14,4 +14,4 @@ Route::controller(RoleController::class)->prefix('role')->name('role.')->group(f
     Route::get('/edit/{role}', 'edit')->name('edit');
     Route::post('/update/{role}', 'update')->name('update');
     Route::get('/destroy/{role}', 'destroy')->name('destroy');
-});
+}); 

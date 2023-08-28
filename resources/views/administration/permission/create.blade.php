@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Sport'))
+@section('page_title', __('Create New Permission'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,12 +25,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Sport') }}</b>
+    <b class="text-uppercase">{{ __('Create New Permission') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Sport') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Permission') }}</li>
 @endsection
 
 
@@ -41,7 +41,7 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.sport.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.permission.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-body">
@@ -49,36 +49,39 @@
                         <div class="col-md-12">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Create New Sport</h5>
+                                    <h5 class="card-title mb-0">Create New Permission</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <label for="name">Name <span class="required">*</span></label>
-                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Tennies" required/>
+                                            <label for="name">Permission Name <span class="required">*</span></label>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Permission" required/>
                                             @error('name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="status">Status <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                                <option value="">Select Status</option>
-                                                <option value="Active" selected>Active</option>
-                                                <option value="Inactive">Inactive</option>
+                                            <label for="group_name">Group Name <span class="required">*</span></label>
+                                            <select class="select2-single form-control @error('group_name') is-invalid @enderror" name="group_name" required>
+                                                <option value=""  selected>Select Group</option>
+                                                <option value="chat">Chat</option>
+                                                <option value="coach">Coach</option>
+                                                <option value="dashboard">Dashbaord</option>
+                                                <option value="division">Division</option>
+                                                <option value="event">Event</option>
+                                                <option value="faq">Faq</option>
+                                                <option value="player">Player</option>
+                                                <option value="schedule">Schedule</option>
+                                                <option value="season">Season</option>
+                                                <option value="sponsor">Sponsor</option>
+                                                <option value="sport">Sport</option>
+                                                <option value="team">Team</option>
+                                                <option value="venue">Venue</option>
                                             </select>
-                                            @error('status')
+                                            @error('group_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-12 form-group">
-                                            <label for="description">Description</label>
-                                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('description') }}</textarea>
-                                            @error('description')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +91,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Sport</span>
+                        <span class="text-bold">Create New Permission</span>
                     </button>
                 </div>
             </div>

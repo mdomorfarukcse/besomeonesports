@@ -62,4 +62,9 @@ Route::prefix('administration')
             // Role
             include_once 'role/role.php';
 
+            // Permission
+            include_once 'permission/permission.php';
+
+            
+
         });

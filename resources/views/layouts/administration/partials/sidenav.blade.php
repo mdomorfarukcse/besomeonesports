@@ -222,8 +222,8 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="">All Permission</a></li>
-                        <li><a href="">Sponsors</a></li>
+                        <li><a href="{{ route('administration.permission.index') }}">All Permission</a></li>
+                        <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
                     </ul>
                 </li>
                 <li>

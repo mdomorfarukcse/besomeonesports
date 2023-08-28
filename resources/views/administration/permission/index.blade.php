@@ -36,7 +36,15 @@
 
 
 @section('breadcrumb_buttons')
-    <a href="" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.permission.import') }}" class="btn btn-outline-info btn-outline-custom fw-bolder">
+        <i class="feather icon-plus"></i>
+        <b>Import</b>
+    </a>
+    <a href="{{ route('administration.permission.export') }}" class="btn btn-outline-success btn-outline-custom fw-bolder">
+        <i class="feather icon-plus"></i>
+        <b>Export</b>
+    </a>
+    <a href="{{ route('administration.permission.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-plus"></i>
         <b>Create New permission</b>
     </a>
