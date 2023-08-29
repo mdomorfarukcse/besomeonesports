@@ -101,7 +101,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Role</span>
+                        <span class="text-bold">Update Role Permission</span>
                     </button>
                 </div>
             </div>

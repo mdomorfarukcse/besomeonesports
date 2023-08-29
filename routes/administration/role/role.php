@@ -21,4 +21,6 @@ Route::controller(RoleController::class)->prefix('role')->name('role.')->group(f
     Route::get('rolespermission/all', 'AllRolesPermission')->name('all.rolepermission');
     Route::get('rolespermission/edit/{id}', 'EditRolesPermission')->name('edit.rolepermission');
     Route::post('rolespermission/update/{id}', 'UpdateRolesPermission')->name('update.rolepermission');
+    Route::get('rolespermission/destroy/{role}', 'DestroyRolesPermission')->name('destroy.rolepermission');
+
 }); 

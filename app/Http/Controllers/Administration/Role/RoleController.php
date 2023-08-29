@@ -128,15 +128,19 @@ class RoleController extends Controller
         $permission_groups = User::getpermissionGroups();
         return view('administration.role.edit_roles_permission', compact('role','permissions','permission_groups'));
     }
-    public function UpdateRolesPermission(Request $request, Role $role)
+    public function UpdateRolesPermission(Request $request, $id)
     {
         try {
-            $role->update($request->all());
-            toast('Role Has Been Updated.', 'success');
-            return redirect()->route('administration.role.show', ['role' => $role]);
+            $role = Role::findOrFail($id);
+            $permissions = $request->permission;
+            if(!empty($permissions)){
+                $role->syncPermissions($permissions);
+            }
+            toast('Role Permission Has Been Updated.', 'success');
+            return redirect()->route('administration.role.all.rolepermission', ['role' => $role]);
         } catch (Exception $e){
             dd($e);
-            alert('Role update Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Role Permission update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }
@@ -146,5 +150,20 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $permission_groups = User::getpermissionGroups();
         return view('administration.role.show_roles_permission', compact('role','permissions','permission_groups'));
+    }
+    public function DestroyRolesPermission($id)
+    {
+        try {
+            $role = Role::findOrFail($id);
+            if(!is_null($role)){
+                $role->delete();
+            }
+            toast('Role Permission Has Been Deleted.','success');
+            return redirect()->route('administration.role.all.rolepermission');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Role Permission Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

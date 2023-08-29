@@ -20,6 +20,7 @@
                         <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
                     </a>
                 </li>
+                @if(Auth::user()->can(team.menu))
                 <li>
                     <a href="javaScript:void();"> 
                         <i class="sl-icon-people"></i>
@@ -31,7 +32,7 @@
                         <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                     </ul>
                 </li>
-
+                @endif
                 <li>
                     <a href="javaScript:void();"> 
                         <i class="sl-icon-map"></i>
@@ -226,6 +227,17 @@
                         <li><a href="{{ route('administration.role.index') }}">Roles</a></li>
                         <li><a href="{{ route('administration.role.add.rolepermission') }}">Role in Permission</a></li>
                         <li><a href="{{ route('administration.role.all.rolepermission') }}">All Roles in Permission</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javaScript:void();"> 
+                        <i class="sl-icon-layers"></i>
+                        <span>Manage User</span>
+                        <i class="feather icon-chevron-right pull-right"></i> 
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="#">All Admin</a></li>
+                        <li><a href="#">Create New Admin</a></li>
                     </ul>
                 </li>
                 <li>
