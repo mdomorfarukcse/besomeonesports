@@ -27,6 +27,10 @@ return new class extends Migration
             $table->foreignId('paid_by')
                   ->constrained('users');
 
+            $table->float('total_paid');
+
+            $table->string('transaction_id')->unique();
+
             $table->timestamps();
         });
     }

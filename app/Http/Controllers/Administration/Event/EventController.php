@@ -204,5 +204,14 @@ class EventController extends Controller
      */
     public function register_player(Request $request, Event $event) {
         dd($request->all(), $event);
+
+        // // Attach the product to the order
+        // $order->products()->attach($cartItem['product_id'], [
+        //     'color' => $cartItem['color'],
+        //     'size' => $cartItem['size'],
+        //     'quantity' => $cartItem['quantity'],
+        //     'price' => $cartItem['price'],
+        //     'total' => $cartItem['total'],
+        // ]);
     }
 }
