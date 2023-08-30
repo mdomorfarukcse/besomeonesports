@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Administration\Role;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
-use DB;
 
 class RoleController extends Controller
 {
@@ -99,8 +99,9 @@ class RoleController extends Controller
 
     public function StoreRolesPermission(Request $request)
     {
+        // dd($request);
         try {
-            $data = array();
+            $data = [];
             $permissions = $request->permission;
             foreach($permissions as $key => $item){
                 $data['role_id'] = $request->role_id;

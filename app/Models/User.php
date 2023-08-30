@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use App\Models\User\Traits\Relations;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use DB;
 
 class User extends Authenticatable
 {
@@ -65,6 +65,7 @@ class User extends Authenticatable
                         ->get();
         return $permissions;
     }
+    
     public static function roleHasPermisisons($role,$permissions){
         $hasPermission = true;
         foreach ($permissions as $permission) {

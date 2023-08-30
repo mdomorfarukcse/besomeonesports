@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Administration\Permission;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
