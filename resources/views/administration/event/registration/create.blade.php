@@ -20,67 +20,6 @@
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
-
-    /* Image Upload */
-    .logo-upload {
-        position: relative;
-        max-width: 205px;
-        margin: 50px auto;
-    }
-    .logo-upload .logo-edit {
-        position: absolute;
-        right: 12px;
-        z-index: 1;
-        top: 10px;
-    }
-    .logo-upload .logo-edit input {
-        display: none;
-    }
-    .logo-upload .logo-edit input + label {
-        display: inline-block;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 0;
-        border-radius: 100%;
-        background: #ffffff;
-        border: 1px solid;
-        border-color: #a1a1a1;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        font-weight: normal;
-        transition: all 0.2s ease-in-out;
-    }
-    .logo-upload .logo-edit input + label:hover {
-        background: #d8d8d8;
-        border-color: #a1a1a1;
-    }
-    .logo-upload .logo-edit input + label:after {
-        content: "\f040";
-        font-family: "FontAwesome";
-        color: #757575;
-        position: absolute;
-        top: 5px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        margin: auto;
-    }
-    .logo-upload .logo-preview {
-        width: 192px;
-        height: 192px;
-        position: relative;
-        border-radius: 100%;
-        border: 6px solid #f8f8f8;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    }
-    .logo-upload .logo-preview > div {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
     </style>
 @endsection
 
@@ -162,20 +101,5 @@
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
-        // File Uploder
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#eventLogo").change(function() {
-            readURL(this);
-        });
     </script>
 @endsection
