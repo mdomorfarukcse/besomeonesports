@@ -20,7 +20,7 @@
                         <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
                     </a>
                 </li>
-                @if(Auth::user()->can('administration.team.menu'))
+                @if(Auth::user()->can('team.menu'))
                 <li>
                     <a href="javaScript:void();"> 
                         <i class="sl-icon-people"></i>
@@ -28,10 +28,10 @@
                         <i class="feather icon-chevron-right pull-right"></i> 
                     </a>
                     <ul class="vertical-submenu">
-                        @if(Auth::user()->can('administration.team.index'))
+                        @if(Auth::user()->can('team.index'))
                             <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                         @endif
-                        @if(Auth::user()->can('administration.team.create'))
+                        @if(Auth::user()->can('team.create'))
                             <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                         @endif
                     </ul>
