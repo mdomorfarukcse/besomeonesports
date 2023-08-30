@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('New Registration'))
+@section('page_title', __('Event Registration'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,16 +25,28 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('New Registration') }}</b>
+    <b class="text-uppercase">{{ __('Event Registration') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Events') }}</li>
-    <li class="breadcrumb-item text-capitalize">{{ __('Registrations') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('New Registration') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.event.index') }}">{{ __('All Events') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.event.show', ['event' => $event]) }}">{{ __('Event Details') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Event Registration') }}</li>
 @endsection
 
+
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-arrow-left"></i>
+        <b>Back</b>
+    </a>
+@endsection
 
 
 @section('content')
@@ -43,7 +55,7 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <form action="{{ route('administration.event.registration.store', ['event' => $event]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.event.registration.store', ['event' => $event]) }}" method="post" class="card-form" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @role('player')
                 <input type="hidden" name="player_id" value="{{ encrypt(auth()->user()->player->id) }}">
@@ -74,6 +86,32 @@
                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                         @enderror
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='card-wrapper'></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cardnumber">Card Number</label>
+                                    <input type="text" class="form-control" name="card_number" id="cardnumber">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardfullname">Full Name</label>
+                                    <input type="text" class="form-control" name="card_holder_name" id="cardfullname">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cardexpiry">Expiry Date</label>
+                                    <input type="text" class="form-control" name="card_expiry" id="cardexpiry">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardcvc">CVC</label>
+                                    <input type="text" class="form-control" name="card_cvc" id="cardcvc">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
@@ -95,6 +133,10 @@
     <!-- Select2 js -->
     <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
+
+    <!-- Card js -->
+    <script src="{{ asset('assets/plugins/creditcard/card.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-creditcard.js') }}"></script>
 @endsection
 
 @section('custom_script')

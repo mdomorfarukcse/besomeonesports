@@ -21,7 +21,7 @@ class CoachFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => encrypt('12345678'),
+            'password' => '$2y$10$ICtu6/1TY43ow60cIow29eixYNdTK9crVQaFs5bkISqzwSSQ8nvke',
             'remember_token' => Str::random(10),
         ];
     }

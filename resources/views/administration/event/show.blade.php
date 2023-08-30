@@ -160,7 +160,7 @@
                         <h5 class="card-title mb-0 text-bold">Registered Players</h5>
                     </div>
                     <div class="col-5">
-                        <a href="{{ route('administration.event.registration', ['event' => $event]) }}" class="btn btn-outline-success btn-sm float-right font-13">
+                        <a href="{{ route('administration.event.registration', ['event' => $event]) }}" class="btn btn-dark btn-sm float-right font-13">
                             <i class="la la-check"></i>
                             Register Now
                         </a>
@@ -174,28 +174,27 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th class="text-right">Actions</th>
+                                <th>Registered By</th>
+                                <th>Registered At</th>
+                                <th>Transaction ID</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($team->players as $key => $player) --}}
+                            @foreach ($event->players as $key => $player)
                                 <tr>
-                                    <td class="fw-bold text-dark"><b>#1</b></th>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($event->players, $key) }}</b></th>
                                     <td>
-                                        <span class="text-dark text-capitalize">Name</span>
+                                        <a href="{{ route('administration.player.show', ['player' => $player]) }}" target="_blank" class="text-bold text-info">
+                                            {{ $player->user->name }}
+                                        </a>
                                     </td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
+                                    <td>{{ get_user_data($player->pivot->paid_by, 'name') }}</td>
+                                    <td>{{ date_time_ago($player->pivot->created_at) }}</td>
+                                    <td>
+                                        <code class="text-dark text-bold">{{ $player->pivot->transaction_id }}</code>
                                     </td>
                                 </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
