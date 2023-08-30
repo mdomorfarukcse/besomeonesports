@@ -20,7 +20,7 @@ class CoachSeeder extends Seeder
             for ($i = 0; $i < 10; $i++) {
                 $user = CoachFactory::factoryForModel(User::class)->create();
 
-                $role = Role::where('name', 'player')->first();
+                $role = Role::where('name', 'coach')->first();
                 if ($role) {
                     $user->assignRole($role);
                 }

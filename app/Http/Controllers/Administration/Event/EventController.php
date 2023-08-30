@@ -6,7 +6,9 @@ use Exception;
 use App\Models\Event\Event;
 use App\Models\Sport\Sport;
 use App\Models\Venue\Venue;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Player\Player;
 use App\Models\Season\Season;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
@@ -101,7 +103,7 @@ class EventController extends Controller
                                 $sport->select(['id', 'name']);
                             },
                             'divisions',
-                            'venues'
+                            'venues',
                         ])
                         ->firstOrFail();
         return  view('administration.event.show', compact(['event']));
@@ -182,6 +184,47 @@ class EventController extends Controller
         } catch (Exception $e) {
             dd($e);
             alert('Event Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
+
+
+
+    /**
+     * Event Registration Form
+     */
+    public function registration(Event $event) {
+        $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        // dd($players);
+        return view('administration.event.registration.create', compact(['event', 'players']));
+    }
+
+
+    /**
+     * Event Registration Store
+     */
+    public function register_player(Request $request, Event $event) {
+        // dd($request->all(), $event);        
+        try{
+            DB::transaction(function() use ($request, $event) {
+                $paidBy = decrypt($request->paid_by);
+
+                // Attach the player to the event
+                $event->players()->attach($request->player_id, [
+                    'paid_by' => $paidBy,
+                    'total_paid' => $event->registration_fee,
+                    'transaction_id' => Str::random(20),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }, 5);
+
+            toast('Registration completed for the event.', 'success');
+            return redirect()->route('administration.event.show', ['event' => $event]);
+
+        } catch (Exception $e){
+            dd($e);
+            alert('Registration Failed Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }

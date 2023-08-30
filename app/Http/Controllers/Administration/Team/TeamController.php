@@ -6,11 +6,9 @@ use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
 use App\Models\Event\Event;
-use Illuminate\Http\Request;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Event\Registration\EventRegistration;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
 use App\Http\Requests\Administration\Team\AssignPlayerRequest;
@@ -77,7 +75,8 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $players = EventRegistration::select(['id', 'event_id', 'player_id'])->with(['player'])->whereEventId($team->event_id)->get();
+        $players = $team->event->players;
+        // dd($players);
         if ($team->maximum_players < count($team->players)) {
             alert('Player Limit Crossed!', 'Maximum Player is '.$team->maximum_players.'. Please remove extra players', 'warning');
         }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Player\Traits;
 
+use App\Models\Event\Event;
 use App\Models\User;
 use App\Models\Team\Team;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,10 +28,10 @@ trait Relations
     }
 
     /**
-     * Get the registrations for the player.
+     * Get the events for the player.
      */
-    public function registrations(): HasMany
+    public function events(): BelongsToMany
     {
-        return $this->hasMany(EventRegistration::class);
+        return $this->belongsToMany(Event::class);
     }
 }

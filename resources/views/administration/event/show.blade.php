@@ -151,6 +151,56 @@
             </div>
         </form>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <h5 class="card-title mb-0 text-bold">Registered Players</h5>
+                    </div>
+                    <div class="col-5">
+                        <a href="{{ route('administration.event.registration', ['event' => $event]) }}" class="btn btn-dark btn-sm float-right font-13">
+                            <i class="la la-check"></i>
+                            Register Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="default-datatable" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Registered By</th>
+                                <th>Registered At</th>
+                                <th>Transaction ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($event->players as $key => $player)
+                                <tr>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($event->players, $key) }}</b></th>
+                                    <td>
+                                        <a href="{{ route('administration.player.show', ['player' => $player]) }}" target="_blank" class="text-bold text-info">
+                                            {{ $player->user->name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ get_user_data($player->pivot->paid_by, 'name') }}</td>
+                                    <td>{{ date_time_ago($player->pivot->created_at) }}</td>
+                                    <td>
+                                        <code class="text-dark text-bold">{{ $player->pivot->transaction_id }}</code>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- End Row -->

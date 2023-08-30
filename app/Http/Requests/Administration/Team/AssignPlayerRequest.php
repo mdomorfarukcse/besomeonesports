@@ -26,7 +26,7 @@ class AssignPlayerRequest extends FormRequest
             // Add validation for the pivot table (player_team)
             'players'         => ['required', 'array'],
             'players.*'       => ['exists:players,id'],
-            'players.*'       => ['exists:event_registrations,player_id'],
+            'players.*'       => ['exists:event_player,player_id'],
         ];
     }
 
