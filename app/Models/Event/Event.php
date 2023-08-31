@@ -12,5 +12,6 @@ class Event extends Model
 {
     use HasFactory, Relations, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['divisions', 'registrations'];
+    // protected $cascadeDeletes = ['divisions', 'players'];
+    protected $cascadeDeletes = [];
 }
