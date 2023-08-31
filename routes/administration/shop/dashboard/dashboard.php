@@ -7,5 +7,5 @@ use Illuminate\Support\Facades\Route;
 ===============< Dashboard Routes >==============
 ===============================================*/
 Route::controller(DashboardController::class)->prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/', 'index')->name('index')->middleware(['can:shop_dashboard.index']);
 });

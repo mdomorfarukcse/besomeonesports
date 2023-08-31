@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Route;
 ===============< Player Routes >==============
 ===============================================*/
 Route::controller(PlayerController::class)->prefix('player')->name('player.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/show/{player}', 'show')->name('show');
-    Route::get('/edit/{player}', 'edit')->name('edit');
-    Route::post('/update/{player}', 'update')->name('update');
-    Route::get('/destroy/{player}', 'destroy')->name('destroy');
+    Route::get('/', 'index')->name('index')->middleware(['can:player.index']);
+    Route::get('/create', 'create')->name('create')->middleware(['can:player.create']);
+    Route::post('/store', 'store')->name('store')->middleware(['can:player.create']);
+    Route::get('/show/{player}', 'show')->name('show')->middleware(['can:player.show']);
+    Route::get('/edit/{player}', 'edit')->name('edit')->middleware(['can:player.update']);
+    Route::post('/update/{player}', 'update')->name('update')->middleware(['can:player.update']);
+    Route::get('/destroy/{player}', 'destroy')->name('destroy')->middleware(['can:player.destroy']);
 });

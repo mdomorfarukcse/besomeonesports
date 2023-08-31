@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Administration\Settings\Role;
 
-use App\Http\Controllers\Controller;
-use App\Models\PermissionGroup;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
@@ -13,7 +13,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('administration.settings.role.index');
+        $roles = Role::with(['permissions'])->get();
+        return view('administration.settings.role.index', compact(['roles']));
     }
 
     /**
@@ -21,8 +22,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissionGroups = PermissionGroup::with(['permissions'])->get();
-        return view('administration.settings.role.create', compact(['permissionGroups']));
+        return view('administration.settings.role.create');
     }
 
     /**

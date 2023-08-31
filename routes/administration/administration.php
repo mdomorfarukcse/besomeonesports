@@ -59,4 +59,12 @@ Route::prefix('administration')
             // Sponsor
             include_once 'sponsor/sponsor.php';
 
+            // Role
+            include_once 'role/role.php';
+
+            // Permission
+            include_once 'permission/permission.php';
+
+            
+
         });

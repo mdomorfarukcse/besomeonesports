@@ -2,9 +2,11 @@
 namespace Database\Seeders\user;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -13,47 +15,30 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Permissions
-        $user_index = Permission::create(['name' => 'users.index']);
-        $user_create = Permission::create(['name' => 'users.create']);
-        $user_read = Permission::create(['name' => 'users.read']);
-        $user_update = Permission::create(['name' => 'users.update']);
-        $user_delete = Permission::create(['name' => 'users.delete']);
-
-        // Role Create and Permission Assign for Role
-        $admin_role = Role::create(['name' => 'admin']);
-        $admin_role->givePermissionTo([
-            $user_index,
-            $user_create,
-            $user_read,
-            $user_update,
-            $user_delete
+        // Create a developer
+        $developer = User::create([
+            'name' => 'Demo developer',
+            'email' => 'developer@mail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ]);
 
-        $coach_role = Role::create(['name' => 'coach']);
-        $coach_role->givePermissionTo([
-            $user_index,
-            $user_read
-        ]);
-
-        $player_role = Role::create(['name' => 'player']);
-        $player_role->givePermissionTo([
-            $user_index,
-            $user_read
-        ]);
-
-        $user_role = Role::create(['name' => 'user']);
-        $user_role->givePermissionTo([
-            $user_index,
-            $user_read
-        ]);
-
+        // Assign a role to the developer
+        $developerRole = Role::findByName('developer');
+        $developer->assignRole($developerRole);
+        
+        // Create a admin
         $admin = User::create([
             'name' => 'Demo Admin',
             'email' => 'admin@mail.com',
-            'password' => bcrypt('12345678')
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ]);
-        
-        $admin->assignRole($admin_role);
+
+        // Assign a role to the admin
+        $adminRole = Role::findByName('admin');
+        $admin->assignRole($adminRole);
     }
 }

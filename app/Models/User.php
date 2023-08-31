@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use App\Models\User\Traits\Relations;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -50,4 +51,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public static function getpermissionGroups(){
+        $permission_groups = DB::table('permissions')->select('group_name')->groupBy('group_name')->get();
+        return $permission_groups;
+    }
+
+    public static function getpermissionByGroupName($group_name){
+        $permissions = DB::table('permissions')
+                        ->select('name','id')
+                        ->where('group_name',$group_name)
+                        ->get();
+        return $permissions;
+    }
+    
+    public static function roleHasPermisisons($role,$permissions){
+        $hasPermission = true;
+        foreach ($permissions as $permission) {
+            if(!$role->hasPermissionTo($permission->name)){
+                $hasPermission = false;
+            }
+            return $hasPermission;
+        }
+    }
 }

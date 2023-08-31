@@ -7,15 +7,16 @@ use Database\Seeders\Division\DivisionSeeder;
 use Database\Seeders\Event\EventSeeder;
 use Database\Seeders\Frontend\FaqSeeder;
 use Database\Seeders\Frontend\SponsorSeeder;
+use Database\Seeders\Permission\PermissionsTableSeeder;
 use Database\Seeders\Player\PlayerSeeder;
+use Database\Seeders\Role\RolesTableSeeder;
 use Database\Seeders\Season\SeasonSeeder;
 use Database\Seeders\Shop\CategorySeeder;
-use Database\Seeders\Shop\OrderSeeder;
 use Database\Seeders\Shop\ProductSeeder;
 use Database\Seeders\Sport\SportSeeder;
 use Database\Seeders\Team\TeamSeeder;
 use Illuminate\Database\Seeder;
-use Database\Seeders\user\UserSeeder;
+use Database\Seeders\User\UserSeeder;
 use Database\Seeders\Venue\VenueSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
         $this->call(UserSeeder::class);
 
         $this->call(SportSeeder::class);
