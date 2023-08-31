@@ -62,28 +62,32 @@
                             <tr>
                                 <th>Sl.</th>
                                 <th>Group</th>
-                                <th>Permission Title</th>
-                                <th>Permission Slug</th>
+                                <th>Permission</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="fw-bold"><b>#1</b></th>
-                                <td>sdfsdf</td>
-                                <td>sdfsdf</td>
-                                <td>sdfsdf</td>
-                                <td>
-                                    <div class="action-btn-group">
-                                        <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                            <i class="feather icon-trash-2"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                            <i class="feather icon-info"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($permissions as $key => $permission)
+                                <tr>
+                                    <th class="fw-bold"><b>#{{ serial($permissions, $key) }}</b></th>
+                                    <td>{{ $permission->group_name }}</td>
+                                    <td>
+                                        <code>
+                                            <input type="text" readonly class="form-control form-control-sm text-dark text-bold" value="{{ $permission->name }}" style="max-width: max-content;"/>
+                                        </code>
+                                    </td>
+                                    <td>
+                                        <div class="action-btn-group">
+                                            <a href="{{ route('administration.permission.destroy', ['permission' => $permission]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                <i class="feather icon-trash-2"></i>
+                                            </a>
+                                            <a href="{{ route('administration.permission.show', ['permission' => $permission]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                <i class="feather icon-info"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Settings\Permission;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionGroupController extends Controller
 {
@@ -12,7 +13,9 @@ class PermissionGroupController extends Controller
      */
     public function index()
     {
-        return view('administration.settings.permission.group.index');
+        $permissions = Permission::all();
+        // dd($permissions->groupBy('group_name'));
+        return view('administration.settings.permission.group.index', compact(['permissions']));
     }
 
     /**

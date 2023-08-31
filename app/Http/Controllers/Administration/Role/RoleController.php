@@ -118,7 +118,7 @@ class RoleController extends Controller
     }
 
     public function AllRolesPermission(){
-        $roles = Role::all();
+        $roles = Role::with(['permissions'])->get();
         return view('administration.role.all_roles_permission', compact('roles'));
     }
 

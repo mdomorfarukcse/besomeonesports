@@ -49,49 +49,43 @@
 
 <!-- Start row -->
 <div class="row">
-    <div class="col-md-4">
-        <div class="card m-b-30">
-            <div class="card-header">
-                <div class="row align-items-center">
-                    <div class="col-7">
-                        <h5 class="card-title mb-0 text-bold">Role Name</h5>
-                    </div>
-                    <div class="col-5">
-                        <button class="btn btn-outline-primary btn-sm float-right font-13">
-                            <i class="la la-pencil"></i>
-                            Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="activities-history">
-                    <div class="activities-history-list">
-                        <div class="activities-history-item">
-                            <h6>Permission_Group_Name</h6>
-                            <p class="mb-0">
-                                <span class="badge badge-dark p-2">Create</span>
-                                <span class="badge badge-info p-2">Read</span>
-                                <span class="badge badge-primary p-2">Update</span>
-                                <span class="badge badge-danger p-2">Delete</span>
-                            </p>
+    <div class="row">
+        @foreach ($roles as $role)
+            <div class="col-md-6">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-7">
+                                <h5 class="card-title mb-0 text-bold text-capitalize">{{ $role->name }}</h5>
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-outline-primary btn-sm float-right font-13">
+                                    <i class="la la-pencil"></i>
+                                    Edit
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="activities-history-list">
-                        <div class="activities-history-item">
-                            <h6>Permission_Group_Name</h6>
-                            <p class="mb-0">
-                                <span class="badge badge-dark p-2">Create</span>
-                                <span class="badge badge-info p-2">Read</span>
-                                <span class="badge badge-primary p-2">Update</span>
-                                <span class="badge badge-danger p-2">Delete</span>
-                            </p>
+                    <div class="card-body">
+                        <div class="activities-history">
+                            @foreach ($role->permissions->groupBy('group_name') as $groupName => $permissions)
+                                <div class="activities-history-list">
+                                    <div class="activities-history-item">
+                                        <h6 class="text-bold text-capitalize">{{ $groupName }}</h6>
+                                        <p class="mb-0">
+                                            @foreach ($permissions as $permission)
+                                                <span class="badge badge-primary-inverse p-2 mb-1" style="font-size: 100%;">{{ $permission->name }}</span>
+                                            @endforeach
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        @endforeach
+    </div>    
 </div>
 <!-- End row -->
 

@@ -294,7 +294,7 @@
 
                 
 
-                {{-- @role('admin')
+                @role('developer')
                     <li>
                         <a href="javaScript:void(0);">
                             <i class="sl-icon-settings"></i>
@@ -339,7 +339,7 @@
                             </li>
                         </ul>
                     </li>
-                @endrole --}}
+                @endrole
             </ul>
         </div>
         <!-- End Navigationbar -->
