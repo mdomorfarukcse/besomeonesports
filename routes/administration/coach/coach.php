@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
 ===============< Coach Routes >==============
 ===============================================*/
 Route::controller(CoachController::class)->prefix('coach')->name('coach.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/show/{coach}', 'show')->name('show');
-    Route::get('/edit/{coach}', 'edit')->name('edit');
-    Route::post('/update/{coach}', 'update')->name('update');
-    Route::get('/destroy/{coach}', 'destroy')->name('destroy');
+    Route::get('/', 'index')->name('index')->middleware(['can:coach.index']);
+    Route::get('/create', 'create')->name('create')->middleware(['can:coach.create']);
+    Route::post('/store', 'store')->name('store')->middleware(['can:coach.create']);
+    Route::get('/show/{coach}', 'show')->name('show')->middleware(['can:coach.show']);
+    Route::get('/edit/{coach}', 'edit')->name('edit')->middleware(['can:coach.update']);
+    Route::post('/update/{coach}', 'update')->name('update')->middleware(['can:coach.update']);
+    Route::get('/destroy/{coach}', 'destroy')->name('destroy')->middleware(['can:coach.destroy']);
 });
