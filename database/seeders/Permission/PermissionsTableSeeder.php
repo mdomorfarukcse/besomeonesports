@@ -24,6 +24,10 @@ class PermissionsTableSeeder extends Seeder
             'team',
             'role',
             'permission',
+            'shop_dashboard',
+            'shop_order',
+            'shop_product',
+            'shop_category',
         ];
 
         foreach ($groups as $group) {

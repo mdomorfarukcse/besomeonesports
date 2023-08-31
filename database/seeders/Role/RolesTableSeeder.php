@@ -86,6 +86,30 @@ class RolesTableSeeder extends Seeder
                     'permission.show',
                     'permission.update',
                     'permission.destroy',
+                    
+                    'shop_dashboard.index',
+                    'shop_dashboard.create',
+                    'shop_dashboard.show',
+                    'shop_dashboard.update',
+                    'shop_dashboard.destroy',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    'shop_order.update',
+                    'shop_order.destroy',
+                    
+                    'shop_product.index',
+                    'shop_product.create',
+                    'shop_product.show',
+                    'shop_product.update',
+                    'shop_product.destroy',
+                    
+                    'shop_category.index',
+                    'shop_category.create',
+                    'shop_category.show',
+                    'shop_category.update',
+                    'shop_category.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -136,6 +160,30 @@ class RolesTableSeeder extends Seeder
                     'team.show',
                     'team.update',
                     'team.destroy',
+                    
+                    'shop_dashboard.index',
+                    'shop_dashboard.create',
+                    'shop_dashboard.show',
+                    'shop_dashboard.update',
+                    'shop_dashboard.destroy',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    'shop_order.update',
+                    'shop_order.destroy',
+                    
+                    'shop_product.index',
+                    'shop_product.create',
+                    'shop_product.show',
+                    'shop_product.update',
+                    'shop_product.destroy',
+                    
+                    'shop_category.index',
+                    'shop_category.create',
+                    'shop_category.show',
+                    'shop_category.update',
+                    'shop_category.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [
@@ -163,6 +211,16 @@ class RolesTableSeeder extends Seeder
                     
                     'team.index',
                     'team.show',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    
+                    'shop_product.index',
+                    'shop_product.show',
+                    
+                    'shop_category.index',
+                    'shop_category.show',
                 ];
             }  elseif ($role === 'player') {
                 $permissions = [
@@ -190,6 +248,16 @@ class RolesTableSeeder extends Seeder
                     
                     'team.index',
                     'team.show',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    
+                    'shop_product.index',
+                    'shop_product.show',
+                    
+                    'shop_category.index',
+                    'shop_category.show',
                 ];
             } else {
                 // Default permissions for other roles (e.g., 'user')
@@ -218,6 +286,16 @@ class RolesTableSeeder extends Seeder
                     
                     'team.index',
                     'team.show',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    
+                    'shop_product.index',
+                    'shop_product.show',
+                    
+                    'shop_category.index',
+                    'shop_category.show',
                 ];
             }
 

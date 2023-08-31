@@ -165,62 +165,84 @@
                     </li>
                 @endif
 
+                @if (auth()->user()->can('shop_dashboard.index') || auth()->user()->can('shop_order.index') || auth()->user()->can('shop_product.index') || auth()->user()->can('shop_category.index'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <i class="sl-icon-basket-loaded"></i>
+                            <span>Shop</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->can('shop_dashboard.index'))
+                                <li>
+                                    <a href="{{ route('administration.shop.dashboard.index') }}">
+                                        Dashboard
+                                    </a>
+                                </li>
+                            @endif
 
-                <li>
-                    <a href="javaScript:void();">
-                        <i class="sl-icon-basket-loaded"></i>
-                        <span>Shop</span>
-                        <i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li>
-                            <a href="{{ route('administration.shop.dashboard.index') }}">
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('administration.shop.order.index') }}">
-                                Orders
-                            </a>
-                        </li>                    
-                        <li>
-                            <a href="javaScript:void(0);">
-                                {{ __('Products') }}
-                                <i class="feather icon-chevron-right pull-right"></i>
-                            </a>
-                            <ul class="vertical-submenu">
+                            @if (auth()->user()->can('shop_order.index'))
                                 <li>
-                                    <a href="{{ route('administration.shop.product.index') }}">
-                                        {{ __('All Products') }}
+                                    <a href="{{ route('administration.shop.order.index') }}">
+                                        Orders
                                     </a>
                                 </li>
+                            @endif
+                            
+                            @if (auth()->user()->can('shop_product.index'))
                                 <li>
-                                    <a href="{{ route('administration.shop.product.create') }}">
-                                        {{ __('Add New Product') }}
+                                    <a href="javaScript:void(0);">
+                                        {{ __('Products') }}
+                                        <i class="feather icon-chevron-right pull-right"></i>
                                     </a>
+                                    <ul class="vertical-submenu">
+                                        @if (auth()->user()->can('shop_product.index'))
+                                            <li>
+                                                <a href="{{ route('administration.shop.product.index') }}">
+                                                    {{ __('All Products') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        
+                                        @if (auth()->user()->can('shop_product.create'))
+                                            <li>
+                                                <a href="{{ route('administration.shop.product.create') }}">
+                                                    {{ __('Add New Product') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul>
                                 </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javaScript:void(0);">
-                                {{ __('Categories') }}
-                                <i class="feather icon-chevron-right pull-right"></i>
-                            </a>
-                            <ul class="vertical-submenu">
+                            @endif
+                            
+                            @if (auth()->user()->can('shop_category.index'))
                                 <li>
-                                    <a href="{{ route('administration.shop.category.index') }}">
-                                        {{ __('All Categories') }}
+                                    <a href="javaScript:void(0);">
+                                        {{ __('Categories') }}
+                                        <i class="feather icon-chevron-right pull-right"></i>
                                     </a>
+                                    <ul class="vertical-submenu">
+                                        @if (auth()->user()->can('shop_category.index'))
+                                            <li>
+                                                <a href="{{ route('administration.shop.category.index') }}">
+                                                    {{ __('All Categories') }}
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                        @if (auth()->user()->can('shop_category.create'))
+                                            <li>
+                                                <a href="{{ route('administration.shop.category.create') }}">
+                                                    {{ __('Add New Category') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="{{ route('administration.shop.category.create') }}">
-                                        {{ __('Add New Category') }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
                 <li>
                     <a href="{{ route('administration.chat.index') }}"> 
@@ -294,7 +316,7 @@
 
                 
 
-                @role('developer')
+                {{-- @role('developer')
                     <li>
                         <a href="javaScript:void(0);">
                             <i class="sl-icon-settings"></i>
@@ -339,7 +361,7 @@
                             </li>
                         </ul>
                     </li>
-                @endrole
+                @endrole --}}
             </ul>
         </div>
         <!-- End Navigationbar -->
