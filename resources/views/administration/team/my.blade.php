@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('All Teams'))
+@section('page_title', __('My Teams'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,20 +25,20 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Teams') }}</b>
+    <b class="text-uppercase">{{ __('My Teams') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Teams') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Teams') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('My Teams') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.team.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-plus"></i>
-        <b>Create New Team</b>
+    <a href="{{ route('administration.team.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-square"></i>
+        <b>All Teams</b>
     </a>
 @endsection
 
@@ -54,7 +54,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <h5 class="card-title mb-0">All Team</h5>
+                        <h5 class="card-title mb-0">My Teams</h5>
                     </div>
                 </div>
             </div>
