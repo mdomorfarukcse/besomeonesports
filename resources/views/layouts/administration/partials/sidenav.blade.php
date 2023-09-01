@@ -32,6 +32,9 @@
                             @if (auth()->user()->can('team.index'))
                                 <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                             @endif
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                                <li><a href="{{ route('administration.team.my') }}">My Teams</a></li>
+                            @endif
                             @if (auth()->user()->can('team.create'))
                                 <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                             @endif
