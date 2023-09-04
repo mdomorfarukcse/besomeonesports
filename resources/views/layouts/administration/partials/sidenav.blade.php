@@ -264,6 +264,9 @@
                         </a>
                         <ul class="vertical-submenu">
                             @if (auth()->user()->can('schedule.index'))
+                                <li><a href="{{ route('administration.schedule.calender') }}">Schedule Calender</a></li>
+                            @endif
+                            @if (auth()->user()->can('schedule.index'))
                                 <li><a href="{{ route('administration.schedule.index') }}">All Schedules</a></li>
                             @endif
                             @if (auth()->user()->can('schedule.create'))

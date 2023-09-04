@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(ScheduleController::class)->prefix('schedule')->name('schedule.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/calender', 'calender')->name('calender');
     Route::get('/create', 'create')->name('create');
     Route::get('/teams/{event}', 'teams')->name('teams');
     Route::get('/venues/{event}', 'venues')->name('venues');

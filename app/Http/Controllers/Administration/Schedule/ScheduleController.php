@@ -18,7 +18,16 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('administration.schedule.index');
+        $schedules = Schedule::all();
+        return view('administration.schedule.index', compact(['schedules']));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function calender()
+    {
+        return view('administration.schedule.calender');
     }
 
     public function teams(Request $request, $event) {
