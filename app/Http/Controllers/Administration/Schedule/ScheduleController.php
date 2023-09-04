@@ -20,7 +20,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return view('administration.schedule.index');
+        return view('administration.schedule.create');
     }
 
     /**
