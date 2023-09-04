@@ -30,6 +30,48 @@ class ScheduleController extends Controller
         return view('administration.schedule.calender');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
+    public function get_calender_data()
+    {
+        $calender_data = array();
+        $schedules = Schedule::all();
+        foreach($schedules as $schedule){
+            $title = $schedule->teams[0]->name.' Vs '.$schedule->teams[1]->name;
+            $start = $schedule->date.' '.$schedule->start;
+            $end = $schedule->date.' '.$schedule->end;
+            $calender_data[] = [
+                 'event_name' => $schedule->event->name,
+                 'venue_name' => $schedule->venue->name,
+                 'court_name' => $schedule->court->name,
+                 'title' => $title,
+                 'start' => $start,
+                 'end' => $end
+            ];
+        }
+        return response()->json($calender_data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function get_calender(Schedule $schedule)
+    {
+        $calender_data = array();
+        $schedule = Schedule::whereId($schedule->id)->firstOrFail();
+
+        $title = $schedule->teams[0]->name.' Vs '.$schedule->teams[1]->name;
+        $start = $schedule->date.' '.$schedule->start;
+        $end = $schedule->date.' '.$schedule->end;
+        $calender_data[] = [
+                'title' => $title,
+                'start' => $start,
+                'end' => $end
+        ];
+        return response()->json($calender_data);
+    }
+
     public function teams(Request $request, $event) {
         $teams = Event::findOrFail($event)->teams;
 

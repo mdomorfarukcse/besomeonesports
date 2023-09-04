@@ -15,4 +15,6 @@ Route::controller(ScheduleController::class)->prefix('schedule')->name('schedule
     Route::get('/venue/courts/{venue}', 'courts')->name('venues.courts');
     
     Route::post('/store', 'store')->name('store');
+    Route::get('/calender/json', 'get_calender_data')->name('calender.json');
+    Route::get('/calender/json/{schedule}', 'get_calender')->name('calender.json.data');
 });

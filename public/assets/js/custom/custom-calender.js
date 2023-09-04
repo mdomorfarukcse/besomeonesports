@@ -56,57 +56,22 @@
                         $(this).remove();
                     }
                 },
-                events: [{
-                    title: 'All Events',
-                    start: new Date(y, m, 1)
-                    },
-                    {
-                        title: 'Workshop',
-                        start: new Date(y, m, d-10),
-                        end: new Date(y, m, d-15),
-                        color: '#0080ff',
-                    },
-                    {
-                        id: 999,
-                        title: 'Meetup',
-                        start: new Date(y, m, d-15, 12, 0),
-                        allDay: false,
-                        color: '#bcc4dc',
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeat Meet up',
-                        start: new Date(y, m, d+8, 16, 0),
-                        allDay: false,
-                        color: '#2e2e2e',
-                    },
-                    {
-                        title: 'Appointment',
-                        start: new Date(y, m, d, 10, 30),
-                        allDay: false,
-                        color: '#fc4f68',
-                    },
-                    {
-                        title: 'Dinner',
-                        start: new Date(y, m, d, 12, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        allDay: false,
-                        color: '#81cef6',
-                    },
-                    {
-                        title: 'Anniversary',
-                        start: new Date(y, m, d+2, 19, 0),
-                        end: new Date(y, m, d+2, 22, 30),
-                        allDay: false,
-                        color: '#08d26f',
-                    },
-                    {
-                        title: 'Click for Bootstrap',
-                        start: new Date(y, m, 3),
-                        end: new Date(y, m, 4),
-                        url: 'https://getbootstrap.com/',
-                        color: '#ffe411',
-                    }]
+                events: "/administration/schedule/calender/json",
+                eventClick: function (event) {
+                    $('#event_detail_modal').modal('show');
+                    var event_name = event.event_name;
+                    var team_name = event.title;
+                    var event_start = event.start._i;
+                    var event_end = event.end._i;
+                    var venue_name = event.venue_name;
+                    var court_name = event.court_name;
+                    $('#event_title').html(event_name);
+                    $('#team_name').html(team_name);
+                    $('#venue_name').html(venue_name);
+                    $('#court_name').html(court_name);
+                    $('#event_start').html(event_start);
+                    $('#event_end').html(event_end);
+                }
             });            
             /* -- Add new event -- */
             /* -- Form to add new event -- */

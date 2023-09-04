@@ -16,6 +16,8 @@
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+    .hover-end{padding:0;margin:0;font-size:75%;text-align:center;position:absolute;bottom:0;width:100%;opacity:.8}
+
     </style>
 @endsection
 
@@ -188,6 +190,64 @@
     </div>
 </div>
 
+
+{{-- ===============< Modals Start >====================== --}}
+<!-- Modal -->
+<div class="modal fade" id="event_detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        @csrf
+        <div class="modal-content">
+            <div class="modal-header bg-dark border-0">
+                <h5 class="modal-title">Schedule Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th>Event</th>
+                                        <td><span id="event_title"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Team</th>
+                                        <td><span id="team_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Venue</th>
+                                        <td><span id="venue_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Court</th>
+                                        <td><span id="court_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Start Time</th>
+                                        <td><span id="event_start"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>End Time </th>
+                                        <td><span id="event_end"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-warning">Delete</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- ================< Modals End >======================= --}}
 @endsection
 
 
@@ -198,81 +258,12 @@
      <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>   
     <!-- Events js -->
     <script src='{{  asset("assets/plugins/fullcalendar/js/fullcalendar.min.js") }}'></script>
-    {{-- <script src="{{  asset("assets/js/custom/custom-calender.js") }}"></script> --}}
+    <script src="{{  asset("assets/js/custom/custom-calender.js") }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
-        $(document).ready(function () {
-            var calendar = $("#calendar").fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay'
-                },
-                editable: true,
-                eventLimit: true, /* -- allow "more" link when too many events -- */
-                droppable: true, /* -- this allows things to be dropped onto the calendar !!! -- */
-                drop: function(date, allDay) { /* -- this function is called when something is dropped -- */
-                    /* -- retrieve the dropped element's stored Event Object -- */
-                    var originalEventObject = $(this).data('eventObject');
-                    /* -- we need to copy it, so that multiple events don't have a reference to the same object -- */
-                    var copiedEventObject = $.extend({}, originalEventObject);
-                    /* -- assign it the date that was reported -- */
-                    copiedEventObject.start = date;
-                    copiedEventObject.allDay = allDay;
-                    /* -- render the event on the calendar -- */
-                    /* -- the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/) -- */
-                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-                    /* -- is the "remove after drop" checkbox checked? -- */
-                    if ($('#drop-remove').is(':checked')) {
-                        /* -- if so, remove the element from the "Draggable Events" list -- */
-                        $(this).remove();
-                    }
-                },
-                events: "calender_events.php",
-                displayEventTime: false,
-                eventRender: function (event, element, view) {
-                    if (event.allDay === "true") {
-                        event.allDay = true;
-                    } else {
-                        event.allDay = false;
-                    }
-                },
-                selectable: true,
-                selectHelper: true,
-                select: function (start, end, allDay) {
-                   
-                    if (start !== "") {
-                        $("#eventmodal").modal("show");
-                        $("#start_date").val(start);
-                        $("#end_date").val(end);
-                    }
-                    calendar.fullCalendar("unselect");
-                },
-
-                editable: true,
-                eventDrop: function (event, delta) {
-                    $.ajax({
-                        url: "calender_events.php",
-                        data: "title=" + event.title + "&start=" + start + "&end=" + end + "&id=" + event.id + "&type=edit",
-                        type: "POST",
-                        success: function (response) {
-                            displayMessage("Updated Successfully");
-                        },
-                    });
-                },
-                eventClick: function (event) {
-                    $("#actionmodal").modal("show");
-                    $event_id = event.id;
-                    $event_name = event.title;
-                    $("#event_editid").val($event_id);
-                    $("#event_name").val($event_name);
-                },
-            });
-        });
-
     </script>
 @endsection
