@@ -28,6 +28,7 @@ class PermissionsTableSeeder extends Seeder
             'shop_order',
             'shop_product',
             'shop_category',
+            'schedule',
         ];
 
         foreach ($groups as $group) {

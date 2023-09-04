@@ -110,6 +110,12 @@ class RolesTableSeeder extends Seeder
                     'shop_category.show',
                     'shop_category.update',
                     'shop_category.destroy',
+                    
+                    'schedule.index',
+                    'schedule.create',
+                    'schedule.show',
+                    'schedule.update',
+                    'schedule.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -184,6 +190,12 @@ class RolesTableSeeder extends Seeder
                     'shop_category.show',
                     'shop_category.update',
                     'shop_category.destroy',
+                    
+                    'schedule.index',
+                    'schedule.create',
+                    'schedule.show',
+                    'schedule.update',
+                    'schedule.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [
@@ -221,6 +233,9 @@ class RolesTableSeeder extends Seeder
                     
                     'shop_category.index',
                     'shop_category.show',
+                    
+                    'schedule.index',
+                    'schedule.show',
                 ];
             }  elseif ($role === 'player') {
                 $permissions = [
@@ -258,6 +273,9 @@ class RolesTableSeeder extends Seeder
                     
                     'shop_category.index',
                     'shop_category.show',
+                    
+                    'schedule.index',
+                    'schedule.show',
                 ];
             } else {
                 // Default permissions for other roles (e.g., 'user')
@@ -296,6 +314,9 @@ class RolesTableSeeder extends Seeder
                     
                     'shop_category.index',
                     'shop_category.show',
+                    
+                    'schedule.index',
+                    'schedule.show',
                 ];
             }
 
