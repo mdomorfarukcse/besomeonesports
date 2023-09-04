@@ -42,7 +42,7 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <form action="{{ route('administration.sport.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.schedule.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-header border-bottom">
@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="form-group  col-md-4">
                             <label for="">Date <span class="required">*</span></label>
-                            <input type="date" class="form-control" value="" name="start_date" id="start_date" required />
+                            <input type="date" class="form-control" value="" name="date" id="date" required />
                         </div>
                         <div class="form-group  col-md-4">
                             <label for="">Start Time <span class="required">*</span></label>
@@ -73,14 +73,14 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Team 1 <span class="required">*</span></label>
-                            <select class="select2-single form-control" name="team_one" id="team_one" required disabled>
+                            <select class="select2-single form-control" name="teams[]" id="team_one" required disabled>
                                 <option value="" selected>Select Team</option>
                             </select>
                         </div>
                         
                         <div class="form-group  col-md-6">
                             <label for="">Team 2 <span class="required">*</span></label>
-                            <select class="select2-single form-control" name="team_two" id="team_two" required disabled>
+                            <select class="select2-single form-control" name="teams[]" id="team_two" required disabled>
                                 <option value="" selected>Select Team</option>
                             </select>
                         </div>

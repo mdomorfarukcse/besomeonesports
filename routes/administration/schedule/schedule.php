@@ -12,4 +12,6 @@ Route::controller(ScheduleController::class)->prefix('schedule')->name('schedule
     Route::get('/teams/{event}', 'teams')->name('teams');
     Route::get('/venues/{event}', 'venues')->name('venues');
     Route::get('/venue/courts/{venue}', 'courts')->name('venues.courts');
+    
+    Route::post('/store', 'store')->name('store');
 });
