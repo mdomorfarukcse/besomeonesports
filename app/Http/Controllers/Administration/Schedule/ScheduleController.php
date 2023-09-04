@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Schedule;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\Court\Court;
 use App\Models\Event\Event;
 use App\Models\Venue\Venue;
 use Illuminate\Http\Request;
+use App\Models\Schedule\Schedule;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ScheduleController extends Controller
 {
@@ -59,7 +62,29 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        try {
+            DB::transaction(function() use ($request) {
+                $schedule = new Schedule();
+                $schedule->event_id = $request->event_id;
+                $schedule->venue_id = $request->venue_id;
+                $schedule->court_id = $request->court_id;
+                $schedule->date = $request->date;
+                $schedule->start = $request->start;
+                $schedule->end = $request->end;
+                $schedule->save();
+
+                // Attach teams to the schedule
+                $schedule->teams()->attach($request->teams);
+            }, 5);
+
+            toast('Schedule created successfully.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Failed to create the schedule.', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
