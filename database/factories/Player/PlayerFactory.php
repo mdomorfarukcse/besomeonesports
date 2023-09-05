@@ -2,10 +2,11 @@
 
 namespace Database\Factories\Player;
 
-use App\Models\Player\Player;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Player\Player;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,7 +25,7 @@ class PlayerFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$ICtu6/1TY43ow60cIow29eixYNdTK9crVQaFs5bkISqzwSSQ8nvke',
+            'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ];
     }
