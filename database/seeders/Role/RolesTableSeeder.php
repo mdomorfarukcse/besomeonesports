@@ -199,24 +199,8 @@ class RolesTableSeeder extends Seeder
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [
-                    'sport.index',
-                    'sport.show',
-                    
-                    'venue.index',
-                    'venue.show',
-                    
-                    'coach.index',
-                    'coach.show',
-                    'coach.update',
-                    
                     'player.index',
                     'player.show',
-                    
-                    'division.index',
-                    'division.show',
-                    
-                    'season.index',
-                    'season.show',
                     
                     'event.index',
                     'event.show',
@@ -239,24 +223,8 @@ class RolesTableSeeder extends Seeder
                 ];
             }  elseif ($role === 'player') {
                 $permissions = [
-                    'sport.index',
-                    'sport.show',
-                    
-                    'venue.index',
-                    'venue.show',
-                    
                     'coach.index',
                     'coach.show',
-                    
-                    'player.index',
-                    'player.show',
-                    'player.update',
-                    
-                    'division.index',
-                    'division.show',
-                    
-                    'season.index',
-                    'season.show',
                     
                     'event.index',
                     'event.show',
@@ -280,30 +248,8 @@ class RolesTableSeeder extends Seeder
             } else {
                 // Default permissions for other roles (e.g., 'user')
                 $permissions = [
-                    'sport.index',
-                    'sport.show',
-                    
-                    'venue.index',
-                    'venue.show',
-                    
-                    'coach.index',
-                    'coach.show',
-                    
-                    'player.index',
-                    'player.show',
-                    'player.update',
-                    
-                    'division.index',
-                    'division.show',
-                    
-                    'season.index',
-                    'season.show',
-                    
                     'event.index',
                     'event.show',
-                    
-                    'team.index',
-                    'team.show',
                     
                     'shop_order.index',
                     'shop_order.create',
