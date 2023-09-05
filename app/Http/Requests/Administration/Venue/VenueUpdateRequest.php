@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\Venue;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VenueUpdateRequest extends FormRequest
@@ -21,8 +22,15 @@ class VenueUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $venueId = $this->route('venue')->id;
+
         return [
-            'name' => ['required', 'string', 'unique:venues,name'],
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('venues')->ignore($venueId),
+            ],
             "street" => ['required', 'string', 'max:100'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],

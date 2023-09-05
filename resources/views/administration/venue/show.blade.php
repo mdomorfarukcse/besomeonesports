@@ -131,6 +131,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Total Matches</th>
                                 <th class="text-right">Actions</th>
                             </tr>
                         </thead>
@@ -140,6 +141,9 @@
                                     <td class="fw-bold text-dark"><b>#{{ serial($venue->courts, $key) }}</b></th>
                                     <td>
                                         <span class="text-dark text-capitalize">{{ $court->name }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-dark text-capitalize">{{ $court->schedules()->count() }}</span>
                                     </td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">

@@ -13,6 +13,6 @@ class TeamSeeder extends Seeder
      */
     public function run(): void
     {
-        TeamFactory::factoryForModel(Team::class)->count(10)->create();
+        TeamFactory::factoryForModel(Team::class)->count(50)->create();
     }
 }

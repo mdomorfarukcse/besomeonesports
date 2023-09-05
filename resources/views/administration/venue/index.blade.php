@@ -73,7 +73,7 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($venues, $sl) }}</b></th>
                                     <td>{{ $venue->name }}</td>
-                                    <td>10</td>
+                                    <td>{{ $venue->courts()->count() }}</td>
                                     <td>{!! status($venue->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">

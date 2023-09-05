@@ -20,12 +20,12 @@ class TeamFactory extends Factory
     {
         return [
             'team_id' => $this->generateUniqueID(). rand(11, 99999). fake()->word(),
-            'event_id' => rand(1, 9),
+            'event_id' => rand(1, 10),
             'division_id' => rand(1, 9),
             'coach_id' => rand(1, 9),
             'name' => fake()->words(5, true),
             'gender' => fake()->randomElement(['Male','Female','Other']),
-            'maximum_players' => rand(3,20),
+            'maximum_players' => rand(10, 15),
             'description' => fake()->realText(200),
             'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
@@ -35,7 +35,7 @@ class TeamFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Team $team) {
-            $players = Player::inRandomOrder()->limit(rand(1, 3))->get(); // Get 3 random players
+            $players = Player::inRandomOrder()->limit(rand(1, 10))->get(); // Get 3 random players
             $team->players()->attach($players);
         });
     }
