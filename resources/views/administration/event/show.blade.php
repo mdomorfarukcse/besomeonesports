@@ -133,6 +133,20 @@
                                                             </ol>    
                                                         </td>
                                                     </tr>
+                                                    <tr>
+                                                        <th>Teams</th>
+                                                        <td>
+                                                            <ol>
+                                                                @foreach ($event->teams as $team)
+                                                                    <li>
+                                                                        <a href="{{ route('administration.team.show', ['team' => $team]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->name }} details">
+                                                                            {{ $team->name }}
+                                                                        </a>    
+                                                                    </li>  
+                                                                @endforeach
+                                                            </ol>    
+                                                        </td>
+                                                    </tr>
                                                     @if (!empty($event->description))
                                                         <tr>
                                                             <th>Description</th>

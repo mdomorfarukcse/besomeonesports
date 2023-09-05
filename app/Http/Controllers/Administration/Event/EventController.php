@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
 use App\Http\Requests\Administration\Event\EventUpdateRequest;
+use App\Rules\Administration\Event\EventRegistration\UniqueEventPlayerRule;
 
 class EventController extends Controller
 {
@@ -104,6 +105,7 @@ class EventController extends Controller
                             },
                             'divisions',
                             'venues',
+                            'teams'
                         ])
                         ->firstOrFail();
         return  view('administration.event.show', compact(['event']));
@@ -204,7 +206,17 @@ class EventController extends Controller
      * Event Registration Store
      */
     public function register_player(Request $request, Event $event) {
-        // dd($request->all(), $event);        
+        // dd($request->all(), $event);
+        $request->validate([
+            'event_id' => 'required|exists:events,id',
+            'player_id' => ['required', 'exists:players,id', new UniqueEventPlayerRule],
+        ], [
+            'event_id.required' => 'The event field is required.',
+            'event_id.exists' => 'The selected event is invalid.',
+            'player_id.required' => 'You didn\'t select any player.',
+            'player_id.exists' => 'The selected player is not registered yet.',
+        ]);
+
         try{
             DB::transaction(function() use ($request, $event) {
                 $paidBy = decrypt($request->paid_by);
@@ -221,7 +233,6 @@ class EventController extends Controller
 
             toast('Registration completed for the event.', 'success');
             return redirect()->route('administration.event.show', ['event' => $event]);
-
         } catch (Exception $e){
             dd($e);
             alert('Registration Failed Failed!', 'There is some error! Please fix and try again.', 'error');
