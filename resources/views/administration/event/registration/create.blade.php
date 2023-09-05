@@ -61,26 +61,27 @@
                 <input type="hidden" name="player_id" value="{{ encrypt(auth()->user()->player->id) }}">
             @endrole
             <input type="hidden" name="paid_by" value="{{ encrypt(auth()->user()->id) }}">
+            <input type="hidden" name="event_id" value="{{ $event->id }}">
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
                     <h5 class="card-title mb-0">New Registration</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        @role('admin')
-                            <div class="form-group col-md-12">
-                                <label for="player_id">Player <span class="required">*</span></label>
-                                <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
-                                    <option value="">Select Player</option>
-                                    @foreach ($players as $player)
-                                        <option value="{{ $player->id }}">{{ $player->user->name }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="form-group col-md-12">
+                                @role('admin|developer')
+                                    <label for="player_id">Player <span class="required">*</span></label>
+                                    <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
+                                        <option value="">Select Player</option>
+                                        @foreach ($players as $player)
+                                            <option value="{{ $player->id }}" @selected(old('player_id') == $player->id)>{{ $player->user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @endrole
                                 @error('player_id')
                                     <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                 @enderror
                             </div>
-                        @endrole
                         
                         @error('event_player_unique')
                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -93,21 +94,21 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="cardnumber">Card Number</label>
-                                    <input type="text" class="form-control" name="card_number" id="cardnumber">
+                                    <input type="text" class="form-control" value="{{ old('card_number') }}" name="card_number" id="cardnumber">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="cardfullname">Full Name</label>
-                                    <input type="text" class="form-control" name="card_holder_name" id="cardfullname">
+                                    <input type="text" class="form-control" value="{{ old('card_holder_name') }}" name="card_holder_name" id="cardfullname">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="cardexpiry">Expiry Date</label>
-                                    <input type="text" class="form-control" name="card_expiry" id="cardexpiry">
+                                    <input type="text" class="form-control" value="{{ old('card_expiry') }}" name="card_expiry" id="cardexpiry">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="cardcvc">CVC</label>
-                                    <input type="text" class="form-control" name="card_cvc" id="cardcvc">
+                                    <input type="text" class="form-control" value="{{ old('card_cvc') }}" name="card_cvc" id="cardcvc">
                                 </div>
                             </div>
                         </div>

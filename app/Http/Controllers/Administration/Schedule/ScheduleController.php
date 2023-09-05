@@ -30,6 +30,52 @@ class ScheduleController extends Controller
         return view('administration.schedule.calender');
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Display a listing of the resource.
+     */
+    public function get_calender_data()
+    {
+        $calender_data = array();
+        $schedules = Schedule::all();
+        foreach($schedules as $schedule){
+            $title = $schedule->teams[0]->name.' Vs '.$schedule->teams[1]->name;
+            $start = $schedule->date.' '.$schedule->start;
+            $end = $schedule->date.' '.$schedule->end;
+            $calender_data[] = [
+                 'schedule_id' => $schedule->id,
+                 'event_name' => $schedule->event->name,
+                 'venue_name' => $schedule->venue->name,
+                 'court_name' => $schedule->court->name,
+                 'title' => $title,
+                 'start' => $start,
+                 'end' => $end
+            ];
+        }
+        return response()->json($calender_data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function get_calender(Schedule $schedule)
+    {
+        $calender_data = array();
+        $schedule = Schedule::whereId($schedule->id)->firstOrFail();
+
+        $title = $schedule->teams[0]->name.' Vs '.$schedule->teams[1]->name;
+        $start = $schedule->date.' '.$schedule->start;
+        $end = $schedule->date.' '.$schedule->end;
+        $calender_data[] = [
+                'title' => $title,
+                'start' => $start,
+                'end' => $end
+        ];
+        return response()->json($calender_data);
+    }
+
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
     public function teams(Request $request, $event) {
         $teams = Event::findOrFail($event)->teams;
 
@@ -99,32 +145,71 @@ class ScheduleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Schedule $schedule)
     {
-        //
+        return view('administration.schedule.show', compact(['schedule']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Schedule $schedule)
     {
-        //
+        $events = Event::select(['id', 'name', 'status'])
+                        ->with([
+                            'teams', 
+                            'venues' => function($venue) {
+                                $venue->with(['courts']);
+                            }
+                        ])
+                        ->whereStatus('Active')
+                        ->get();
+        return view('administration.schedule.edit', compact(['schedule','events']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Schedule $schedule)
     {
-        //
+        // dd($request->all(),$schedule);
+        try {
+            DB::transaction(function() use ($request, $schedule) {
+                $schedule->event_id = $request->event_id;
+                $schedule->venue_id = $request->venue_id;
+                $schedule->court_id = $request->court_id;
+                $schedule->date = $request->date;
+                $schedule->start = $request->start;
+                $schedule->end = $request->end;
+                $schedule->save();
+
+                // Attach teams to the schedule
+                $schedule->teams()->sync($request->teams);
+            }, 5);
+
+            toast('Schedule updated successfully.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Failed to update the schedule.', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Schedule $schedule)
     {
-        //
+        try {
+            $schedule->delete();
+
+            toast('Schedule Has Been Deleted.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Schedule Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

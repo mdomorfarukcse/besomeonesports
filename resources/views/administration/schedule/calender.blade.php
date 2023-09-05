@@ -16,6 +16,11 @@
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+<<<<<<< HEAD
+=======
+    .hover-end{padding:0;margin:0;font-size:75%;text-align:center;position:absolute;bottom:0;width:100%;opacity:.8}
+
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
     </style>
 @endsection
 
@@ -38,13 +43,18 @@
     <!-- Start col -->
     <div class="col-12">
         <div class="row">
+<<<<<<< HEAD
             <div class="col-md-8 col-lg-9 col-xl-10">
+=======
+            <div class="col-md-12 col-lg-12 col-xl-12">
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
                 <div class="card m-b-30">
                     <div class="card-body">
                         <div id="calendar"></div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="col-md-4 col-lg-3 col-xl-2">
                 <div class="card m-b-30">
                     <div class="card-header">
@@ -73,6 +83,8 @@
                 </div>
                 <!-- end row -->
             </div>
+=======
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
         </div>
     </div>
     <!-- End col -->
@@ -80,6 +92,7 @@
 
 <!-- End row -->
 
+<<<<<<< HEAD
 <div class="modal fade" id="eventmodal" tabindex="-1" role="dialog" aria-labelledby="eventmodal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -188,6 +201,64 @@
     </div>
 </div>
 
+=======
+{{-- ===============< Modals Start >====================== --}}
+<!-- Modal -->
+<div class="modal fade" id="event_detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        @csrf
+        <div class="modal-content">
+            <div class="modal-header bg-dark border-0">
+                <h5 class="modal-title">Schedule Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th>Event</th>
+                                        <td><span id="event_title"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Team</th>
+                                        <td><span id="team_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Venue</th>
+                                        <td><span id="venue_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Court</th>
+                                        <td><span id="court_name"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Start Time</th>
+                                        <td><span id="event_start"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>End Time </th>
+                                        <td><span id="event_end"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="editlink" data-route="{{ route('administration.schedule.edit', ['schedule' => ':scheduleId']) }}">Edit</a>
+                <a href="" class="btn btn-danger" id="deletelink" data-route="{{ route('administration.schedule.destroy', ['schedule' => ':scheduleId']) }}">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- ================< Modals End >======================= --}}
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
 @endsection
 
 
@@ -198,13 +269,18 @@
      <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>   
     <!-- Events js -->
     <script src='{{  asset("assets/plugins/fullcalendar/js/fullcalendar.min.js") }}'></script>
+<<<<<<< HEAD
     {{-- <script src="{{  asset("assets/js/custom/custom-calender.js") }}"></script> --}}
+=======
+    <script src="{{  asset("assets/js/custom/custom-calender.js") }}"></script>
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
         // Custom Script Here
+<<<<<<< HEAD
         $(document).ready(function () {
             var calendar = $("#calendar").fullCalendar({
                 header: {
@@ -274,5 +350,7 @@
             });
         });
 
+=======
+>>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
     </script>
 @endsection
