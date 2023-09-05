@@ -30,8 +30,6 @@ class ScheduleController extends Controller
         return view('administration.schedule.calender');
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Display a listing of the resource.
      */
@@ -75,7 +73,6 @@ class ScheduleController extends Controller
         return response()->json($calender_data);
     }
 
->>>>>>> 183062723dc19cd643158bebc5a96155c1d35eb8
     public function teams(Request $request, $event) {
         $teams = Event::findOrFail($event)->teams;
 
