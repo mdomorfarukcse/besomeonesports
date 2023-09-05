@@ -13,8 +13,12 @@ Route::controller(ScheduleController::class)->prefix('schedule')->name('schedule
     Route::get('/teams/{event}', 'teams')->name('teams');
     Route::get('/venues/{event}', 'venues')->name('venues');
     Route::get('/venue/courts/{venue}', 'courts')->name('venues.courts');
+    Route::get('/show/{schedule}', 'show')->name('show')->middleware(['can:schedule.show']);
+    Route::get('/edit/{schedule}', 'edit')->name('edit')->middleware(['can:schedule.update']);
+    Route::get('/destroy/{schedule}', 'destroy')->name('destroy')->middleware(['can:schedule.destroy']);
     
     Route::post('/store', 'store')->name('store');
+    Route::post('/update/{schedule}', 'update')->name('update');
     Route::get('/calender/json', 'get_calender_data')->name('calender.json');
     Route::get('/calender/json/{schedule}', 'get_calender')->name('calender.json.data');
 });

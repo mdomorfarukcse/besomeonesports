@@ -71,7 +71,21 @@
                     $('#court_name').html(court_name);
                     $('#event_start').html(event_start);
                     $('#event_end').html(event_end);
+
+                    // Assuming you have a JavaScript variable named 'event' containing the schedule_id
+                    var scheduleId = event.schedule_id;
+                    var deleteUrlTemplate = $("#deletelink").data('route');
+                    var editUrlTemplate = $("#editlink").data('route');
+
+                    // Replace the placeholder with the actual scheduleId
+                    var deleteUrl = deleteUrlTemplate.replace(':scheduleId', scheduleId);
+                    var editUrl = editUrlTemplate.replace(':scheduleId', scheduleId);
+
+                    // Set the href attribute
+                    $("#deletelink").attr("href", deleteUrl);
+                    $("#editlink").attr("href", editUrl);
                 }
+                
             });            
             /* -- Add new event -- */
             /* -- Form to add new event -- */
