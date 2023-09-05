@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Coach\CoachSeeder;
+use Database\Seeders\Court\CourtSeeder;
 use Database\Seeders\Division\DivisionSeeder;
 use Database\Seeders\Event\EventSeeder;
 use Database\Seeders\Frontend\FaqSeeder;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SportSeeder::class);
         $this->call(VenueSeeder::class);
+        $this->call(CourtSeeder::class);
         $this->call(CoachSeeder::class);
         $this->call(PlayerSeeder::class);
         $this->call(DivisionSeeder::class);
