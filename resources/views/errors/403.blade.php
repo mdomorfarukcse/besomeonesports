@@ -26,12 +26,12 @@
                         <div class="col-md-8 col-lg-6">
                             <div class="text-center">
                                 <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid error-logo" alt="logo" />
-                                <img src="{{ asset('assets/images/error/404.png') }}" class="img-fluid error-image" alt="404" />
-                                <h4 class="error-subtitle mb-4">Oops! Page not Found</h4>
-                                <p class="mb-4">We did not find the page you are looking for. Please return to previous page or visit home page.</p>
-                                <a href="/" class="btn btn-primary font-16">
+                                <br>
+                                <img src="{{ asset('assets/images/error/403.png') }}" class="img-fluid error-image" alt="403" style="max-width: 60%;" />
+                                <h4 class="error-subtitle mb-4 text-capitalize">Oops! <br> you don't have permission to access this resource.</h4>
+                                <a href="{{ url()->previous() }}" class="btn btn-primary font-16">
                                     <i class="feather icon-arrow-left mr-2"></i> 
-                                    Go to Homepage
+                                    Go Back to Previous Page
                                 </a>
                             </div>
                         </div>

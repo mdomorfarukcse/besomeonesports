@@ -44,7 +44,7 @@ class EventFactory extends Factory
             $venues = Venue::inRandomOrder()->limit(rand(1, 10))->get();
             $event->venues()->attach($venues);
 
-            $players = Player::inRandomOrder()->limit(rand(5, 10))->get();
+            $players = Player::inRandomOrder()->limit(rand(1, 10))->get();
             foreach ($players as $player) {
                 // Generate a unique transaction_id
                 $transactionId = Str::random(20) . unique_id() . rand(11, 99999) . Str::random(5);

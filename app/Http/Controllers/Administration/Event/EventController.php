@@ -13,6 +13,7 @@ use App\Models\Season\Season;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
 use App\Http\Requests\Administration\Event\EventUpdateRequest;
 use App\Rules\Administration\Event\EventRegistration\UniqueEventPlayerRule;
@@ -39,6 +40,31 @@ class EventController extends Controller
                         ->get();
         // dd($events);
         return view('administration.event.index', compact(['events']));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function myEvents()
+    {
+        if (Auth::user()->hasRole('coach')) {
+            // Get the coach
+            $coach = Auth::user()->coach;
+            
+            // Get the events associated with teams where the coach is the coach
+            $events = Event::whereHas('teams', function ($team) use ($coach) {
+                $team->where('coach_id', $coach->id);
+            })->get();
+            
+        } elseif (Auth::user()->hasRole('player')) {
+            $player = Player::with('events')->whereId(Auth::user()->player->id)->firstOrFail();
+
+            $events = $player->events;
+        } else {
+            $events = NULL;
+        }
+        // dd($events);
+        return view('administration.event.my', compact(['events']));
     }
 
     /**

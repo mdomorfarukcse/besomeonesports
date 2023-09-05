@@ -53,6 +53,9 @@
                             @if (auth()->user()->can('event.index'))
                                 <li><a href="{{ route('administration.event.index') }}">All Events</a></li>
                             @endif
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                                <li><a href="{{ route('administration.event.my') }}">My Events</a></li>
+                            @endif
                             @if (auth()->user()->can('event.create'))
                                 <li><a href="{{ route('administration.event.create') }}">Create New Event</a></li>
                             @endif

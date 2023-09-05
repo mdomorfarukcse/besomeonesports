@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(EventController::class)->prefix('event')->name('event.')->group(function () {
     Route::get('/', 'index')->name('index')->middleware(['can:event.index']);
+    Route::get('/my', 'myEvents')->name('my')->middleware(['role:coach|player']);
     Route::get('/create', 'create')->name('create')->middleware(['can:event.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:event.create']);
     Route::get('/show/{event}', 'show')->name('show')->middleware(['can:event.show']);
