@@ -35,10 +35,10 @@ class EventFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Event $event) {
-            $divisions = Division::inRandomOrder()->limit(10)->get(); // Get 10 random divisions
+            $divisions = Division::inRandomOrder()->limit(rand(1, 10))->get(); // Get 10 random divisions
             $event->divisions()->attach($divisions);
             
-            $venues = Venue::inRandomOrder()->limit(10)->get(); // Get 10 random venues
+            $venues = Venue::inRandomOrder()->limit(rand(1, 10))->get(); // Get 10 random venues
             $event->venues()->attach($venues);
         });
     }

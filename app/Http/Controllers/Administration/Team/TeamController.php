@@ -13,6 +13,7 @@ use App\Http\Requests\Administration\Team\TeamStoreRequest;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
 use App\Http\Requests\Administration\Team\AssignPlayerRequest;
 use App\Models\Player\Player;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -24,6 +25,24 @@ class TeamController extends Controller
         $teams = Team::with(['event', 'players'])->get();
         // dd($teams);
         return view('administration.team.index', compact(['teams']));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function myTeam()
+    {
+        if (Auth::user()->hasRole('coach')) {
+            $teams = Team::with(['event', 'players'])->whereCoachId(Auth::user()->coach->id)->get();
+        } elseif (Auth::user()->hasRole('player')) {
+            $player = Player::with('teams')->whereId(Auth::user()->player->id)->firstOrFail();
+
+            $teams = $player->teams;
+        } else {
+            $teams = NULL;
+        }
+        // dd($teams);
+        return view('administration.team.my', compact(['teams']));
     }
 
     /**

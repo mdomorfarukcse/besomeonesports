@@ -3,8 +3,8 @@
 namespace App\Models\Event\Traits;
 
 use App\Models\Division\Division;
-use App\Models\Event\Registration\EventRegistration;
 use App\Models\Player\Player;
+use App\Models\Schedule\Schedule;
 use App\Models\Season\Season;
 use App\Models\Sport\Sport;
 use App\Models\Team\Team;
@@ -71,5 +71,13 @@ trait Relations
     {
         return $this->belongsToMany(Player::class)
                     ->withPivot(['paid_by', 'total_paid', 'transaction_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The schedules that belong to the event.
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Coach\Coach;
 use App\Models\Event\Event;
 use App\Models\Division\Division;
 use App\Models\Player\Player;
+use App\Models\Schedule\Schedule;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -42,5 +43,15 @@ trait Relations
     public function players(): BelongsToMany
     {
         return $this->belongsToMany(Player::class);
+    }
+
+    
+    /**
+     * Get the schedules for the team.
+     */
+    public function schedules(): BelongsToMany
+    {
+        return $this->belongsToMany(Schedule::class)
+                    ->withPivot(['status', 'score', 'created_at', 'updated_at']);
     }
 }

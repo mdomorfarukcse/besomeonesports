@@ -4,8 +4,9 @@ namespace App\Models\Venue\Traits;
 
 use App\Models\Court\Court;
 use App\Models\Event\Event;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Schedule\Schedule;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
 {
@@ -23,5 +24,13 @@ trait Relations
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(Event::class);
+    }
+
+    /**
+     * The schedules that belong to the venue.
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

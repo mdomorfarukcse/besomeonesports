@@ -32,6 +32,9 @@
                             @if (auth()->user()->can('team.index'))
                                 <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                             @endif
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                                <li><a href="{{ route('administration.team.my') }}">My Teams</a></li>
+                            @endif
                             @if (auth()->user()->can('team.create'))
                                 <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                             @endif
@@ -252,13 +255,27 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{ route('administration.schedule.index') }}">
-                        <i class="sl-icon-pie-chart"></i>
-                        <span>Schedule</span> 
-                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
-                    </a>
-                </li>
+                @if (auth()->user()->can('schedule.index') || auth()->user()->can('schedule.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-pie-chart"></i>
+                            <span>Schedules</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->can('schedule.index'))
+                                <li><a href="{{ route('administration.schedule.calender') }}">Schedule Calender</a></li>
+                            @endif
+                            @if (auth()->user()->can('schedule.index'))
+                                <li><a href="{{ route('administration.schedule.index') }}">All Schedules</a></li>
+                            @endif
+                            @if (auth()->user()->can('schedule.create'))
+                                <li><a href="{{ route('administration.schedule.create') }}">Assign New Schedule</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
                 <li>
                     <a href="javaScript:void();"> 
                         <i class="sl-icon-layers"></i>

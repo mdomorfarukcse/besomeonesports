@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Schedule'))
+@section('page_title', __('Update Schedule'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,13 +25,13 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Schedule') }}</b>
+    <b class="text-uppercase">{{ __('Update Schedule') }}</b>
 @endsection
 
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Schedules') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Schedule') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Update Schedule') }}</li>
 @endsection
 
 
@@ -42,39 +42,45 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <form action="{{ route('administration.schedule.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.schedule.update', ['schedule' => $schedule]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">Create New Schedule</h5>
+                    <h5 class="card-title mb-0">Update Schedule</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group  col-md-4">
                             <label for="">Date <span class="required">*</span></label>
-                            <input type="date" class="form-control" value="" name="date" id="date" required />
+                            <input type="date" class="form-control" value="{{ $schedule->date }}" name="date" id="date" required />
                         </div>
                         <div class="form-group  col-md-4">
                             <label for="">Start Time <span class="required">*</span></label>
-                            <input type="time" class="form-control" value="" name="start" id="start" required />
+                            <input type="time" class="form-control" value="{{ $schedule->start }}" name="start" id="start" required />
                         </div>
                         <div class="form-group  col-md-4">
                             <label for="">End Time <span class="required">*</span></label>
-                            <input type="time" class="form-control" value="" name="end" id="end" />
+                            <input type="time" class="form-control" value="{{ $schedule->end }}" name="end" id="end" />
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Choose An Event <span class="required">*</span></label>
-                            <select class="select2-single form-control" name="event_id" id="event_id" required>
-                                <option value="" selected>Select Event</option>
+                            <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
+                                <option value="">Select Event</option>
                                 @foreach ($events as $event)
-                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                    <option value="{{ $event->id }}" @selected($event->id == $schedule->event->id)>
+                                        {{ $event->name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            @error('event_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Team 1 <span class="required">*</span></label>
                             <select class="select2-single form-control" name="teams[]" id="team_one" required disabled>
                                 <option value="" selected>Select Team</option>
+                                
                             </select>
                         </div>
                         
@@ -101,7 +107,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Schedule</span>
+                        <span class="text-bold">Update Schedule</span>
                     </button>
                 </div>
             </div>
@@ -122,6 +128,7 @@
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
+    
     <script>
         // Get references to the event and team dropdowns
         const eventDropdown = $('#event_id');
@@ -229,4 +236,97 @@
             }
         });
     </script>  
+    <script>
+        $( document ).ready(function(){ 
+            // Enable the team dropdown if an event is selected
+            teamDropdown1.prop('disabled', false);
+            teamDropdown2.prop('disabled', false);
+            venueDropdown.prop('disabled', false);
+
+            // Send an AJAX request to fetch teams for the selected event
+            $.ajax({
+                url: `/administration/schedule/teams/{{ $schedule->event->id }}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Populate the team dropdown with the fetched teams
+                    $.each(data, function(index, team) {
+                        var team1 = $('<option>', {
+                            value: team.id,
+                            text: team.name
+                        });
+                        
+                        var team2 = $('<option>', {
+                            value: team.id,
+                            text: team.name
+                        });
+
+                        // Check if the team.id matches $schedule->event->id and add "selected" attribute
+                        if (team.id == '{{ $schedule->teams[0]->id }}') {
+                            team1.attr('selected', 'selected');
+                        }
+                        if (team.id == '{{ $schedule->teams[1]->id }}') {
+                            team2.attr('selected', 'selected');
+                        }
+
+                        teamDropdown1.append(team1);
+                        teamDropdown2.append(team2);
+                    });    
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+            
+
+            // Send an AJAX request to fetch venues for the selected event
+            $.ajax({
+                url: `/administration/schedule/venues/{{ $schedule->event->id }}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Populate the venue dropdown with the fetched venues
+                    $.each(data, function(index, venue) {
+                        var venue_data = $('<option>', {
+                            value: venue.id,
+                            text: venue.name
+                        });
+                        if (venue.id == '{{ $schedule->venue->id }}') {
+                            venue_data.attr('selected', 'selected');
+                        }
+                        venueDropdown.append(venue_data);
+                    });
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            // Enable the court dropdown if an venues is selected
+            courtDropdown.prop('disabled', false);
+
+            // Send an AJAX request to fetch courts for the selected venues
+            $.ajax({
+                url: `/administration/schedule/venue/courts/{{ $schedule->venue->id }}}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Populate the court dropdown with the fetched courts
+                    $.each(data, function(index, court) {
+                        var court_data = $('<option>', {
+                            value: court.id,
+                            text: court.name
+                        });
+                        if (court.id == '{{ $schedule->court->id }}') {
+                            court_data.attr('selected', 'selected');
+                        }
+                        courtDropdown.append(court_data);
+                    });
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        })
+    </script>
 @endsection
