@@ -6,8 +6,6 @@
         <div class="logobar">
             <a href="#" class="logo logo-large"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
             <a href="#" class="logo logo-small"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
-            {{-- <a href="#" class="logo logo-large"><img src="{{ asset('assets/images/logo.svg') }}" class="img-fluid" alt="logo" /></a>
-            <a href="#" class="logo logo-small"><img src="{{ asset('assets/images/small_logo.svg') }}" class="img-fluid" alt="logo" /></a> --}}
         </div>
         <!-- End Logobar -->
         <!-- Start Navigationbar -->
@@ -279,17 +277,19 @@
                     </li>
                 @endif
 
-                <li>
-                    <a href="javaScript:void();"> 
-                        <i class="sl-icon-layers"></i>
-                        <span>Frontend</span>
-                        <i class="feather icon-chevron-right pull-right"></i> 
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('administration.faq.index') }}">Faqs</a></li>
-                        <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
-                    </ul>
-                </li>
+                @role ('developer|admin') 
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-layers"></i>
+                            <span>Frontend</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            <li><a href="{{ route('administration.faq.index') }}">Faqs</a></li>
+                            <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
+                        </ul>
+                    </li>
+                @endrole
                 
 
                 @if (auth()->user()->can('role.index') || auth()->user()->can('role.create') || auth()->user()->can('permission.index') || auth()->user()->can('permission.create'))
@@ -308,33 +308,28 @@
                     </li>
                 @endif
 
-                <li>
-                    <a href="javaScript:void();"> 
-                        <i class="sl-icon-layers"></i>
-                        <span>Manage User</span>
-                        <i class="feather icon-chevron-right pull-right"></i> 
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="#">All Admin</a></li>
-                        <li><a href="#">Create New Admin</a></li>
-                    </ul>
-                </li>
+                @role ('developer|admin') 
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-layers"></i>
+                            <span>Manage User</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            <li><a href="#">All Admin</a></li>
+                            <li><a href="#">Create New Admin</a></li>
+                        </ul>
+                    </li>
+                @endrole
+
+
                 <li>
                     <a href="/" target="_blank"> 
                         <i class="sl-icon-home"></i>
                         <span>Website</span> 
                     </a>
                 </li>
-                
-                <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> 
-                        <i class="sl-icon-close"></i>
-                        <span>Logout</span> 
-                    </a>
-                </li>
-                
 
-                
 
                 {{-- @role('developer')
                     <li>
