@@ -47,12 +47,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.team.edit', ['team' => $team]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Team Info</b>
-    </a>
-@endsection
+@if (auth()->user()->can('team.update')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.team.edit', ['team' => $team]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-pen"></i>
+            <b>Edit Team Info</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -152,12 +154,14 @@
                     <div class="col-7">
                         <h5 class="card-title mb-0 text-bold">Players of <span class="text-bold text-info">{{ $team->name }}</span></h5>
                     </div>
-                    <div class="col-5">
-                        <button class="btn btn-outline-primary btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addPlayersModal">
-                            <i class="la la-plus"></i>
-                            Add Players
-                        </button>
-                    </div>
+                    @if (auth()->user()->can('team.update')) 
+                        <div class="col-5">
+                            <button class="btn btn-outline-primary btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addPlayersModal">
+                                <i class="la la-plus"></i>
+                                Add Players
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
@@ -179,12 +183,16 @@
                                     </td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.team.destroy.player', ['team' => $team, 'player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
+                                            @if (auth()->user()->can('team.update')) 
+                                                <a href="{{ route('administration.team.destroy.player', ['team' => $team, 'player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </a>
+                                            @endif
+                                            @if (auth()->user()->can('player.show')) 
+                                                <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                    <i class="feather icon-info"></i>
+                                                </a>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
