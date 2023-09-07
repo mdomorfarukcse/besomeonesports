@@ -37,12 +37,14 @@
     <li class="breadcrumb-item text-capitalize active">{{ __('All Categories') }}</li>
 @endsection
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.shop.category.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-plus"></i>
-        <b>Create New Category</b>
-    </a>
-@endsection
+@if (auth()->user()->can('shop_category.create')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.shop.category.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-plus"></i>
+            <b>Create New Category</b>
+        </a>
+    @endsection
+@endif
 
 
 @section('content')
@@ -64,7 +66,9 @@
                                 <th>Category Name</th>
                                 <th>Total Products</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                @if (auth()->user()->can('shop_category.show') || auth()->user()->can('shop_category.destroy')) 
+                                    <th class="text-right">Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -74,16 +78,22 @@
                                     <td>{{ $category->name }}</td>
                                     <td>{{ count($category->products) }}</td>
                                     <td>{!! status($category->status) !!}</td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            {{-- <a href="{{ route('administration.shop.category.destroy', ['category' => $category]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a> --}}
-                                            <a href="{{ route('administration.shop.category.show', ['category' => $category]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    @if (auth()->user()->can('shop_category.show') || auth()->user()->can('shop_category.destroy')) 
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('shop_category.destroy')) 
+                                                    <a href="{{ route('administration.shop.category.destroy', ['category' => $category]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                                @if (auth()->user()->can('shop_category.show')) 
+                                                    <a href="{{ route('administration.shop.category.show', ['category' => $category]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-info"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

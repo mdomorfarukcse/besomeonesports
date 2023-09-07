@@ -39,6 +39,12 @@ class RolesTableSeeder extends Seeder
                     'venue.update',
                     'venue.destroy',
                     
+                    'court.index',
+                    'court.create',
+                    'court.show',
+                    'court.update',
+                    'court.destroy',
+                    
                     'coach.index',
                     'coach.create',
                     'coach.show',
@@ -136,6 +142,12 @@ class RolesTableSeeder extends Seeder
                     'venue.show',
                     'venue.update',
                     'venue.destroy',
+                    
+                    'court.index',
+                    'court.create',
+                    'court.show',
+                    'court.update',
+                    'court.destroy',
                     
                     'coach.index',
                     'coach.create',
