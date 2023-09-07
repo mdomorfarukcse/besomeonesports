@@ -102,10 +102,16 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="" class="btn btn-primary" id="editlink" data-route="{{ route('administration.schedule.edit', ['schedule' => ':scheduleId']) }}">Edit</a>
-                <a href="" class="btn btn-danger" id="deletelink" data-route="{{ route('administration.schedule.destroy', ['schedule' => ':scheduleId']) }}">Delete</a>
-            </div>
+            @if (auth()->user()->can('schedule.update') || auth()->user()->can('schedule.destroy')) 
+                <div class="modal-footer">
+                    @if (auth()->user()->can('schedule.update')) 
+                        <a href="" class="btn btn-primary" id="editlink" data-route="{{ route('administration.schedule.edit', ['schedule' => ':scheduleId']) }}">Edit</a>
+                    @endif
+                    @if (auth()->user()->can('schedule.destroy')) 
+                        <a href="" class="btn btn-danger" id="deletelink" data-route="{{ route('administration.schedule.destroy', ['schedule' => ':scheduleId']) }}">Delete</a>
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </div>

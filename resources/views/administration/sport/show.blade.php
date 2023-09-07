@@ -33,12 +33,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.sport.edit', ['sport' => $sport]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Sport Info</b>
-    </a>
-@endsection
+@if (auth()->user()->can('sport.update')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.sport.edit', ['sport' => $sport]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-pen"></i>
+            <b>Edit Sport Info</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -47,36 +49,33 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.sport.update', ['sport' => $sport]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
-            @csrf
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div class="card border">
-                                <div class="card-header bg-primary-rgba border-bottom">
-                                    <h5 class="card-title text-primary mb-0">Sports's Information</h5>
-                                </div>
-                                <div class="card-body py-2">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Sport Name</th>
-                                                        <td>{{ $sport->name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Description</th>
-                                                        <td>{{ $sport->description }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Status</th>
-                                                        <td>{!! status($sport->status) !!}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+        <div class="card m-b-30">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card border">
+                            <div class="card-header bg-primary-rgba border-bottom">
+                                <h5 class="card-title text-primary mb-0">Sports's Information</h5>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Sport Name</th>
+                                                    <td>{{ $sport->name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td>{{ $sport->description }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <td>{!! status($sport->status) !!}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +83,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

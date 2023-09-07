@@ -66,7 +66,9 @@
                                 <th>Total Price</th>
                                 <th>Ordered At</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                @if (auth()->user()->can('shop_order.destroy') || auth()->user()->can('shop_order.show')) 
+                                    <th>Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -95,16 +97,22 @@
                                         <small class="text-muted">at {{ show_time($order->created_at) }}</small>
                                     </td>
                                     <td>{!! status($order->status) !!}</td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            {{-- <a href="{{ route('administration.shop.product.destroy', ['product' => $product]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a> --}}
-                                            <a href="{{ route('administration.shop.order.show', ['order' => $order]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    @if (auth()->user()->can('shop_order.destroy') || auth()->user()->can('shop_order.show')) 
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('shop_order.destroy')) 
+                                                    <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                                @if (auth()->user()->can('shop_order.show')) 
+                                                    <a href="{{ route('administration.shop.order.show', ['order' => $order]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-info"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

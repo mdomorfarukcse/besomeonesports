@@ -38,12 +38,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.venue.edit', ['venue' => $venue]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Venue Info</b>
-    </a>
-@endsection
+@if (auth()->user()->can('venue.update')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.venue.edit', ['venue' => $venue]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-pen"></i>
+            <b>Edit Venue Info</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -109,57 +111,63 @@
         </div>
     </div>
     
-    <div class="col-lg-12">
-        <div class="card m-b-30">
-            <div class="card-header">
-                <div class="row align-items-center">
-                    <div class="col-7">
-                        <h5 class="card-title mb-0 text-bold">Courts of <span class="text-bold text-info">{{ $venue->name }}</span></h5>
-                    </div>
-                    <div class="col-5">
-                        <button class="btn btn-outline-primary btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addCourtModal">
-                            <i class="la la-plus"></i>
-                            Add Court
-                        </button>
+    @if (auth()->user()->can('court.index')) 
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-7">
+                            <h5 class="card-title mb-0 text-bold">Courts of <span class="text-bold text-info">{{ $venue->name }}</span></h5>
+                        </div>
+                        @if (auth()->user()->can('court.create')) 
+                            <div class="col-5">
+                                <button class="btn btn-outline-primary btn-sm float-right font-13" data-animation="zoomInRight" data-toggle="modal" data-target="#addCourtModal">
+                                    <i class="la la-plus"></i>
+                                    Add Court
+                                </button>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="default-datatable" class="display table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Total Matches</th>
-                                <th class="text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($venue->courts as $key => $court)
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="default-datatable" class="display table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td class="fw-bold text-dark"><b>#{{ serial($venue->courts, $key) }}</b></th>
-                                    <td>
-                                        <span class="text-dark text-capitalize">{{ $court->name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark text-capitalize">{{ $court->schedules()->count() }}</span>
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.venue.court.destroy', ['court' => $court]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Total Matches</th>
+                                    <th class="text-right">Actions</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($venue->courts as $key => $court)
+                                    <tr>
+                                        <td class="fw-bold text-dark"><b>#{{ serial($venue->courts, $key) }}</b></th>
+                                        <td>
+                                            <span class="text-dark text-capitalize">{{ $court->name }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark text-capitalize">{{ $court->schedules()->count() }}</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('court.destroy')) 
+                                                    <a href="{{ route('administration.venue.court.destroy', ['court' => $court]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 
 <!-- End Row -->

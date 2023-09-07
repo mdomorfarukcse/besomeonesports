@@ -33,12 +33,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.coach.edit', ['coach' => $coach]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Coach Info</b>
-    </a>
-@endsection
+@if (auth()->user()->can('coach.update')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.coach.edit', ['coach' => $coach]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-pen"></i>
+            <b>Edit Coach Info</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -47,81 +49,78 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.coach.update', ['coach' => $coach]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
-            @csrf
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div class="card border">
-                                <div class="card-header bg-primary-rgba border-bottom">
-                                    <h5 class="card-title text-primary mb-0">Coach's Information</h5>
-                                </div>
-                                <div class="card-body py-2">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered mb-0">
-                                                <tbody>
-                                                    <tr class="text-center">
-                                                        <td colspan="2">
-                                                            <div class="user-avatar">
-                                                                <img src="{{ show_avatar($coach->user->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
-                                                            </div>    
-                                                        </td>
-                                                    </tr>
+        <div class="card m-b-30">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card border">
+                            <div class="card-header bg-primary-rgba border-bottom">
+                                <h5 class="card-title text-primary mb-0">Coach's Information</h5>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <tbody>
+                                                <tr class="text-center">
+                                                    <td colspan="2">
+                                                        <div class="user-avatar">
+                                                            <img src="{{ show_avatar($coach->user->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
+                                                        </div>    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Coach ID (PID)</th>
+                                                    <td class="text-primary text-bold">{{ $coach->coach_id }}</td>
+                                                </tr>
+                                                @if (!empty($coach->position))
                                                     <tr>
-                                                        <th>Coach ID (PID)</th>
-                                                        <td class="text-primary text-bold">{{ $coach->coach_id }}</td>
+                                                        <th>Position</th>
+                                                        <td>{{ $coach->position }}</td>
                                                     </tr>
-                                                    @if (!empty($coach->position))
-                                                        <tr>
-                                                            <th>Position</th>
-                                                            <td>{{ $coach->position }}</td>
-                                                        </tr>
-                                                    @endif
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <td>{{ $coach->user->name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Email</th>
-                                                        <td>{{ $coach->user->email }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Contact</th>
-                                                        <td>{{ $coach->phone_number }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Address</th>
-                                                        <td>
-                                                            <address class="mb-0">
-                                                                Post: {{ $coach->postal_code }}
-                                                                <br>    
-                                                                City: {{ $coach->city }}
-                                                                <br>    
-                                                                State: {{ $coach->state }}
+                                                @endif
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <td>{{ $coach->user->name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <td>{{ $coach->user->email }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Contact</th>
+                                                    <td>{{ $coach->phone_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Address</th>
+                                                    <td>
+                                                        <address class="mb-0">
+                                                            Post: {{ $coach->postal_code }}
+                                                            <br>    
+                                                            City: {{ $coach->city }}
+                                                            <br>    
+                                                            State: {{ $coach->state }}
+                                                            <br>
+                                                            Street Address: {{ $coach->street_address }}
+                                                            @if (!empty($coach->extended_address))
                                                                 <br>
-                                                                Street Address: {{ $coach->street_address }}
-                                                                @if (!empty($coach->extended_address))
-                                                                    <br>
-                                                                    Extended Address: {{ $coach->extended_address }}
-                                                                @endif
-                                                            </address>    
-                                                        </td>
-                                                    </tr>
+                                                                Extended Address: {{ $coach->extended_address }}
+                                                            @endif
+                                                        </address>    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <td>{!! status($coach->status) !!}</td>
+                                                </tr>
+                                                @if (!empty($coach->note))
                                                     <tr>
-                                                        <th>Status</th>
-                                                        <td>{!! status($coach->status) !!}</td>
+                                                        <th>Note</th>
+                                                        <td>{!! $coach->note !!}</td>
                                                     </tr>
-                                                    @if (!empty($coach->note))
-                                                        <tr>
-                                                            <th>Note</th>
-                                                            <td>{!! $coach->note !!}</td>
-                                                        </tr>
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                @endif
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +128,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

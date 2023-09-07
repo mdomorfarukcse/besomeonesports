@@ -16,11 +16,13 @@ class PermissionsTableSeeder extends Seeder
         $groups = [
             'sport',
             'venue',
+            'court',
             'coach',
             'player',
             'division',
             'season',
             'event',
+            'event_registration',
             'team',
             'role',
             'permission',

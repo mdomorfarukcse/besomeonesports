@@ -35,12 +35,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.event.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-plus"></i>
-        <b>Create New Event</b>
-    </a>
-@endsection
+@if (auth()->user()->can('event.create')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.event.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-plus"></i>
+            <b>Create New Event</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -66,7 +68,9 @@
                                 <th>Divisions</th>
                                 <th>Venues</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                @if (auth()->user()->can('event.show') || auth()->user()->can('event.destroy')) 
+                                    <th class="text-right">Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -85,16 +89,22 @@
                                     <td>{{ count($event->divisions) }}</td>
                                     <td>{{ count($event->venues) }}</td>
                                     <td>{!! status($event->status) !!}</td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.event.destroy', ['event' => $event]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    @if (auth()->user()->can('event.show') || auth()->user()->can('event.destroy')) 
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('event.destroy')) 
+                                                    <a href="{{ route('administration.event.destroy', ['event' => $event]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                                @if (auth()->user()->can('event.show')) 
+                                                    <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-info"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

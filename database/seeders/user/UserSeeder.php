@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
         $player->assignRole($playerRole);
         Player::create([
             'user_id' => $player->id,
-            'player_id' => unique_id(11, 11),
+            'player_id' => unique_id(),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'birthdate' => fake()->date(),
@@ -94,12 +94,18 @@ class UserSeeder extends Seeder
             'city' => fake()->city(),
             'state' => fake()->words(2, true),
             'postal_code' => fake()->postcode(),
+            'extended_address' => fake()->address(),
             'father_name' => fake()->name(),
+            'father_email' => fake()->safeEmail(),
+            'father_contact' => fake()->phoneNumber(),
             'mother_name' => fake()->name(),
+            'mother_email' => fake()->safeEmail(),
+            'mother_contact' => fake()->phoneNumber(),
             'guardian_relation' => fake()->word(),
             'guardian_name' => fake()->name(),
+            'guardian_email' => fake()->safeEmail(),
             'guardian_contact' => fake()->phoneNumber(),
-            'status' => fake()->randomElement(['Active', 'Inactive', 'Banned'])
+            'status' => 'Active',
         ]);
         
 

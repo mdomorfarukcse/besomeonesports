@@ -50,18 +50,20 @@
         <div class="card m-b-30">
             <div class="card-header border-bottom">
                 <h4 class="text-dark text-bold mb-0 float-left">Order Details</h4>
-                <div class="btn-group float-right">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ $order->status }}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Active']) }}" @if ($order->status === 'Active') hidden @endif>Active</a>
-                        <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Running']) }}" @if ($order->status === 'Running') hidden @endif>Running</a>
-                        <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Delivery']) }}" @if ($order->status === 'Delivery') hidden @endif>Delivery</a>
-                        <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Completed']) }}" @if ($order->status === 'Completed') hidden @endif>Completed</a>
-                        <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Canceled']) }}" @if ($order->status === 'Canceled') hidden @endif>Canceled</a>
+                @if (auth()->user()->can('shop_order.update')) 
+                    <div class="btn-group float-right">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{ $order->status }}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Active']) }}" @if ($order->status === 'Active') hidden @endif>Active</a>
+                            <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Running']) }}" @if ($order->status === 'Running') hidden @endif>Running</a>
+                            <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Delivery']) }}" @if ($order->status === 'Delivery') hidden @endif>Delivery</a>
+                            <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Completed']) }}" @if ($order->status === 'Completed') hidden @endif>Completed</a>
+                            <a class="dropdown-item" href="{{ route('administration.shop.order.status', ['order' => $order, 'status' => 'Canceled']) }}" @if ($order->status === 'Canceled') hidden @endif>Canceled</a>
+                        </div>
                     </div>
-                  </div>
+                @endif
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
@@ -82,9 +84,6 @@
                                                 <tr>
                                                     <th>Product</th>
                                                     <td class="text-dark text-bold">
-                                                        {{-- {{ $order->product->name }}
-                                                        <br>
-                                                        <small class="text-primary">{{ $order->product->product_id }}</small> --}}
                                                         <ol>
                                                             @foreach ($order->products as $product)
                                                                 <li>

@@ -35,12 +35,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.season.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-plus"></i>
-        <b>Create New Season</b>
-    </a>
-@endsection
+@if (auth()->user()->can('season.create')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.season.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-plus"></i>
+            <b>Create New Season</b>
+        </a>
+    @endsection
+@endif
 
 
 @section('content')
@@ -64,7 +66,9 @@
                                 <th>Year</th>
                                 <th>Start-End</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                @if (auth()->user()->can('season.show') || auth()->user()->can('season.destroy')) 
+                                    <th class="text-right">Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -75,16 +79,22 @@
                                     <td>{{ $season->year }}</td>
                                     <td>{{ $season->start }} - {{ $season->end }}</td>
                                     <td>{!! status($season->status) !!}</td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.season.destroy', ['season' => $season]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="{{ route('administration.season.show', ['season' => $season]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    @if (auth()->user()->can('season.show') || auth()->user()->can('season.destroy')) 
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('season.destroy')) 
+                                                    <a href="{{ route('administration.season.destroy', ['season' => $season]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                                @if (auth()->user()->can('season.show')) 
+                                                    <a href="{{ route('administration.season.show', ['season' => $season]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-info"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
