@@ -320,7 +320,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/"> 
+                    <a href="/" target="_blank"> 
                         <i class="sl-icon-home"></i>
                         <span>Website</span> 
                     </a>
