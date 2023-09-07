@@ -34,12 +34,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.shop.product.edit', ['product' => $product]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-pen"></i>
-        <b>Edit Product Info</b>
-    </a>
-@endsection
+@if (auth()->user()->can('shop_product.update')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.shop.product.edit', ['product' => $product]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-pen"></i>
+            <b>Edit Product Info</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -61,13 +63,6 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
                                             <tbody>
-                                                {{-- <tr class="text-center">
-                                                    <td colspan="2">
-                                                        <div class="user-avatar">
-                                                            <img src="{{ show_avatar($event->logo) }}" alt="Event Logo" class="img-thumbnail" width="250">
-                                                        </div>    
-                                                    </td>
-                                                </tr> --}}
                                                 <tr>
                                                     <th>Product ID</th>
                                                     <td class="text-bold text-primary">{{ $product->product_id }}</td>
@@ -139,7 +134,7 @@
                     <div class="col-md-12 mt-3">
                         <div class="card border">
                             <div class="card-header bg-primary-rgba border-bottom">
-                                <h5 class="card-title text-primary mb-0">Product's Details</h5>
+                                <h5 class="card-title text-primary mb-0">Product Images</h5>
                             </div>
                             <div class="card-body py-2">
                                 <div class="row">
@@ -147,9 +142,11 @@
                                         <div class="col-md-3">
                                             <div class="product_image">
                                                 <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" class="img-thumbnail">
-                                                <a href="{{ route('administration.shop.product.destroy.image', ['image' => $image]) }}" class="btn btn-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');" style="position: absolute; right: 20px; top: 5px;">
-                                                    <i class="feather icon-trash-2"></i>
-                                                </a>
+                                                @if (auth()->user()->can('shop_product.destroy') || auth()->user()->can('shop_product.update')) 
+                                                    <a href="{{ route('administration.shop.product.destroy.image', ['image' => $image]) }}" class="btn btn-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');" style="position: absolute; right: 20px; top: 5px;">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach
