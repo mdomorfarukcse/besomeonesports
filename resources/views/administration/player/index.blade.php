@@ -35,12 +35,14 @@
 @endsection
 
 
-@section('breadcrumb_buttons')
-    <a href="{{ route('administration.player.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="feather icon-plus"></i>
-        <b>Create New Player</b>
-    </a>
-@endsection
+@if (auth()->user()->can('player.create')) 
+    @section('breadcrumb_buttons')
+        <a href="{{ route('administration.player.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-plus"></i>
+            <b>Create New Player</b>
+        </a>
+    @endsection
+@endif
 
 
 
@@ -66,7 +68,9 @@
                                 <th>Email</th>
                                 <th>Contact No</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
+                                    <th class="text-right">Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -83,16 +87,22 @@
                                     <td>{{ $player->user->email }}</td>
                                     <td>{{ $player->contact_number }}</td>
                                     <td>{!! status($player->status) !!}</td>
-                                    <td class="text-right">
-                                        <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
+                                        <td class="text-right">
+                                            <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('player.destroy')) 
+                                                    <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </a>
+                                                @endif
+                                                @if (auth()->user()->can('player.show')) 
+                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-info"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
