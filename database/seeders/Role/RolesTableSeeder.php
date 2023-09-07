@@ -69,6 +69,12 @@ class RolesTableSeeder extends Seeder
                     'event.update',
                     'event.destroy',
                     
+                    'event_registration.index',
+                    'event_registration.create',
+                    'event_registration.show',
+                    'event_registration.update',
+                    'event_registration.destroy',
+                    
                     'team.index',
                     'team.create',
                     'team.show',
@@ -161,6 +167,12 @@ class RolesTableSeeder extends Seeder
                     'event.update',
                     'event.destroy',
                     
+                    'event_registration.index',
+                    'event_registration.create',
+                    'event_registration.show',
+                    'event_registration.update',
+                    'event_registration.destroy',
+                    
                     'team.index',
                     'team.create',
                     'team.show',
@@ -205,6 +217,10 @@ class RolesTableSeeder extends Seeder
                     'event.index',
                     'event.show',
                     
+                    'event_registration.index',
+                    'event_registration.create',
+                    'event_registration.show',
+                    
                     'team.index',
                     'team.show',
                     
@@ -228,6 +244,10 @@ class RolesTableSeeder extends Seeder
                     
                     'event.index',
                     'event.show',
+                    
+                    'event_registration.index',
+                    'event_registration.create',
+                    'event_registration.show',
                     
                     'team.index',
                     'team.show',

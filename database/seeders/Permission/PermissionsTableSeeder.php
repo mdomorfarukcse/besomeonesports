@@ -21,6 +21,7 @@ class PermissionsTableSeeder extends Seeder
             'division',
             'season',
             'event',
+            'event_registration',
             'team',
             'role',
             'permission',

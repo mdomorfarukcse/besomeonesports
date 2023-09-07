@@ -16,6 +16,6 @@ Route::controller(EventController::class)->prefix('event')->name('event.')->grou
     Route::post('/update/{event}', 'update')->name('update')->middleware(['can:event.update']);
     Route::get('/destroy/{event}', 'destroy')->name('destroy')->middleware(['can:event.destroy']);
     
-    Route::get('/registration/{event}', 'registration')->name('registration');
-    Route::post('/registration/{event}/store', 'register_player')->name('registration.store');
+    Route::get('/registration/{event}', 'registration')->name('registration')->middleware(['can:event_registration.create']);
+    Route::post('/registration/{event}/store', 'register_player')->name('registration.store')->middleware(['can:event_registration.create']);
 });
