@@ -14,7 +14,14 @@ use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use net\authorize\api\contract\v1\PaymentType;
+use net\authorize\api\constants\ANetEnvironment;
+use net\authorize\api\contract\v1\CreditCardType;
+use net\authorize\api\contract\v1\TransactionRequestType;
+use net\authorize\api\contract\v1\CreateTransactionRequest;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
+use net\authorize\api\contract\v1\MerchantAuthenticationType;
+use net\authorize\api\controller\CreateTransactionController;
 use App\Http\Requests\Administration\Event\EventUpdateRequest;
 use App\Rules\Administration\Event\EventRegistration\UniqueEventPlayerRule;
 
@@ -242,26 +249,69 @@ class EventController extends Controller
             'player_id.required' => 'You didn\'t select any player.',
             'player_id.exists' => 'The selected player is not registered yet.',
         ]);
-
+        
         try{
-            DB::transaction(function() use ($request, $event) {
-                $paidBy = decrypt($request->paid_by);
 
-                // Attach the player to the event
-                $event->players()->attach($request->player_id, [
-                    'paid_by' => $paidBy,
-                    'total_paid' => $event->registration_fee,
-                    'transaction_id' => Str::random(20),
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }, 5);
+            $cardNumber = $request->card_number;
+            $expirationDate = $request->card_expiry;
+            $cvv = $request->card_cvc;
 
-            toast('Registration completed for the event.', 'success');
-            return redirect()->route('administration.event.show', ['event' => $event]);
+            $merchantAuthentication = new MerchantAuthenticationType();
+            $merchantAuthentication->setName(env('AUTHORIZENET_API_LOGIN_ID'));
+            $merchantAuthentication->setTransactionKey(env('AUTHORIZENET_TRANSACTION_KEY'));
+
+            $creditCard = new CreditCardType();
+            $creditCard->setCardNumber($cardNumber);
+            $creditCard->setExpirationDate($expirationDate);
+            $creditCard->setCardCode($cvv);
+
+            $payment = new PaymentType();
+            $payment->setCreditCard($creditCard);
+
+            $transactionRequestType = new TransactionRequestType();
+            $transactionRequestType->setTransactionType("authCaptureTransaction");
+            $transactionRequestType->setAmount($event->registration_fee);
+            $transactionRequestType->setPayment($payment);
+
+            $tr_request = new CreateTransactionRequest();
+            $tr_request->setMerchantAuthentication($merchantAuthentication);
+            $tr_request->setRefId("ref" . time());
+            $tr_request->setTransactionRequest($transactionRequestType);
+
+            $controller = new CreateTransactionController($tr_request);
+            $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
+
+            if ($response != null) {
+                $trsactionResponse = $response->getTransactionResponse();
+
+                if ($trsactionResponse != null && $trsactionResponse->getResponseCode() == "1") {
+                    // dd($response, $trsactionResponse, $trsactionResponse->getTransId());
+
+                    DB::transaction(function() use ($request, $event, $trsactionResponse) {
+                        $paidBy = decrypt($request->paid_by);
+        
+                        // Attach the player to the event
+                        $event->players()->attach($request->player_id, [
+                            'paid_by' => $paidBy,
+                            'total_paid' => $event->registration_fee,
+                            'transaction_id' => $trsactionResponse->getTransId(),
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    }, 5);
+        
+                    toast('Registration completed for the event.', 'success');
+                    return redirect()->route('administration.event.show', ['event' => $event]);
+                } else {
+                    alert('Payment Failed!', $trsactionResponse->getResponseReasonText(), 'error');
+                    return redirect()->back()->withInput();
+                }
+            } else {
+                return "Payment failed: " . $response->getMessages()->getMessage()[0]->getText();
+            }
         } catch (Exception $e){
             dd($e);
-            alert('Registration Failed Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Registration Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }
