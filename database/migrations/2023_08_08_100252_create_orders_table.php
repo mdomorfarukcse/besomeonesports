@@ -36,7 +36,8 @@ return new class extends Migration
                             'Canceled'
                         ])->default('Active');
 
-            $table->string('tracking_id')->unique();
+            $table->string('transaction_id')->unique();
+            $table->string('invoice_number')->unique();
 
             $table->timestamps();
             $table->softDeletes();
