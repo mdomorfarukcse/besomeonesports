@@ -30,6 +30,7 @@ return new class extends Migration
             $table->float('total_paid');
 
             $table->string('transaction_id')->unique();
+            $table->string('invoice_number')->unique();
 
             $table->timestamps();
         });

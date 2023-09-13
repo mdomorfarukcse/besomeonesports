@@ -70,7 +70,7 @@ trait Relations
     public function players(): BelongsToMany
     {
         return $this->belongsToMany(Player::class)
-                    ->withPivot(['paid_by', 'total_paid', 'transaction_id', 'created_at', 'updated_at']);
+                    ->withPivot(['paid_by', 'total_paid', 'transaction_id', 'invoice_number', 'created_at', 'updated_at']);
     }
 
     /**

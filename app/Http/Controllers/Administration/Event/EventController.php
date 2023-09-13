@@ -14,9 +14,12 @@ use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use net\authorize\api\contract\v1\OrderType;
 use net\authorize\api\contract\v1\PaymentType;
 use net\authorize\api\constants\ANetEnvironment;
 use net\authorize\api\contract\v1\CreditCardType;
+use net\authorize\api\contract\v1\CustomerDataType;
+use net\authorize\api\contract\v1\NameAndAddressType;
 use net\authorize\api\contract\v1\TransactionRequestType;
 use net\authorize\api\contract\v1\CreateTransactionRequest;
 use App\Http\Requests\Administration\Event\EventStoreRequest;
@@ -251,17 +254,23 @@ class EventController extends Controller
         ]);
         
         try{
-
             $cardNumber = $request->card_number;
             $expirationDate = $request->card_expiry;
             $cvv = $request->card_cvc;
+
+            $player = Player::with('user')->whereId($request->player_id)->firstOrFail();
+
+            $invoice_number = 'EPRI'.unique_id(11,11);
+
+            // Remove any non-numeric characters from the card number
+            $cleanedCardNumber = preg_replace('/\D/', '', $cardNumber);
 
             $merchantAuthentication = new MerchantAuthenticationType();
             $merchantAuthentication->setName(env('AUTHORIZENET_API_LOGIN_ID'));
             $merchantAuthentication->setTransactionKey(env('AUTHORIZENET_TRANSACTION_KEY'));
 
             $creditCard = new CreditCardType();
-            $creditCard->setCardNumber($cardNumber);
+            $creditCard->setCardNumber($cleanedCardNumber); // Use the cleaned card number
             $creditCard->setExpirationDate($expirationDate);
             $creditCard->setCardCode($cvv);
 
@@ -273,6 +282,28 @@ class EventController extends Controller
             $transactionRequestType->setAmount($event->registration_fee);
             $transactionRequestType->setPayment($payment);
 
+            // Set order information
+            $description = 'Event ('.$event->name.') Registration By Player ('.$player->user->name.')';
+            $order = new OrderType();
+            $order->setInvoiceNumber($invoice_number);
+            $order->setDescription($description);
+            $transactionRequestType->setOrder($order);
+
+            // Set customer information
+            $customerData = new CustomerDataType();
+            $customerData->setId($player->player_id);
+            $transactionRequestType->setCustomer($customerData);
+
+            // Set shipping information
+            $shippingInfo = new NameAndAddressType();
+            $shippingInfo->setFirstName($player->first_name);
+            $shippingInfo->setLastName($player->last_name);
+            $shippingInfo->setAddress($player->street_address);
+            $shippingInfo->setCity($player->city);
+            $shippingInfo->setState($player->state);
+            $shippingInfo->setZip($player->postal_code);
+            $transactionRequestType->setShipTo($shippingInfo);
+
             $tr_request = new CreateTransactionRequest();
             $tr_request->setMerchantAuthentication($merchantAuthentication);
             $tr_request->setRefId("ref" . time());
@@ -282,28 +313,30 @@ class EventController extends Controller
             $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
 
             if ($response != null) {
-                $trsactionResponse = $response->getTransactionResponse();
+                $trasactionReport = $response->getTransactionResponse();
 
-                if ($trsactionResponse != null && $trsactionResponse->getResponseCode() == "1") {
-                    // dd($response, $trsactionResponse, $trsactionResponse->getTransId());
+                if ($trasactionReport != null && $trasactionReport->getResponseCode() == "1") {
+                    // dd($response, $trasactionReport, $trasactionReport->getTransId());
 
-                    DB::transaction(function() use ($request, $event, $trsactionResponse) {
+                    DB::transaction(function () use ($request, $event, $trasactionReport, $invoice_number) {
                         $paidBy = decrypt($request->paid_by);
-        
+
                         // Attach the player to the event
                         $event->players()->attach($request->player_id, [
                             'paid_by' => $paidBy,
                             'total_paid' => $event->registration_fee,
-                            'transaction_id' => $trsactionResponse->getTransId(),
+                            'transaction_id' => $trasactionReport->getTransId(),
+                            'invoice_number' => $invoice_number,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
                     }, 5);
-        
+
                     toast('Registration completed for the event.', 'success');
                     return redirect()->route('administration.event.show', ['event' => $event]);
                 } else {
-                    alert('Payment Failed!', $trsactionResponse->getResponseReasonText(), 'error');
+                    // dd($response, $trasactionReport);
+                    alert('Payment Failed!', $response->getMessages()->getMessage()[0]->getText(), 'error');
                     return redirect()->back()->withInput();
                 }
             } else {
