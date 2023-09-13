@@ -257,9 +257,21 @@
         $(document).ready(function () {
             $('#cc-expiry').on('input', function () {
                 var inputValue = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
+
+                // Ensure that the input for MM does not exceed 12
+                if (inputValue.length > 2) {
+                    var month = inputValue.substring(0, 2);
+                    if (parseInt(month) > 12) {
+                        month = '12';
+                    }
+                    inputValue = month + inputValue.substring(2);
+                }
+
+                // Format the input as MM / YYYY
                 if (inputValue.length > 2) {
                     inputValue = inputValue.substring(0, 2) + ' / ' + inputValue.substring(2);
                 }
+
                 $(this).val(inputValue);
             });
         });
