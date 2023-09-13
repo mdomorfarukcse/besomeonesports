@@ -35,7 +35,7 @@ class TeamFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Team $team) {
-            $players = Player::inRandomOrder()->limit(rand(1, 10))->get(); // Get 3 random players
+            $players = Player::inRandomOrder()->limit(rand(1, 10))->get();
             $team->players()->attach($players);
         });
     }

@@ -187,9 +187,27 @@
 
                             @if (auth()->user()->can('shop_order.index'))
                                 <li>
-                                    <a href="{{ route('administration.shop.order.index') }}">
-                                        Orders
+                                    <a href="javaScript:void(0);">
+                                        {{ __('Orders') }}
+                                        <i class="feather icon-chevron-right pull-right"></i>
                                     </a>
+                                    <ul class="vertical-submenu">
+                                        @if (auth()->user()->can('shop_order.index'))
+                                            <li>
+                                                <a href="{{ route('administration.shop.order.index') }}">
+                                                    {{ __('All Orders') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        
+                                        @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                                            <li>
+                                                <a href="#">
+                                                    {{ __('My Orders') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul>
                                 </li>
                             @endif
                             
