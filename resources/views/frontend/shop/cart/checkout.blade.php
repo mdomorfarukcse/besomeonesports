@@ -16,8 +16,22 @@
     <style>
         /* Custom CSS Here */
         .ad-fm .form-control {
+            font-weight: 500;
             height: auto;
+            color: #000;
+            background-color: #fefefe;
+            border: 1px solid #aaa;
         }
+
+        .ad-fm .form-control::placeholder {
+            color: #dddddd; /* Replace with your desired color code */
+            /* Vendor-specific prefixes */
+            -webkit-text-fill-color: #dddddd; /* For Chrome, Safari, and Opera */
+            -moz-placeholder: #dddddd; /* For Firefox 18-28 */
+            -ms-input-placeholder: #dddddd; /* For IE 10+ */
+            placeholder: #dddddd; /* Standard property */
+        }
+
     </style>
 @endsection
 
@@ -56,7 +70,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <label>Full Name <span class="text-danger">*</span></label>
-                                                        <input type="text" name="name" class="form-control" required value="@auth{{ auth()->user()->name }}@endauth" placeholder="Full Name"/>
+                                                        <input type="text" name="name" class="form-control" required value="@auth{{ auth()->user()->name }}@else{{ old('name') }}@endauth" placeholder="Full Name"/>
                                                         @error('name')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                         @enderror
@@ -66,7 +80,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Email <span class="text-danger">*</span></label>
-                                                        <input type="email" name="email" class="form-control" required value="@auth{{ auth()->user()->email }}@endauth" placeholder="Email Address"/>
+                                                        <input type="email" name="email" class="form-control" required value="@auth{{ auth()->user()->email }}@else{{ old('email') }}@endauth" placeholder="Email Address"/>
                                                         @error('email')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                         @enderror
@@ -76,7 +90,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Contact Number <span class="text-danger">*</span></label>
-                                                        <input type="tel" name="contact_number" class="form-control" required value="@auth{{ auth()->user()->contact_number }}@endauth" placeholder="Phone Number"/>
+                                                        <input type="tel" name="contact_number" class="form-control" required value="{{ old('contact_number') }}" placeholder="Phone Number"/>
                                                         @error('contact_number')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                         @enderror
@@ -87,7 +101,7 @@
                                                     <div class="form-group">
                                                         <label>Full Address <span class="text-danger">*</span></label>
                                                         <small>(Country, City, Road No, House No, Flat No etc.)</small>
-                                                        <textarea name="address" name="address" rows="4" class="form-control" required placeholder="Write your full shipping address"></textarea>
+                                                        <textarea name="address" name="address" rows="4" class="form-control" required placeholder="Write your full shipping address">{{ old('address') }}</textarea>
                                                         @error('address')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                         @enderror
@@ -97,57 +111,49 @@
                                         </div>
 
                                         <div class="paymeny comon-steps-div mt-5">
-                                            <h2 class="comon-heading m-0">Payment method</h2>
-                                            <div class="d-flex align-items-center justify-content-between mt-4">
-                                                <figure class="m-0">
-                                                    <img src="{{ asset('frontend/images/visag01.jpg') }}" alt="Payments" />
-                                                </figure>
-                                            </div>
-
+                                            
                                             <div class="account-page-n" id="ac-1">
-                                                <div class="row row-cols-1 row-cols-lg-1">
-                                                    <div class="col">
-                                                        <div class="form-group mt-3">
-                                                            <label> Cardholder Name </label>
-                                                            <input type="text" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group mt-3">
-                                                            <label> Card Number </label>
-                                                            <input type="text" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="d-flex mt-3">
-                                                    <div class="left-sec-d1">
-                                                        <h4>End Date</h4>
-                                                        <div class="end-date">
-                                                            <select class="form-select">
-                                                                <option selected>MM</option>
-                                                                <option value="1">Option 1</option>
-                                                                <option value="2">Option 2</option>
-                                                                <option value="3">Option 3</option>
-                                                            </select>
-
-                                                            <select class="form-select">
-                                                                <option selected>YYYY</option>
-                                                                <option value="1">Option 1</option>
-                                                                <option value="2">Option 2</option>
-                                                                <option value="3">Option 3</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="left-sec-d2">
-                                                        <h4>CVV</h4>
-                                                        <div class="cvv">
-                                                            <input type="text" class="form-control" />
-                                                            <span> <i class="fas fa-exclamation-circle"></i> 3 digits</span>
+                                                <div class="container">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-12">
+                                                            <div class="card border border-gray rounded-lg">
+                                                                <div class="card-body">
+                                                                    <h2 class="comon-heading m-0">Payment method</h2>
+                                                                    <div class="d-flex align-items-center justify-content-between mt-4">
+                                                                        <figure class="m-0">
+                                                                            <img src="{{ asset('frontend/images/visag01.jpg') }}" alt="Payments" />
+                                                                        </figure>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="mb-4">
+                                                                        <label for="cc-name" class="form-label text-xs fw-bold">Name On Card</label>
+                                                                        <input id="cc-name" type="text" name="card_holder_name" value="{{ old('card_holder_name') }}" class="form-control" placeholder="e.g. John E Cash">
+                                                                    </div>
+                                                
+                                                                    <div class="mb-4">
+                                                                        <label for="cc-number" class="form-label text-xs fw-bold">Credit Card Number</label>
+                                                                        <input id="cc-number" type="text" name="card_number" value="{{ old('card_number') }}" class="form-control" placeholder="16-digit card number" maxlength="19" required>
+                                                                    </div>
+                                                
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <label for="cc-expiry" class="form-label text-xs fw-bold">Card Expiry</label>
+                                                                                <input type="text" id="cc-expiry" name="card_expiry" value="{{ old('card_expiry') }}" class="form-control" placeholder="MM/YY" maxlength="7" required>
+                                                                            </div>
+                                                
+                                                                            <div class="col">
+                                                                                <label for="cc-cvv" class="form-label text-xs fw-bold">CVV/CVC</label>
+                                                                                <input type="text" id="cc-cvv" name="card_cvc" value="{{ old('card_cvc') }}" class="form-control text-dark text-bold" maxlength="3" required placeholder="123">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -229,6 +235,35 @@
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
+    <script>
+        $(document).ready(function () {
+            $('#cc-number').on('input', function () {
+                var inputValue = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
+                var formattedValue = '';
+        
+                for (var i = 0; i < inputValue.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += inputValue[i];
+                }
+        
+                $(this).val(formattedValue);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#cc-expiry').on('input', function () {
+                var inputValue = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.substring(0, 2) + ' / ' + inputValue.substring(2);
+                }
+                $(this).val(inputValue);
+            });
+        });
+    </script>
     <script>
         function increaseValue(button, limit) {
             const numberShowingDiv = button.parentElement.querySelector(".number");

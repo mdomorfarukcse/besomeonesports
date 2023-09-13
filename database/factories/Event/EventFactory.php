@@ -58,6 +58,7 @@ class EventFactory extends Factory
                     'paid_by' => rand(1, 2),
                     'total_paid' => 10,
                     'transaction_id' => $transactionId,
+                    'invoice_number' => $transactionId,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

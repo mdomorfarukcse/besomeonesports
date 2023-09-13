@@ -85,6 +85,22 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <th>Transaction ID</th>
+                                                    <td>
+                                                        <b class="text-dark">
+                                                            {{ $order->transaction_id }}
+                                                        </b>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Invoice ID</th>
+                                                    <td>
+                                                        <b class="text-dark">
+                                                            {{ $order->invoice_number }}
+                                                        </b>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <th>Status</th>
                                                     <td>{{ $order->status }}</td>
                                                 </tr>

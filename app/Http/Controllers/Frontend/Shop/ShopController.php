@@ -4,11 +4,23 @@ namespace App\Http\Controllers\Frontend\Shop;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\Player\Player;
 use App\Models\Shop\Order\Order;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Product\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use net\authorize\api\contract\v1\OrderType;
+use net\authorize\api\contract\v1\PaymentType;
+use net\authorize\api\constants\ANetEnvironment;
+use net\authorize\api\contract\v1\CreditCardType;
+use net\authorize\api\contract\v1\CustomerDataType;
+use net\authorize\api\contract\v1\NameAndAddressType;
+use net\authorize\api\contract\v1\TransactionRequestType;
+use net\authorize\api\contract\v1\CreateTransactionRequest;
+use net\authorize\api\contract\v1\MerchantAuthenticationType;
+use net\authorize\api\controller\CreateTransactionController;
 
 class ShopController extends Controller
 {
@@ -110,58 +122,129 @@ class ShopController extends Controller
 
 
     public function confirm_order(Request $request) {
-        $order = null;
+        $customerOrder = null;
         try {
-            DB::transaction(function () use ($request, &$order) {
-                $order = new Order();
-                $order->order_id = $this->generateUniqueID();
-                $order->user_id = isset($request->user_id) ? decrypt($request->user_id) : null;
-                $order->total_price = $request->sub_total;
-                $order->name = $request->input('name');
-                $order->email = $request->input('email');
-                $order->address = $request->input('address');
-                $order->contact_number = $request->input('contact_number');
-                $order->tracking_id = rand(1, 1111);
-                $order->save();
-    
-                $cartItems = Session::get('cart', []);
-                foreach ($cartItems as $itemKey => $cartItem) {
-                    // Retrieve the product and check if it exists
-                    $product = Product::find($cartItem['product_id']);
-                    if ($product) {
-                        // Check if there is enough quantity in stock
-                        if ($product->quantity >= $cartItem['quantity']) {
-                            // Decrease the product quantity
-                            $product->quantity -= $cartItem['quantity'];
-                            $product->save();
-    
-                            // Attach the product to the order
-                            $order->products()->attach($cartItem['product_id'], [
-                                'color' => $cartItem['color'],
-                                'size' => $cartItem['size'],
-                                'quantity' => $cartItem['quantity'],
-                                'price' => $cartItem['price'],
-                                'total' => $cartItem['total'],
-                            ]);
-                        } else {
-                            // Handle the case where the product quantity is insufficient
-                            throw new Exception('Insufficient product quantity in stock.');
+            $cardNumber = $request->card_number;
+            $expirationDate = $request->card_expiry;
+            $cvv = $request->card_cvc;
+
+            $customerInfo = User::whereId(auth()->user()->id)->firstOrFail();
+
+            // dd($request->all(), $customerInfo, Session::get('cart', []));
+
+            $invoice_number = 'BSSOI'.unique_id(11,11);
+
+            // Remove any non-numeric characters from the card number
+            $cleanedCardNumber = preg_replace('/\D/', '', $cardNumber);
+
+            $merchantAuthentication = new MerchantAuthenticationType();
+            $merchantAuthentication->setName(env('AUTHORIZENET_API_LOGIN_ID'));
+            $merchantAuthentication->setTransactionKey(env('AUTHORIZENET_TRANSACTION_KEY'));
+
+            $creditCard = new CreditCardType();
+            $creditCard->setCardNumber($cleanedCardNumber); // Use the cleaned card number
+            $creditCard->setExpirationDate($expirationDate);
+            $creditCard->setCardCode($cvv);
+
+            $payment = new PaymentType();
+            $payment->setCreditCard($creditCard);
+
+            $transactionRequestType = new TransactionRequestType();
+            $transactionRequestType->setTransactionType("authCaptureTransaction");
+            $transactionRequestType->setAmount($request->sub_total);
+            $transactionRequestType->setPayment($payment);
+
+            // Set order information
+            $description = 'New Order By '.$customerInfo->name.' For '.$request->name.'.';
+            $order = new OrderType();
+            $order->setInvoiceNumber($invoice_number);
+            $order->setDescription($description);
+            $transactionRequestType->setOrder($order);
+
+            // Set customer information
+            $customerData = new CustomerDataType();
+            $customerData->setId('Customer ID: '.$customerInfo->id);
+            $transactionRequestType->setCustomer($customerData);
+
+            // Set shipping information
+            $shippingInfo = new NameAndAddressType();
+            $shippingInfo->setFirstName($request->name);
+            $shippingInfo->setAddress($request->address);
+            $transactionRequestType->setShipTo($shippingInfo);
+
+            $tr_request = new CreateTransactionRequest();
+            $tr_request->setMerchantAuthentication($merchantAuthentication);
+            $tr_request->setRefId("ref" . time());
+            $tr_request->setTransactionRequest($transactionRequestType);
+
+            $controller = new CreateTransactionController($tr_request);
+            $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
+
+            if ($response != null) {
+                $trasactionReport = $response->getTransactionResponse();
+
+                if ($trasactionReport != null && ($trasactionReport->getResponseCode() == "1" || $trasactionReport->getResponseCode() == "4")) {
+                    // dd($response, $trasactionReport, $trasactionReport->getTransId());
+
+                    DB::transaction(function () use ($request, &$customerOrder, $invoice_number, $trasactionReport) {
+                        $customerOrder = new Order();
+                        $customerOrder->order_id = unique_id(11,11);
+                        $customerOrder->user_id = isset($request->user_id) ? decrypt($request->user_id) : auth()->user()->id;
+                        $customerOrder->total_price = $request->sub_total;
+                        $customerOrder->name = $request->input('name');
+                        $customerOrder->email = $request->input('email');
+                        $customerOrder->address = $request->input('address');
+                        $customerOrder->contact_number = $request->input('contact_number');
+                        $customerOrder->transaction_id = $trasactionReport->getTransId();
+                        $customerOrder->invoice_number = $invoice_number;
+                        $customerOrder->save();
+            
+                        $cartItems = Session::get('cart', []);
+                        foreach ($cartItems as $itemKey => $cartItem) {
+                            // Retrieve the product and check if it exists
+                            $product = Product::find($cartItem['product_id']);
+                            if ($product) {
+                                // Check if there is enough quantity in stock
+                                if ($product->quantity >= $cartItem['quantity']) {
+                                    // Decrease the product quantity
+                                    $product->quantity -= $cartItem['quantity'];
+                                    $product->save();
+            
+                                    // Attach the product to the order
+                                    $customerOrder->products()->attach($cartItem['product_id'], [
+                                        'color' => $cartItem['color'],
+                                        'size' => $cartItem['size'],
+                                        'quantity' => $cartItem['quantity'],
+                                        'price' => $cartItem['price'],
+                                        'total' => $cartItem['total'],
+                                    ]);
+                                } else {
+                                    // Handle the case where the product quantity is insufficient
+                                    throw new Exception('Insufficient product quantity in stock.');
+                                }
+                            } else {
+                                // Handle the case where the product does not exist
+                                throw new Exception('Product not found.');
+                            }
                         }
+                    }, 5);
+            
+                    if ($customerOrder) {
+                        // Clear the cart session data
+                        Session::forget('cart');
+            
+                        toast('Order Has Been Placed.','success');
+                        return redirect()->route('frontend.shop.order.show', ['order_id' => encrypt($customerOrder->order_id)]);
                     } else {
-                        // Handle the case where the product does not exist
-                        throw new Exception('Product not found.');
+                        throw new Exception('Order not found.');
                     }
+                } else {
+                    dd($response, $trasactionReport);
+                    alert('Payment Failed!', $response->getMessages()->getMessage()[0]->getText(), 'error');
+                    return redirect()->back()->withInput();
                 }
-            }, 5);
-    
-            if ($order) {
-                // Clear the cart session data
-                Session::forget('cart');
-    
-                toast('Order Has Been Placed.','success');
-                return redirect()->route('frontend.shop.order.show', ['order_id' => encrypt($order->order_id)]);
             } else {
-                throw new Exception('Order not found.');
+                return "Payment failed: " . $response->getMessages()->getMessage()[0]->getText();
             }
         } catch (Exception $e) {
             alert('Failed!', $e->getMessage(), 'error');
@@ -218,37 +301,5 @@ class ShopController extends Controller
 
         toast('The Cart Has Been Updated.','success');
         return redirect()->back();
-    }
-
-
-
-    // Generate a unique ID with a minimum and maximum length of 10 characters
-    private function generateUniqueID() {
-        $length = 10;
-        $timestampLength = 13; // Length of the timestamp in milliseconds
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-        // Get the current timestamp in milliseconds
-        $timestamp = round(microtime(true) * 1000);
-    
-        // Convert the timestamp to a string and remove the decimal point
-        $timestampString = str_replace('.', '', (string)$timestamp);
-    
-        // Calculate the number of characters needed to fill the remaining length
-        $charactersNeeded = $length - $timestampLength;
-    
-        // Ensure we have enough characters to fill the length
-        while (strlen($timestampString) < $charactersNeeded) {
-            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
-            $timestampString .= $randomCharacter;
-        }
-    
-        // Convert the timestamp to all capital letters
-        $timestampString = strtoupper($timestampString);
-    
-        // Combine the timestamp with the random characters and take the first $length characters
-        $uniqueID = substr($timestampString, 0, $length);
-    
-        return $uniqueID;
     }
 }

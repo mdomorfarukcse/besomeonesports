@@ -39,6 +39,12 @@
             <i class="feather icon-pen"></i>
             <b>Edit Event Info</b>
         </a>
+        @if (auth()->user()->can('event_registration.create'))
+            <a href="{{ route('administration.event.registration', ['event' => $event]) }}" class="btn btn-dark btn-outline-custom fw-bolder">
+                <i class="la la-check"></i>
+                <b>Register Now</b>
+            </a>
+        @endif
     @endsection
 @endif
 
@@ -192,9 +198,8 @@
                                     <th>Name</th>
                                     <th>Registered By</th>
                                     <th>Registered At</th>
-                                    @if (auth()->user()->can('event_registration.update')) 
-                                        <th>Transaction ID</th>
-                                    @endif
+                                    <th>Transaction ID</th>
+                                    <th>Invoice No</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -208,9 +213,12 @@
                                         </td>
                                         <td>{{ get_user_data($player->pivot->paid_by, 'name') }}</td>
                                         <td>{{ date_time_ago($player->pivot->created_at) }}</td>
-                                        @if (auth()->user()->can('event_registration.update')) 
+                                        @if (auth()->user()->id == $player->user->id || auth()->user()->can('event_registration.update')) 
                                             <td>
                                                 <code class="text-dark text-bold">{{ $player->pivot->transaction_id }}</code>
+                                            </td>
+                                            <td>
+                                                <code class="text-dark text-bold">{{ $player->pivot->invoice_number }}</code>
                                             </td>
                                         @endif
                                     </tr>
