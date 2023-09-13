@@ -25,8 +25,8 @@ class EventFactory extends Factory
         return [
             'season_id' => rand(1, 9),
             'sport_id' => rand(1, 9),
-            'name' => fake()->words(5, true),
-            'registration_fee' => fake()->randomDigit(),
+            'name' => fake()->words(3, true),
+            'registration_fee' => rand(199, 599),
             'start' => fake()->date(),
             'end' => fake()->date(),
             'description' => fake()->realText(2000),

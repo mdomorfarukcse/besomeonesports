@@ -19,11 +19,11 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => $this->generateUniqueID(). rand(111, 999). fake()->word(),
-            'name' => fake()->words(10, true),
+            'product_id' => unique_id(11,11). rand(111, 999). fake()->word(),
+            'name' => fake()->words(5, true),
             'quantity' => rand(10,200),
-            'purchase_price' => fake()->randomDigit(),
-            'price' => fake()->randomDigit(),
+            'purchase_price' => rand(100,299),
+            'price' => rand(299,599),
             'colors' => json_encode([fake()->safeColorName(), fake()->safeColorName(), fake()->safeColorName(), fake()->safeColorName()]),
             'sizes' => json_encode(['S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'FREE SIZE']),
             'description' => fake()->realText(200),
@@ -38,36 +38,5 @@ class ProductFactory extends Factory
             $categories = Category::inRandomOrder()->limit(rand(3,10))->get(); // Get 3 random categories
             $product->categories()->attach($categories);
         });
-    }
-
-
-    // Generate a unique ID with a minimum and maximum length of 10 characters
-    private function generateUniqueID() {
-        $length = 10;
-        $timestampLength = 13; // Length of the timestamp in milliseconds
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-        // Get the current timestamp in milliseconds
-        $timestamp = round(microtime(true) * 1000);
-    
-        // Convert the timestamp to a string and remove the decimal point
-        $timestampString = str_replace('.', '', (string)$timestamp);
-    
-        // Calculate the number of characters needed to fill the remaining length
-        $charactersNeeded = $length - $timestampLength;
-    
-        // Ensure we have enough characters to fill the length
-        while (strlen($timestampString) < $charactersNeeded) {
-            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
-            $timestampString .= $randomCharacter;
-        }
-    
-        // Convert the timestamp to all capital letters
-        $timestampString = strtoupper($timestampString);
-    
-        // Combine the timestamp with the random characters and take the first $length characters
-        $uniqueID = substr($timestampString, 0, $length);
-    
-        return $uniqueID;
     }
 }

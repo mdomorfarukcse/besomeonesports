@@ -29,7 +29,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['images', 'categories'])->paginate(12);
+        $products = Product::with(['images', 'categories'])->whereStatus('Active')->paginate(12);
         return view('frontend.shop.index', compact(['products']));
     }
 
