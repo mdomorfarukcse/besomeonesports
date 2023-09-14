@@ -31,7 +31,7 @@
 
 
 @section('breadcrumb_buttons')
-    <a href="#" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.profile.edit') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-pen"></i>
         <b>Edit Profile</b>
     </a>
