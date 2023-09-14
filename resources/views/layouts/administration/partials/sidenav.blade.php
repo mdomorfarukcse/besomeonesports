@@ -4,8 +4,8 @@
     <div class="sidebar">
         <!-- Start Logobar -->
         <div class="logobar">
-            <a href="#" class="logo logo-large"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
-            <a href="#" class="logo logo-small"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
+            <a href="{{ route('administration.dashboard.index') }}" class="logo logo-large"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
+            <a href="{{ route('administration.dashboard.index') }}" class="logo logo-small"><img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" alt="logo" /></a>
         </div>
         <!-- End Logobar -->
         <!-- Start Navigationbar -->
