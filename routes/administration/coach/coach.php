@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(CoachController::class)->prefix('coach')->name('coach.')->group(function () {
     Route::get('/', 'index')->name('index')->middleware(['can:coach.index']);
+    Route::get('/my', 'myCoaches')->name('my')->middleware(['role:player']);
     Route::get('/create', 'create')->name('create')->middleware(['can:coach.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:coach.create']);
     Route::get('/show/{coach}', 'show')->name('show')->middleware(['can:coach.show']);

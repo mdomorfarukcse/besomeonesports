@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
@@ -28,6 +29,37 @@ class CoachController extends Controller
                             ])->orderBy('created_at', 'desc')->get();
 
         return view('administration.coach.index', compact(['coaches']));
+    }
+    
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function myCoaches()
+    {
+        if (Auth::user()->hasRole('player')) {
+            // Get the player
+            $player = Auth::user()->player;
+
+            // Get the coaches associated with teams where the coach is the coach
+            $coaches = Coach::select(['id', 'user_id', 'coach_id', 'phone_number', 'status'])
+                                ->whereHas('teams', function ($team) use ($player) {
+                                    $team->whereHas('players', function ($query) use ($player) {
+                                        $query->where('players.id', $player->id);
+                                    });
+                                })
+                                ->with([
+                                    'user' => function ($user) {
+                                        $user->select(['id', 'name', 'email', 'avatar']);
+                                    }
+                                ])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
+        } else {
+            $coaches = NULL;
+        }
+        // dd($coaches);
+        return view('administration.coach.my', compact(['coaches']));
     }
 
     /**

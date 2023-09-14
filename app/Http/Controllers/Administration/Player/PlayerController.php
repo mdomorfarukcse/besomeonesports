@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Player\PlayerStoreRequest;
 use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
@@ -28,6 +29,34 @@ class PlayerController extends Controller
                             ])->orderBy('created_at', 'desc')->get();
 
         return view('administration.player.index', compact(['players']));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function myPlayers()
+    {
+        if (Auth::user()->hasRole('coach')) {
+            // Get the coach
+            $coach = Auth::user()->coach;
+            
+            // Get the players associated with teams where the coach is the coach
+            $players = Player::select(['id', 'user_id', 'player_id', 'contact_number', 'status'])
+            ->whereHas('teams', function ($team) use ($coach) {
+                $team->where('coach_id', $coach->id);
+            })
+            ->with([
+                'user' => function($user) {
+                    $user->select(['id', 'name', 'email', 'avatar']);
+                }
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();            
+        } else {
+            $players = NULL;
+        }
+
+        return view('administration.player.my', compact(['players']));
     }
 
     /**

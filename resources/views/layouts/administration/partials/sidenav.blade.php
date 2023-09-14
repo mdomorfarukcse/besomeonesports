@@ -108,6 +108,9 @@
                             @if (auth()->user()->can('player.index'))
                                 <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
                             @endif
+                            @if (auth()->user()->hasRole('coach'))
+                                <li><a href="{{ route('administration.player.my') }}">My Players</a></li>
+                            @endif
                             @if (auth()->user()->can('player.create'))
                                 <li><a href="{{ route('administration.player.create') }}">Add New Player</a></li>
                             @endif
@@ -125,6 +128,9 @@
                         <ul class="vertical-submenu">
                             @if (auth()->user()->can('coach.index'))
                                 <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
+                            @endif
+                            @if (auth()->user()->hasRole('player'))
+                                <li><a href="{{ route('administration.coach.my') }}">My Coaches</a></li>
                             @endif
                             @if (auth()->user()->can('coach.create'))
                                 <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>

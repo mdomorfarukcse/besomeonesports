@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(PlayerController::class)->prefix('player')->name('player.')->group(function () {
     Route::get('/', 'index')->name('index')->middleware(['can:player.index']);
+    Route::get('/my', 'myPlayers')->name('my')->middleware(['role:coach']);
     Route::get('/create', 'create')->name('create')->middleware(['can:player.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:player.create']);
     Route::get('/show/{player}', 'show')->name('show')->middleware(['can:player.show']);
