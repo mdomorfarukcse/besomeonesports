@@ -128,6 +128,18 @@ class RolesTableSeeder extends Seeder
                     'schedule.show',
                     'schedule.update',
                     'schedule.destroy',
+
+                    'blog.index',
+                    'blog.create',
+                    'blog.show',
+                    'blog.update',
+                    'blog.destroy',
+                    
+                    'news.index',
+                    'news.create',
+                    'news.show',
+                    'news.update',
+                    'news.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -220,6 +232,18 @@ class RolesTableSeeder extends Seeder
                     'schedule.show',
                     'schedule.update',
                     'schedule.destroy',
+
+                    'blog.index',
+                    'blog.create',
+                    'blog.show',
+                    'blog.update',
+                    'blog.destroy',
+                    
+                    'news.index',
+                    'news.create',
+                    'news.show',
+                    'news.update',
+                    'news.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [

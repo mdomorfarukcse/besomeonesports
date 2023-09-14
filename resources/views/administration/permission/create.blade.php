@@ -71,6 +71,7 @@
                                                 <option value="division">Division</option>
                                                 <option value="event">Event</option>
                                                 <option value="faq">Faq</option>
+                                                <option value="news">News</option>
                                                 <option value="player">Player</option>
                                                 <option value="schedule">Schedule</option>
                                                 <option value="season">Season</option>

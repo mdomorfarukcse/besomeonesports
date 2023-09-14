@@ -14,6 +14,8 @@ class PermissionsTableSeeder extends Seeder
     public function run(): void
     {
         $groups = [
+            'blog',
+            'news',
             'sport',
             'venue',
             'court',

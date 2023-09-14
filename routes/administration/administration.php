@@ -68,6 +68,9 @@ Route::prefix('administration')
             // Blog
             include_once 'blog/blog.php';
 
+            // News
+            include_once 'news/news.php';
+
             
 
         });
