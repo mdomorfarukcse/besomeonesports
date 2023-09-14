@@ -61,9 +61,9 @@
                                                 </a>
                                             </li>
                                             <li class="media dropdown-item">
-                                                <a href="#" class="profile-icon">
-                                                    <i class="feather icon-settings"></i>
-                                                    Settings
+                                                <a href="{{ route('administration.profile.security') }}" class="profile-icon">
+                                                    <i class="feather icon-lock"></i>
+                                                    Security
                                                 </a>
                                             </li>
                                             <li class="media dropdown-item">

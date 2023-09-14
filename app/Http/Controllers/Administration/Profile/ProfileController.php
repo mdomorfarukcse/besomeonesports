@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Administration\Profile;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -21,19 +24,49 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for security.
      */
-    public function create()
+    public function security()
     {
-        //
+        return view('administration.profile.security');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Update Password
      */
-    public function store(Request $request)
+    public function passwordUpdate(Request $request, User $user)
     {
-        //
+        // dd($request->all(), $user);
+        // Validate the request data
+        $request->validate([
+            'old_password' => [
+                'required',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        $fail('The old password is incorrect.');
+                    }
+                },
+            ],
+            'new_password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                Rule::notIn([$request->input('old_password')]),
+            ],
+        ], [
+            'new_password.not_in' => 'The new password must not be the same as the old password.',
+        ]);
+
+        try{
+            $user->update([
+                'password' => Hash::make($request->input('new_password')),
+            ]);
+
+            toast('Password Has Been Updated.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+            throw new Exception('Password Didn\'t Update.');
+        }
     }
 
     /**
