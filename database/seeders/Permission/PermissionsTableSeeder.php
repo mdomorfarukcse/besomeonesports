@@ -15,11 +15,12 @@ class PermissionsTableSeeder extends Seeder
     {
         $groups = [
             'blog',
-            'news',
             'sport',
             'venue',
             'court',
             'coach',
+            'gallery',
+            'news',
             'player',
             'division',
             'season',
@@ -33,6 +34,7 @@ class PermissionsTableSeeder extends Seeder
             'shop_product',
             'shop_category',
             'schedule',
+            'sponsor',
         ];
 
         foreach ($groups as $group) {

@@ -140,6 +140,18 @@ class RolesTableSeeder extends Seeder
                     'news.show',
                     'news.update',
                     'news.destroy',
+
+                    'sponsor.index',
+                    'sponsor.create',
+                    'sponsor.show',
+                    'sponsor.update',
+                    'sponsor.destroy',
+
+                    'gallery.index',
+                    'gallery.create',
+                    'gallery.show',
+                    'gallery.update',
+                    'gallery.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -244,6 +256,18 @@ class RolesTableSeeder extends Seeder
                     'news.show',
                     'news.update',
                     'news.destroy',
+
+                    'sponsor.index',
+                    'sponsor.create',
+                    'sponsor.show',
+                    'sponsor.update',
+                    'sponsor.destroy',
+
+                    'gallery.index',
+                    'gallery.create',
+                    'gallery.show',
+                    'gallery.update',
+                    'gallery.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [
