@@ -35,11 +35,11 @@ class PlayerStoreRequest extends FormRequest
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
             "extended_address" => ['string', 'max:100'],
-            "position" => ['required', 'string'],
+            "position" => ['nullable', 'string'],
             "height" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             "weight" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             "note" => ['nullable', 'string'],
-            "status" => ['required','in:Active,Inactive'],
+            "status" => ['required','in:Active,Inactive,Banned'],
 
             // Parents Info
             "father_name" => ['required', 'string'],

@@ -26,7 +26,7 @@ class CoachStoreRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             "position" => ['required'],
-            "status" => ['required','in:Active,Inactive'],
+            "status" => ['required','in:Active,Inactive,Banned'],
             "first_name" => ['required', 'max:50'],
             "middle_name" => ['nullable', 'string', 'max:50'],
             "last_name" => ['required', 'max:50'],

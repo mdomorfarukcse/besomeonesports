@@ -95,11 +95,11 @@ class ProfileController extends Controller
             DB::transaction(function() use ($request, $player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_avatar($request, 'avatar');
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
                 $user->name = $playerName;
                 if (isset($request->avatar)) {
+                    $avatar = upload_avatar($request, 'avatar');
                     $user->avatar = $avatar;
                 }
                 $user->save();
@@ -158,12 +158,12 @@ class ProfileController extends Controller
             DB::transaction(function() use ($request, $coach) {
                 $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
 
-                $avatar = upload_avatar($request, 'avatar');
                 // Store Credentials into User
                 $user = User::whereId($coach->user_id)->firstOrFail();
-
+                
                 $user->name = $coachName;
                 if (isset($request->avatar)) {
+                    $avatar = upload_avatar($request, 'avatar');
                     $user->avatar = $avatar;
                 }
                 $user->save();

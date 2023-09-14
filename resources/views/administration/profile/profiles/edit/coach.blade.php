@@ -9,6 +9,20 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    @if ($errors->any())
+                        <div class="col-12">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>
+                                        <b class="text-danger">
+                                            <i class="feather icon-info mr-1"></i>
+                                            {{ $error }}
+                                        </b>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
@@ -16,7 +30,11 @@
                                 <label for="coachAvatar"></label>
                             </div>
                             <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url({{ show_avatar($profile->avatar) }});"></div>
+                                @if (is_null($profile->avatar))
+                                    <div id="imagePreview" style="background-image: url('https://fakeimg.pl/500x500');"></div>
+                                @else
+                                    <div id="imagePreview" style="background-image: url({{ show_avatar($profile->avatar) }});"></div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -98,8 +116,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="extended_address">Extended Address</label>
-                                        <input type="text" name="extended_address" value="{{ $profile->coach->extended_address }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
+                                        <label for="extended_address">Extended Address <span class="required">*</span></label>
+                                        <input type="text" name="extended_address" value="{{ $profile->coach->extended_address }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
                                         @error('extended_address')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror

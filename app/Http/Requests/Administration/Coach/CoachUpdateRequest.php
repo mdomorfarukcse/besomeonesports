@@ -23,7 +23,7 @@ class CoachUpdateRequest extends FormRequest
     {
         return [
             "position" => ['required', 'string'],
-            "status" => ['required','in:Active,Inactive'],
+            "status" => ['required','in:Active,Inactive,Banned'],
             "first_name" => ['required', 'max:50'],
             "middle_name" => ['nullable', 'string', 'max:50'],
             "last_name" => ['required', 'max:50'],

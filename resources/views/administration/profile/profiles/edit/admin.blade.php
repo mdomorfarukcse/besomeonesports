@@ -7,6 +7,20 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    @if ($errors->any())
+                        <div class="col-12">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>
+                                        <b class="text-danger">
+                                            <i class="feather icon-info mr-1"></i>
+                                            {{ $error }}
+                                        </b>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
@@ -14,7 +28,11 @@
                                 <label for="userAvatar"></label>
                             </div>
                             <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url({{ show_avatar($profile->avatar) }});"></div>
+                                @if (is_null($profile->avatar))
+                                    <div id="imagePreview" style="background-image: url('https://fakeimg.pl/500x500');"></div>
+                                @else
+                                    <div id="imagePreview" style="background-image: url({{ show_avatar($profile->avatar) }});"></div>
+                                @endif
                             </div>
                         </div>
                     </div>
