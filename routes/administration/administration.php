@@ -65,6 +65,9 @@ Route::prefix('administration')
             // Permission
             include_once 'permission/permission.php';
 
+            // Blog
+            include_once 'blog/blog.php';
+
             
 
         });

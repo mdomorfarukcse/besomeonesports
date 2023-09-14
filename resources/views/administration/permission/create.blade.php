@@ -64,6 +64,7 @@
                                             <label for="group_name">Group Name <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('group_name') is-invalid @enderror" name="group_name" required>
                                                 <option value=""  selected>Select Group</option>
+                                                <option value="blog">Blog</option>
                                                 <option value="chat">Chat</option>
                                                 <option value="coach">Coach</option>
                                                 <option value="dashboard">Dashbaord</option>
