@@ -337,12 +337,12 @@
                                             <label for="guardian_relation">Relation With Guardian <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" required>
                                                 <option value="">Select Relation</option>
-                                                <option value="Father" @if ($player->guardian_relation === 'Father') selected @endif>Father</option>
-                                                <option value="Mother" @if ($player->guardian_relation === 'Mother') selected @endif>Mother</option>
-                                                <option value="Brother" @if ($player->guardian_relation === 'Brother') selected @endif>Brother</option>
-                                                <option value="Sister" @if ($player->guardian_relation === 'Sister') selected @endif>Sister</option>
-                                                <option value="Uncle" @if ($player->guardian_relation === 'Uncle') selected @endif>Uncle</option>
-                                                <option value="Aunty" @if ($player->guardian_relation === 'Aunty') selected @endif>Aunty</option>
+                                                <option value="Father" @selected($player->guardian_relation === 'Father')>Father</option>
+                                                <option value="Mother" @selected($player->guardian_relation === 'Mother')>Mother</option>
+                                                <option value="Brother" @selected($player->guardian_relation === 'Brother')>Brother</option>
+                                                <option value="Sister" @selected($player->guardian_relation === 'Sister')>Sister</option>
+                                                <option value="Uncle" @selected($player->guardian_relation === 'Uncle')>Uncle</option>
+                                                <option value="Aunty" @selected($player->guardian_relation === 'Aunty')>Aunty</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

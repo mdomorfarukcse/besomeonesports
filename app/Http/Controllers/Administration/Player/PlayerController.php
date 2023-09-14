@@ -139,6 +139,7 @@ class PlayerController extends Controller
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
                 $avatar = upload_avatar($request, 'avatar');
+                // dd($request->all(), $avatar);
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
                 $user->name = $playerName;
