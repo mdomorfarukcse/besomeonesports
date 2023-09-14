@@ -24,6 +24,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'birthdate' => fake()->date(),
+            'contact_number' => fake()->phoneNumber(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->words(2, true),
+            'postal_code' => fake()->postcode(),
         ]);
         // Assign a role to the developer
         $developerRole = Role::findByName('developer');
@@ -37,6 +43,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'birthdate' => fake()->date(),
+            'contact_number' => fake()->phoneNumber(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->words(2, true),
+            'postal_code' => fake()->postcode(),
         ]);
         // Assign a role to the admin
         $adminRole = Role::findByName('admin');
@@ -116,6 +128,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'birthdate' => fake()->date(),
+            'contact_number' => fake()->phoneNumber(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->words(2, true),
+            'postal_code' => fake()->postcode(),
         ]);
         // Assign a role to the user
         $userRole = Role::findByName('user');
