@@ -118,9 +118,9 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
+                <button type="submit" class="btn btn-dark btn-outline-custom float-right">
                     <i class="feather icon-plus mr-1"></i>
-                    <span class="text-bold">Update Coach</span>
+                    <span class="text-bold">Update Profile</span>
                 </button>
             </div>
         </div>

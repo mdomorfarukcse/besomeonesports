@@ -35,6 +35,24 @@
                                                 <th>Contact</th>
                                                 <td>{{ $profile->contact_number }}</td>
                                             </tr>
+                                            <tr>
+                                                <th>Birthdate</th>
+                                                <td>{{ show_date($profile->birthdate) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address</th>
+                                                <td>
+                                                    <address class="mb-0">
+                                                        Post: {{ $profile->postal_code }}
+                                                        <br>    
+                                                        City: {{ $profile->city }}
+                                                        <br>    
+                                                        State: {{ $profile->state }}
+                                                        <br>
+                                                        Street Address: {{ $profile->address }}
+                                                    </address>    
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

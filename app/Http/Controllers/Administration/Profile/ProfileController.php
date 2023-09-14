@@ -194,4 +194,96 @@ class ProfileController extends Controller
             return redirect()->back()->withInput();
         }
     }
+    
+
+    /**
+     * Update the Admin / Developer.
+     */
+    public function adminUpdate(Request $request, User $user)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user),
+            ],
+            'contact_number' => 'required|string',
+            'birthdate' => 'required|date|date_format:Y-m-d',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'postal_code' => 'required|string',
+            'address' => 'required|string',
+        ]);
+
+        // dd($request->all(), $user);
+        try {
+            if (isset($request->avatar)) {
+                $avatar = upload_avatar($request, 'avatar');
+                $user->avatar = $avatar;
+            }
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->contact_number = $request->contact_number;
+            $user->birthdate = $request->birthdate;
+            $user->city = $request->city;
+            $user->state = $request->state;
+            $user->postal_code = $request->postal_code;
+            $user->address = $request->address;
+
+            $user->save();
+
+            toast('Profile Has Been Updated.','success');
+            return redirect()->route('administration.profile.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
+    
+
+    /**
+     * Update the User.
+     */
+    public function userUpdate(Request $request, User $user)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string',
+            'contact_number' => 'required|string',
+            'birthdate' => 'required|date|date_format:Y-m-d',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'postal_code' => 'required|string',
+            'address' => 'required|string',
+        ]);
+
+        // dd($request->all(), $user);
+        try {
+            if (isset($request->avatar)) {
+                $avatar = upload_avatar($request, 'avatar');
+                $user->avatar = $avatar;
+            }
+
+            $user->name = $request->name;
+            $user->contact_number = $request->contact_number;
+            $user->birthdate = $request->birthdate;
+            $user->city = $request->city;
+            $user->state = $request->state;
+            $user->postal_code = $request->postal_code;
+            $user->address = $request->address;
+
+            $user->save();
+
+            toast('Profile Has Been Updated.','success');
+            return redirect()->route('administration.profile.index');
+        } catch (Exception $e) {
+            dd($e);
+            alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
 }

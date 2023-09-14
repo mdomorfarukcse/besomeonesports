@@ -230,7 +230,7 @@
             <div class="card-footer">
                 <button type="submit" class="btn btn-dark btn-outline-custom float-right">
                     <i class="feather icon-plus mr-1"></i>
-                    <span class="text-bold">Update Player</span>
+                    <span class="text-bold">Update Profile</span>
                 </button>
             </div>
         </div>
