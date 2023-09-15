@@ -46,70 +46,70 @@
     @endphp
 <!-- Start Section -->
 <section class="dashboard-section">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <a href="{{ route('administration.team.index') }}" class="media">
-                        <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
-                            <i class="sl-icon-people"></i>
-                        </span>
-                        <div class="media-body">
-                            <p class="mb-0 text-muted">Active Teams</p>
-                            <h5 class="mb-0 text-bold">{{ $total['teams'] }}</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <a href="{{ route('administration.event.index') }}" class="media">
-                        <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
-                            <i class="sl-icon-trophy"></i>
-                        </span>
-                        <div class="media-body">
-                            <p class="mb-0 text-muted">Active Events</p>
-                            <h5 class="mb-0 text-bold">{{ $total['events'] }}</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <a href="{{ route('administration.sport.index') }}" class="media">
-                        <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
-                            <i class="sl-icon-game-controller"></i>
-                        </span>
-                        <div class="media-body">
-                            <p class="mb-0 text-muted">Active Sports</p>
-                            <h5 class="mb-0 text-bold">{{ $total['sports'] }}</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <a href="{{ route('administration.player.index') }}" class="media">
-                        <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
-                            <i class="sl-icon-user"></i>
-                        </span>
-                        <div class="media-body">
-                            <p class="mb-0 text-muted">Active Players</p>
-                            <h5 class="mb-0 text-bold">{{ $total['players'] }}</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     @role('admin|developer')
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <a href="{{ route('administration.team.index') }}" class="media">
+                            <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
+                                <i class="sl-icon-people"></i>
+                            </span>
+                            <div class="media-body">
+                                <p class="mb-0 text-muted">Active Teams</p>
+                                <h5 class="mb-0 text-bold">{{ $total['teams'] }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <a href="{{ route('administration.event.index') }}" class="media">
+                            <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
+                                <i class="sl-icon-trophy"></i>
+                            </span>
+                            <div class="media-body">
+                                <p class="mb-0 text-muted">Active Events</p>
+                                <h5 class="mb-0 text-bold">{{ $total['events'] }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <a href="{{ route('administration.sport.index') }}" class="media">
+                            <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
+                                <i class="sl-icon-game-controller"></i>
+                            </span>
+                            <div class="media-body">
+                                <p class="mb-0 text-muted">Active Sports</p>
+                                <h5 class="mb-0 text-bold">{{ $total['sports'] }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <a href="{{ route('administration.player.index') }}" class="media">
+                            <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
+                                <i class="sl-icon-user"></i>
+                            </span>
+                            <div class="media-body">
+                                <p class="mb-0 text-muted">Active Players</p>
+                                <h5 class="mb-0 text-bold">{{ $total['players'] }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="card m-b-30">
