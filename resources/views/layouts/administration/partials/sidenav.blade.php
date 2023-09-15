@@ -313,7 +313,8 @@
                             <li><a href="{{ route('administration.news.index') }}">News</a></li>
                             <li><a href="{{ route('administration.faq.index') }}">Faqs</a></li>
                             <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
-                            <li><a href="{{ route('administration.gallery.index') }}">Galleries</a></li>
+                            <li><a href="{{ route('administration.gallery.index') }}">Gallery</a></li>
+                            <li><a href="{{ route('administration.video.index') }}">Video</a></li>
                         </ul>
                     </li>
                 @endrole

@@ -74,6 +74,9 @@ Route::prefix('administration')
             // Gallery
             include_once 'gallery/gallery.php';
 
+            // Video
+            include_once 'video/video.php';
+
             
 
         });

@@ -35,6 +35,7 @@ class PermissionsTableSeeder extends Seeder
             'shop_category',
             'schedule',
             'sponsor',
+            'video',
         ];
 
         foreach ($groups as $group) {
