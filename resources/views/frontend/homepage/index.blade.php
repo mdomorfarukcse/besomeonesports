@@ -18,6 +18,9 @@
         .breadcrumb-section {
             display: none;
         }
+        .slider-banner .cover {
+            background-color: #11347985 !important;
+        }
     </style>
 @endsection
 
