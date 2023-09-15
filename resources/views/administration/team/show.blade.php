@@ -76,6 +76,13 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
                                             <tbody>
+                                                <tr class="text-center">
+                                                    <td colspan="2">
+                                                        <div class="user-avatar">
+                                                            <img src="{{ show_avatar($team->logo) }}" alt="team Logo" class="img-thumbnail" width="250">
+                                                        </div>    
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <th>Team ID</th>
                                                     <td class="text-info text-bold">{{ $team->team_id }}</td>

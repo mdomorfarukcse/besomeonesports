@@ -31,6 +31,8 @@ return new class extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
 
+            $table->string('logo')->nullable();
+
             $table->string('name', 100);
             $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
             $table->tinyInteger('maximum_players');

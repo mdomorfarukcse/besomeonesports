@@ -41,7 +41,6 @@ if (!function_exists('show_avatar')) {
         }
 
         // If no avatar is specified, return a default avatar URL here.
-        // Replace 'path_to_default_avatar_image' with the actual path to your default avatar image.
-        return asset('path_to_default_avatar_image');
+        return 'https://fakeimg.pl/200x200';
     }
 }

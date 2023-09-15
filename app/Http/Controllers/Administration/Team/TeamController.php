@@ -64,13 +64,17 @@ class TeamController extends Controller
     public function store(TeamStoreRequest $request)
     {
         // dd($request);
-        try{           
+        try{
             $team = new Team();
 
             $team->team_id = $request->team_id;
             $team->event_id = $request->event_id;
             $team->division_id = $request->division_id;
             $team->coach_id = $request->coach_id;
+            if (isset($request->logo)) {
+                $logo = upload_avatar($request, 'logo');
+                $team->logo = $logo;
+            }
             $team->name = $request->name;
             $team->gender = $request->gender;
             $team->maximum_players = $request->maximum_players;
@@ -126,6 +130,10 @@ class TeamController extends Controller
     {
         // dd($request);
         try{
+            if (isset($request->logo)) {
+                $logo = upload_avatar($request, 'logo');
+                $team->logo = $logo;
+            }
             $team->event_id = $request->event_id;
             $team->division_id = $request->division_id;
             $team->coach_id = $request->coach_id;
