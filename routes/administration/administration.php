@@ -71,6 +71,9 @@ Route::prefix('administration')
             // News
             include_once 'news/news.php';
 
+            // Gallery
+            include_once 'gallery/gallery.php';
+
             
 
         });
