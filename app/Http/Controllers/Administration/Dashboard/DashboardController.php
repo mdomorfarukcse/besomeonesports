@@ -39,6 +39,7 @@ class DashboardController extends Controller
         ];
 
         $upcomingEvents = Event::whereDate('start', '>', now())
+                                ->whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
 
