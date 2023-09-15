@@ -210,4 +210,41 @@ class ScheduleController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+
+    public function resultUpdate(Request $request, Schedule $schedule) {
+        $request->validate([
+            'score' => 'required|array',
+            'score.*' => 'required|numeric|min:0',
+        ]);
+        if ($request->winner != 'Draw') {
+            $request->validate([
+                'winner' => 'required|integer|exists:teams,id',
+            ]);
+        }
+        // dd($request->all(), $schedule);
+
+        
+        try {
+            DB::transaction(function() use ($request, $schedule) {
+                // Update the scores for teams in the pivot table
+                foreach ($request->input('score') as $teamId => $teamScore) {
+                    $schedule->teams()->updateExistingPivot($teamId, ['score' => $teamScore]);
+                }
+
+                if ($request->winner != 'Draw') {
+                    $schedule->team_id = $request->winner;
+                }
+                $schedule->status = 'Completed';
+                $schedule->save();
+            }, 5);
+
+            toast('Result updated successfully.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Failed to update the Result.', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
+    }
 }

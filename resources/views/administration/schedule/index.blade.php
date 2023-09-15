@@ -83,12 +83,18 @@
                                     <td class="text-center">
                                         <a href="{{ route('administration.team.show', ['team', $schedule->teams[0]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
                                             {{ $schedule->teams[0]->name }}
+                                            @if ($schedule->team_id == $schedule->teams[0]->id)
+                                                <i class="feather icon-check text-success"></i>
+                                            @endif
                                         </a>
                                         <br>
                                         <span class="badge badge-info">VS</span>
                                         <br>
                                         <a href="{{ route('administration.team.show', ['team', $schedule->teams[1]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
                                             {{ $schedule->teams[1]->name }}
+                                            @if ($schedule->team_id == $schedule->teams[1]->id)
+                                                <i class="feather icon-check text-success"></i>
+                                            @endif
                                         </a>
                                     </td>
                                     <td>

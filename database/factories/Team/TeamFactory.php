@@ -23,7 +23,7 @@ class TeamFactory extends Factory
             'event_id' => rand(1, 10),
             'division_id' => rand(1, 9),
             'coach_id' => rand(1, 9),
-            'name' => fake()->words(5, true),
+            'name' => ucfirst(fake()->words(3, true)),
             'gender' => fake()->randomElement(['Male','Female','Other']),
             'maximum_players' => rand(10, 15),
             'description' => fake()->realText(200),
