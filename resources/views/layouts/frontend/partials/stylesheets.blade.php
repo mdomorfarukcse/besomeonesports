@@ -41,7 +41,9 @@
         transform: rotate(-90deg);
     } 
     
-
+    footer .comon-news {
+        display: inline-block !important;
+    }
 </style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>
 

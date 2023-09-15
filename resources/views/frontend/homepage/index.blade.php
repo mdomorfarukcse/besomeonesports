@@ -21,6 +21,24 @@
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
+        .ads-all-list {
+            padding: 0px 0px;
+            position: relative;
+            float: left;
+            width: 100%;
+            margin: 10px 0px;
+        }
+        .ads-box span, .ban-ati-com span {
+            position: absolute;
+            background: #F44336;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 3px;
+            border-radius: 2px;
+        }
+        .ban-ati-com a img {
+            width: 100%;
+        }
     </style>
 @endsection
 
@@ -77,12 +95,25 @@
             <img src="{{ asset('frontend/images/h1-bottom-background-image.png') }}" alt="pnm" />
         </div>
     </section>
-
+    <section class="ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ban-ati-com ads-all-list">
+                        <a href="#">
+                            <span>Ad</span>
+                            <img src="https://unsplash.it/g/1100/100" height="100" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="float-start w-100 ">
         <div class="about-sec-home">
             <div class="container">
                 <div class="row row-cols-1 row-cols-lg-2 align-items-center">
-                    <div class="col">
+                    <div class="col-md-6">
                         <h5>Our Club</h5>
                         <h1>About the <span> Be Someone Sports </span></h1>
                         <p class="my-3">
@@ -109,9 +140,9 @@
                             About More
                         </a>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <figure class="m-0 right-ab0">
-                            <img src="{{ asset('frontend/images/home_about.png') }}" alt="pbm" />
+                            <img src="{{ asset('frontend/images/besomeonesport_about.jpg') }}" alt="pbm" />
                         </figure>
                     </div>
                 </div>
@@ -127,87 +158,35 @@
 
                 <div class="col-lg-9 mt-5 mx-auto">
                     <div class="next-matchu mt-4">
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> June 05- August 04, 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        Be Someone Sports Summer Basketball Leauge
-                                                    </h6>
+                        @foreach ($upcomingEvents as $key => $event)
+                            <div class="comon-matchbn">
+                                <div class="topikn-div">
+                                    <div class="more-details-div d-md-flex align-items-center">
+                                        <h5 class="m-0">
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($event->start) }} - {{ show_date($event->end) }}
+                                        </h5>
+                                        <h6>/ {{ $event->sport->name }}</h6>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-8">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-12">
+                                                    <div class="cul-div">
+                                                        <h6>
+                                                            {{ $event->name }}
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -230,223 +209,53 @@
                 <div id="products" class="mt-4">
                     <div class="d-none d-md-block">
                         <div class="row g-lg-4 justify-content-between">
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
+
+                            @foreach ($products as $keys => $product)
+                                <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
+                                    <div class="comon-items-d1">
+                                        <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
+                                            <figure class="mb-0">
+                                                @if ($product->images->count() > 0)
+                                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
+                                                @else
+                                                    <p>No images available</p>
+                                                @endif
+                                            </figure>
+                                        </a>
+                    
+                                        <div class="right-list-div ">
+                                            <div class="d-flex mb-1 justify-content-between align-items-center">
+                                                <h6 class="locations-ts">
+                                                    <i class="fas fa-tags"></i> 
+                                                    @foreach ($product->categories as $category) 
+                                                        <a href="#" class="category">
+                                                            {{ print_one_line($category->name, 20) }}
+                                                        </a>
+                                                    @endforeach
+                                                </h6>
+                                            </div>
+                                            <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="titel-product">
+                                                {{ print_one_line($product->name) }}
+                                            </a>
+
+                                            <p>
+                                                {{ print_one_line($product->description, 110) }}
+                                            </p>
+                                            <h2>${{ $product->price }}</h2>
+                                            <div class="d-flex mt-3 align-items-center justify-content-between">
+                                                <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn view-products mt-0">
+                                                    Add To Cart
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                                                        />
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
-                                <div class="comon-items-d1">
-                                    <a href="#" class="left-div-list">
-                                        <figure class="mb-0">
-                                            <img src="{{ asset('frontend/images/botsman1.png') }}" alt="sm" />
-                                        </figure>
-                                    </a>
-                
-                                    <div class="right-list-div ">
-                                        <div class="d-flex mb-1 justify-content-between align-items-center">
-                                            <h6 class="locations-ts"><i class="fas fa-tags"></i> LIMITED EDITION</h6>
-                                        </div>
-                                        <a href="#" class="titel-product"> Houston R: matching warm up shirt, hoodie, backpack, sleeves, parent T-shirt, and coach T-shirt</a>
-                                        <h2>$ 20</h2>
-                                        <div class="d-flex mt-3 align-items-center justify-content-between">
-                                            <button type="button" class="btn view-products mt-0">
-                                                Add To Cart
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -475,8 +284,8 @@
                                 <img src="{{ asset('frontend/images/819590.png') }}" alt="pnbm" />
                             </figure>
                             <div class="right-dibvb">
-                                <h2>781 +</h2>
-                                <h6>Matches Winery</h6>
+                                <h2>{{ $total['events'] }} +</h2>
+                                <h6>Total Leagues</h6>
                             </div>
                         </div>
                     </div>
@@ -486,8 +295,8 @@
                                 <img src="{{ asset('frontend/images/8964688.png') }}" alt="pnbm" />
                             </figure>
                             <div class="right-dibvb">
-                                <h2>1200 +</h2>
-                                <h6>Team Member</h6>
+                                <h2>{{ $total['players'] }} +</h2>
+                                <h6>Players</h6>
                             </div>
                         </div>
                     </div>
@@ -498,7 +307,7 @@
                                 <img src="{{ asset('frontend/images/33838.png') }}" alt="pnbm" />
                             </figure>
                             <div class="right-dibvb">
-                                <h2>10 +</h2>
+                                <h2>{{ $total['coaches'] }} +</h2>
                                 <h6>Trained Coaches</h6>
                             </div>
                         </div>
@@ -510,8 +319,8 @@
                                 <img src="{{ asset('frontend/images/1851036.png') }}" alt="pnbm" />
                             </figure>
                             <div class="right-dibvb">
-                                <h2>15 +</h2>
-                                <h6>Award</h6>
+                                <h2>{{ $total['teams'] }} +</h2>
+                                <h6>Teams</h6>
                             </div>
                         </div>
                     </div>
@@ -537,103 +346,50 @@
                     <h1>Our <span> Latest Media </span></h1>
                 </div>
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2834917.webp') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2834917.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk"
-                            href="{{ asset('frontend/images/basketball-professional-action-player-163423.jpg') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/basketball-professional-action-player-163423.jpg') }}"
-                                    alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-974502.webp') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-974502.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2116469.webp') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2116469.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk"
-                            href="{{ asset('frontend/images/football-american-football-quarterback-runner-163439.jpg') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/football-american-football-quarterback-runner-163439.jpg') }}"
-                                    alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-974501.webp') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-974501.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-934083.webp') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-934083.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2874717.jpg') }}"
-                            class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2874717.jpg') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
+                    @foreach ($galleries as $key => $gallery )
+                        <div class="col">
+                            <a data-fancybox="{{ $gallery->name }}" href="{{ show_avatar($gallery->avatar) }}"
+                                class="comon-links-divb05">
+                                <figure>
+                                    <img src="{{ show_avatar($gallery->avatar) }}" alt="{{ $gallery->name }}" />
+                                    <figcaption>
+                                        {{ $gallery->name }}
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="float-start w-100">
+        <div class="mediasection d-inline-block w-100">
+            <div class="container">
+                <div class="mindle-heading text-center">
+                    <h5>Videos</h5>
+                    <h1>Our <span> Latest Video </span></h1>
+                </div>
+                <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
+                    @foreach ($videos as $key => $video )
+                        <div class="col-md-6">
+                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}">
+                            </iframe>
+                        </div>
+                        @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ban-ati-com ads-all-list">
+                        <a href="#">
+                            <span>Ad</span>
+                            <img src="https://unsplash.it/g/1100/100" height="100" alt="" />
                         </a>
                     </div>
                 </div>

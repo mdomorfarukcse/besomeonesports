@@ -6,6 +6,7 @@
                     <a href="#" class="col-lg-5 col-lg-offset-2">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="logo"/>
                     </a>
+                    <p class="col-lg-8 ms-md-4 mt-4 mt-md-0 text-white spt"> At Be Someone Sports, our missions is to inspire and empower individuals to achieve their full potential through sports</p>
                 </div>
                 <div class="support-section mt-4">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 g-4 g-lg-5">
@@ -19,29 +20,41 @@
                                     </svg>
                                 </figure>
                                 <div class="comnlink ms-3">
-                                    <h6 class="m-0">JOIN OUR TEAM</h6>
-                                    <a href="#"> example@gmail.org </a>
+                                    <h6 class="m-0">Call Us</h6>
+                                    <a href="#"> 832-421-2895 </a>
                                 </div>
                             </div>
                         </div>
-
-                        
+                
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <figure class="m-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-paper" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 0a2 2 0 0 0-2 2v1.133l-.941.502A2 2 0 0 0 0 5.4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4a2 2 0 0 0-1.059-1.765L14 3.133V2a2 2 0 0 0-2-2H4Zm10 4.267.47.25A1 1 0 0 1 15 5.4v.817l-1 .6v-2.55Zm-1 3.15-3.75 2.25L8 8.917l-1.25.75L3 7.417V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v5.417Zm-11-.6-1-.6V5.4a1 1 0 0 1 .53-.882L2 4.267v2.55Zm13 .566v5.734l-4.778-2.867L15 7.383Zm-.035 6.88A1 1 0 0 1 14 15H2a1 1 0 0 1-.965-.738L8 10.083l6.965 4.18ZM1 13.116V7.383l4.778 2.867L1 13.117Z"
+                                        ></path>
+                                    </svg>
+                                </figure>
+                                <div class="comnlink ms-3">
+                                    <h6 class="m-0">CONTACT US</h6>
+                                    <a href="mailto:Info@besomeonesports.com"> Info@besomeonesports.com </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
 
                 <div class="get-intouch-div mt-4 d-flex align-items-center justify-content-between">
                     <ul>
                         <li>
-                            <a href="#" class="btn btn-socal-1">
+                            <a href="https://www.facebook.com/Besomeonesports/" class="btn btn-socal-1">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="btn btn-socal-1">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://www.youtube.com/channel/UC5g7c2iTr6Kj3iHsFJs4hRQ" class="btn btn-socal-1">
+                                <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="#" class="btn btn-socal-1">
-                                <i class="fab fa-google-plus-g"></i>
-                            </a>
-                            <a href="#" class="btn btn-socal-1">
+                            <a href="https://www.instagram.com/be_someonesports/" class="btn btn-socal-1">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </li>
@@ -78,33 +91,19 @@
                     <div class="col">
                         <div class="right-fgo">
                             <h4 class="text-white mt-0">
-                                Twitter Feed
+                                Galleries
                             </h4>
-                            <div class="comon-news mt-4">
-                                <figure class="m-0">
-                                    <img src="{{ asset('frontend/images/pexels-photo-974502.webp') }}" alt="pbn" />
-                                </figure>
-                                <div class="left-divbn">
-                                    <a href="#" class="btn tg-btn"> Basketball </a>
-                                    <a href="#" class="titel-text1 my-2 d-block">
-                                        Lorem Ipsum is simply dummy
-                                    </a>
-                                    <p><i class="far fa-clock"></i> APRIL 15, 2022</p>
-                                </div>
-                            </div>
 
-                            <div class="comon-news mt-4">
-                                <figure class="m-0">
-                                    <img src="{{ asset('frontend/images/pexels-photo-934083.webp') }}" alt="pbn" />
-                                </figure>
-                                <div class="left-divbn">
-                                    <a href="#" class="btn tg-btn"> Basketball </a>
-                                    <a href="#" class="titel-text1 my-2 d-block">
-                                        Lorem Ipsum is simply dummy
-                                    </a>
-                                    <p><i class="far fa-clock"></i> APRIL 15, 2022</p>
-                                </div>
-                            </div>
+                            @foreach ($galleries as $key => $gallery )
+                                @if($key < 6)
+                                    <div class="comon-news mt-2">
+                                        <figure class="m-0">
+                                            <img src="{{ show_avatar($gallery->avatar) }}" alt="pbn" />
+                                        </figure>
+                                        
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -121,7 +120,7 @@
                 <div class="col d-grid justify-content-lg-end">
                     <ul>
                         <li>
-                            <a href="#"> Privacy Policy </a>
+                            <a href=""> Privacy Policy </a>
                             <a href="#"> Term Of Service </a>
                             <a href="#">Disclaimer </a>
                         </li>
