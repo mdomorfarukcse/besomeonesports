@@ -128,6 +128,36 @@ class RolesTableSeeder extends Seeder
                     'schedule.show',
                     'schedule.update',
                     'schedule.destroy',
+
+                    'blog.index',
+                    'blog.create',
+                    'blog.show',
+                    'blog.update',
+                    'blog.destroy',
+                    
+                    'news.index',
+                    'news.create',
+                    'news.show',
+                    'news.update',
+                    'news.destroy',
+
+                    'sponsor.index',
+                    'sponsor.create',
+                    'sponsor.show',
+                    'sponsor.update',
+                    'sponsor.destroy',
+
+                    'gallery.index',
+                    'gallery.create',
+                    'gallery.show',
+                    'gallery.update',
+                    'gallery.destroy',
+
+                    'video.index',
+                    'video.create',
+                    'video.show',
+                    'video.update',
+                    'video.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -220,6 +250,36 @@ class RolesTableSeeder extends Seeder
                     'schedule.show',
                     'schedule.update',
                     'schedule.destroy',
+
+                    'blog.index',
+                    'blog.create',
+                    'blog.show',
+                    'blog.update',
+                    'blog.destroy',
+                    
+                    'news.index',
+                    'news.create',
+                    'news.show',
+                    'news.update',
+                    'news.destroy',
+
+                    'sponsor.index',
+                    'sponsor.create',
+                    'sponsor.show',
+                    'sponsor.update',
+                    'sponsor.destroy',
+
+                    'gallery.index',
+                    'gallery.create',
+                    'gallery.show',
+                    'gallery.update',
+                    'gallery.destroy',
+
+                    'video.index',
+                    'video.create',
+                    'video.show',
+                    'video.update',
+                    'video.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [

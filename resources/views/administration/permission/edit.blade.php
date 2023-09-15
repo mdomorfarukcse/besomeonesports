@@ -76,12 +76,14 @@
                                             <label for="group_name">Group Name <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('group_name') is-invalid @enderror" name="group_name" required>
                                                 <option value="">Select Group</option>
+                                                <option value="chat" @if ($permission->group_name == 'blog') selected @endif>Blog</option>
                                                 <option value="chat" @if ($permission->group_name == 'chat') selected @endif>Chat</option>
                                                 <option value="coach" @if ($permission->group_name == 'coach') selected @endif>Coach</option>
                                                 <option value="dashboard" @if ($permission->group_name == 'dashboard') selected @endif>Dashbaord</option>
                                                 <option value="division" @if ($permission->group_name == 'division') selected @endif>Division</option>
                                                 <option value="event" @if ($permission->group_name == 'event') selected @endif>Event</option>
                                                 <option value="faq" @if ($permission->group_name == 'faq') selected @endif>Faq</option>
+                                                <option value="faq" @if ($permission->group_name == 'news') selected @endif>news</option>
                                                 <option value="player" @if ($permission->group_name == 'player') selected @endif>Player</option>
                                                 <option value="schedule" @if ($permission->group_name == 'schedule') selected @endif>Schedule</option>
                                                 <option value="season" @if ($permission->group_name == 'season') selected @endif>Season</option>

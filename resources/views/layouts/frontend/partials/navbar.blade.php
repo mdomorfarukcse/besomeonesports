@@ -1,3 +1,16 @@
+
+<style>
+    /* Custom CSS Here */
+    .dashboardlink{
+        background-color: #0035eeb3;
+        color: #fff !important;
+        border-radius: 5px;
+    }
+    .dashboardlink:hover {
+        background: #000000;
+    }
+</style>
+
 <header class="float-start w-100">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -58,7 +71,7 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('administration.dashboard.index') }}">Dashboard</a>
+                            <a class="nav-link dashboardlink btn" href="{{ route('administration.dashboard.index') }}">Dashboard</a>
                         </li>
                     @else
                         <li class="nav-item">
@@ -95,3 +108,4 @@
         </div>
     </nav>
 </header>
+

@@ -65,6 +65,18 @@ Route::prefix('administration')
             // Permission
             include_once 'permission/permission.php';
 
+            // Blog
+            include_once 'blog/blog.php';
+
+            // News
+            include_once 'news/news.php';
+
+            // Gallery
+            include_once 'gallery/gallery.php';
+
+            // Video
+            include_once 'video/video.php';
+
             
 
         });
