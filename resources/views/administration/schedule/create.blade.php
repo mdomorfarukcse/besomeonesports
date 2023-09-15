@@ -70,6 +70,10 @@
                                     <option value="{{ $event->id }}">{{ $event->name }}</option>
                                 @endforeach
                             </select>
+                            <small class="text-bold text-dark">
+                                <span class="text-danger">Note: </span>
+                                You can select only those event which have at least Two teams.
+                            </small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Team 1 <span class="required">*</span></label>

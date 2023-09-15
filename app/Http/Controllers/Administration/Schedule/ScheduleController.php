@@ -104,6 +104,7 @@ class ScheduleController extends Controller
                             }
                         ])
                         ->whereStatus('Active')
+                        ->has('teams', '>=', 2)
                         ->get();
                         
         return view('administration.schedule.create', compact(['events']));
