@@ -11,13 +11,14 @@
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
-                <li>
-                    <a href="{{ route('administration.dashboard.index') }}">
-                        <i class="sl-icon-speedometer"></i>
-                        <span>{{ __('Dashboard') }}</span>
-                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
-                    </a>
-                </li>
+                @if (auth()->user()->can('dashboard.index'))
+                    <li>
+                        <a href="{{ route('administration.dashboard.index') }}">
+                            <i class="sl-icon-speedometer"></i>
+                            <span>{{ __('Dashboard') }}</span>
+                        </a>
+                    </li>
+                @endif
                 
                 @if (auth()->user()->can('team.index') || auth()->user()->can('team.create'))
                     <li>
@@ -43,7 +44,7 @@
                 @if (auth()->user()->can('event.index') || auth()->user()->can('event.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="sl-icon-map"></i>
+                            <i class="sl-icon-trophy"></i>
                             <span>Events</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
@@ -160,7 +161,7 @@
                 @if (auth()->user()->can('sport.index') || auth()->user()->can('sport.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="sl-icon-layers"></i>
+                            <i class="sl-icon-game-controller"></i>
                             <span>Sports</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>

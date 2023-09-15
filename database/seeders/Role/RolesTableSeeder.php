@@ -27,6 +27,12 @@ class RolesTableSeeder extends Seeder
             // Assign permissions to roles based on the group
             if ($role === 'developer') {
                 $permissions = [
+                    'dashboard.index',
+                    'dashboard.create',
+                    'dashboard.show',
+                    'dashboard.update',
+                    'dashboard.destroy',
+                    
                     'sport.index',
                     'sport.create',
                     'sport.show',
@@ -161,6 +167,12 @@ class RolesTableSeeder extends Seeder
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
+                    'dashboard.index',
+                    'dashboard.create',
+                    'dashboard.show',
+                    'dashboard.update',
+                    'dashboard.destroy',
+                    
                     'sport.index',
                     'sport.create',
                     'sport.show',
@@ -283,6 +295,8 @@ class RolesTableSeeder extends Seeder
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [
+                    'dashboard.index',
+
                     'player.index',
                     'player.show',
                     
@@ -311,6 +325,8 @@ class RolesTableSeeder extends Seeder
                 ];
             }  elseif ($role === 'player') {
                 $permissions = [
+                    'dashboard.index',
+                    
                     'coach.index',
                     'coach.show',
                     
@@ -340,6 +356,8 @@ class RolesTableSeeder extends Seeder
             } else {
                 // Default permissions for other roles (e.g., 'user')
                 $permissions = [
+                    'dashboard.index',
+                    
                     'event.index',
                     'event.show',
                     
