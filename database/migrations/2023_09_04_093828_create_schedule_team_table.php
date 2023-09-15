@@ -22,7 +22,6 @@ return new class extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
                   
-            $table->enum('status',['Won','Lose','Draw'])->nullable();
             $table->string('score')->nullable();
             $table->timestamps();
         });

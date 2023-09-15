@@ -31,6 +31,14 @@ return new class extends Migration
             $table->date('date');
             $table->time('start');
             $table->time('end');
+
+            $table->foreignId('team_id')
+                  ->nullable()
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+                  
+            $table->enum('status',['Active','Inactive', 'Completed', 'Canceled'])->default('Active');
             $table->timestamps();
         });
     }

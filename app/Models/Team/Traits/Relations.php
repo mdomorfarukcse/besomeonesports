@@ -54,4 +54,12 @@ trait Relations
         return $this->belongsToMany(Schedule::class)
                     ->withPivot(['status', 'score', 'created_at', 'updated_at']);
     }
+
+    /**
+     * Get the event-schedule for the team.
+     */
+    public function schedule(): BelongsTo
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

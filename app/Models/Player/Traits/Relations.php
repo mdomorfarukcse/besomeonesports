@@ -5,8 +5,6 @@ namespace App\Models\Player\Traits;
 use App\Models\Event\Event;
 use App\Models\User;
 use App\Models\Team\Team;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Event\Registration\EventRegistration;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

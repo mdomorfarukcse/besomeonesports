@@ -41,6 +41,14 @@ trait Relations
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class)
-                    ->withPivot(['status', 'score', 'created_at', 'updated_at']);
+                    ->withPivot(['score', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * Get the winner for the event-schedule.
+     */
+    public function winner(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
     }
 }
