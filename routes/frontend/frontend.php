@@ -38,4 +38,5 @@ Route::name('frontend.')->group(function () {
     include_once 'term/term.php';
     // Privacy
     include_once 'privacy/privacy.php';
+    
 });

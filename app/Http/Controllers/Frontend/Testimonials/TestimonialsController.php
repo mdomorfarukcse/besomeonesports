@@ -12,6 +12,6 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        return view('frontend.about.testimonials');
+        return view('frontend.testimonial.index');
     }
 }

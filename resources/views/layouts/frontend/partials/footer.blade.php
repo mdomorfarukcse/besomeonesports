@@ -68,19 +68,16 @@
                             <h4 class="text-white">Quick Links</h4>
                             <ul class="mt-4">
                                 <li>
-                                    <a href="index.html"> Home </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('frontend.homepage.index') }}">Home</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('frontend.about.index') }}">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.about.index') }}">Events</a>
+                                    <a href="{{ route('frontend.testimonials.index') }}">Testimonials</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.shop.index') }}">Shop</a>
+                                    <a href="{{ route('frontend.press.index') }}">News</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('frontend.contact.index') }}">Contact</a>

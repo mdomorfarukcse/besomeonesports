@@ -31,7 +31,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.mission.index') }}">Mission</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Team</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}#">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
