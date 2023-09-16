@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Privacy\PrivacyController;
+use Illuminate\Support\Facades\Route;
 
 /* ==============================================
-===============< Homepage Routes >==============
+===============< Privacy Routes >==============
 ===============================================*/
-Route::controller(PrivacyController::class)->name('privacypolicy.')->group(function () {
+Route::controller(PrivacyController::class)->prefix('privacy')->name('privacy.')->group(function () {
     Route::get('/', 'index')->name('index');
 });

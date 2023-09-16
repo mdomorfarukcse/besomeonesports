@@ -12,6 +12,6 @@ class PrivacyController extends Controller
      */
     public function index()
     {
-        return view('frontend.press.index');
+        return view('frontend.privacy.index');
     }
 }

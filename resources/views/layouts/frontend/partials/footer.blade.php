@@ -94,7 +94,7 @@
                                 Galleries
                             </h4>
 
-                            @foreach ($galleries as $key => $gallery )
+                            {{-- @foreach ($galleries as $key => $gallery )
                                 @if($key < 6)
                                     <div class="comon-news mt-2">
                                         <figure class="m-0">
@@ -103,7 +103,7 @@
                                         
                                     </div>
                                 @endif
-                            @endforeach
+                            @endforeach --}}
                         </div>
                     </div>
                 </div>
@@ -120,9 +120,8 @@
                 <div class="col d-grid justify-content-lg-end">
                     <ul>
                         <li>
-                            <a href=""> Privacy Policy </a>
-                            <a href="#"> Term Of Service </a>
-                            <a href="#">Disclaimer </a>
+                            <a href="{{ route('frontend.privacy.index') }}"> Privacy Policy </a>
+                            <a href="{{ route('frontend.term.index') }}"> Term Of Service </a>
                         </li>
                     </ul>
                 </div>

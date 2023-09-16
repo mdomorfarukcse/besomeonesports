@@ -32,9 +32,10 @@ Route::name('frontend.')->group(function () {
     include_once 'press/press.php';
     // Blog
     include_once 'blog/blog.php';
-    // Gallery
+    // Blog
     include_once 'gallery/gallery.php';
+    // Term
+    include_once 'term/term.php';
     // Privacy
     include_once 'privacy/privacy.php';
-    
 });
