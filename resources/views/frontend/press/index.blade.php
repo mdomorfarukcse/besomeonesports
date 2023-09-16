@@ -50,8 +50,8 @@
                                         <img src="{{ show_avatar($single_press->avatar) }}" alt="{{ $single_press->name }}" />
                                     </figure>
                                     <span class="daet01">
-                                        {{ date('d', strtotime($blog->created_at)) }}
-                                        <small class="d-block">{{ date('M', strtotime($blog->created_at)) }}</small>
+                                        {{ date('d', strtotime($single_press->created_at)) }}
+                                        <small class="d-block">{{ date('M', strtotime($single_press->created_at)) }}</small>
                                     </span>
                                 </div>
                                 <div class="parar-delatsy">
@@ -66,8 +66,6 @@
                     <div class="d-flex justify-content-center">
                         {{ $press->links('pagination::bootstrap-4') }}
                     </div>
-    
-                    
                 </div>
             </div>
         </div>
