@@ -32,7 +32,7 @@ class BlogController extends Controller
             'avatar'    => 'required'
         ]);
 
-        dd($request);
+        // dd($request);
         try {
             $avatar = upload_avatar($request, 'avatar');
             $data = $request->all();

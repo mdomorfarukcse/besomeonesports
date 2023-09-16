@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -12,13 +13,16 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('frontend.blog.index');
+        $blogs = Blog::whereStatus('Active')->orderBy('created_at', 'desc')->paginate(12);
+        return view('frontend.blog.index', compact(['blogs']));
     }
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Blog $blog)
     {
-        return view('frontend.blog.show');
+        $blog = Blog::whereId($blog->id)->firstOrFail();  
+        $all_blog = Blog::whereStatus('Active')->orderBy('created_at', 'desc')->limit(3)->get();  
+        return  view('frontend.blog.show', compact(['blog','all_blog']));
     }
 }

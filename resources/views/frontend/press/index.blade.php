@@ -50,8 +50,8 @@
                                         <img src="{{ show_avatar($single_press->avatar) }}" alt="{{ $single_press->name }}" />
                                     </figure>
                                     <span class="daet01">
-                                        20
-                                        <small class="d-block">Mar</small>
+                                        {{ date('d', strtotime($blog->created_at)) }}
+                                        <small class="d-block">{{ date('M', strtotime($blog->created_at)) }}</small>
                                     </span>
                                 </div>
                                 <div class="parar-delatsy">

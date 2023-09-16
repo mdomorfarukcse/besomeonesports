@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Blog Title'))
+@section('page_title', __($press->name))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,7 +25,7 @@
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">{{ __('News Press') }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Press Release') }}</li>
 @endsection
 
 @section('content')
