@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(PressController::class)->prefix('press')->name('press.')->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/show', 'show')->name('show');
+    Route::get('/show/{press}', 'show')->name('show');
 });
