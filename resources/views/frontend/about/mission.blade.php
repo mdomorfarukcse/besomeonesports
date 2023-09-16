@@ -70,87 +70,40 @@
 
                 <div class="col-lg-9 mt-5 mx-auto">
                     <div class="next-matchu mt-4">
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> June 05- August 04, 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        Be Someone Sports Summer Basketball Leauge
-                                                    </h6>
+                        @foreach ($upcomingEvents as $key => $event)
+                            <div class="comon-matchbn">
+                                <div class="topikn-div">
+                                    <div class="more-details-div d-md-flex align-items-center">
+                                        <h5 class="m-0">
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($event->start) }} -
+                                            {{ show_date($event->end) }}
+                                        </h5>
+                                        <h6>/ {{ $event->sport->name }}</h6>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-8">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-12">
+                                                    <div class="cul-div">
+                                                        <h6>
+                                                            {{ $event->name }}
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
+                                        <div
+                                            class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
+                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
+                                                class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -163,21 +116,54 @@
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
             </div>
         </div>
-    </section>
+        <section class="float-start w-100 sub-headh-bask body-part pt-0">
+            <div class="about-page-main comon-sub-page-main d-inline-block w-100">
+                <div class="about-club-top">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <div class="mindle-heading text-center">
+                                    <h5>Follow Us</h5>
+                                    <h1>Our <span> Instragram </span></h1>
+                                </div>
+                                <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0"
+                                    src="https://www.instagram.com/be_someonesports/embed/?cr=1&amp;v=13&amp;wp=1296&amp;rd=http%3A%2F%2Fbesomeonesports.test&amp;rp=%2Fmission#%7B%22ci%22%3A0%2C%22os%22%3A457.19999998807907%2C%22ls%22%3A287.19999998807907%2C%22le%22%3A362.69999998807907%7D"
+                                    allowtransparency="true" allowfullscreen="true" frameborder="0" height="1064"
+                                    data-instgrm-payload-id="instagram-media-payload-0" scrolling="no"
+                                    style="background-color: white;border-radius: 3px;border: 1px solid rgb(219, 219, 219);box-shadow: none;display: block;margin: 0px 0px 12px;min-width: 326px;padding: 0px;width: 100%;"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="location-div01 d-inline-block w-100">
+                <div class="mindle-heading text-center">
+                    <h5>Map</h5>
+                    <h1>Office <span> Location </span></h1>
+                </div>
+                <span class="bgi-text light-tsext01"> Map </span>
+
+                <iframe class="w-100 mt-5"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d444897.3091659081!2d-95.2459789!3d29.4065695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640859fbe88c531%3A0x32451695f313c938!2sBe%20Someone%20Sports-%20Youth%20Sports%20%7C%20Youth%20Basketball%20%7C%20Youth%20Volleyball%20%7C%20AAU%20Tournaments!5e0!3m2!1sen!2sbd!4v1691411696578!5m2!1sen!2sbd"
+                    height="450" style="border: 0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
 
 
-    <!-- End row -->
+        <!-- End row -->
 
-@endsection
+    @endsection
 
 
-@section('script_links')
-    {{--  External Javascript Links --}}
-@endsection
+    @section('script_links')
+        {{--  External Javascript Links --}}
+    @endsection
 
-@section('custom_script')
-    {{--  External Custom Javascript  --}}
-    <script>
-        // Custom Script Here
-    </script>
-@endsection
+    @section('custom_script')
+        {{--  External Custom Javascript  --}}
+        <script>
+            // Custom Script Here
+        </script>
+    @endsection
