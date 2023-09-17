@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Product\Product;
+use Illuminate\Support\Facades\File;
 use App\Models\Shop\Category\Category;
+use App\Models\Shop\Product\Images\ProductImage;
 use App\Http\Requests\Administration\Shop\Product\ProductStoreRequest;
 use App\Http\Requests\Administration\Shop\Product\ProductUpdateRequest;
-use App\Models\Shop\Product\Images\ProductImage;
 
 class ProductController extends Controller
 {
@@ -62,6 +63,13 @@ class ProductController extends Controller
                     foreach ($request->file('images') as $image) {
                         $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                         $imageStorePath = 'public/products/' . $product->product_id;
+                
+                        // Create the product image folder if it doesn't exist
+                        $folderPath = storage_path($imageStorePath);
+                        if (!File::exists($folderPath)) {
+                            File::makeDirectory($folderPath, 0755, true);
+                        }
+                
                         $image->storeAs($imageStorePath, $imageName);
                 
                         $product->images()->create([
@@ -132,6 +140,13 @@ class ProductController extends Controller
                     foreach ($request->file('images') as $image) {
                         $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                         $imageStorePath = 'public/products/' . $product->product_id;
+                
+                        // Create the product image folder if it doesn't exist
+                        $folderPath = storage_path($imageStorePath);
+                        if (!File::exists($folderPath)) {
+                            File::makeDirectory($folderPath, 0755, true);
+                        }
+                        
                         $image->storeAs($imageStorePath, $imageName);
                 
                         $product->images()->create([
