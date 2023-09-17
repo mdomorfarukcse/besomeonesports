@@ -133,7 +133,7 @@ class UserSeeder extends Seeder
             'address' => fake()->streetAddress(),
             'city' => fake()->city(),
             'state' => fake()->words(2, true),
-            'postal_code' => fake()->postcode(),
+            'postal_code' => fake()->postcode(), 
         ]);
         // Assign a role to the user
         $userRole = Role::findByName('user');
