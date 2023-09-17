@@ -20,10 +20,10 @@
             </p>
             <div class="quick-link my-4">
                 <ul>
-                    <li> <i class="fas fa-map-marker-alt"></i> <span> 89 Mounthoolie Lane, Sutton Bassett, UK </span>
+                    <li> <i class="fas fa-map-marker-alt"></i> <span> Friendswood, Texas, United States</span>
                     </li>
-                    <li> <i class="fab fa-whatsapp"></i> <span> 180-205-2560 </span> </li>
-                    <li> <i class="fas fa-envelope"></i> <span> example@gmail.com </span> </li>
+                    <li> <i class="fab fa-whatsapp"></i> <span> 832-421-2895 </span> </li>
+                    <li> <i class="fas fa-envelope"></i> <span> Info@besomeonesports.com </span> </li>
                 </ul>
             </div>
             <ul class="side-media">
