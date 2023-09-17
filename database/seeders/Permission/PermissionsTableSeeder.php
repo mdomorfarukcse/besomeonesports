@@ -32,6 +32,7 @@ class PermissionsTableSeeder extends Seeder
             'shop_product',
             'shop_category',
             'schedule',
+            'ads',
 
             // Frontend
             'sponsor',

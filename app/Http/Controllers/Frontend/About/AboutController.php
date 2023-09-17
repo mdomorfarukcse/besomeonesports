@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\About;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event\Event;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -12,6 +13,9 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('frontend.about.index');
+        $upcomingEvents = Event::whereStatus('Active')
+                                ->orderBy('start', 'asc')
+                                ->get();
+        return view('frontend.about.index', compact(['upcomingEvents']));
     }
 }

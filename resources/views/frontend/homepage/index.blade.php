@@ -21,24 +21,6 @@
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
-        .ads-all-list {
-            padding: 0px 0px;
-            position: relative;
-            float: left;
-            width: 100%;
-            margin: 10px 0px;
-        }
-        .ads-box span, .ban-ati-com span {
-            position: absolute;
-            background: #F44336;
-            color: #fff;
-            font-size: 10px;
-            padding: 1px 3px;
-            border-radius: 2px;
-        }
-        .ban-ati-com a img {
-            width: 100%;
-        }
     </style>
 @endsection
 

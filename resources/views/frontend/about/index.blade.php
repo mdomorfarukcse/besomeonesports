@@ -70,87 +70,40 @@
 
                 <div class="col-lg-9 mt-5 mx-auto">
                     <div class="next-matchu mt-4">
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> June 05- August 04, 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        Be Someone Sports Summer Basketball Leauge
-                                                    </h6>
+                        @foreach ($upcomingEvents as $key => $event)
+                            <div class="comon-matchbn">
+                                <div class="topikn-div">
+                                    <div class="more-details-div d-md-flex align-items-center">
+                                        <h5 class="m-0">
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($event->start) }} -
+                                            {{ show_date($event->end) }}
+                                        </h5>
+                                        <h6>/ {{ $event->sport->name }}</h6>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-8">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-12">
+                                                    <div class="cul-div">
+                                                        <h6>
+                                                            {{ $event->name }}
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
+                                        <div
+                                            class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
+                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
+                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
+                                                class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comon-matchbn">
-                            <div class="topikn-div">
-                                <div class="more-details-div d-md-flex align-items-center">
-                                    <h5 class="m-0">
-                                        <i class="fas fa-calendar-week"></i> March 6th - May 12th 2023
-                                    </h5>
-                                    <h6>/ Friendswood Schools</h6>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-12">
-                                                <div class="cul-div">
-                                                    <h6>
-                                                        BE SOMEONE SPORTS FRIENDSWOOD VOLLEYBALL LEAGUE
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                        <a href="#" class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                        <a href="#" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -164,8 +117,20 @@
             </div>
         </div>
     </section>
-
-
+    <section class="ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ban-ati-com ads-all-list">
+                        <a href="#">
+                            <span>Ad</span>
+                            <img src="https://unsplash.it/g/1100/100" height="100" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- End row -->
 
 @endsection
