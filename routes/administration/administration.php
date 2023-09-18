@@ -77,6 +77,9 @@ Route::prefix('administration')
             // Video
             include_once 'video/video.php';
 
+            // Ads
+            include_once 'ads/ads.php';
+
             
 
         });

@@ -34,4 +34,11 @@ Route::name('frontend.')->group(function () {
     include_once 'blog/blog.php';
     // Blog
     include_once 'gallery/gallery.php';
+    // Term
+    include_once 'term/term.php';
+    // Privacy
+    include_once 'privacy/privacy.php';
+    // Privacy
+    include_once 'mediaInquiries/mediaInquiries.php';
+    
 });

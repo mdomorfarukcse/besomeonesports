@@ -39,95 +39,38 @@
                     <h1>Our <span> Latest Media </span></h1>
                 </div>
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2834917.webp') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2834917.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
+                    @foreach ($galleries as $keys => $gallery)
+                        <div class="col">
+                            <a data-fancybox="wk" href="{{ show_avatar($gallery->avatar) }}" class="comon-links-divb05">
+                                <figure>
+                                    <img src="{{ show_avatar($gallery->avatar) }}" alt="{{ $gallery->name }}" />
+                                    <figcaption>
+                                        {{ $gallery->name }}
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    @endforeach
     
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/basketball-professional-action-player-163423.jpg') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/basketball-professional-action-player-163423.jpg') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-974502.webp') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-974502.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2116469.webp') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2116469.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/football-american-football-quarterback-runner-163439.jpg') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/football-american-football-quarterback-runner-163439.jpg') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-974501.webp') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-974501.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-934083.webp') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-934083.webp') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-    
-                    <div class="col">
-                        <a data-fancybox="wk" href="{{ asset('frontend/images/pexels-photo-2874717.jpg') }}" class="comon-links-divb05">
-                            <figure>
-                                <img src="{{ asset('frontend/images/pexels-photo-2874717.jpg') }}" alt="pbnm" />
-                                <figcaption>
-                                    FGC CUP 2022
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
                 </div>
             </div>
+        </div>
+        <div class="location-div01 d-inline-block w-100">
+            <div class="mindle-heading text-center">
+                <h5>Map</h5>
+                <h1>Office <span> Location </span></h1>
+            </div>
+            <span class="bgi-text light-tsext01"> Map </span>
+
+            <iframe
+                class="w-100 mt-5"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d444897.3091659081!2d-95.2459789!3d29.4065695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640859fbe88c531%3A0x32451695f313c938!2sBe%20Someone%20Sports-%20Youth%20Sports%20%7C%20Youth%20Basketball%20%7C%20Youth%20Volleyball%20%7C%20AAU%20Tournaments!5e0!3m2!1sen!2sbd!4v1691411696578!5m2!1sen!2sbd"
+                height="450"
+                style="border: 0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
         </div>
     </section>
     

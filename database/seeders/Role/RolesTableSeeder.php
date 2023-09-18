@@ -164,6 +164,12 @@ class RolesTableSeeder extends Seeder
                     'video.show',
                     'video.update',
                     'video.destroy',
+
+                    'ads.index',
+                    'ads.create',
+                    'ads.show',
+                    'ads.update',
+                    'ads.destroy',
                 ];
             } elseif ($role === 'admin') {
                 $permissions = [
@@ -292,6 +298,12 @@ class RolesTableSeeder extends Seeder
                     'video.show',
                     'video.update',
                     'video.destroy',
+
+                    'ads.index',
+                    'ads.create',
+                    'ads.show',
+                    'ads.update',
+                    'ads.destroy',
                 ];
             } elseif ($role === 'coach') {
                 $permissions = [

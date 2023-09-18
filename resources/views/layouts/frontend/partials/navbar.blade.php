@@ -31,7 +31,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.mission.index') }}">Mission</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Team</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}#">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Press Releases</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
-                            <li><a class="dropdown-item" href="#">Media Inquiries</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.media-inquiries.index') }}">Media Inquiries</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

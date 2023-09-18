@@ -311,6 +311,7 @@
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
+                            <li><a href="{{ route('administration.ads.index') }}">Ads</a></li>
                             <li><a href="{{ route('administration.blog.index') }}">Blogs</a></li>
                             <li><a href="{{ route('administration.news.index') }}">News</a></li>
                             <li><a href="{{ route('administration.faq.index') }}">Faqs</a></li>

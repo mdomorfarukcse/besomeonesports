@@ -64,8 +64,20 @@
             </div>
         </div>
     </section>
-    
-
+    <section class="ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ban-ati-com ads-all-list">
+                        <a href="#">
+                            <span>Ad</span>
+                            <img src="https://unsplash.it/g/1100/100" height="100" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- End row -->
 
 @endsection
