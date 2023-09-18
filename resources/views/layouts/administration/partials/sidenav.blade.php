@@ -151,6 +151,9 @@
                             @if (auth()->user()->can('coach.index'))
                                 <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
                             @endif
+                            @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('developer'))
+                                <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
+                            @endif
                             @if (auth()->user()->hasRole('player'))
                                 <li><a href="{{ route('administration.coach.my') }}">My Coaches</a></li>
                             @endif

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
+use App\Models\Coach\Frontend\CoachRequest;
 
 class CoachController extends Controller
 {
@@ -29,6 +30,17 @@ class CoachController extends Controller
                             ])->orderBy('created_at', 'desc')->get();
 
         return view('administration.coach.index', compact(['coaches']));
+    }
+    
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function request()
+    {
+        $coaches = CoachRequest::all();
+
+        return view('administration.coach.request', compact(['coaches']));
     }
     
     
