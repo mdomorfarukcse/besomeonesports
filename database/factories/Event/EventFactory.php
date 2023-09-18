@@ -56,7 +56,7 @@ class EventFactory extends Factory
 
                 $event->players()->attach($player, [
                     'paid_by' => rand(1, 2),
-                    'total_paid' => 10,
+                    'total_paid' => rand(199, 599),
                     'transaction_id' => $transactionId,
                     'invoice_number' => $transactionId,
                     'created_at' => now(),
