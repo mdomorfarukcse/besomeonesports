@@ -66,8 +66,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
-                                @if (auth()->user()->can('coach.show') || auth()->user()->can('coach.destroy')) 
-                                    <th class="text-right">Actions</th>
+                                @if (auth()->user()->role('admin') || auth()->user()->role('developer')) 
+                                    <th class="text-center">Actions</th>
                                 @endif
                             </tr>
                         </thead>
@@ -83,17 +83,13 @@
                                     </td>
                                     <td>{{ $coach->email }}</td>
                                     <td>{{ $coach->phone_number }}</td>
-                                    @if (auth()->user()->can('coach.show') || auth()->user()->can('coach.destroy')) 
-                                        <td class="text-right">
+                                    @if (auth()->user()->role('admin') || auth()->user()->role('developer')) 
+                                        <td class="text-center">
                                             <div class="action-btn-group mr-3">
-                                                @if (auth()->user()->can('coach.destroy')) 
-                                                    <a href="{{ route('administration.coach.destroy', ['coach' => $coach]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                        <i class="feather icon-trash-2"></i>
-                                                    </a>
-                                                @endif
-                                                @if (auth()->user()->can('coach.show')) 
-                                                    <a href="{{ route('administration.coach.show', ['coach' => $coach]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                @if (auth()->user()->role('admin') || auth()->user()->role('developer')) 
+                                                    <a href="{{ route('administration.coach.request.show', ['coach' => $coach]) }}" class="btn btn-primary btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                         <i class="feather icon-info"></i>
+                                                        Show
                                                     </a>
                                                 @endif
                                             </div>
