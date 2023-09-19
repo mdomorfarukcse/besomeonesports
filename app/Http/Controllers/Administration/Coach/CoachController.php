@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
+use App\Models\Coach\Frontend\CoachRequest;
 
 class CoachController extends Controller
 {
@@ -207,5 +208,96 @@ class CoachController extends Controller
             alert('Coach Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
+    }
+
+    
+    
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function request()
+    {
+        $coaches = CoachRequest::all();
+
+        return view('administration.coach.request', compact(['coaches']));
+    }
+    
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function requestShow(CoachRequest $coach)
+    {
+        return view('administration.coach.request_show', compact(['coach']));
+    }
+    
+    
+    /**
+     * Update Request Status
+     */
+    public function updateRequest(CoachRequest $coach, string $status)
+    {
+        $status = decrypt($status);
+        dd($coach,$status);
+
+        if ($status === 'Approve') {
+            try {
+                DB::transaction(function() use ($coach) {
+                    $coachName = $coach->first_name.' '.$coach->middle_name.' '.$coach->last_name;
+                    
+                    // Store Credentials into User
+                    $user = User::create([
+                        'name' => $coachName,
+                        'email' => $coach->email,
+                        'password' => Hash::make($coach->password),
+                        'avatar' => $coach->avatar,
+                    ]);
+            
+                    // Assign the provided role to the user
+                    $role = Role::where('name', 'coach')->firstOrFail();
+                    if ($role) {
+                        $user->assignRole($role);
+                    }
+        
+        
+                    // Store Information into Coach
+                    $coachInfo = new Coach();
+        
+                    $coachInfo->user_id = $user->id;
+                    $coachInfo->coach_id = unique_id(11,11);
+                    $coachInfo->first_name = $coach->first_name;
+                    $coachInfo->middle_name = $coach->middle_name;
+                    $coachInfo->last_name = $coach->last_name;
+                    $coachInfo->birthdate = $coach->birthdate;
+                    $coachInfo->phone_number = $coach->phone_number;
+                    $coachInfo->usab_license_no = $coach->usab_license_no;
+                    $coachInfo->city = $coach->city;
+                    $coachInfo->state = $coach->state;
+                    $coachInfo->postal_code = $coach->postal_code;
+                    $coachInfo->street_address = $coach->street_address;
+                    $coachInfo->extended_address = $coach->extended_address;
+
+                    $coachInfo->save();
+
+                    $coach->delete();
+                }, 5);
+    
+                toast('A New Coach Has Been Created.','success');
+                return redirect()->route('administration.coach.request');
+            } catch (Exception $e) {
+                dd($e);
+                alert('Coach Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+                return redirect()->back()->withInput();
+            }
+        } else {
+            $coach->delete();
+
+            toast('Coach Has Been Canceled.','success');
+            return redirect()->route('administration.coach.request');
+        }
+        
+
+        return view('administration.coach.request_show', compact(['coach']));
     }
 }
