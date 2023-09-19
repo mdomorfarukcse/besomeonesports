@@ -66,7 +66,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sports as $key => $sport)
+                            {{-- @foreach ($sports as $key => $sport)
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($sports, $key) }}</b></th>
                                     <td>{{ $sport->name }}</td>
@@ -82,7 +82,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
