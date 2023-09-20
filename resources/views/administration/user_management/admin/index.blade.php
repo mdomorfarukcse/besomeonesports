@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('All Sports'))
+@section('page_title', __('All Admins'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -25,20 +25,21 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('All Sports') }}</b>
+    <b class="text-uppercase">{{ __('All Admins') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Sports') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('All Sports') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Manage Users') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Admins') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('All Admins') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.sport.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.user.manage.admin.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="feather icon-plus"></i>
-        <b>Create New Sport</b>
+        <b>Add New Admin</b>
     </a>
 @endsection
 
@@ -52,37 +53,45 @@
     <div class="col-lg-12">
         <div class="card m-b-30">
             <div class="card-header">
-                <h5 class="card-title">{{ __('All Sports') }}</h5>
+                <h5 class="card-title">{{ __('All Admins') }}</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="default-datatable" class="display table table-bordered">
                         <thead>
                             <tr>
-                                <th>S/N</th>
-                                <th>Sport</th>
-                                <th>Status</th>
+                                <th>Sl.</th>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact No</th>
                                 <th class="text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($sports as $key => $sport)
+                            @foreach ($admins as $sl => $admin)
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ serial($sports, $key) }}</b></th>
-                                    <td>{{ $sport->name }}</td>
-                                    <td>{!! status($sport->status) !!}</td>
+                                    <th class="fw-bold"><b>#{{ serial($admins, $sl) }}</b></th>
+                                    <td>
+                                        <img src="{{ show_avatar($admin->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="player">
+                                    </td>
+                                    <td>
+                                        {{ $admin->name }}
+                                    </td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>{{ $admin->contact_number }}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="{{ route('administration.sport.destroy', ['sport' => $sport]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                 <i class="feather icon-trash-2"></i>
                                             </a>
-                                            <a href="{{ route('administration.sport.show', ['sport' => $sport]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                 <i class="feather icon-info"></i>
                                             </a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
