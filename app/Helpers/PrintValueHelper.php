@@ -150,3 +150,42 @@ if (!function_exists('unique_id')) {
         return $uniqueID;
     }
 }
+
+
+if (!function_exists('generate_password')) {
+    /**
+     * Generate a password with length of characters.
+     *
+     * @param int $length of the generated password.
+     *
+     * @return string The generated password.
+     */
+    function generate_password($length = 12)
+    {
+        $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        $numbers = '0123456789';
+        $specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+        $password = '';
+
+        // Ensure at least one character from each category
+        $password .= $uppercase[random_int(0, strlen($uppercase) - 1)];
+        $password .= $lowercase[random_int(0, strlen($lowercase) - 1)];
+        $password .= $numbers[random_int(0, strlen($numbers) - 1)];
+        $password .= $specialCharacters[random_int(0, strlen($specialCharacters) - 1)];
+
+        // Generate the remaining characters
+        $remainingLength = $length - 4; // Subtract 4 for the required characters
+        $characters = $uppercase . $lowercase . $numbers . $specialCharacters;
+
+        for ($i = 0; $i < $remainingLength; $i++) {
+            $password .= $characters[random_int(0, strlen($characters) - 1)];
+        }
+
+        // Shuffle the characters to randomize the password
+        $password = str_shuffle($password);
+
+        return $password;
+    }
+}

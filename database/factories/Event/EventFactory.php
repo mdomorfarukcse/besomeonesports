@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Event;
 
+use Carbon\Carbon;
 use App\Models\Event\Event;
 use App\Models\Venue\Venue;
 use Illuminate\Support\Str;
@@ -27,8 +28,8 @@ class EventFactory extends Factory
             'sport_id' => rand(1, 9),
             'name' => ucfirst(fake()->words(3, true)),
             'registration_fee' => rand(199, 599),
-            'start' => fake()->date(),
-            'end' => fake()->date(),
+            'start' => Carbon::today()->addDays(rand(1, 30))->format('Y-m-d'),
+            'end' => Carbon::today()->addDays(rand(31, 60))->format('Y-m-d'),
             'description' => fake()->realText(2000),
             'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
