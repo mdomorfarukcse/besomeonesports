@@ -5,10 +5,12 @@ namespace App\Models\Team\Traits;
 use App\Models\Coach\Coach;
 use App\Models\Event\Event;
 use App\Models\Division\Division;
+use App\Models\Message\Message;
 use App\Models\Player\Player;
 use App\Models\Schedule\Schedule;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Relations
 {
@@ -61,5 +63,13 @@ trait Relations
     public function schedule(): BelongsTo
     {
         return $this->belongsTo(Schedule::class);
+    }
+
+    /**
+     * The Messages that belong to the team.
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }

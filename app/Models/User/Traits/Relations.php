@@ -4,6 +4,7 @@ namespace App\Models\User\Traits;
 
 use App\Models\Coach\Coach;
 use App\Models\Player\Player;
+use App\Models\Message\Message;
 use App\Models\Shop\Order\Order;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,5 +33,13 @@ trait Relations
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * The Messages that belong to the team.
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }
