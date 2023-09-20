@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\UserManagement\Admin;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdminUpdateRequest extends FormRequest
@@ -21,9 +22,16 @@ class AdminUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $adminId = $this->route('admin')->id;
         return [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->user->id],
+            'email' => [
+                'sometimes',
+                'required',
+                'string',
+                'email',
+                Rule::unique('users')->ignore($adminId),
+            ],
             'birthdate' => ['sometimes', 'date'],
             'contact_number' => ['sometimes', 'string', 'max:20'],
             'address' => ['sometimes', 'string'],

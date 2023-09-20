@@ -82,10 +82,13 @@
                                     <td>{{ $admin->contact_number }}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
-                                            <a href="#" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                <i class="feather icon-trash-2"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                            {{-- {{ dd($admin->id, $firstAdmin->id) }} --}}
+                                            @if (($admin->id !== $firstAdmin->id)) 
+                                                <a href="{{ route('administration.user.manage.admin.destroy', ['admin' => $admin]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </a>
+                                            @endif
+                                            <a href="{{ route('administration.user.manage.admin.show', ['admin' => $admin]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                 <i class="feather icon-info"></i>
                                             </a>
                                         </div>
