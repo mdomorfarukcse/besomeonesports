@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule\Schedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Round\Round;
 
 class ScheduleController extends Controller
 {
@@ -72,6 +73,12 @@ class ScheduleController extends Controller
         return response()->json($calender_data);
     }
 
+    public function rounds(Request $request, $league) {
+        $rounds = League::findOrFail($league)->rounds;
+
+        return response()->json($rounds);
+    }
+
     public function teams(Request $request, $league) {
         $teams = League::findOrFail($league)->teams;
 
@@ -119,6 +126,7 @@ class ScheduleController extends Controller
             DB::transaction(function() use ($request) {
                 $schedule = new Schedule();
                 $schedule->league_id = $request->league_id;
+                $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;
                 $schedule->date = $request->date;

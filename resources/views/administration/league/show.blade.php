@@ -54,119 +54,166 @@
 
 <!-- Start Row -->
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-12 mb-4">
+        <div class="card border">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <h5 class="card-title mb-0 text-bold">League's Information</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body py-2">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr class="text-center">
+                                    <td colspan="2">
+                                        <div class="user-avatar">
+                                            <img src="{{ show_avatar($league->logo) }}" alt="League Logo" class="img-thumbnail" width="250">
+                                        </div>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Season</th>
+                                    <td>
+                                        <a href="{{ route('administration.season.show', ['season' => $league->season]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->season->name }} details" class="text-dark text-bold">
+                                            {{ $league->season->name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sport</th>
+                                    <td>
+                                        <a href="{{ route('administration.sport.show', ['sport' => $league->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->sport->name }} details" class="text-dark text-bold">
+                                            {{ $league->sport->name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{ $league->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Registration Fee</th>
+                                    <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
+                                </tr>
+                                <tr>
+                                    <th>League Start Date</th>
+                                    <td>{{ $league->start }}</td>
+                                </tr>
+                                <tr>
+                                    <th>League End Date</th>
+                                    <td>{{ $league->end }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{!! status($league->status) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Divisions</th>
+                                    <td>
+                                        <ol>
+                                            @foreach ($league->divisions as $division)
+                                                <li>
+                                                    <a href="{{ route('administration.division.show', ['division' => $division]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $division->name }} details">
+                                                        {{ $division->name }}
+                                                    </a>    
+                                                </li>  
+                                            @endforeach
+                                        </ol>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Venues</th>
+                                    <td>
+                                        <ol>
+                                            @foreach ($league->venues as $venue)
+                                                <li>
+                                                    <a href="{{ route('administration.venue.show', ['venue' => $venue]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $venue->name }} details">
+                                                        {{ $venue->name }}
+                                                    </a>    
+                                                </li>  
+                                            @endforeach
+                                        </ol>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Teams</th>
+                                    <td>
+                                        <ol>
+                                            @foreach ($league->teams as $team)
+                                                <li>
+                                                    <a href="{{ route('administration.team.show', ['team' => $team]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->name }} details">
+                                                        {{ $team->name }}
+                                                    </a>    
+                                                </li>  
+                                            @endforeach
+                                        </ol>    
+                                    </td>
+                                </tr>
+                                @if (!empty($league->description))
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{!! $league->description !!}</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
         <div class="card m-b-30">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <h5 class="card-title mb-0 text-bold">League Rounds</h5>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card border">
-                            <div class="card-header bg-primary-rgba border-bottom">
-                                <h5 class="card-title text-primary mb-0">League's Information</h5>
-                            </div>
-                            <div class="card-body py-2">
-                                <div class="row">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mb-0">
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td colspan="2">
-                                                        <div class="user-avatar">
-                                                            <img src="{{ show_avatar($league->logo) }}" alt="League Logo" class="img-thumbnail" width="250">
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Season</th>
-                                                    <td>
-                                                        <a href="{{ route('administration.season.show', ['season' => $league->season]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->season->name }} details" class="text-dark text-bold">
-                                                            {{ $league->season->name }}
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Sport</th>
-                                                    <td>
-                                                        <a href="{{ route('administration.sport.show', ['sport' => $league->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->sport->name }} details" class="text-dark text-bold">
-                                                            {{ $league->sport->name }}
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <td>{{ $league->name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Registration Fee</th>
-                                                    <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>League Start Date</th>
-                                                    <td>{{ $league->start }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>League End Date</th>
-                                                    <td>{{ $league->end }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Status</th>
-                                                    <td>{!! status($league->status) !!}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Divisions</th>
-                                                    <td>
-                                                        <ol>
-                                                            @foreach ($league->divisions as $division)
-                                                                <li>
-                                                                    <a href="{{ route('administration.division.show', ['division' => $division]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $division->name }} details">
-                                                                        {{ $division->name }}
-                                                                    </a>    
-                                                                </li>  
-                                                            @endforeach
-                                                        </ol>    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Venues</th>
-                                                    <td>
-                                                        <ol>
-                                                            @foreach ($league->venues as $venue)
-                                                                <li>
-                                                                    <a href="{{ route('administration.venue.show', ['venue' => $venue]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $venue->name }} details">
-                                                                        {{ $venue->name }}
-                                                                    </a>    
-                                                                </li>  
-                                                            @endforeach
-                                                        </ol>    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Teams</th>
-                                                    <td>
-                                                        <ol>
-                                                            @foreach ($league->teams as $team)
-                                                                <li>
-                                                                    <a href="{{ route('administration.team.show', ['team' => $team]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->name }} details">
-                                                                        {{ $team->name }}
-                                                                    </a>    
-                                                                </li>  
-                                                            @endforeach
-                                                        </ol>    
-                                                    </td>
-                                                </tr>
-                                                @if (!empty($league->description))
-                                                    <tr>
-                                                        <th>Description</th>
-                                                        <td>{!! $league->description !!}</td>
-                                                    </tr>
-                                                @endif
-                                            </tbody>
-                                        </table>
+                @foreach ($league->rounds as $round) 
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-md-12">
+                            <div class="card border">
+                                <div class="card-header bg-primary-rgba border-bottom text-center">
+                                    <h5 class="card-title text-primary mb-0 text-uppercase text-bold">{{ $round->name }}</h5>
+                                </div>
+                                <div class="card-body py-2">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered mb-0">
+                                                <tbody>
+                                                    @foreach ($round->schedules as $schedule)
+                                                        @php
+                                                            $schedule->team_id === $schedule->teams[0]->id ? 'success' : 'denger';
+                                                        @endphp
+                                                        <tr>
+                                                            <td style="width: 48%;" class="text-left @if($schedule->team_id === $schedule->teams[0]->id) bg-success-rgba @endif">
+                                                                <img src="{{ show_avatar($schedule->teams[0]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                                <b class="text-dark">{{ $schedule->teams[0]->name }}</b>
+                                                            </td>
+                                                            <th style="width: 4%;" class="text-center pt-4"><b>VS</b></th>
+                                                            <td style="width: 48%;" class="text-right @if($schedule->team_id === $schedule->teams[1]->id) bg-success-rgba @endif">
+                                                                <b class="text-dark">{{ $schedule->teams[1]->name }}</b>
+                                                                <img src="{{ show_avatar($schedule->teams[1]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

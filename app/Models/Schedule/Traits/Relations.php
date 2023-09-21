@@ -4,6 +4,7 @@ namespace App\Models\Schedule\Traits;
 
 use App\Models\Court\Court;
 use App\Models\League\League;
+use App\Models\Round\Round;
 use App\Models\Team\Team;
 use App\Models\Venue\Venue;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,14 @@ trait Relations
     public function league(): BelongsTo
     {
         return $this->belongsTo(League::class);
+    }
+    
+    /**
+     * Get the round that owns the schedule.
+     */
+    public function round(): BelongsTo
+    {
+        return $this->belongsTo(Round::class);
     }
 
     /**
