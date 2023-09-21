@@ -10,8 +10,7 @@ class Round extends Model
 {
     use HasFactory, Relations;
 
-    protected $fillable = [
-        'league_id',
-        'name'
+    protected $guarded = [
+        'id'
     ];
 }

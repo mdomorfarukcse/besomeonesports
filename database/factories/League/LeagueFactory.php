@@ -3,9 +3,10 @@
 namespace Database\Factories\League;
 
 use Carbon\Carbon;
-use App\Models\League\League;
+use App\Models\Round\Round;
 use App\Models\Venue\Venue;
 use Illuminate\Support\Str;
+use App\Models\League\League;
 use App\Models\Player\Player;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
@@ -39,12 +40,14 @@ class LeagueFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (League $league) {
+            // Attach divisions and venues (assuming you have these relationships set up)
             $divisions = Division::inRandomOrder()->limit(rand(1, 10))->get();
             $league->divisions()->attach($divisions);
             
             $venues = Venue::inRandomOrder()->limit(rand(1, 10))->get();
             $league->venues()->attach($venues);
 
+            // Attach players with transaction data (assuming you have these relationships set up)
             $players = Player::inRandomOrder()->limit(rand(1, 10))->get();
             foreach ($players as $player) {
                 // Generate a unique transaction_id
@@ -63,6 +66,19 @@ class LeagueFactory extends Factory
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+            }
+
+            // Add random rounds to the league
+            $roundNames = [
+                '1st Round', 
+                '2nd Round', 
+                'Quarter Final', 
+                'Semi Final', 
+                'Grand Final'
+            ];
+            foreach ($roundNames as $roundName) {
+                $round = new Round(['name' => $roundName]);
+                $league->rounds()->save($round);
             }
         });
     }
