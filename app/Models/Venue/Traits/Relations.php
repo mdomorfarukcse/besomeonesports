@@ -3,7 +3,7 @@
 namespace App\Models\Venue\Traits;
 
 use App\Models\Court\Court;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Schedule\Schedule;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,11 +19,11 @@ trait Relations
     }
     
     /**
-     * The events that belong to the venue.
+     * The leagues that belong to the venue.
      */
-    public function events(): BelongsToMany
+    public function leagues(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(League::class);
     }
 
     /**

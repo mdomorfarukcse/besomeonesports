@@ -69,7 +69,7 @@
                                                 <option value="coach">Coach</option>
                                                 <option value="dashboard">Dashbaord</option>
                                                 <option value="division">Division</option>
-                                                <option value="event">Event</option>
+                                                <option value="league">League</option>
                                                 <option value="faq">Faq</option>
                                                 <option value="news">News</option>
                                                 <option value="player">Player</option>

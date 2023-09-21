@@ -66,13 +66,13 @@
             <div class="col-md-3">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <a href="{{ route('administration.event.index') }}" class="media">
+                        <a href="{{ route('administration.league.index') }}" class="media">
                             <span class="align-self-center mr-3 action-icon badge badge-{{ $badgeType[array_rand($badgeType)] }}-inverse">
                                 <i class="sl-icon-trophy"></i>
                             </span>
                             <div class="media-body">
-                                <p class="mb-0 text-muted">Active Events</p>
-                                <h5 class="mb-0 text-bold">{{ $total['events'] }}</h5>
+                                <p class="mb-0 text-muted">Active Leagues</p>
+                                <h5 class="mb-0 text-bold">{{ $total['leagues'] }}</h5>
                             </div>
                         </a>
                     </div>
@@ -150,7 +150,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-6 col-lg-9">
-                            <h5 class="card-title mb-0">Upcoming Events</h5>
+                            <h5 class="card-title mb-0">Upcoming Leagues</h5>
                         </div>
                     </div>
                 </div>
@@ -160,28 +160,28 @@
                             <thead class="bg-primary-inverse">
                                 <tr>
                                     <th>#</th>
-                                    <th>Event</th>
+                                    <th>League</th>
                                     <th>Start From</th>
                                     <th>Ends At</th>
                                     <th class="text-center">Teams</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($upcomingEvents as $key => $event)
+                                @foreach ($upcomingLeagues as $key => $league)
                                     <tr>
-                                        <th class="bg-primary-inverse">{{ serial($upcomingEvents, $key) }}</th>
+                                        <th class="bg-primary-inverse">{{ serial($upcomingLeagues, $key) }}</th>
                                         <td>
-                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}" target="_blank" class="text-capitalize">
-                                                {{ $event->name }}
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}" target="_blank" class="text-capitalize">
+                                                {{ $league->name }}
                                             </a>
                                             <br>
-                                            <small class="text-muted"><b class="text-dark">Season:</b> {{ $event->season->name }} | <b class="text-dark">Sport:</b> {{ $event->sport->name }}</small>
+                                            <small class="text-muted"><b class="text-dark">Season:</b> {{ $league->season->name }} | <b class="text-dark">Sport:</b> {{ $league->sport->name }}</small>
                                         </td>
-                                        <td>{{ show_date($event->start) }}</td>
-                                        <td>{{ show_date($event->end) }}</td>
+                                        <td>{{ show_date($league->start) }}</td>
+                                        <td>{{ show_date($league->end) }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}" @if($event->teams->count() > 0) data-toggle="tooltip" data-placement="top" data-html="true" title="<ol>@foreach ($event->teams as $team)<li>{{ print_one_line($team->name, 20) }}</li>@endforeach</ol>"@endif>
-                                                {{ $event->teams->count() }}
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}" @if($league->teams->count() > 0) data-toggle="tooltip" data-placement="top" data-html="true" title="<ol>@foreach ($league->teams as $team)<li>{{ print_one_line($team->name, 20) }}</li>@endforeach</ol>"@endif>
+                                                {{ $league->teams->count() }}
                                             </a>
                                         </td>
                                     </tr>

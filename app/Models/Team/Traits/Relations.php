@@ -3,7 +3,7 @@
 namespace App\Models\Team\Traits;
 
 use App\Models\Coach\Coach;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Division\Division;
 use App\Models\Player\Player;
 use App\Models\Schedule\Schedule;
@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait Relations
 {
     /**
-     * Get the event that owns the team.
+     * Get the league that owns the team.
      */
-    public function event(): BelongsTo
+    public function league(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(League::class);
     }
     
     
@@ -56,7 +56,7 @@ trait Relations
     }
 
     /**
-     * Get the event-schedule for the team.
+     * Get the league-schedule for the team.
      */
     public function schedule(): BelongsTo
     {

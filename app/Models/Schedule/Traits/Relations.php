@@ -3,7 +3,7 @@
 namespace App\Models\Schedule\Traits;
 
 use App\Models\Court\Court;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Team\Team;
 use App\Models\Venue\Venue;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait Relations
 {
     /**
-     * Get the event that owns the schedule.
+     * Get the league that owns the schedule.
      */
-    public function event(): BelongsTo
+    public function league(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(League::class);
     }
 
     /**
@@ -45,7 +45,7 @@ trait Relations
     }
 
     /**
-     * Get the winner for the event-schedule.
+     * Get the winner for the league-schedule.
      */
     public function winner(): BelongsTo
     {

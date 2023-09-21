@@ -37,7 +37,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('event*') ? 'active' : '' }}" href="{{ route('frontend.event.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
+                        <a class="nav-link dropdown-toggle {{ Request::is('league*') ? 'active' : '' }}" href="{{ route('frontend.league.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">City</a></li>
                             <li><a class="dropdown-item" href="#">Sport</a></li>

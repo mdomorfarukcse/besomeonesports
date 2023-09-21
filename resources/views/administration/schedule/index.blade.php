@@ -62,7 +62,7 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Event</th>
+                                <th>League</th>
                                 <th>Teams</th>
                                 <th>Venue</th>
                                 <th>Time</th>
@@ -76,8 +76,8 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($schedules, $key) }}</b></th>
                                     <td>
-                                        <a href="{{ route('administration.event.show', ['event', $schedule->event]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See Event Details') }}">
-                                            {{ $schedule->event->name }}
+                                        <a href="{{ route('administration.league.show', ['league', $schedule->league]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See League Details') }}">
+                                            {{ $schedule->league->name }}
                                         </a>
                                     </td>
                                     <td class="text-center">

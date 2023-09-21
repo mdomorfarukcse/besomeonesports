@@ -20,7 +20,7 @@ class TeamFactory extends Factory
     {
         return [
             'team_id' => unique_id(11, 11). rand(11, 99999). fake()->word(),
-            'event_id' => rand(1, 10),
+            'league_id' => rand(1, 10),
             'division_id' => rand(1, 9),
             'coach_id' => rand(1, 9),
             'name' => ucfirst(fake()->words(3, true)),
@@ -31,7 +31,7 @@ class TeamFactory extends Factory
         ];
     }
 
-    // Use afterCreating to attach divisions to events
+    // Use afterCreating to attach divisions to leagues
     public function configure()
     {
         return $this->afterCreating(function (Team $team) {

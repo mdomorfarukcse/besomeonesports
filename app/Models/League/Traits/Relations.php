@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Models\League\Traits;
+
+use App\Models\Division\Division;
+use App\Models\Player\Player;
+use App\Models\Schedule\Schedule;
+use App\Models\Season\Season;
+use App\Models\Sport\Sport;
+use App\Models\Team\Team;
+use App\Models\User;
+use App\Models\Venue\Venue;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+trait Relations
+{
+    /**
+     * Get the user that owns the league.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the season that owns the league.
+     */
+    public function season(): BelongsTo
+    {
+        return $this->belongsTo(Season::class);
+    }
+
+    /**
+     * Get the sport that owns the league.
+     */
+    public function sport(): BelongsTo
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
+    /**
+     * The teams that belong to the league.
+     */
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
+     * The divisions that belong to the league.
+     */
+    public function divisions(): BelongsToMany
+    {
+        return $this->belongsToMany(Division::class);
+    }
+
+    /**
+     * The venues that belong to the league.
+     */
+    public function venues(): BelongsToMany
+    {
+        return $this->belongsToMany(Venue::class);
+    }
+
+    /**
+     * Get the players for the league.
+     */
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class)
+                    ->withPivot(['paid_by', 'total_paid', 'transaction_id', 'invoice_number', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The schedules that belong to the league.
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
+    }
+}

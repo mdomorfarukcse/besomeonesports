@@ -62,22 +62,22 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->can('event.index') || auth()->user()->can('event.create'))
+                @if (auth()->user()->can('league.index') || auth()->user()->can('league.create'))
                     <li>
                         <a href="javaScript:void();"> 
                             <i class="sl-icon-trophy"></i>
-                            <span>Events</span>
+                            <span>Leagues</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('event.index'))
-                                <li><a href="{{ route('administration.event.index') }}">All Events</a></li>
+                            @if (auth()->user()->can('league.index'))
+                                <li><a href="{{ route('administration.league.index') }}">All Leagues</a></li>
                             @endif
                             @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
-                                <li><a href="{{ route('administration.event.my') }}">My Events</a></li>
+                                <li><a href="{{ route('administration.league.my') }}">My Leagues</a></li>
                             @endif
-                            @if (auth()->user()->can('event.create'))
-                                <li><a href="{{ route('administration.event.create') }}">Create New Event</a></li>
+                            @if (auth()->user()->can('league.create'))
+                                <li><a href="{{ route('administration.league.create') }}">Create New League</a></li>
                             @endif
                         </ul>
                     </li>

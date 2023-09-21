@@ -63,16 +63,16 @@
                             <input type="time" class="form-control" value="" name="end" id="end" />
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="">Choose An Event <span class="required">*</span></label>
-                            <select class="select2-single form-control" name="event_id" id="event_id" required>
-                                <option value="" selected>Select Event</option>
-                                @foreach ($events as $event)
-                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                            <label for="">Choose An League <span class="required">*</span></label>
+                            <select class="select2-single form-control" name="league_id" id="league_id" required>
+                                <option value="" selected>Select League</option>
+                                @foreach ($leagues as $league)
+                                    <option value="{{ $league->id }}">{{ $league->name }}</option>
                                 @endforeach
                             </select>
                             <small class="text-bold text-dark">
                                 <span class="text-danger">Note: </span>
-                                You can select only those event which have at least Two teams.
+                                You can select only those league which have at least Two teams.
                             </small>
                         </div>
                         <div class="form-group col-md-6">
@@ -127,36 +127,36 @@
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
-        // Get references to the event and team dropdowns
-        const eventDropdown = $('#event_id');
+        // Get references to the league and team dropdowns
+        const leagueDropdown = $('#league_id');
         const teamDropdown1 = $('#team_one');
         const teamDropdown2 = $('#team_two');
         const venueDropdown = $('#venue_id');
         const courtDropdown = $('#court_id');
     
-        // Listen for changes in the event dropdown
-        eventDropdown.on('change', function() {
-            const selectedEventId = $(this).val();
+        // Listen for changes in the league dropdown
+        leagueDropdown.on('change', function() {
+            const selectedLeagueId = $(this).val();
     
             // Clear the current options in the team dropdown
             teamDropdown1.empty().append('<option value="" selected>Select Team</option>');
             teamDropdown2.empty().append('<option value="" selected>Select Team</option>');
             venueDropdown.empty().append('<option value="" selected>Select Venue</option>');
     
-            // Disable the team dropdown if no event is selected
-            if (!selectedEventId) {
+            // Disable the team dropdown if no league is selected
+            if (!selectedLeagueId) {
                 teamDropdown1.prop('disabled', true);
                 teamDropdown2.prop('disabled', true);
                 venueDropdown.prop('disabled', true);
             } else {
-                // Enable the team dropdown if an event is selected
+                // Enable the team dropdown if an league is selected
                 teamDropdown1.prop('disabled', false);
                 teamDropdown2.prop('disabled', false);
                 venueDropdown.prop('disabled', false);
 
-                // Send an AJAX request to fetch teams for the selected event
+                // Send an AJAX request to fetch teams for the selected league
                 $.ajax({
-                    url: `/administration/schedule/teams/${selectedEventId}`,
+                    url: `/administration/schedule/teams/${selectedLeagueId}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -177,9 +177,9 @@
                     }
                 });
 
-                // Send an AJAX request to fetch venues for the selected event
+                // Send an AJAX request to fetch venues for the selected league
                 $.ajax({
-                    url: `/administration/schedule/venues/${selectedEventId}`,
+                    url: `/administration/schedule/venues/${selectedLeagueId}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(data) {

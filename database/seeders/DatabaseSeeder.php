@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Coach\CoachSeeder;
 use Database\Seeders\Court\CourtSeeder;
 use Database\Seeders\Division\DivisionSeeder;
-use Database\Seeders\Event\EventSeeder;
+use Database\Seeders\League\LeagueSeeder;
 use Database\Seeders\Frontend\FaqSeeder;
 use Database\Seeders\Frontend\SponsorSeeder;
 use Database\Seeders\Permission\PermissionsTableSeeder;
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PlayerSeeder::class);
         $this->call(DivisionSeeder::class);
         $this->call(SeasonSeeder::class);
-        $this->call(EventSeeder::class);
+        $this->call(LeagueSeeder::class);
         $this->call(TeamSeeder::class);
 
         $this->call(CategorySeeder::class);

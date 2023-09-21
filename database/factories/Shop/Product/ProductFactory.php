@@ -31,7 +31,7 @@ class ProductFactory extends Factory
         ];
     }
 
-    // Use afterCreating to attach divisions to events
+    // Use afterCreating to attach divisions to leagues
     public function configure()
     {
         return $this->afterCreating(function (Product $product) {

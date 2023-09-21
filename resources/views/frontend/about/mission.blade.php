@@ -64,21 +64,21 @@
         <div class="match-result-div">
             <div class="container">
                 <div class="mindle-heading text-center">
-                    <h5>Upcoming Events</h5>
+                    <h5>Upcoming Leagues</h5>
                     <h1>REGISTER FOR EVENTS HERE</h1>
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
                     <div class="next-matchu mt-4">
-                        @foreach ($upcomingEvents as $key => $event)
+                        @foreach ($upcomingLeagues as $key => $league)
                             <div class="comon-matchbn">
                                 <div class="topikn-div">
                                     <div class="more-details-div d-md-flex align-items-center">
                                         <h5 class="m-0">
-                                            <i class="fas fa-calendar-week"></i> {{ show_date($event->start) }} -
-                                            {{ show_date($event->end) }}
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($league->start) }} -
+                                            {{ show_date($league->end) }}
                                         </h5>
-                                        <h6>/ {{ $event->sport->name }}</h6>
+                                        <h6>/ {{ $league->sport->name }}</h6>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-8">
@@ -86,7 +86,7 @@
                                                 <div class="col-12">
                                                     <div class="cul-div">
                                                         <h6>
-                                                            {{ $event->name }}
+                                                            {{ $league->name }}
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -94,9 +94,9 @@
                                         </div>
                                         <div
                                             class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
-                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> Event Details</a>
-                                            <a href="{{ route('administration.event.show', ['event' => $event]) }}"
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
+                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> League Details</a>
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
                                                 class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
                                             </a>
                                         </div>
