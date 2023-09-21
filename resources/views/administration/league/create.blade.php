@@ -13,6 +13,9 @@
     <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Select2 css -->
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Tagsinput css -->
+    <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 
@@ -217,6 +220,17 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
+                        <div class="form-group col-md-12">
+                            <label for="rounds">League Rounds <span class="required">*</span></label>
+                            <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple">
+                                @foreach (old('rounds', []) as $selectedRound)
+                                    <option value="{{ $selectedRound }}" selected>{{ $selectedRound }}</option>
+                                @endforeach
+                            </select>
+                            @error('rounds')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
                         <div class="col-md-12 form-group">
                             <label for="description">Description</label>
                             <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="League Description">{{ old('description') }}</textarea>
@@ -244,6 +258,9 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Tagsinput js -->
+    <script src="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-tagsinput/typeahead.bundle.js') }}"></script>
     <!-- Select2 js -->
     <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
@@ -267,6 +284,16 @@
         }
         $("#leagueLogo").change(function() {
             readURL(this);
+        });
+    </script>
+
+    <script>
+        // Apply Select2 to the rounds input field
+        $(document).ready(function() {
+            $('#rounds').select2({
+                tags: true, // Allow creating new tags
+                tokenSeparators: [','], // Allow multiple tags separated by commas
+            });
         });
     </script>
 @endsection

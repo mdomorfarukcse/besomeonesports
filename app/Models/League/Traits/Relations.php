@@ -4,6 +4,7 @@ namespace App\Models\League\Traits;
 
 use App\Models\Division\Division;
 use App\Models\Player\Player;
+use App\Models\Round\Round;
 use App\Models\Schedule\Schedule;
 use App\Models\Season\Season;
 use App\Models\Sport\Sport;
@@ -71,6 +72,15 @@ trait Relations
     {
         return $this->belongsToMany(Player::class)
                     ->withPivot(['paid_by', 'total_paid', 'transaction_id', 'invoice_number', 'created_at', 'updated_at']);
+    }
+
+    
+    /**
+     * The rounds that belong to the league.
+     */
+    public function rounds(): HasMany
+    {
+        return $this->hasMany(Round::class);
     }
 
     /**

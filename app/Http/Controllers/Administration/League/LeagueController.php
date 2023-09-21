@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Administration\League;
 
 use Exception;
-use App\Models\League\League;
+use App\Models\Round\Round;
 use App\Models\Sport\Sport;
 use App\Models\Venue\Venue;
 use Illuminate\Http\Request;
+use App\Models\League\League;
 use App\Models\Player\Player;
 use App\Models\Season\Season;
 use App\Models\Division\Division;
@@ -21,9 +22,9 @@ use net\authorize\api\contract\v1\CustomerDataType;
 use net\authorize\api\contract\v1\NameAndAddressType;
 use net\authorize\api\contract\v1\TransactionRequestType;
 use net\authorize\api\contract\v1\CreateTransactionRequest;
-use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
+use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use App\Http\Requests\Administration\League\LeagueUpdateRequest;
 use App\Rules\Administration\League\LeagueRegistration\UniqueLeaguePlayerRule;
 
@@ -114,6 +115,11 @@ class LeagueController extends Controller
 
                 $league->divisions()->attach($request->divisions);
                 $league->venues()->attach($request->venues);
+
+                foreach ($request->rounds as $roundName) {
+                    $round = new Round(['name' => $roundName]);
+                    $league->rounds()->save($round);
+                }
             }, 5);
 
             toast('A New League Has Been Created.', 'success');
@@ -196,6 +202,25 @@ class LeagueController extends Controller
                 // Sync the divisions and venues in the pivot tables
                 $league->divisions()->sync($request->divisions);
                 $league->venues()->sync($request->venues);
+
+                // Get the current rounds associated with the league
+                $currentRounds = $league->rounds->pluck('name')->toArray();
+
+                // Update or create rounds
+                foreach ($request->rounds as $roundName) {
+                    $round = $league->rounds()->firstOrNew(['name' => $roundName]);
+                    $round->save();
+                }
+
+                // Delete rounds that are no longer in the updated list
+                $roundsToDelete = array_diff($currentRounds, $request->rounds);
+
+                foreach ($roundsToDelete as $roundName) {
+                    $round = $league->rounds()->where('name', $roundName)->first();
+                    if ($round) {
+                        $round->delete();
+                    }
+                }
             }, 5);
 
             toast('League Has Been Updated.', 'success');
