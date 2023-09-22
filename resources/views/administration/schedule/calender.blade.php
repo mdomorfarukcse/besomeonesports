@@ -56,7 +56,7 @@
 
 {{-- ===============< Modals Start >====================== --}}
 <!-- Modal -->
-<div class="modal fade" id="event_detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="league_detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         @csrf
         <div class="modal-content">
@@ -73,8 +73,8 @@
                             <table class="table table-bordered mb-0">
                                 <tbody>
                                     <tr>
-                                        <th>Event</th>
-                                        <td><span id="event_title"></span></td>
+                                        <th>League</th>
+                                        <td><span id="league_title"></span></td>
                                     </tr>
                                     <tr>
                                         <th>Team</th>
@@ -90,11 +90,11 @@
                                     </tr>
                                     <tr>
                                         <th>Start Time</th>
-                                        <td><span id="event_start"></span></td>
+                                        <td><span id="league_start"></span></td>
                                     </tr>
                                     <tr>
                                         <th>End Time </th>
-                                        <td><span id="event_end"></span></td>
+                                        <td><span id="league_end"></span></td>
                                     </tr>
                                 </tbody>
                             </table>

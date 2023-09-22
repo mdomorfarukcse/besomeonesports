@@ -94,7 +94,7 @@
     <div class="col-lg-12">
         <div class="card m-b-30">
             <div class="card-header">
-                <h5 class="card-title">{{ __('All Events Under ') }} <span class="text-bold text-info">{{ $sport->name }}</span></h5>
+                <h5 class="card-title">{{ __('All Leagues Under ') }} <span class="text-bold text-info">{{ $sport->name }}</span></h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -108,37 +108,37 @@
                                 <th>Divisions</th>
                                 <th>Venues</th>
                                 <th>Status</th>
-                                @if (auth()->user()->can('event.show') || auth()->user()->can('event.destroy')) 
+                                @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sport->events as $key => $event)
+                            @foreach ($sport->leagues as $key => $league)
                                 <tr>
-                                    <td class="fw-bold text-dark"><b>#{{ serial($sport->events, $key) }}</b></th>
+                                    <td class="fw-bold text-dark"><b>#{{ serial($sport->leagues, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($event->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="event">
+                                        <img src="{{ show_avatar($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
                                     </td>
                                     <td>
-                                        {{ $event->name }}
+                                        {{ $league->name }}
                                         <br>
-                                        <small class="text-muted">{{ $event->season->name }} ({{ $event->sport->name }})</small>
+                                        <small class="text-muted">{{ $league->season->name }} ({{ $league->sport->name }})</small>
                                     </td>
-                                    <td class="text-bold text-primary">${{ $event->registration_fee }}</td>
-                                    <td>{{ count($event->divisions) }}</td>
-                                    <td>{{ count($event->venues) }}</td>
-                                    <td>{!! status($event->status) !!}</td>
-                                    @if (auth()->user()->can('event.show') || auth()->user()->can('event.destroy')) 
+                                    <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
+                                    <td>{{ count($league->divisions) }}</td>
+                                    <td>{{ count($league->venues) }}</td>
+                                    <td>{!! status($league->status) !!}</td>
+                                    @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
-                                                @if (auth()->user()->can('event.destroy')) 
-                                                    <a href="{{ route('administration.event.destroy', ['event' => $event]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                @if (auth()->user()->can('league.destroy')) 
+                                                    <a href="{{ route('administration.league.destroy', ['league' => $league]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                         <i class="feather icon-trash-2"></i>
                                                     </a>
                                                 @endif
-                                                @if (auth()->user()->can('event.show')) 
-                                                    <a href="{{ route('administration.event.show', ['event' => $event]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                @if (auth()->user()->can('league.show')) 
+                                                    <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                         <i class="feather icon-info"></i>
                                                     </a>
                                                 @endif

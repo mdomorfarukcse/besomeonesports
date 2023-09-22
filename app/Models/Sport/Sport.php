@@ -12,5 +12,5 @@ class Sport extends Model
 {
     use HasFactory, Relations, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['events'];
+    protected $cascadeDeletes = ['leagues'];
 }

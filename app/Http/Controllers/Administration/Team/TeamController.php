@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Administration\Team;
 use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -22,7 +22,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with(['event', 'players'])->get();
+        $teams = Team::with(['league', 'players'])->get();
         // dd($teams);
         return view('administration.team.index', compact(['teams']));
     }
@@ -33,7 +33,7 @@ class TeamController extends Controller
     public function myTeam()
     {
         if (Auth::user()->hasRole('coach')) {
-            $teams = Team::with(['event', 'players'])->whereCoachId(Auth::user()->coach->id)->get();
+            $teams = Team::with(['league', 'players'])->whereCoachId(Auth::user()->coach->id)->get();
         } elseif (Auth::user()->hasRole('player')) {
             $player = Player::with('teams')->whereId(Auth::user()->player->id)->firstOrFail();
 
@@ -50,12 +50,12 @@ class TeamController extends Controller
      */
     public function create()
     {
-        $events = Event::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
         $team_id = $this->generateUniqueID();
 
-        return view('administration.team.create', compact(['events', 'divisions', 'coaches', 'team_id']));
+        return view('administration.team.create', compact(['leagues', 'divisions', 'coaches', 'team_id']));
     }
 
     /**
@@ -68,7 +68,7 @@ class TeamController extends Controller
             $team = new Team();
 
             $team->team_id = $request->team_id;
-            $team->event_id = $request->event_id;
+            $team->league_id = $request->league_id;
             $team->division_id = $request->division_id;
             $team->coach_id = $request->coach_id;
             if (isset($request->logo)) {
@@ -98,7 +98,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $players = $team->event->players;
+        $players = $team->league->players;
         // dd($players);
         if ($team->maximum_players < count($team->players)) {
             alert('Player Limit Crossed!', 'Maximum Player is '.$team->maximum_players.'. Please remove extra players', 'warning');
@@ -116,11 +116,11 @@ class TeamController extends Controller
     public function edit(Team $team)
     {
         // dd($team);
-        $events = Event::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
 
-        return view('administration.team.edit', compact(['team', 'events', 'divisions', 'coaches']));
+        return view('administration.team.edit', compact(['team', 'leagues', 'divisions', 'coaches']));
     }
 
     /**
@@ -134,7 +134,7 @@ class TeamController extends Controller
                 $logo = upload_avatar($request, 'logo');
                 $team->logo = $logo;
             }
-            $team->event_id = $request->event_id;
+            $team->league_id = $request->league_id;
             $team->division_id = $request->division_id;
             $team->coach_id = $request->coach_id;
             $team->name = $request->name;

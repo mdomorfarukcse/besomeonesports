@@ -2,7 +2,7 @@
 
 namespace App\Models\Player\Traits;
 
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\User;
 use App\Models\Team\Team;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,10 +26,10 @@ trait Relations
     }
 
     /**
-     * Get the events for the player.
+     * Get the leagues for the player.
      */
-    public function events(): BelongsToMany
+    public function leagues(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(League::class);
     }
 }

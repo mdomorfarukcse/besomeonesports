@@ -75,17 +75,17 @@ class RolesTableSeeder extends Seeder
                     'season.update',
                     'season.destroy',
                     
-                    'event.index',
-                    'event.create',
-                    'event.show',
-                    'event.update',
-                    'event.destroy',
+                    'league.index',
+                    'league.create',
+                    'league.show',
+                    'league.update',
+                    'league.destroy',
                     
-                    'event_registration.index',
-                    'event_registration.create',
-                    'event_registration.show',
-                    'event_registration.update',
-                    'event_registration.destroy',
+                    'league_registration.index',
+                    'league_registration.create',
+                    'league_registration.show',
+                    'league_registration.update',
+                    'league_registration.destroy',
                     
                     'team.index',
                     'team.create',
@@ -221,17 +221,17 @@ class RolesTableSeeder extends Seeder
                     'season.update',
                     'season.destroy',
                     
-                    'event.index',
-                    'event.create',
-                    'event.show',
-                    'event.update',
-                    'event.destroy',
+                    'league.index',
+                    'league.create',
+                    'league.show',
+                    'league.update',
+                    'league.destroy',
                     
-                    'event_registration.index',
-                    'event_registration.create',
-                    'event_registration.show',
-                    'event_registration.update',
-                    'event_registration.destroy',
+                    'league_registration.index',
+                    'league_registration.create',
+                    'league_registration.show',
+                    'league_registration.update',
+                    'league_registration.destroy',
                     
                     'team.index',
                     'team.create',
@@ -312,12 +312,12 @@ class RolesTableSeeder extends Seeder
                     'player.index',
                     'player.show',
                     
-                    'event.index',
-                    'event.show',
+                    'league.index',
+                    'league.show',
                     
-                    'event_registration.index',
-                    'event_registration.create',
-                    'event_registration.show',
+                    'league_registration.index',
+                    'league_registration.create',
+                    'league_registration.show',
                     
                     'team.index',
                     'team.show',
@@ -342,12 +342,12 @@ class RolesTableSeeder extends Seeder
                     'coach.index',
                     'coach.show',
                     
-                    'event.index',
-                    'event.show',
+                    'league.index',
+                    'league.show',
                     
-                    'event_registration.index',
-                    'event_registration.create',
-                    'event_registration.show',
+                    'league_registration.index',
+                    'league_registration.create',
+                    'league_registration.show',
                     
                     'team.index',
                     'team.show',
@@ -370,8 +370,8 @@ class RolesTableSeeder extends Seeder
                 $permissions = [
                     'dashboard.index',
                     
-                    'event.index',
-                    'event.show',
+                    'league.index',
+                    'league.show',
                     
                     'shop_order.index',
                     'shop_order.create',

@@ -92,14 +92,14 @@
                                                     <td>{{ $team->name }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Event</th>
+                                                    <th>League</th>
                                                     <td>
-                                                        <a href="{{ route('administration.event.show', ['event' => $team->event]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->event->name }} details" class="text-dark text-bold">
-                                                            {{ $team->event->name }}
+                                                        <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->league->name }} details" class="text-dark text-bold">
+                                                            {{ $team->league->name }}
                                                         </a>
                                                         <small>
-                                                            <a href="{{ route('administration.sport.show', ['sport' => $team->event->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->event->sport->name }} details" class="text-dark text-bold">
-                                                                ({{ $team->event->sport->name }})
+                                                            <a href="{{ route('administration.sport.show', ['sport' => $team->league->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $team->league->sport->name }} details" class="text-dark text-bold">
+                                                                ({{ $team->league->sport->name }})
                                                             </a>
                                                         </small>
                                                     </td>

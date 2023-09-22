@@ -17,8 +17,8 @@ Route::prefix('administration')
             // Seasons
             include_once 'season/season.php';
 
-            // Events
-            include_once 'event/event.php';
+            // league
+            include_once 'league/league.php';
 
             // Division
             include_once 'division/division.php';
