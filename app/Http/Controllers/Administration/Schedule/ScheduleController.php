@@ -168,6 +168,7 @@ class ScheduleController extends Controller
                             }
                         ])
                         ->whereStatus('Active')
+                        ->has('teams', '>=', 2)
                         ->get();
         return view('administration.schedule.edit', compact(['schedule','leagues']));
     }
@@ -181,6 +182,7 @@ class ScheduleController extends Controller
         try {
             DB::transaction(function() use ($request, $schedule) {
                 $schedule->league_id = $request->league_id;
+                $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;
                 $schedule->date = $request->date;
