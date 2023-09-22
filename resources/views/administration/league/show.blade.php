@@ -15,6 +15,29 @@
     {{--  External CSS  --}}
     <style>
     /* Custom CSS Here */
+    .team-one, .team-two {
+        position: relative;
+    }
+    .team-one .badge {
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-radius: 0px;
+        padding: 5px 15px 7px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        background-color: #009f47;
+    }
+    .team-two .badge {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 0px;
+        padding: 5px 15px 7px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        background-color: #009f47;
+    }
     </style>
 @endsection
 
@@ -178,41 +201,55 @@
             </div>
             <div class="card-body">
                 @foreach ($league->rounds as $round) 
-                    <div class="row justify-content-center mb-3">
-                        <div class="col-md-12">
-                            <div class="card border">
-                                <div class="card-header bg-primary-rgba border-bottom text-center">
-                                    <h5 class="card-title text-primary mb-0 text-uppercase text-bold">{{ $round->name }}</h5>
-                                </div>
-                                <div class="card-body py-2">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered mb-0">
-                                                <tbody>
-                                                    @foreach ($round->schedules as $schedule)
-                                                        @php
-                                                            $schedule->team_id === $schedule->teams[0]->id ? 'success' : 'denger';
-                                                        @endphp
-                                                        <tr>
-                                                            <td style="width: 48%;" class="text-left @if($schedule->team_id === $schedule->teams[0]->id) bg-success-rgba @endif">
-                                                                <img src="{{ show_avatar($schedule->teams[0]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
-                                                                <b class="text-dark">{{ $schedule->teams[0]->name }}</b>
-                                                            </td>
-                                                            <th style="width: 4%;" class="text-center pt-4"><b>VS</b></th>
-                                                            <td style="width: 48%;" class="text-right @if($schedule->team_id === $schedule->teams[1]->id) bg-success-rgba @endif">
-                                                                <b class="text-dark">{{ $schedule->teams[1]->name }}</b>
-                                                                <img src="{{ show_avatar($schedule->teams[1]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                    @if ($round->schedules->count() >= 1) 
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-12">
+                                <div class="card border">
+                                    <div class="card-header bg-primary-rgba border-bottom text-center">
+                                        <h5 class="card-title text-primary mb-0 text-uppercase text-bold">{{ $round->name }}</h5>
+                                    </div>
+                                    <div class="card-body py-2">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered mb-0">
+                                                    <tbody>
+                                                        @foreach ($round->schedules as $schedule)
+                                                            @php
+                                                                $schedule->team_id === $schedule->teams[0]->id ? 'success' : 'denger';
+                                                            @endphp
+                                                            <tr>
+                                                                <td style="width: 48%;" class="team-one text-left @if($schedule->team_id === $schedule->teams[0]->id) bg-success-rgba @endif">
+                                                                    <img src="{{ show_avatar($schedule->teams[0]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                                    <b class="text-dark">{{ $schedule->teams[0]->name }}</b>
+                                                                    @if($schedule->team_id === $schedule->teams[0]->id)
+                                                                        <span class="badge badge-success">
+                                                                            <i class="mdi mdi-crown font-17"></i>
+                                                                            WINNER
+                                                                        </span>
+                                                                    @endif
+                                                                </td>
+                                                                <th style="width: 4%;" class="text-center pt-4"><b>VS</b></th>
+                                                                <td style="width: 48%;" class="team-two text-right @if($schedule->team_id === $schedule->teams[1]->id) bg-success-rgba @endif">
+                                                                    <b class="text-dark">{{ $schedule->teams[1]->name }}</b>
+                                                                    <img src="{{ show_avatar($schedule->teams[1]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                                    @if($schedule->team_id === $schedule->teams[1]->id)
+                                                                        <span class="badge badge-success">
+                                                                            <i class="mdi mdi-crown font-17"></i>
+                                                                            WINNER
+                                                                        </span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
