@@ -26,7 +26,7 @@ class AssignPlayerRequest extends FormRequest
             // Add validation for the pivot table (player_team)
             'players'         => ['required', 'array'],
             'players.*'       => ['exists:players,id'],
-            'players.*'       => ['exists:event_player,player_id'],
+            'players.*'       => ['exists:league_player,player_id'],
         ];
     }
 
@@ -44,9 +44,9 @@ class AssignPlayerRequest extends FormRequest
     //                         $fail("Player with ID {$playerId} does not exist in the 'players' table.");
     //                     }
 
-    //                     // Check if the player ID exists in the 'event_registrations' table
-    //                     if (!DB::table('event_registrations')->where('player_id', $playerId)->exists()) {
-    //                         $fail("Player with ID {$playerId} does not exist in the 'event_registrations' table.");
+    //                     // Check if the player ID exists in the 'league_registrations' table
+    //                     if (!DB::table('league_registrations')->where('player_id', $playerId)->exists()) {
+    //                         $fail("Player with ID {$playerId} does not exist in the 'league_registrations' table.");
     //                     }
     //                 }
     //             }

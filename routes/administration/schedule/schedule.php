@@ -10,8 +10,9 @@ Route::controller(ScheduleController::class)->prefix('schedule')->name('schedule
     Route::get('/', 'index')->name('index');
     Route::get('/calender', 'calender')->name('calender');
     Route::get('/create', 'create')->name('create');
-    Route::get('/teams/{event}', 'teams')->name('teams');
-    Route::get('/venues/{event}', 'venues')->name('venues');
+    Route::get('/rounds/{league}', 'rounds')->name('rounds');
+    Route::get('/teams/{league}', 'teams')->name('teams');
+    Route::get('/venues/{league}', 'venues')->name('venues');
     Route::get('/venue/courts/{venue}', 'courts')->name('venues.courts');
     Route::get('/show/{schedule}', 'show')->name('show')->middleware(['can:schedule.show']);
     Route::get('/edit/{schedule}', 'edit')->name('edit')->middleware(['can:schedule.update']);

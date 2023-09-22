@@ -2,16 +2,16 @@
 
 namespace App\Models\Sport\Traits;
 
-use App\Models\Event\Event;
+use App\Models\League\League;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Relations
 {
     /**
-     * Get the events for the sport.
+     * Get the leagues for the sport.
      */
-    public function events(): HasMany
+    public function leagues(): HasMany
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(League::class);
     }
 }

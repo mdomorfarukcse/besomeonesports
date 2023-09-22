@@ -24,7 +24,7 @@ class ScheduleStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'event_id' => 'required|exists:events,id',
+            'league_id' => 'required|exists:leagues,id',
             'venue_id' => 'required|exists:venues,id',
             'court_id' => 'required|exists:courts,id',
             'date' => 'required|date|after_or_equal:today',

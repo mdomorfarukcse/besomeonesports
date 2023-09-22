@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend\HomePage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coach\Coach;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Gallery\Gallery;
 use App\Models\Player\Player;
 use App\Models\Shop\Product\Product;
@@ -17,7 +17,7 @@ class HomePageController extends Controller
 {
     function index() {
 
-        $upcomingEvents = Event::whereStatus('Active')
+        $upcomingLeagues = League::whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
         $products = Product::with(['images', 'categories'])->whereStatus('Active')->limit(8)->get();
@@ -27,16 +27,16 @@ class HomePageController extends Controller
         
 
         $teams = Team::whereStatus('Active')->count();
-        $events = Event::whereStatus('Active')->count();
+        $leagues = League::whereStatus('Active')->count();
         $coaches = Coach::whereStatus('Active')->count();
         $players = Player::whereStatus('Active')->count();
 
         $total = [
             'teams' => $teams,
-            'events' => $events,
+            'leagues' => $leagues,
             'coaches' => $coaches,
             'players' => $players
         ];                  
-        return view('frontend.homepage.index', compact(['upcomingEvents','products','total','galleries','videos']));
+        return view('frontend.homepage.index', compact(['upcomingLeagues','products','total','galleries','videos']));
     }
 }

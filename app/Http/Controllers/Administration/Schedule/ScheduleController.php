@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Administration\Schedule;
 
 use Exception;
-use App\Models\Court\Court;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Venue\Venue;
 use Illuminate\Http\Request;
 use App\Models\Schedule\Schedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Round\Round;
 
 class ScheduleController extends Controller
 {
@@ -43,7 +43,7 @@ class ScheduleController extends Controller
             $end = $schedule->date.' '.$schedule->end;
             $calender_data[] = [
                  'schedule_id' => $schedule->id,
-                 'event_name' => $schedule->event->name,
+                 'league_name' => $schedule->league->name,
                  'venue_name' => $schedule->venue->name,
                  'court_name' => $schedule->court->name,
                  'title' => $title,
@@ -73,14 +73,20 @@ class ScheduleController extends Controller
         return response()->json($calender_data);
     }
 
-    public function teams(Request $request, $event) {
-        $teams = Event::findOrFail($event)->teams;
+    public function rounds(Request $request, $league) {
+        $rounds = League::findOrFail($league)->rounds;
+
+        return response()->json($rounds);
+    }
+
+    public function teams(Request $request, $league) {
+        $teams = League::findOrFail($league)->teams;
 
         return response()->json($teams);
     }
 
-    public function venues(Request $request, $event) {
-        $venues = Event::findOrFail($event)->venues;
+    public function venues(Request $request, $league) {
+        $venues = League::findOrFail($league)->venues;
 
         return response()->json($venues);
     }
@@ -96,7 +102,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $events = Event::select(['id', 'name', 'status'])
+        $leagues = League::select(['id', 'name', 'status'])
                         ->with([
                             'teams', 
                             'venues' => function($venue) {
@@ -107,7 +113,7 @@ class ScheduleController extends Controller
                         ->has('teams', '>=', 2)
                         ->get();
                         
-        return view('administration.schedule.create', compact(['events']));
+        return view('administration.schedule.create', compact(['leagues']));
     }
 
     /**
@@ -119,7 +125,8 @@ class ScheduleController extends Controller
         try {
             DB::transaction(function() use ($request) {
                 $schedule = new Schedule();
-                $schedule->event_id = $request->event_id;
+                $schedule->league_id = $request->league_id;
+                $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;
                 $schedule->date = $request->date;
@@ -153,7 +160,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        $events = Event::select(['id', 'name', 'status'])
+        $leagues = League::select(['id', 'name', 'status'])
                         ->with([
                             'teams', 
                             'venues' => function($venue) {
@@ -161,8 +168,9 @@ class ScheduleController extends Controller
                             }
                         ])
                         ->whereStatus('Active')
+                        ->has('teams', '>=', 2)
                         ->get();
-        return view('administration.schedule.edit', compact(['schedule','events']));
+        return view('administration.schedule.edit', compact(['schedule','leagues']));
     }
 
     /**
@@ -173,7 +181,8 @@ class ScheduleController extends Controller
         // dd($request->all(),$schedule);
         try {
             DB::transaction(function() use ($request, $schedule) {
-                $schedule->event_id = $request->event_id;
+                $schedule->league_id = $request->league_id;
+                $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;
                 $schedule->date = $request->date;
