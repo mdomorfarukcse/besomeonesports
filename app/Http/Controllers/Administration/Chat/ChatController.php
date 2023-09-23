@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Administration\Chat;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Message\Message;
+use App\Models\Player\Player;
+use App\Models\Team\Team;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -12,7 +16,18 @@ class ChatController extends Controller
      */
     public function index()
     {
-        return view('administration.chat.index');
+        if (Auth::user()->hasRole('coach')) {
+            $teams = Team::with(['league', 'players'])->whereCoachId(Auth::user()->coach->id)->get();
+        } elseif (Auth::user()->hasRole('player')) {
+            $player = Player::with('teams')->whereId(Auth::user()->player->id)->firstOrFail();
+
+            $teams = $player->teams;
+        } else {
+            $teams = Team::with(['league', 'players'])->whereStatus('Active')->get();
+        }
+        
+          
+        return view('administration.chat.index', compact(['teams']));
     }
 
     /**
@@ -28,15 +43,22 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message();
+        $message->team_id = $request->team_id;
+        $message->user_id = auth()->user()->id;
+        $message->message = $request->message;
+        $message->save();
+
+        $messages = Team::findOrFail($request->team_id)->messages;;
+        return view('administration.chat.messages', compact(['messages']));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(Team $team){
+        $messages = $team->messages;
+        return view('administration.chat.messages', compact(['messages']));
     }
 
     /**

@@ -301,7 +301,6 @@
                     <a href="{{ route('administration.chat.index') }}"> 
                         <i class="sl-icon-bubbles"></i>
                         <span>Messaging</span> 
-                        <span class="badge badge-danger pull-right">{{ __('Remain') }}</span>
                     </a>
                 </li>
                 

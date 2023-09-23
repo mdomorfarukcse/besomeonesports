@@ -8,4 +8,6 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(ChatController::class)->prefix('chat')->name('chat.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/show/{team}', 'show')->name('show');
+    Route::post('/store', 'store')->name('store');
 });
