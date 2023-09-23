@@ -14,6 +14,8 @@
     <!-- Tagsinput css -->
     <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet" type="text/css">
+    <!-- Summernote css -->
+    <link href="assets/plugins/summernote/summernote-bs4.css" rel="stylesheet">
 @endsection
 
 @section('custom_css')
@@ -250,7 +252,8 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="League Description">{{ $league->description }}</textarea>
+                            <textarea name="description" rows="5" id="textarea_editor" class="form-control @error('note') is-invalid @enderror" 
+                            placeholder="League Description">{{ $league->description }}</textarea>
                             @error('description')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
@@ -281,6 +284,8 @@
     <!-- Select2 js -->
     <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
+    <!-- Wysiwig js -->
+    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
 @endsection
 
 @section('custom_script')
@@ -312,4 +317,30 @@
             });
         });
     </script>
+    <script>
+        // Apply Select2 to the rounds input field
+        $(document).ready(function() {
+            tinymce.init({
+                selector: "textarea#textarea_editor",
+                theme: "modern",
+                height:320,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                    "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                style_formats: [
+                    {title: 'Bold text', inline: 'b'},
+                    {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                    {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                    {title: 'Example 1', inline: 'span', classes: 'example1'},
+                    {title: 'Example 2', inline: 'span', classes: 'example2'},
+                    {title: 'Table styles'},
+                    {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+                ]
+            });
+        });
+    </script>
+
 @endsection
