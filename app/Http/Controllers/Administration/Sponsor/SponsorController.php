@@ -37,7 +37,7 @@ class SponsorController extends Controller
         ]);
 
         try {
-            $avatar = upload_image($request, 'avatar');
+            $avatar = upload_image($request->avatar);
             $data = $request->all();
             Sponsor::create([
                 'name' => $data['name'],

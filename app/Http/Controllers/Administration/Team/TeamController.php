@@ -72,7 +72,7 @@ class TeamController extends Controller
             $team->division_id = $request->division_id;
             $team->coach_id = $request->coach_id;
             if (isset($request->logo)) {
-                $logo = upload_image($request, 'logo');
+                $logo = upload_image($request->logo);
                 $team->logo = $logo;
             }
             $team->name = $request->name;
@@ -131,7 +131,7 @@ class TeamController extends Controller
         // dd($request);
         try{
             if (isset($request->logo)) {
-                $logo = upload_image($request, 'logo');
+                $logo = upload_image($request->logo);
                 $team->logo = $logo;
             }
             $team->league_id = $request->league_id;

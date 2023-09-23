@@ -125,7 +125,7 @@
                                         <td class="fw-bold text-dark"><b>#{{ serial($category->products, $key) }}</b></th>
                                         <td>
                                             @if ($product->images->count() > 0)
-                                                <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
+                                                <img src="{{ show_image($product->images->first()->path) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
                                             @else
                                                 <p>No images available</p>
                                             @endif

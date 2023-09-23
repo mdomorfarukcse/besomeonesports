@@ -141,7 +141,7 @@
                                     @foreach ($product->images as  $sl => $image)
                                         <div class="col-md-3">
                                             <div class="product_image">
-                                                <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" class="img-thumbnail">
+                                                <img src="{{ show_image($image->path) }}" alt="Product Image {{ $sl+1 }}" class="img-thumbnail">
                                                 @if (auth()->user()->can('shop_product.destroy') || auth()->user()->can('shop_product.update')) 
                                                     <a href="{{ route('administration.shop.product.destroy.image', ['image' => $image]) }}" class="btn btn-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');" style="position: absolute; right: 20px; top: 5px;">
                                                         <i class="feather icon-trash-2"></i>

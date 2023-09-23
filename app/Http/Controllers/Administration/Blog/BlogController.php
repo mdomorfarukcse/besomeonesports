@@ -34,7 +34,7 @@ class BlogController extends Controller
 
         // dd($request);
         try {
-            $avatar = upload_image($request, 'avatar');
+            $avatar = upload_image($request->avatar);
             $data = $request->all();
             Blog::create([
                 'name' => $data['name'],
@@ -76,7 +76,7 @@ class BlogController extends Controller
             $blog->description = $request->description;
             $blog->status = $request->status;
             if (isset($request->avatar)) {
-                $avatar = upload_image($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 $blog->avatar = $avatar;
             }
             $blog->save();

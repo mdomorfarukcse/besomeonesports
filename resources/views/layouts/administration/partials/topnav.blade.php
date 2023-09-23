@@ -37,7 +37,7 @@
                                     @if (is_null(auth()->user()->avatar)) 
                                         <img src="{{ asset('assets/images/users/men.svg') }}" class="img-fluid rounded-circle" alt="profile" />
                                     @else
-                                        <img src="{{ show_image(auth()->user()->avatar) }}" class="img-fluid rounded-circle" alt="profile" />
+                                        <img src="{{ show_image(auth()->user()->avatar) }}" class="img-fluid rounded-circle" style="height: 30px; width: 30px;" alt="profile" />
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
@@ -46,7 +46,7 @@
                                             @if (is_null(auth()->user()->avatar)) 
                                                 <img src="{{ asset('assets/images/users/men.svg') }}" class="img-fluid rounded-circle" alt="profile" />
                                             @else
-                                                <img src="{{ show_image(auth()->user()->avatar) }}" class="img-fluid rounded-circle" alt="profile" />
+                                                <img src="{{ show_image(auth()->user()->avatar) }}" class="img-fluid rounded-circle" style="height: 30px; width: 30px;" alt="profile" />
                                             @endif
                                             <h5>{{ Auth::user()->name }}</h5>
                                             <small class="text-muted text-capitalize">{{ Auth::user()->roles[0]->name }}</small>

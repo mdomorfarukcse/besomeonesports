@@ -77,7 +77,7 @@ class PlayerController extends Controller
             DB::transaction(function() use ($request) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 // Store Credentials into User
                 $user = User::create([
                     'name' => $playerName,
@@ -167,7 +167,7 @@ class PlayerController extends Controller
             DB::transaction(function() use ($request, $player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 // dd($request->all(), $avatar);
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();

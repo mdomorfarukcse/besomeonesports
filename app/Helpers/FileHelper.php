@@ -1,30 +1,25 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 if (!function_exists('upload_image')) {
     /**
-     * Upload and store the user's image.
+     * Upload and store an image in the "images" directory.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\UploadedFile $image
      * @return string|null
      */
-    function upload_image(Request $request, $name)
+    function upload_image(UploadedFile $image)
     {
-        $request->validate([
-            $name => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules as needed
-        ]);
+        // Validate and store the image in the "images" directory
+        $image->store('images', 'public');
 
-        if ($request->hasFile($name)) {
-            $image = $request->file($name);
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('images', $imageName, 'public');
-            return $imageName;
-        }
-
-        return null;
+        // Return the image file name (e.g., "image.jpg")
+        return $image->hashName();
     }
 }
+
 
 
 if (!function_exists('show_image')) {
@@ -35,7 +30,7 @@ if (!function_exists('show_image')) {
      * @param string|null $defaultImage
      * @return string
      */
-    function show_image($imageName = null, $defaultImage = 'https://fakeimg.pl/500/?text=No-Image')
+    function show_image($imageName = null, $defaultImage = 'https://fakeimg.pl/300/000000/?text=No-Image')
     {
         if ($imageName) {
             return asset('storage/images/' . $imageName);

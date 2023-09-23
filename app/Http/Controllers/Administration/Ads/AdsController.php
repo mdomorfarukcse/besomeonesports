@@ -40,7 +40,7 @@ class AdsController extends Controller
             'enddate' => 'required'
         ]);
         try {
-            $avatar = upload_image($request, 'avatar');
+            $avatar = upload_image($request->avatar);
             $data = $request->all();
             Ads::create([
                 'name' => $data['name'],
@@ -97,7 +97,7 @@ class AdsController extends Controller
             $ads->description = $request->description;
             $ads->status = $request->status;
             if (isset($request->avatar)) {
-                $avatar = upload_image($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 $ads->avatar = $avatar;
             }
             $ads->save();

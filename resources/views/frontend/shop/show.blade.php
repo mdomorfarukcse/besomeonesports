@@ -62,8 +62,8 @@
                             <div id="sync1" class="owl-carousel owl-theme">
                                 @foreach ($product->images as $sl => $image)
                                     <div class="item">
-                                        <a href="{{ asset('storage/' . $image->path) }}" data-fancybox="" class="mian-ppic">
-                                            <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" />
+                                        <a href="{{ show_image($image->path) }}" data-fancybox="" class="mian-ppic">
+                                            <img src="{{ show_image($image->path) }}" alt="Product Image {{ $sl+1 }}" />
                                         </a>
                                     </div>
                                 @endforeach
@@ -74,7 +74,7 @@
                                     <div class="item">
                                         <div class="thum-pic-slide">
                                             <figure>
-                                                <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image {{ $sl+1 }}" />
+                                                <img src="{{ show_image($image->path) }}" alt="Product Image {{ $sl+1 }}" />
                                             </figure>
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                                 <div class="top-imgb-box">
                                     <figure>
                                         @if ($data->images->count() > 0)
-                                            <img src="{{ asset('storage/' . $data->images->first()->path) }}" alt="shop1" />
+                                            <img src="{{ show_image($data->images->first()->path) }}" alt="shop1" />
                                         @else
                                             <p>No images available</p>
                                         @endif
