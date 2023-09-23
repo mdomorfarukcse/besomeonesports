@@ -78,7 +78,7 @@
                                 <tr>
                                     <td class="fw-bold text-dark"><b>#{{ serial($leagues, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
+                                        <img src="{{ show_image($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
                                     </td>
                                     <td>
                                         {{ $league->name }}

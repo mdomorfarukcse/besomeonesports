@@ -121,7 +121,7 @@
                                     <td class="fw-bold text-dark"><b>#{{ serial($season->leagues, $key) }}</b></th>
                                     <td>
                                         <a href="{{ route('administration.league.show', ['league' => $league]) }}" target="_blank" class="text-bold text-dark">
-                                            <img src="{{ show_avatar($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
+                                            <img src="{{ show_image($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
                                         </a>
                                     </td>
                                     <td>

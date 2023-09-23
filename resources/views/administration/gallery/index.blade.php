@@ -71,7 +71,7 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($galleries, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($gallery->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                        <img src="{{ show_image($gallery->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
                                     </td>
                                     <td>{{ $gallery->name }}</td>
                                     <td>{!! status($gallery->status) !!}</td>

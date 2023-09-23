@@ -134,11 +134,11 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="playerAvatar" name="avatar" value="{{ show_avatar($player->user->avatar) }}" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="playerAvatar" name="avatar" value="{{ show_image($player->user->avatar) }}" accept=".png, .jpg, .jpeg" />
                                     <label for="playerAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
-                                    <div id="imagePreview" style="background-image: url({{ show_avatar($player->user->avatar) }});"></div>
+                                    <div id="imagePreview" style="background-image: url({{ show_image($player->user->avatar) }});"></div>
                                 </div>
                             </div>
                         </div>

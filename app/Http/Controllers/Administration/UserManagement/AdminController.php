@@ -41,7 +41,7 @@ class AdminController extends Controller
         // dd($request->all());
         try {
             DB::transaction(function() use ($request) {
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
 
                 $user = new User();
 
@@ -97,7 +97,7 @@ class AdminController extends Controller
         // dd($request->all(), $admin);
         try {
             DB::transaction(function() use ($request, $admin) {
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
 
                 $admin->name = $request->name;
                 $admin->email = $request->email;

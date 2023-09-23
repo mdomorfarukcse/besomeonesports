@@ -98,7 +98,7 @@ class LeagueController extends Controller
         // dd($request->all());
         try{
             DB::transaction(function() use ($request) {
-                $logo = upload_avatar($request, 'logo');
+                $logo = upload_image($request->logo);
 
                 $league = new League();
 
@@ -184,7 +184,7 @@ class LeagueController extends Controller
         // dd($request->all());
         try{
             DB::transaction(function() use ($request, $league) {
-                $logo = upload_avatar($request, 'logo');
+                $logo = upload_image($request->logo);
 
                 $league->season_id = $request->season_id;
                 $league->sport_id = $request->sport_id;

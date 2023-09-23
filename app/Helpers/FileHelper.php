@@ -1,46 +1,42 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
-if (!function_exists('upload_avatar')) {
+if (!function_exists('upload_image')) {
     /**
-     * Upload and store the user's avatar.
+     * Upload and store an image in the "images" directory.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\UploadedFile $image
      * @return string|null
      */
-    function upload_avatar(Request $request, $name = 'avatar')
+    function upload_image(UploadedFile $image)
     {
-        $request->validate([
-            $name => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules as needed
-        ]);
+        // Validate and store the image in the "images" directory
+        $image->store('images', 'public');
 
-        if ($request->hasFile($name)) {
-            $avatar = $request->file($name);
-            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatar->storeAs('avatars', $avatarName, 'public');
-            return $avatarName;
-        }
-
-        return null;
+        // Return the image file name (e.g., "image.jpg")
+        return $image->hashName();
     }
 }
 
 
-if (!function_exists('show_avatar')) {
+
+if (!function_exists('show_image')) {
     /**
-     * Get the user's avatar URL.
+     * Get the URL to display an image from the "images" folder in storage.
      *
-     * @param string|null $avatarName
+     * @param string|null $imageName
+     * @param string|null $defaultImage
      * @return string
      */
-    function show_avatar($avatarName = null)
+    function show_image($imageName = null, $defaultImage = 'https://fakeimg.pl/300/dddddd/?text=No-Image')
     {
-        if ($avatarName) {
-            return asset('storage/avatars/' . $avatarName);
+        if ($imageName) {
+            return asset('storage/images/' . $imageName);
         }
 
-        // If no avatar is specified, return a default avatar URL here.
-        return 'https://fakeimg.pl/200x200';
+        // If no image is specified, return a default image URL.
+        return $defaultImage;
     }
 }

@@ -38,7 +38,7 @@
                     <div class="col-lg-7 col-xl-8">
                         <div class="blog-post">
                             <figure>
-                                <img src="{{ show_avatar($blog->avatar) }}" alt="post" />
+                                <img src="{{ show_image($blog->avatar) }}" alt="post" />
                             </figure>
                             <div class="d-md-flex justify-content-between share-div">
                                 <ul class="list-unstyled d-flex">
@@ -58,7 +58,7 @@
                                 @foreach ($all_blog as $keys => $single_blog)
                                     <a href="{{ route('frontend.press.show', ['press' => $single_blog]) }}" class="d-flex w-100 justify-content-between align-items-center">
                                         <figure>
-                                            <img src="{{ show_avatar($single_blog->avatar) }}" alt="post" />
+                                            <img src="{{ show_image($single_blog->avatar) }}" alt="post" />
                                         </figure>
                                         <h5>{{ $single_blog->name }}</h5>
                                     </a>

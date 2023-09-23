@@ -67,7 +67,7 @@
                                         <div class="left-section-div">
                                             <figure>
                                                 @if ($product->images->count() > 0)
-                                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
+                                                    <img src="{{ show_image($product->images->first()->path) }}" alt="sm" />
                                                 @else
                                                     <p>No images available</p>
                                                 @endif

@@ -78,8 +78,8 @@
                 <h5 class="alert alert-primary">Teams</h5>
                 <ul class="list-unstyled mb-0">
                     @foreach ($teams as $team) 
-                        <li class="media chat_team chat{{ $team->id }}" data-team_id="{{ $team->id }}" data-team_name="{{ $team->name }}" data-team_img="{{ show_avatar($team->logo) }}" >
-                            <img class="align-self-center rounded-circle" src="{{ show_avatar($team->logo) }}" alt="Generic placeholder image" />
+                        <li class="media chat_team chat{{ $team->id }}" data-team_id="{{ $team->id }}" data-team_name="{{ $team->name }}" data-team_img="{{ show_image($team->logo) }}" >
+                            <img class="align-self-center rounded-circle" src="{{ show_image($team->logo) }}" alt="Generic placeholder image" />
                             <div class="media-body">
                                 <h5>{{ $team->name }}</h5>
                                 <p>{{ $team->league->name }}</p>

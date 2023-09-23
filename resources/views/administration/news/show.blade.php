@@ -74,7 +74,7 @@
                                                             @if (is_null($news->avatar)) 
                                                                 <img src="https://fakeimg.pl/500x500" alt="News Image" class="img-thumbnail" width="250">
                                                             @else 
-                                                                <img src="{{ show_avatar($news->avatar) }}" alt="News Image" class="img-thumbnail" width="250">
+                                                                <img src="{{ show_image($news->avatar) }}" alt="News Image" class="img-thumbnail" width="250">
                                                             @endif
                                                         </div>
                                                     </td>

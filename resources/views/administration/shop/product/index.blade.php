@@ -79,9 +79,9 @@
                                     <td class="fw-bold text-dark"><b>#{{ serial($products, $key) }}</b></th>
                                     <td>
                                         @if ($product->images->count() > 0)
-                                            <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
+                                            <img src="{{ show_image($product->images->first()->path) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
                                         @else
-                                            <p>No images available</p>
+                                            <img src="https://fakeimg.pl/300/000000/?text=No-Image" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
                                         @endif
                                     </td>
                                     <td class="text-bold text-primary">{{ $product->product_id }}</td>
