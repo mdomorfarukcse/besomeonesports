@@ -30,7 +30,7 @@ if (!function_exists('show_image')) {
      * @param string|null $defaultImage
      * @return string
      */
-    function show_image($imageName = null, $defaultImage = 'https://fakeimg.pl/300/000000/?text=No-Image')
+    function show_image($imageName = null, $defaultImage = 'https://fakeimg.pl/300/dddddd/?text=No-Image')
     {
         if ($imageName) {
             return asset('storage/images/' . $imageName);
