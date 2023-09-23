@@ -54,6 +54,24 @@ class ChatController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     */
+    public function imageupload(Request $request)
+    {
+        
+        $avatar = upload_avatar($request, 'avatar');
+        $message = new Message();
+        $message->team_id = $request->team_id;
+        $message->user_id = auth()->user()->id;
+        $message->message = $avatar;
+        $message->type = 'image';
+        $message->save();
+
+        // $messages = Team::findOrFail($request->team_id)->messages;;
+        // return view('administration.chat.messages', compact(['messages']));
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(Team $team){

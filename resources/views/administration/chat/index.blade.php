@@ -9,6 +9,7 @@
 
 @section('css_links')
     {{--  External CSS  --}}
+    <link href="{{ asset('frontend/css/jquery.fancybox.min.css') }}" type="text/css" rel="stylesheet"/>
 @endsection
 
 @section('custom_css')
@@ -20,7 +21,7 @@
         background-color: #ddd;
     }
     .chat-list .chat-user-list li.media.active {
-        background-color: #ddd;
+        background-color: #e5ffea;
     }
     .chat-user-list{
         height: calc(80vh - 50px);
@@ -62,6 +63,68 @@
     .contentbar{
         margin-top: 60px; 
     }
+    </style>
+    <style>
+        /* Custom CSS Here */
+    
+        /* Image Upload */
+        .avatar-upload {
+            position: relative;
+            max-width: 205px;
+            margin: 50px auto;
+        }
+        .avatar-upload .avatar-edit {
+            position: absolute;
+            right: 12px;
+            z-index: 1;
+            top: 10px;
+        }
+        .avatar-upload .avatar-edit input {
+            display: none;
+        }
+        .avatar-upload .avatar-edit input + label {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            background: #ffffff;
+            border: 1px solid;
+            border-color: #a1a1a1;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+        }
+        .avatar-upload .avatar-edit input + label:hover {
+            background: #d8d8d8;
+            border-color: #a1a1a1;
+        }
+        .avatar-upload .avatar-edit input + label:after {
+            content: "\f040";
+            font-family: "FontAwesome";
+            color: #757575;
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: auto;
+        }
+        .avatar-upload .avatar-preview {
+            width: 192px;
+            height: 192px;
+            position: relative;
+            border-radius: 100%;
+            border: 6px solid #f8f8f8;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+        .avatar-upload .avatar-preview > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     </style>
 @endsection
 
@@ -121,7 +184,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Type a message..." aria-label="Text" name="message" id="message" />
                             <div class="input-group-append">
-                                <button class="btn btn-secondary-rgba" type="button" id="button-addonlink"><i class="feather icon-link"></i></button>
+                                <button class="btn btn-secondary-rgba" type="button" id="chat_file"><i class="feather icon-link"></i></button>
                                 <button class="btn btn-primary-rgba" type="submit" id="msgsendbtn"><i class="feather icon-send"></i></button>
                             </div>
                         </div>
@@ -133,13 +196,49 @@
     <!-- End col -->
 </div>
 
-<!-- End row -->
+<!-- Modal -->
+<div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fileModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form autocomplete="off" id="fileForm" method="POST" action="{{ route('administration.chat.imageupload') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type="file" id="chatAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                    <label for="chatAvatar"></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="team_id" value="" id="chat_file_team_id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection
 
 
 @section('script_links')
     {{--  External Javascript Links --}}   
+    <script src="{{ asset('frontend/js/jquery.fancybox.min.js') }}"></script>
 @endsection
 
 @section('custom_script')
@@ -176,8 +275,32 @@
                 },
             });
         });
+        $("#chat_file").click(function (event) {
+            event.preventDefault();
+            $this = $(this);
+            $('#fileModal').modal('show');
+            $('#fileModalLabel').html($('#chat_team_name').val());
+            $('#chat_file_team_id').val($('#chat_team_id').val());
+        });
 
 
+    </script>
+    <script>
+        // File Uploder
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#chatAvatar").change(function() {
+            readURL(this);
+        });
     </script>
     <script>
         $(document).ready(function() {
@@ -198,6 +321,27 @@
                     },
                 });
             });
+            $('#fileForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the form from submitting
+
+                $this = $(this);
+                
+                $.ajax({
+                    //create an ajax request to display.php
+                    type: "POST",
+                    url: $this.attr('action'),
+                    data: new FormData(this),
+                    dataType: "html",
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function (data) {
+                        $('.chat-body').html(data);
+                        $this.trigger('reset');
+                        $('#fileModal').modal('hide');
+                    },
+                });
+            });
 
             // Listen for the Enter key press and prevent form submission
             // $('#messageForm').on('keydown', function(e) {
@@ -210,7 +354,7 @@
     <script>
         // Function to scroll to the bottom of a scrollable element using jQuery
         function scrollToBottom(elementSelector) {
-            var $element = $("." + elementClass);
+            var $element = $(".chat-body");
             $element.scrollTop($element.prop("scrollHeight"));
         }
 
@@ -254,4 +398,5 @@
         }
         }, 10000);
     </script>
+    
 @endsection
