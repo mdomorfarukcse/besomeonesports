@@ -45,32 +45,22 @@
                             <th>Sport</th>
                             <th>Name</th>
                             <th>Date</th>
-                            <th>Location</th>
                             <th>Season</th>
                             <th>Acton</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Basketball</td>
-                            <td>
-                                <a href="#"><span class="mx-3 vs-0">Be Someone Sports Summer Basketball League</span></a>
-                            </td>
-                            <td>Jun 5 - Aug 14, 2023</td>
-                            <td>Alvin, TX</td>
-                            <td>2023</td>
-                            <td><a href="#" class="btn btn-info text-white"> Details </a></td>
-                        </tr>
-                        <tr>
-                            <td>Basketball</td>
-                            <td>
-                                <a href="#"><span class="mx-3 vs-0">Be Someone Sports Summer League All-Star Game Powered by Motu Stop</span></a>
-                            </td>
-                            <td>Aug 19, 2023</td>
-                            <td>Alvin, TX</td>
-                            <td>2022-2023</td>
-                            <td><a href="#" class="btn btn-info text-white"> Details </a></td>
-                        </tr>
+                        @foreach ($leagues as $key => $league)
+                            <tr>
+                                <td>{{ $league->sport->name }}</td>
+                                <td>
+                                    <a href="{{ route('frontend.league.show', ['league' => $league]) }}"><span class="mx-3 vs-0">{{ $league->name }}</span></a>
+                                </td>
+                                <td>{{ show_date($league->start) }} - {{ show_date($league->end) }}</td>
+                                <td>{{ $league->season->name }}</td>
+                                <td><a href="{{ route('frontend.league.show', ['league' => $league]) }}" class="btn btn-info text-white"> Details </a></td>
+                            </tr>
+                        @endforeach    
                     </tbody>
                 </table>
             </div>

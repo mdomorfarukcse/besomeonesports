@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(LeagueController::class)->prefix('league')->name('league.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/show/{league}', 'show')->name('show');
 });
