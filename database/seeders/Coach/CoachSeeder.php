@@ -27,7 +27,7 @@ class CoachSeeder extends Seeder
 
                 Coach::create([
                     'user_id' => $user->id,
-                    'coach_id' => $this->generateUniqueID().$i,
+                    'coach_id' => unique_id(11,11).$i.rand(1,5000),
                     'first_name' => fake()->firstName(),
                     'last_name' => fake()->lastName(),
                     'position' => fake()->word(),
@@ -37,41 +37,11 @@ class CoachSeeder extends Seeder
                     'city' => fake()->city(),
                     'state' => fake()->words(2, true),
                     'postal_code' => fake()->postcode(),
-                    'usab_license_no' => $this->generateUniqueID().$i,
+                    'usab_license_no' => unique_id(11,11).$i.rand(1,5000),
                     'note' => fake()->sentence(10, true),
                     'status' => fake()->randomElement(['Active', 'Inactive', 'Banned'])
                 ]);
             }
         });
-    }
-
-    // Generate a unique ID with a minimum and maximum length of 10 characters
-    private function generateUniqueID() {
-        $length = 10;
-        $timestampLength = 13; // Length of the timestamp in milliseconds
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-        // Get the current timestamp in milliseconds
-        $timestamp = round(microtime(true) * 1000);
-    
-        // Convert the timestamp to a string and remove the decimal point
-        $timestampString = str_replace('.', '', (string)$timestamp);
-    
-        // Calculate the number of characters needed to fill the remaining length
-        $charactersNeeded = $length - $timestampLength;
-    
-        // Ensure we have enough characters to fill the length
-        while (strlen($timestampString) < $charactersNeeded) {
-            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
-            $timestampString .= $randomCharacter;
-        }
-    
-        // Convert the timestamp to all capital letters
-        $timestampString = strtoupper($timestampString);
-    
-        // Combine the timestamp with the random characters and take the first $length characters
-        $uniqueID = substr($timestampString, 0, $length);
-    
-        return $uniqueID;
     }
 }
