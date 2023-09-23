@@ -151,18 +151,19 @@
         $(".chat_team").click(function (event) {
             event.preventDefault();
             $this = $(this);
+            $(".chat-user-list li").removeClass("active");
             $(".chat-bottom").show();
             var user_id = $('#user_id').val();;
             var team_id = $this.data("team_id");
             var team_name = $this.data("team_name");
             var team_img = $this.data("team_img");
-            console.log(team_img);
             var img_tag = `<img class="team-logo align-self-center mr-3 rounded-circle" id="team_avatar" src="${team_img}" alt="Generic placeholder image" />`;
 
             $('#team_avatar').html(img_tag);
             $('#team_title').html(team_name);
             $('#chat_team_id').val(team_id);
             $('#chat_team_name').val(team_name);
+            $(".chat"+team_id).addClass("active");
             
             
             $.ajax({
@@ -199,11 +200,11 @@
             });
 
             // Listen for the Enter key press and prevent form submission
-            $('#messageForm').on('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                }
-            });
+            // $('#messageForm').on('keydown', function(e) {
+            //     if (e.key === 'Enter') {
+            //         e.preventDefault();
+            //     }
+            // });
         });
     </script>
     <script>
