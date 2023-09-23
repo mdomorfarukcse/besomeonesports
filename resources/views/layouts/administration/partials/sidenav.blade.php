@@ -62,22 +62,22 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->can('event.index') || auth()->user()->can('event.create'))
+                @if (auth()->user()->can('league.index') || auth()->user()->can('league.create'))
                     <li>
                         <a href="javaScript:void();"> 
                             <i class="sl-icon-trophy"></i>
-                            <span>Events</span>
+                            <span>Leagues</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('event.index'))
-                                <li><a href="{{ route('administration.event.index') }}">All Events</a></li>
+                            @if (auth()->user()->can('league.index'))
+                                <li><a href="{{ route('administration.league.index') }}">All Leagues</a></li>
                             @endif
                             @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
-                                <li><a href="{{ route('administration.event.my') }}">My Events</a></li>
+                                <li><a href="{{ route('administration.league.my') }}">My Leagues</a></li>
                             @endif
-                            @if (auth()->user()->can('event.create'))
-                                <li><a href="{{ route('administration.event.create') }}">Create New Event</a></li>
+                            @if (auth()->user()->can('league.create'))
+                                <li><a href="{{ route('administration.league.create') }}">Create New League</a></li>
                             @endif
                         </ul>
                     </li>
@@ -344,14 +344,31 @@
 
                 @role ('developer|admin') 
                     <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-layers"></i>
-                            <span>Manage User</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
+                        <a href="javaScript:void();">
+                            <i class="fa fa-user-secret"></i>
+                            <span>Manage Users</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a href="#">All Admin</a></li>
-                            <li><a href="#">Create New Admin</a></li>
+                            <li>
+                                <a href="javaScript:void(0);">
+                                    {{ __('Admins') }}
+                                    <i class="feather icon-chevron-right pull-right"></i>
+                                </a>
+                                <ul class="vertical-submenu">
+                                    <li>
+                                        <a href="{{ route('administration.user.manage.admin.index') }}">
+                                            {{ __('All Admins') }}
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="{{ route('administration.user.manage.admin.create') }}">
+                                            {{ __('Add New Admin') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 @endrole
@@ -363,54 +380,6 @@
                         <span>Website</span> 
                     </a>
                 </li>
-
-
-                {{-- @role('developer')
-                    <li>
-                        <a href="javaScript:void(0);">
-                            <i class="sl-icon-settings"></i>
-                            <span>{{ __('Settings') }}</span>
-                            <i class="feather icon-chevron-right pull-right"></i>
-                        </a>
-                        <ul class="vertical-submenu">
-                            <li>
-                                <a href="javaScript:void(0);">{{ __('Permission') }}
-                                    <i class="feather icon-chevron-right pull-right"></i>
-                                </a>
-                                <ul class="vertical-submenu">
-                                    <li>
-                                        <a href="{{ route('administration.settings.permission.index') }}">
-                                            {{ __('All Permissions') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('administration.settings.permission.group.index') }}">
-                                            {{ __('Permission Groups') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javaScript:void(0);">{{ __('Role') }}
-                                    <i class="feather icon-chevron-right pull-right"></i>
-                                </a>
-                                <ul class="vertical-submenu">
-                                    <li>
-                                        <a href="{{ route('administration.settings.role.index') }}">
-                                            {{ __('All Roles') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('administration.settings.role.create') }}">
-                                            {{ __('Create Role') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                @endrole --}}
             </ul>
         </div>
         <!-- End Navigationbar -->

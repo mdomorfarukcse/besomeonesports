@@ -22,7 +22,7 @@ class TeamUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'event_id' => 'required|exists:events,id|integer',
+            'league_id' => 'required|exists:leagues,id|integer',
             'division_id' => 'required|exists:divisions,id|integer',
             'coach_id' => 'nullable|exists:coaches,id|integer',
             'name' => 'required|string|max:100',

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Dashboard;
 
-use Carbon\Carbon;
 use App\Models\Team\Team;
-use App\Models\Event\Event;
+use App\Models\League\League;
 use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
 use App\Models\Player\Player;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Order\Order;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -21,29 +19,29 @@ class DashboardController extends Controller
     public function index()
     {
         $teams = Team::whereStatus('Active')->count();
-        $events = Event::whereStatus('Active')->count();
+        $leagues = League::whereStatus('Active')->count();
         $sports = Sport::whereStatus('Active')->count();
         $players = Player::whereStatus('Active')->count();
 
-        $registrations = DB::table('event_player')->sum('total_paid');
+        $registrations = DB::table('league_player')->sum('total_paid');
 
         $sales = Order::sum('total_price');
         
         $total = [
             'teams' => $teams,
-            'events' => $events,
+            'leagues' => $leagues,
             'sports' => $sports,
             'players' => $players,
             'registrations' => $registrations,
             'sales' => $sales,
         ];
 
-        $upcomingEvents = Event::whereDate('start', '>', now())
+        $upcomingLeagues = League::whereDate('start', '>', now())
                                 ->whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
 
-        return view('administration.dashboard.index', compact(['total', 'upcomingEvents']));
+        return view('administration.dashboard.index', compact(['total', 'upcomingLeagues']));
     }
 
     /**

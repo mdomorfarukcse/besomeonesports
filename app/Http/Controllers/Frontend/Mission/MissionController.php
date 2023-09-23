@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Frontend\Mission;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event\Event;
-use Illuminate\Http\Request;
+use App\Models\League\League;
 
 class MissionController extends Controller
 {
@@ -13,9 +12,9 @@ class MissionController extends Controller
      */
     public function index()
     {
-        $upcomingEvents = Event::whereStatus('Active')
+        $upcomingLeagues = League::whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
-        return view('frontend.about.mission', compact(['upcomingEvents']));
+        return view('frontend.about.mission', compact(['upcomingLeagues']));
     }
 }

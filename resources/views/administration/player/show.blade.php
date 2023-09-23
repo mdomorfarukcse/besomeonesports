@@ -242,7 +242,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Event</th>
+                                <th>League</th>
                                 <th>Players</th>
                                 <th>Status</th>
                                 @if (auth()->user()->can('team.show') || auth()->user()->can('team.destroy')) 
@@ -260,8 +260,8 @@
                                         <small class="text-muted">{{ $team->division->name }}</small>
                                     </td>
                                     <td>
-                                        <a href="{{ route('administration.event.show', ['event' => $team->event]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->event->name.'\'s Details') }}">
-                                            {{ $team->event->name }}
+                                        <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
+                                            {{ $team->league->name }}
                                         </a>
                                     </td>
                                     <td>

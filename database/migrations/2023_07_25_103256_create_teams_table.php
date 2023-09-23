@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('team_id')->unique();
             
-            $table->foreignId('event_id')
+            $table->foreignId('league_id')
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');

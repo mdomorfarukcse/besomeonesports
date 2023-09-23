@@ -11,7 +11,7 @@
         if ($.isFunction($.fn.fullCalendar)) {
             /* -- initialize the external events -- */
             $('#external-events .fc-event').each(function() {
-                /* -- create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/) -- */
+                /* -- create an Event Object (http://arshaw.com/fullcalendar/docs/league_data/Event_Object/) -- */
                 /* -- it doesn't need to have a start or end -- */
                 var eventObject = {
                     title: $.trim($(this).text()) /* -- use the element's text as the event title -- */
@@ -48,7 +48,7 @@
                     copiedEventObject.start = date;
                     copiedEventObject.allDay = allDay;
                     /* -- render the event on the calendar -- */
-                    /* -- the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/) -- */
+                    /* -- the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/league_rendering/renderEvent/) -- */
                     $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
                     /* -- is the "remove after drop" checkbox checked? -- */
                     if ($('#drop-remove').is(':checked')) {
@@ -58,19 +58,19 @@
                 },
                 events: "/administration/schedule/calender/json",
                 eventClick: function (event) {
-                    $('#event_detail_modal').modal('show');
-                    var event_name = event.event_name;
+                    $('#league_detail_modal').modal('show');
+                    var league_name = event.league_name;
                     var team_name = event.title;
-                    var event_start = event.start._i;
-                    var event_end = event.end._i;
+                    var league_start = event.start._i;
+                    var league_end = event.end._i;
                     var venue_name = event.venue_name;
                     var court_name = event.court_name;
-                    $('#event_title').html(event_name);
+                    $('#league_title').html(league_name);
                     $('#team_name').html(team_name);
                     $('#venue_name').html(venue_name);
                     $('#court_name').html(court_name);
-                    $('#event_start').html(event_start);
-                    $('#event_end').html(event_end);
+                    $('#league_start').html(league_start);
+                    $('#league_end').html(league_end);
 
                     // Assuming you have a JavaScript variable named 'event' containing the schedule_id
                     var scheduleId = event.schedule_id;
@@ -89,15 +89,15 @@
             });            
             /* -- Add new event -- */
             /* -- Form to add new event -- */
-            $("#add_event_form").on('submit', function(ev) {
+            $("#add_league_form").on('submit', function(ev) {
                 ev.preventDefault();
                 var $event = $(this).find('.new-event-form'),
-                    event_name = $event.val();
-                if (event_name.length >= 3) {
+                    league_name = $event.val();
+                if (league_name.length >= 3) {
                     var newid = "new" + "" + Math.random().toString(36).substring(7);
                     /* -- Create Event Entry -- */
                     $("#external-events").append(
-                        '<div id="' + newid + '" class="fc-event">' + event_name + '</div>'
+                        '<div id="' + newid + '" class="fc-event">' + league_name + '</div>'
                     );
                     var eventObject = {
                         title: $.trim($("#" + newid).text()) /* -- use the element's text as the event title -- */

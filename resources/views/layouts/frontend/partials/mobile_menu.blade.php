@@ -49,7 +49,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('frontend.event.index') }}"> Events </a>
+                        <a href="{{ route('frontend.league.index') }}"> Leagues </a>
                     </li>
                     <li>
                         <a href="{{ route('frontend.shop.index') }}"> Shop </a>

@@ -81,7 +81,7 @@
                                                 <option value="coach" @if ($permission->group_name == 'coach') selected @endif>Coach</option>
                                                 <option value="dashboard" @if ($permission->group_name == 'dashboard') selected @endif>Dashbaord</option>
                                                 <option value="division" @if ($permission->group_name == 'division') selected @endif>Division</option>
-                                                <option value="event" @if ($permission->group_name == 'event') selected @endif>Event</option>
+                                                <option value="league" @if ($permission->group_name == 'league') selected @endif>League</option>
                                                 <option value="faq" @if ($permission->group_name == 'faq') selected @endif>Faq</option>
                                                 <option value="faq" @if ($permission->group_name == 'news') selected @endif>news</option>
                                                 <option value="player" @if ($permission->group_name == 'player') selected @endif>Player</option>

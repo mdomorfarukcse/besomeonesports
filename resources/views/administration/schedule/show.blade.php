@@ -82,8 +82,8 @@
                         <table class="table table-bordered mb-0">
                             <tbody>
                                 <tr>
-                                    <th>Event</th>
-                                    <td>{{ $schedule->event->name }}</td>
+                                    <th>League</th>
+                                    <td>{{ $schedule->league->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Team 1</th>

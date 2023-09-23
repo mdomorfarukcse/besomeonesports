@@ -23,7 +23,7 @@ class TeamStoreRequest extends FormRequest
     {
         return [
             'team_id' => 'required|string|unique:teams,team_id',
-            'event_id' => 'required|exists:events,id|integer',
+            'league_id' => 'required|exists:leagues,id|integer',
             'division_id' => 'required|exists:divisions,id|integer',
             'coach_id' => 'nullable|exists:coaches,id|integer',
             'name' => 'required|string|max:100',

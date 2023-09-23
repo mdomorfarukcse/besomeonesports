@@ -201,8 +201,8 @@
                                     <label for="teamLogo"></label>
                                 </div>
                                 <div class="logo-preview">
-                                    @if (!empty($event->logo))
-                                        <div id="imagePreview" style="background-image: url({{ show_avatar($event->logo) }});"></div>
+                                    @if (!empty($league->logo))
+                                        <div id="imagePreview" style="background-image: url({{ show_avatar($league->logo) }});"></div>
                                     @else
                                         <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                     @endif
@@ -210,14 +210,14 @@
                             </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="event_id">Event <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('event_id') is-invalid @enderror" name="event_id" required>
-                                <option value="" disabled>Select Event</option>
-                                @foreach ($events as $event)
-                                    <option value="{{ $event->id }}" @if ($event->id == $team->event_id) selected @endif>{{ $event->name }}</option>
+                            <label for="league_id">League <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('league_id') is-invalid @enderror" name="league_id" required>
+                                <option value="" disabled>Select League</option>
+                                @foreach ($leagues as $league)
+                                    <option value="{{ $league->id }}" @if ($league->id == $team->league_id) selected @endif>{{ $league->name }}</option>
                                 @endforeach
                             </select>
-                            @error('event_id')
+                            @error('league_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>

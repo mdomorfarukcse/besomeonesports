@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `divisions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `events` (
+CREATE TABLE IF NOT EXISTS `leagues` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `season_id` bigint unsigned NOT NULL,
   `sport_id` bigint unsigned NOT NULL,
@@ -155,46 +155,46 @@ CREATE TABLE IF NOT EXISTS `events` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `events_name_unique` (`name`),
-  KEY `events_season_id_foreign` (`season_id`),
-  KEY `events_sport_id_foreign` (`sport_id`),
-  CONSTRAINT `events_season_id_foreign` FOREIGN KEY (`season_id`) REFERENCES `seasons` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `events_sport_id_foreign` FOREIGN KEY (`sport_id`) REFERENCES `sports` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `leagues_name_unique` (`name`),
+  KEY `leagues_season_id_foreign` (`season_id`),
+  KEY `leagues_sport_id_foreign` (`sport_id`),
+  CONSTRAINT `leagues_season_id_foreign` FOREIGN KEY (`season_id`) REFERENCES `seasons` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `leagues_sport_id_foreign` FOREIGN KEY (`sport_id`) REFERENCES `sports` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `event_registrations` (
+CREATE TABLE IF NOT EXISTS `league_registrations` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `event_id` bigint unsigned NOT NULL,
+  `league_id` bigint unsigned NOT NULL,
   `player_id` bigint unsigned NOT NULL,
   `paid_by` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `event_player_unique` (`event_id`,`player_id`),
-  KEY `event_registrations_player_id_foreign` (`player_id`),
-  KEY `event_registrations_paid_by_foreign` (`paid_by`),
-  CONSTRAINT `event_registrations_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `event_registrations_paid_by_foreign` FOREIGN KEY (`paid_by`) REFERENCES `users` (`id`),
-  CONSTRAINT `event_registrations_player_id_foreign` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `league_player_unique` (`league_id`,`player_id`),
+  KEY `league_registrations_player_id_foreign` (`player_id`),
+  KEY `league_registrations_paid_by_foreign` (`paid_by`),
+  CONSTRAINT `league_registrations_league_id_foreign` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `league_registrations_paid_by_foreign` FOREIGN KEY (`paid_by`) REFERENCES `users` (`id`),
+  CONSTRAINT `league_registrations_player_id_foreign` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `division_event` (
+CREATE TABLE IF NOT EXISTS `division_league` (
   `division_id` bigint unsigned NOT NULL,
-  `event_id` bigint unsigned NOT NULL,
-  PRIMARY KEY (`division_id`,`event_id`),
-  KEY `division_event_event_id_foreign` (`event_id`),
-  CONSTRAINT `division_event_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `division_event_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  `league_id` bigint unsigned NOT NULL,
+  PRIMARY KEY (`division_id`,`league_id`),
+  KEY `division_league_league_id_foreign` (`league_id`),
+  CONSTRAINT `division_league_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `division_league_league_id_foreign` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE IF NOT EXISTS `teams` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `team_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `event_id` bigint unsigned NOT NULL,
+  `league_id` bigint unsigned NOT NULL,
   `division_id` bigint unsigned NOT NULL,
   `coach_id` bigint unsigned DEFAULT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -207,12 +207,12 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `teams_team_id_unique` (`team_id`),
-  KEY `teams_event_id_foreign` (`event_id`),
+  KEY `teams_league_id_foreign` (`league_id`),
   KEY `teams_division_id_foreign` (`division_id`),
   KEY `teams_coach_id_foreign` (`coach_id`),
   CONSTRAINT `teams_coach_id_foreign` FOREIGN KEY (`coach_id`) REFERENCES `coaches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `teams_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `teams_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `teams_league_id_foreign` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -226,13 +226,13 @@ CREATE TABLE IF NOT EXISTS `player_team` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `event_venue` (
-  `event_id` bigint unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `league_venue` (
+  `league_id` bigint unsigned NOT NULL,
   `venue_id` bigint unsigned NOT NULL,
-  PRIMARY KEY (`event_id`,`venue_id`),
-  KEY `event_venue_venue_id_foreign` (`venue_id`),
-  CONSTRAINT `event_venue_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `event_venue_venue_id_foreign` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  PRIMARY KEY (`league_id`,`venue_id`),
+  KEY `league_venue_venue_id_foreign` (`venue_id`),
+  CONSTRAINT `league_venue_league_id_foreign` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `league_venue_venue_id_foreign` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
