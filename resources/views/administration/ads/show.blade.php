@@ -66,9 +66,9 @@
                                                 <tbody>
                                                     <tr>
                                                         <th>Ad Bannger</th>
-                                                        <td><a data-fancybox="wk" href="{{ show_avatar($ads->avatar) }}" class="comon-links-divb05">
+                                                        <td><a data-fancybox="wk" href="{{ show_image($ads->avatar) }}" class="comon-links-divb05">
                                                             <figure>
-                                                                <img src="{{ show_avatar($ads->avatar) }}" alt="{{ $ads->name }}" class="img-fluid " width="600"/>
+                                                                <img src="{{ show_image($ads->avatar) }}" alt="{{ $ads->name }}" class="img-fluid " width="600"/>
                                                             </figure>
                                                         </a></td>
                                                     </tr>

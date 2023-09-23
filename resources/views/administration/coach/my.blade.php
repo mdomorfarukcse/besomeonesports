@@ -78,7 +78,7 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($coach->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                        <img src="{{ show_image($coach->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
                                     </td>
                                     <td>{{ $coach->coach_id }}</td>
                                     <td>

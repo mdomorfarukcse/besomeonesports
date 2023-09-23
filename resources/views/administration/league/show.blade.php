@@ -94,7 +94,7 @@
                                 <tr class="text-center">
                                     <td colspan="2">
                                         <div class="user-avatar">
-                                            <img src="{{ show_avatar($league->logo) }}" alt="League Logo" class="img-thumbnail" width="250">
+                                            <img src="{{ show_image($league->logo) }}" alt="League Logo" class="img-thumbnail" width="250">
                                         </div>    
                                     </td>
                                 </tr>
@@ -219,7 +219,7 @@
                                                             @endphp
                                                             <tr>
                                                                 <td style="width: 48%;" class="team-one text-left @if($schedule->team_id === $schedule->teams[0]->id) bg-success-rgba @endif">
-                                                                    <img src="{{ show_avatar($schedule->teams[0]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                                    <img src="{{ show_image($schedule->teams[0]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
                                                                     <b class="text-dark">{{ $schedule->teams[0]->name }}</b>
                                                                     @if($schedule->team_id === $schedule->teams[0]->id)
                                                                         <span class="badge badge-success">
@@ -231,7 +231,7 @@
                                                                 <th style="width: 4%;" class="text-center pt-4"><b>VS</b></th>
                                                                 <td style="width: 48%;" class="team-two text-right @if($schedule->team_id === $schedule->teams[1]->id) bg-success-rgba @endif">
                                                                     <b class="text-dark">{{ $schedule->teams[1]->name }}</b>
-                                                                    <img src="{{ show_avatar($schedule->teams[1]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                                                    <img src="{{ show_image($schedule->teams[1]->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
                                                                     @if($schedule->team_id === $schedule->teams[1]->id)
                                                                         <span class="badge badge-success">
                                                                             <i class="mdi mdi-crown font-17"></i>

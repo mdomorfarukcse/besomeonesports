@@ -82,7 +82,7 @@
                                     <td class="fw-bold text-dark"><b>#{{ serial($registrations, $key) }}</b></th>
                                     <td>
                                         <a href="{{ route('administration.player.show', ['player' => $registration->player->id]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$registration->player->user->name.'\'s Details') }}">
-                                            <img src="{{ show_avatar($registration->player->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                            <img src="{{ show_image($registration->player->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
                                         </a>
                                     </td>
                                     <td>

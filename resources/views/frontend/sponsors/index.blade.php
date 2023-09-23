@@ -64,7 +64,7 @@
                         @foreach ($sponsors as $key => $sponsor)
                             <div class="col-md-2">
                                 <div class="single_sponsor">
-                                    <img src="{{ show_avatar($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
+                                    <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
                                 </div>
                             </div>
                         @endforeach

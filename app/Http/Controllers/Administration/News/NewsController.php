@@ -32,7 +32,7 @@ class NewsController extends Controller
             'avatar'    => 'required'
         ]);
         try {
-            $avatar = upload_avatar($request, 'avatar');
+            $avatar = upload_image($request, 'avatar');
             $data = $request->all();
             News::create([
                 'name' => $data['name'],
@@ -74,7 +74,7 @@ class NewsController extends Controller
             $news->description = $request->description;
             $news->status = $request->status;
             if (isset($request->avatar)) {
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request, 'avatar');
                 $news->avatar = $avatar;
             }
             $news->save();

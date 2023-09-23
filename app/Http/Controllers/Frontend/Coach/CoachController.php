@@ -37,7 +37,7 @@ class CoachController extends Controller
             
             $coach->fill($request->except('avatar'));
 
-            $avatar = upload_avatar($request, 'avatar');
+            $avatar = upload_image($request, 'avatar');
             $coach->avatar = $avatar;
 
             $coach->save();

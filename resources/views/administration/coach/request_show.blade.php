@@ -92,7 +92,7 @@
                                                 <tr class="text-center">
                                                     <td colspan="2">
                                                         <div class="user-avatar">
-                                                            <img src="{{ show_avatar($coach->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
+                                                            <img src="{{ show_image($coach->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
                                                         </div>    
                                                     </td>
                                                 </tr>
