@@ -75,6 +75,7 @@
     <div class="col-lg-5 col-xl-4">
         <div class="chat-list">
             <div class="chat-user-list">
+                <h5 class="alert alert-primary">Teams</h5>
                 <ul class="list-unstyled mb-0">
                     @foreach ($teams as $team) 
                         <li class="media chat_team chat{{ $team->id }}" data-team_id="{{ $team->id }}" data-team_name="{{ $team->name }}" data-team_img="{{ show_avatar($team->logo) }}" >
@@ -146,10 +147,11 @@
     <script>
         // Custom Script Here
         // Chat Team 
+        $(".chat-bottom").hide();
         $(".chat_team").click(function (event) {
             event.preventDefault();
             $this = $(this);
-
+            $(".chat-bottom").show();
             var user_id = $('#user_id').val();;
             var team_id = $this.data("team_id");
             var team_name = $this.data("team_name");
@@ -215,5 +217,40 @@
             // Initially scroll to the bottom
             scrollToBottom("chat-body");
         });
+    </script>
+    <script>
+        // Auto Refresh messages
+        function refreshMessages() {
+            // Replace this with your actual function code
+            var team_id = $('#chat_team_id').val();
+            if(team_id !== ''){
+                $.ajax({
+                    //create an ajax request to display.php
+                    type: "GET",
+                    url: `/administration/chat/show/${team_id}`,
+                    dataType: "html",
+                    success: function (data) {
+                        $('.chat-body').html(data);
+                    },
+                });
+            }
+        }
+
+        // Run the function every three seconds
+        var intervalId = setInterval(refreshMessages, 10000);
+
+        // To stop the interval after a certain number of iterations (e.g., 5 times), you can use a counter:
+        var counter = 0;
+        var maxIterations = 5;
+
+        var intervalId2 = setInterval(function() {
+        if (counter < maxIterations) {
+            refreshMessages();
+            counter++;
+        } else {
+            clearInterval(intervalId2);
+            console.log("Interval stopped after " + maxIterations + " iterations.");
+        }
+        }, 10000);
     </script>
 @endsection
