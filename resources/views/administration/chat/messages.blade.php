@@ -8,9 +8,9 @@
     @endphp
     <div class="chat-message chat-message-{{ $position }}">
         @if($message->type === 'image')
-            <a data-fancybox="wk" href="{{ show_avatar($message->message) }}" class="comon-links-divb05">
+            <a data-fancybox="wk" href="{{ show_image($message->message) }}" class="comon-links-divb05">
                 <figure>
-                    <img src="{{ show_avatar($message->message) }}" alt="{{ $message->message }}" class="img-fluid " width="100"/>
+                    <img src="{{ show_image($message->message) }}" alt="{{ $message->message }}" class="img-fluid " width="100"/>
                 </figure>
             </a>
         @else
