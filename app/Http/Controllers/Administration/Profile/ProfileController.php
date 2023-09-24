@@ -99,7 +99,7 @@ class ProfileController extends Controller
                 $user = User::where('id', $player->user_id)->firstOrFail();
                 $user->name = $playerName;
                 if (isset($request->avatar)) {
-                    $avatar = upload_avatar($request, 'avatar');
+                    $avatar = upload_image($request->avatar);
                     $user->avatar = $avatar;
                 }
                 $user->save();
@@ -163,7 +163,7 @@ class ProfileController extends Controller
                 
                 $user->name = $coachName;
                 if (isset($request->avatar)) {
-                    $avatar = upload_avatar($request, 'avatar');
+                    $avatar = upload_image($request->avatar);
                     $user->avatar = $avatar;
                 }
                 $user->save();
@@ -220,7 +220,7 @@ class ProfileController extends Controller
         // dd($request->all(), $user);
         try {
             if (isset($request->avatar)) {
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 $user->avatar = $avatar;
             }
 
@@ -264,7 +264,7 @@ class ProfileController extends Controller
         // dd($request->all(), $user);
         try {
             if (isset($request->avatar)) {
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 $user->avatar = $avatar;
             }
 

@@ -71,7 +71,7 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($sponsors, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($sponsor->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="">
+                                        <img src="{{ show_image($sponsor->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
                                     </td>
                                     <td>{{ $sponsor->name }}</td>
                                     <td>{!! status($sponsor->status) !!}</td>

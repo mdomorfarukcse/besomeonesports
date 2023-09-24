@@ -81,7 +81,7 @@
                                 <tr>
                                     <td class="fw-bold text-dark"><b>#{{ serial($teams, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_avatar($team->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
+                                        <img src="{{ show_image($team->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="team">
                                     </td>
                                     <td>
                                         <span class="text-dark text-capitalize">{{ $team->name }}</span>

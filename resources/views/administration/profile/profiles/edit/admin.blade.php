@@ -24,14 +24,14 @@
                     <div class="col-md-12">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
-                                <input type="file" id="userAvatar" name="avatar" value="{{ show_avatar($profile->avatar) }}" accept=".png, .jpg, .jpeg" />
+                                <input type="file" id="userAvatar" name="avatar" value="{{ show_image($profile->avatar) }}" accept=".png, .jpg, .jpeg" />
                                 <label for="userAvatar"></label>
                             </div>
                             <div class="avatar-preview">
                                 @if (is_null($profile->avatar))
                                     <div id="imagePreview" style="background-image: url('https://fakeimg.pl/500x500');"></div>
                                 @else
-                                    <div id="imagePreview" style="background-image: url({{ show_avatar($profile->avatar) }});"></div>
+                                    <div id="imagePreview" style="background-image: url({{ show_image($profile->avatar) }});"></div>
                                 @endif
                             </div>
                         </div>

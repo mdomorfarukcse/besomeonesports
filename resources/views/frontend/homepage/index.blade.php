@@ -198,7 +198,7 @@
                                         <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
                                             <figure class="mb-0">
                                                 @if ($product->images->count() > 0)
-                                                    <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
+                                                    <img src="{{ show_image($product->images->first()->path) }}" alt="sm" />
                                                 @else
                                                     <p>No images available</p>
                                                 @endif
@@ -330,10 +330,10 @@
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
                     @foreach ($galleries as $key => $gallery )
                         <div class="col">
-                            <a data-fancybox="{{ $gallery->name }}" href="{{ show_avatar($gallery->avatar) }}"
+                            <a data-fancybox="{{ $gallery->name }}" href="{{ show_image($gallery->avatar) }}"
                                 class="comon-links-divb05">
                                 <figure>
-                                    <img src="{{ show_avatar($gallery->avatar) }}" alt="{{ $gallery->name }}" />
+                                    <img src="{{ show_image($gallery->avatar) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
                                     </figcaption>

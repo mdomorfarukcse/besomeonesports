@@ -47,7 +47,7 @@
                             <a href="{{ route('frontend.press.show', ['press' => $single_press]) }}" class="comon-posrt w-100 d-inline-block">
                                 <div class="img-boxv w-100 d-inline-block">
                                     <figure class="w-100 d-inline-block">
-                                        <img src="{{ show_avatar($single_press->avatar) }}" alt="{{ $single_press->name }}" />
+                                        <img src="{{ show_image($single_press->avatar) }}" alt="{{ $single_press->name }}" />
                                     </figure>
                                     <span class="daet01">
                                         {{ date('d', strtotime($single_press->created_at)) }}

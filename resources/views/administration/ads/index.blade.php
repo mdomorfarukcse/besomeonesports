@@ -73,9 +73,9 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($ads, $key) }}</b></th>
                                     <td>
-                                        <a data-fancybox="wk" href="{{ show_avatar($ad->avatar) }}" class="comon-links-divb05">
+                                        <a data-fancybox="wk" href="{{ show_image($ad->avatar) }}" class="comon-links-divb05">
                                             <figure>
-                                                <img src="{{ show_avatar($ad->avatar) }}" alt="{{ $ad->name }}" class="img-fluid " width="400"/>
+                                                <img src="{{ show_image($ad->avatar) }}" alt="{{ $ad->name }}" class="img-fluid " width="400"/>
                                             </figure>
                                         </a>
                                     </td>

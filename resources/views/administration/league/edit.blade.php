@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="logo-preview">
                                     @if (!empty($league->logo))
-                                        <div id="imagePreview" style="background-image: url({{ show_avatar($league->logo) }});"></div>
+                                        <div id="imagePreview" style="background-image: url({{ show_image($league->logo) }});"></div>
                                     @else
                                         <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                     @endif

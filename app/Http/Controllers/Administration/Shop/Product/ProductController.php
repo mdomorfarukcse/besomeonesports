@@ -61,20 +61,15 @@ class ProductController extends Controller
 
                 if ($request->hasFile('images')) {
                     foreach ($request->file('images') as $image) {
-                        $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                        $imageStorePath = 'public/products/' . $product->product_id;
-                
-                        // Create the product image folder if it doesn't exist
-                        $folderPath = storage_path($imageStorePath);
-                        if (!File::exists($folderPath)) {
-                            File::makeDirectory($folderPath, 0755, true);
+                        // Use the upload_image function to upload each image to the "images" directory
+                        $imageName = upload_image($image);
+                        
+                        if ($imageName) {
+                            // If the image was successfully uploaded, create a database record
+                            $product->images()->create([
+                                'path' => $imageName,
+                            ]);
                         }
-                
-                        $image->storeAs($imageStorePath, $imageName);
-                
-                        $product->images()->create([
-                            'path' => 'products/' . $product->product_id . '/' . $imageName,
-                        ]);
                     }
                 }
             }, 5);
@@ -138,20 +133,15 @@ class ProductController extends Controller
 
                 if ($request->hasFile('images')) {
                     foreach ($request->file('images') as $image) {
-                        $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                        $imageStorePath = 'public/products/' . $product->product_id;
-                
-                        // Create the product image folder if it doesn't exist
-                        $folderPath = storage_path($imageStorePath);
-                        if (!File::exists($folderPath)) {
-                            File::makeDirectory($folderPath, 0755, true);
-                        }
+                        // Use the upload_image function to upload each image to the "images" directory
+                        $imageName = upload_image($image);
                         
-                        $image->storeAs($imageStorePath, $imageName);
-                
-                        $product->images()->create([
-                            'path' => 'products/' . $product->product_id . '/' . $imageName,
-                        ]);
+                        if ($imageName) {
+                            // If the image was successfully uploaded, create a database record
+                            $product->images()->create([
+                                'path' => $imageName,
+                            ]);
+                        }
                     }
                 }
             }, 5);

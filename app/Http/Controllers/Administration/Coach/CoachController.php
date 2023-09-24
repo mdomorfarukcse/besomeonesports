@@ -83,7 +83,7 @@ class CoachController extends Controller
             DB::transaction(function() use ($request) {
                 $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
 
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 // Store Credentials into User
                 $user = User::create([
                     'name' => $coachName,
@@ -156,7 +156,7 @@ class CoachController extends Controller
             DB::transaction(function() use ($request, $coach) {
                 $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
 
-                $avatar = upload_avatar($request, 'avatar');
+                $avatar = upload_image($request->avatar);
                 // Store Credentials into User
                 $user = User::whereId($coach->user_id)->firstOrFail();
 

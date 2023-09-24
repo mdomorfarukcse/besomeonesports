@@ -47,7 +47,7 @@
                             <a href="{{ route('frontend.blog.show', ['blog' => $blog]) }}" class="comon-posrt w-100 d-inline-block">
                                 <div class="img-boxv w-100 d-inline-block">
                                     <figure class="w-100 d-inline-block">
-                                        <img src="{{ show_avatar($blog->avatar) }}" alt="{{ $blog->name }}" />
+                                        <img src="{{ show_image($blog->avatar) }}" alt="{{ $blog->name }}" />
                                     </figure>
                                     <span class="daet01">
                                         {{ date('d', strtotime($blog->created_at)) }}

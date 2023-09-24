@@ -101,7 +101,7 @@
                                 @if ($key < 6)
                                     <div class="comon-news mt-2">
                                         <figure class="m-0">
-                                            <img src="{{ show_avatar($gallery->avatar) }}" alt="pbn" />
+                                            <img src="{{ show_image($gallery->avatar) }}" alt="pbn" />
                                         </figure>
                                         
                                     </div>

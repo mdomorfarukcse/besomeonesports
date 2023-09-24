@@ -79,7 +79,7 @@
                                                 <tr class="text-center">
                                                     <td colspan="2">
                                                         <div class="user-avatar">
-                                                            <img src="{{ show_avatar($team->logo) }}" alt="team Logo" class="img-thumbnail" width="250">
+                                                            <img src="{{ show_image($team->logo) }}" alt="team Logo" class="img-thumbnail" width="250">
                                                         </div>    
                                                     </td>
                                                 </tr>

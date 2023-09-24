@@ -37,7 +37,7 @@ class GalleryController extends Controller
         ]);
 
         try {
-            $avatar = upload_avatar($request, 'avatar');
+            $avatar = upload_image($request->avatar);
             $data = $request->all();
             Gallery::create([
                 'name' => $data['name'],

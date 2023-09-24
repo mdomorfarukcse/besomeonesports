@@ -69,7 +69,7 @@
                                                 <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
                                                     <figure class="mb-0">
                                                         @if ($product->images->count() > 0)
-                                                            <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="sm" />
+                                                            <img src="{{ show_image($product->images->first()->path) }}" alt="sm" />
                                                         @else
                                                             <p>No images available</p>
                                                         @endif

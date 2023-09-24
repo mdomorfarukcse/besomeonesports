@@ -18,7 +18,7 @@
                                                         @if (is_null($profile->avatar)) 
                                                             <img src="https://fakeimg.pl/500x500" alt="User Avatar" class="img-thumbnail" width="250">
                                                         @else 
-                                                            <img src="{{ show_avatar($profile->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
+                                                            <img src="{{ show_image($profile->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
                                                         @endif
                                                     </div>
                                                 </td>
