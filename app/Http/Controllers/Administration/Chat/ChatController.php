@@ -59,7 +59,7 @@ class ChatController extends Controller
     public function imageupload(Request $request)
     {
         
-        $avatar = upload_avatar($request, 'avatar');
+        $avatar = upload_image($request->avatar);
         $message = new Message();
         $message->team_id = $request->team_id;
         $message->user_id = auth()->user()->id;
