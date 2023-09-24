@@ -36,7 +36,10 @@
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link  {{ Request::is('league*') ? 'active' : '' }}" href="{{ route('frontend.league.index') }}">Leagues</a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('league*') ? 'active' : '' }}" href="{{ route('frontend.league.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">City</a></li>
@@ -45,7 +48,7 @@
                             <li><a class="dropdown-item" href="#">Rules</a></li>
                             <li><a class="dropdown-item" href="#">Standings</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Partners </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

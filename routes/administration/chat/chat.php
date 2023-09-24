@@ -10,4 +10,5 @@ Route::controller(ChatController::class)->prefix('chat')->name('chat.')->group(f
     Route::get('/', 'index')->name('index');
     Route::get('/show/{team}', 'show')->name('show');
     Route::post('/store', 'store')->name('store');
+    Route::post('/imageupload', 'imageupload')->name('imageupload');
 });
