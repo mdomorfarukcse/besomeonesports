@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use InvalidArgumentException;
 use App\Models\Shop\Order\Order;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,6 +18,15 @@ class OrderController extends Controller
     {
         $orders = Order::with(['products', 'user'])->orderBy('created_at', 'desc')->get();
         return view('administration.shop.order.index', compact(['orders']));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function myOrder()
+    {
+        $orders = Order::with(['products', 'user'])->whereUserId(Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return view('administration.shop.order.my', compact(['orders']));
     }
 
     /**

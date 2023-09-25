@@ -232,7 +232,7 @@
                                         
                                         @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
                                             <li>
-                                                <a href="#">
+                                                <a href="{{ route('administration.shop.order.my') }}">
                                                     {{ __('My Orders') }}
                                                 </a>
                                             </li>
