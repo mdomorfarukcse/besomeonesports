@@ -30,6 +30,7 @@
         .chat-body {
             height: calc(65vh - 60px);
             overflow-y: scroll;
+            scroll-behavior: smooth;
         }
         .chat-user-list::-webkit-scrollbar,.chat-body::-webkit-scrollbar {
             width: 5px;
@@ -182,7 +183,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="chat-body">
+            <div class="chat-body" id="chatBody">
                 <h4>No Message</h4>
             </div>
             <div class="chat-bottom">
@@ -256,7 +257,25 @@
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script>
-        // Custom Script Here
+        // Function to scroll to the bottom of the chat body
+        function scrollToBottom() {
+            const chatBody = $('.chat-body');
+            chatBody.scrollTop(chatBody.prop('scrollHeight'));
+        }
+    
+        // Function to load messages for a team
+        function loadMessages(teamId) {
+            $.ajax({
+                type: "GET",
+                url: `/administration/chat/show/${teamId}`,
+                dataType: "html",
+                success: function (data) {
+                    $('.chat-body').html(data);
+                    scrollToBottom(); // Scroll to the bottom after loading messages
+                },
+            });
+        }
+    
         // Chat Team 
         $(".chat-bottom").hide();
         $(".chat_team").click(function (event) {
@@ -264,29 +283,21 @@
             $this = $(this);
             $(".chat-user-list li").removeClass("active");
             $(".chat-bottom").show();
-            var user_id = $('#user_id').val();;
+            var user_id = $('#user_id').val();
             var team_id = $this.data("team_id");
             var team_name = $this.data("team_name");
             var team_img = $this.data("team_img");
             var img_tag = `<img class="team-logo align-self-center mr-3 rounded-circle" id="team_avatar" src="${team_img}" alt="Generic placeholder image" />`;
-
+    
             $('#team_avatar').html(img_tag);
             $('#team_title').html(team_name);
             $('#chat_team_id').val(team_id);
             $('#chat_team_name').val(team_name);
-            $(".chat"+team_id).addClass("active");
-            
-            
-            $.ajax({
-                //create an ajax request to display.php
-                type: "GET",
-                url: `/administration/chat/show/${team_id}`,
-                dataType: "html",
-                success: function (data) {
-                    $('.chat-body').html(data);
-                },
-            });
+            $(".chat" + team_id).addClass("active");
+    
+            loadMessages(team_id); // Load messages for the selected team
         });
+    
         $("#chat_file").click(function (event) {
             event.preventDefault();
             $this = $(this);
@@ -294,9 +305,10 @@
             $('#fileModalLabel').html($('#chat_team_name').val());
             $('#chat_file_team_id').val($('#chat_team_id').val());
         });
-
-
     </script>
+    
+
+
     <script>
         // File Uploder
         function readURL(input) {
@@ -314,6 +326,8 @@
             readURL(this);
         });
     </script>
+
+
     <script>
         $(document).ready(function() {
             $('#messageForm').on('submit', function(e) {
@@ -363,18 +377,8 @@
             // });
         });
     </script>
-    <script>
-        // Function to scroll to the bottom of a scrollable element using jQuery
-        function scrollToBottom(elementSelector) {
-            var $element = $(".chat-body");
-            $element.scrollTop($element.prop("scrollHeight"));
-        }
 
-        $(document).ready(function () {
-            // Initially scroll to the bottom
-            scrollToBottom("chat-body");
-        });
-    </script>
+
     <script>
         // Auto Refresh messages
         function refreshMessages() {
@@ -410,5 +414,4 @@
         }
         }, 10000);
     </script>
-    
 @endsection
