@@ -7,7 +7,7 @@ use App\Http\Controllers\Administration\Team\TeamController;
 ===============< Sport Routes >==============
 ===============================================*/
 Route::controller(TeamController::class)->prefix('team')->name('team.')->group(function () {
-    Route::get('/', 'index')->name('index')->middleware(['can:team.index']);
+    Route::get('/', 'index')->name('index')->middleware(['can:team.index', 'role:admin|developer']);
     Route::get('/my', 'myTeam')->name('my')->middleware(['role:coach|player']);
     Route::get('/create', 'create')->name('create')->middleware(['can:team.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:team.create']);

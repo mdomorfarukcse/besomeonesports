@@ -49,7 +49,7 @@
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('team.index'))
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                             @endif
                             @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
@@ -127,7 +127,7 @@
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('player.index'))
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
                             @endif
                             @if (auth()->user()->hasRole('coach'))
@@ -148,17 +148,16 @@
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('coach.index'))
-                                <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
-                            @endif
-                            @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('developer'))
-                                <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
-                            @endif
                             @if (auth()->user()->hasRole('player'))
                                 <li><a href="{{ route('administration.coach.my') }}">My Coaches</a></li>
                             @endif
-                            @if (auth()->user()->can('coach.create'))
-                                <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
+                                
+                                <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
+                                @if (auth()->user()->can('coach.create'))
+                                    <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
+                                @endif
                             @endif
                         </ul>
                     </li>
@@ -223,7 +222,7 @@
                                         <i class="feather icon-chevron-right pull-right"></i>
                                     </a>
                                     <ul class="vertical-submenu">
-                                        @if (auth()->user()->can('shop_order.index'))
+                                        @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                             <li>
                                                 <a href="{{ route('administration.shop.order.index') }}">
                                                     {{ __('All Orders') }}
