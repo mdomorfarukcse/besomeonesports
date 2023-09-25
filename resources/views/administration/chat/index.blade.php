@@ -15,57 +15,54 @@
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
-    /* Custom CSS Here */
-    .chat-list .chat-user-list li:hover{
-        cursor: pointer;
-        background-color: #ddd;
-    }
-    .chat-list .chat-user-list li.media.active {
-        background-color: #e5ffea;
-    }
-    .chat-user-list{
-        height: calc(80vh - 50px);
-        overflow-y: scroll;
-    }
-    .chat-body {
-        height: calc(65vh - 60px);
-        overflow-y: scroll;
-    }
-    .chat-user-list::-webkit-scrollbar,.chat-body::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .chat-user-list::-webkit-scrollbar-track, .chat-body::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    .chat-user-list::-webkit-scrollbar-thumb, .chat-body::-webkit-scrollbar-thumb {
-        background: #007bff;
-    }
-
-    .chat-user-list::-webkit-scrollbar-thumb:hover, .chat-body::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    .chat-user-list::-webkit-scrollbar-button,.chat-body::-webkit-scrollbar-button {
-        display: none;
-    }
-    .team-logo{
-        width: 30px;
-        height: 30px;
-    }
-    .chat-list .chat-user-list li img {
-        height: 35px;
-    }
-    .breadcrumbbar, .footerbar {
-        display: none;
-    }
-    .contentbar{
-        margin-top: 60px; 
-    }
-    </style>
-    <style>
         /* Custom CSS Here */
+        .chat-list .chat-user-list li:hover{
+            cursor: pointer;
+            background-color: #ddd;
+        }
+        .chat-list .chat-user-list li.media.active {
+            background-color: #e5ffea;
+        }
+        .chat-user-list{
+            height: calc(80vh - 50px);
+            overflow-y: scroll;
+        }
+        .chat-body {
+            height: calc(65vh - 60px);
+            overflow-y: scroll;
+        }
+        .chat-user-list::-webkit-scrollbar,.chat-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-user-list::-webkit-scrollbar-track, .chat-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .chat-user-list::-webkit-scrollbar-thumb, .chat-body::-webkit-scrollbar-thumb {
+            background: #007bff;
+        }
+
+        .chat-user-list::-webkit-scrollbar-thumb:hover, .chat-body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .chat-user-list::-webkit-scrollbar-button,.chat-body::-webkit-scrollbar-button {
+            display: none;
+        }
+        .team-logo{
+            width: 30px;
+            height: 30px;
+        }
+        .chat-list .chat-user-list li img {
+            height: 35px;
+        }
+        .breadcrumbbar, .footerbar {
+            display: none;
+        }
+        .contentbar{
+            margin-top: 60px; 
+        }
     
         /* Image Upload */
         .avatar-upload {
@@ -125,6 +122,21 @@
             background-repeat: no-repeat;
             background-position: center;
         }
+
+        .chat-user-list {
+            position: relative !important;
+        }
+
+        .alert-primary.chat-width-teams {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            margin-bottom: 0px;
+            background-color: rgb(214 235 255);
+            border-color: rgb(214 235 255);
+        }
     </style>
 @endsection
 
@@ -138,7 +150,7 @@
     <div class="col-lg-5 col-xl-4">
         <div class="chat-list">
             <div class="chat-user-list">
-                <h5 class="alert alert-primary">Teams</h5>
+                <h5 class="alert alert-primary chat-width-teams">Chat with Teams</h5>
                 <ul class="list-unstyled mb-0">
                     @foreach ($teams as $team) 
                         <li class="media chat_team chat{{ $team->id }}" data-team_id="{{ $team->id }}" data-team_name="{{ $team->name }}" data-team_img="{{ show_image($team->logo) }}" >

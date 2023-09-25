@@ -17,13 +17,54 @@ class ChatController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('coach')) {
-            $teams = Team::with(['league', 'players'])->whereCoachId(Auth::user()->coach->id)->get();
+            $teams = Team::with(['league', 'players', 'messages' => function ($query) {
+                                $query->orderBy('created_at', 'desc');
+                            }])
+                            ->whereCoachId(Auth::user()->coach->id)
+                            ->whereStatus('Active')
+                            ->orderByDesc(function ($subquery) {
+                                $subquery->select('created_at')
+                                    ->from('messages')
+                                    ->whereColumn('messages.team_id', 'teams.id')
+                                    ->orderBy('created_at', 'desc')
+                                    ->limit(1);
+                            })
+                            ->get()
+                            ->filter(function ($team) {
+                                return $team->status === 'Active';
+                            });
         } elseif (Auth::user()->hasRole('player')) {
             $player = Player::with('teams')->whereId(Auth::user()->player->id)->firstOrFail();
 
-            $teams = $player->teams;
+            $teams = $player->teams()
+                            ->with(['league', 'players', 'messages' => function ($query) {
+                                $query->orderBy('created_at', 'desc');
+                            }])
+                            ->whereStatus('Active')
+                            ->orderByDesc(function ($subquery) {
+                                $subquery->select('created_at')
+                                    ->from('messages')
+                                    ->whereColumn('messages.team_id', 'teams.id')
+                                    ->orderBy('created_at', 'desc')
+                                    ->limit(1);
+                            })
+                            ->get()
+                            ->filter(function ($team) {
+                                return $team->status === 'Active';
+                            });
         } else {
-            $teams = Team::with(['league', 'players'])->whereStatus('Active')->get();
+            $teams = Team::with(['league', 'players', 'messages' => function ($query) {
+                                $query->orderBy('created_at', 'desc');
+                            }])
+                            ->whereStatus('Active')
+                            ->orderByDesc(function ($subquery) {
+                                $subquery->select('created_at')
+                                    ->from('messages')
+                                    ->whereColumn('messages.team_id', 'teams.id')
+                                    ->orderBy('created_at', 'desc')
+                                    ->limit(1);
+                            })
+                            ->get();
         }
         
           
