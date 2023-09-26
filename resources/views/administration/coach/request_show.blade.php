@@ -74,7 +74,7 @@
                     <div class="col-md-12">
                         <div class="card border">
                             <div class="card-header">
-                                <h5 class="card-title mb-0 text-bold float-left">Registered Players</h5>
+                                <h5 class="card-title mb-0 text-bold float-left">Coach Request</h5>
                                 <a href="{{ route('administration.coach.request.update', ['coach' => $coach, 'status' => encrypt('Approve')]) }}" class="btn btn-success btn-sm float-right font-13" onclick="return confirm('Are You Sure Want To Approve?');">
                                     <i class="la la-check"></i>
                                     Approve
