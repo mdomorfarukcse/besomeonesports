@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
+use App\Mail\Administration\Coach\CoachCreationMail;
 use App\Models\Coach\Frontend\CoachRequest;
+use Illuminate\Support\Facades\Mail;
 
 class CoachController extends Controller
 {
@@ -119,6 +121,8 @@ class CoachController extends Controller
                 $coach->status = $request->status;
                 
                 $coach->save();
+
+                Mail::to($user->email)->send(new CoachCreationMail($request));
             }, 5);
 
             toast('A New Coach Has Been Created.','success');
