@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Mail\Administration\Coach;
+namespace App\Mail\Administration\Player;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 
-class CoachCreationMail extends Mailable
+class PlayerLoginCredentialMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class CoachCreationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('info@mail.com', config('app.name')),
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
             subject: 'Login Credential Of '. config('app.name'),
         );
     }
@@ -41,7 +41,7 @@ class CoachCreationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.administration.coach.create',
+            markdown: 'emails.administration.player.credential',
             with: [
                 'data' => $this->data
             ]

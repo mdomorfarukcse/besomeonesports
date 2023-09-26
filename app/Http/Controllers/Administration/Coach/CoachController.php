@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Administration\Coach;
 use Exception;
 use App\Models\User;
 use App\Models\Coach\Coach;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
-use App\Mail\Administration\Coach\CoachCreationMail;
+use App\Mail\Administration\Coach\CoachLoginCredentialMail;
 use App\Models\Coach\Frontend\CoachRequest;
 use Illuminate\Support\Facades\Mail;
 
@@ -122,7 +121,8 @@ class CoachController extends Controller
                 
                 $coach->save();
 
-                Mail::to($user->email)->send(new CoachCreationMail($request));
+                // Send Mail to the coach email
+                Mail::to($user->email)->send(new CoachLoginCredentialMail($request));
             }, 5);
 
             toast('A New Coach Has Been Created.','success');

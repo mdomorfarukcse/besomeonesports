@@ -11,6 +11,8 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Administration\Player\PlayerLoginCredentialMail;
 use App\Http\Requests\Administration\Player\PlayerStoreRequest;
 use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
 
@@ -129,6 +131,9 @@ class PlayerController extends Controller
                 $player->guardian_contact = $request->guardian_contact;
                 
                 $player->save();
+
+                // Send Mail to the player email
+                Mail::to($user->email)->send(new PlayerLoginCredentialMail($request));
             }, 5);
 
             toast('A New Player Has Been Created.','success');

@@ -34,6 +34,10 @@
         </tr>
     </tbody>
 </table>
+<br>
+<div>
+    [<strong>Note: </strong> Please login and update your password from <strong><a href="{{ route('administration.profile.security') }}" target="_blank">Here</a></strong> ]
+</div>
 <!-- End Content -->
 @endsection
 
