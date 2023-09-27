@@ -10,20 +10,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TeamInfoToPlayerMail extends Mailable
+class TeamPlayerInfoToCoachMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $data;
-    public $player;
+    public $players;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data, $player)
+    public function __construct($data, $players)
     {
         $this->data = $data;
-        $this->player = $player;
+        $this->players = $players;
     }
 
     /**
@@ -33,7 +33,7 @@ class TeamInfoToPlayerMail extends Mailable
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: 'New Team Created on '. config('app.name'),
+            subject: 'New Player Assigned on '. $this->data->name,
         );
     }
 
@@ -43,10 +43,10 @@ class TeamInfoToPlayerMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.administration.team.team_info_to_player',
+            markdown: 'emails.administration.team.team_player_info_to_coach',
             with: [
                 'data' => $this->data,
-                'player' => $this->player,
+                'players' => $this->players,
             ]
         );
     }

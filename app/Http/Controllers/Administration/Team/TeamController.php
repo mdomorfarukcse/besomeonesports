@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Administration\Team\TeamInfoToCoachMail;
+use App\Mail\Administration\Team\TeamInfoToPlayerMail;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
+use App\Mail\Administration\Team\TeamPlayerInfoToCoachMail;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
 use App\Http\Requests\Administration\Team\AssignPlayerRequest;
-use App\Mail\Administration\Team\TeamInfoToCoachMail;
 
 class TeamController extends Controller
 {
@@ -24,7 +26,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with(['league', 'players'])->get();
+        $teams = Team::with(['league', 'players'])->orderBy('created_at', 'desc')->get();
         // dd($teams);
         return view('administration.team.index', compact(['teams']));
     }
@@ -170,6 +172,15 @@ class TeamController extends Controller
         try{
             DB::transaction(function() use ($request, $team) {
                 $team->players()->syncWithoutDetaching($request->players);
+
+                foreach ($request->players as $playerID) {
+                    $player = Player::findOrfail($playerID);
+                    // Send Mail to the player email
+                    Mail::to($player->user->email)->send(new TeamInfoToPlayerMail($team, $player));
+                }
+                
+                // Send Mail to the coach email
+                Mail::to($team->coach->user->email)->send(new TeamPlayerInfoToCoachMail($team, $request->players));
             }, 5);
 
             toast('Players has been assigned to the team.', 'success');
