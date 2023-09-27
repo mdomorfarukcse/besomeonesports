@@ -23,6 +23,11 @@ return new class extends Migration
                   ->unique()
                   ->comment('The Player ID Prefix Should be BSSPLAYER. The Player ID Example: BSSPLAYER202302010001');
 
+            $table->foreignId('division_id')
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
             $table->string('first_name', 50);
             $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);

@@ -28,6 +28,7 @@ class PlayerSeeder extends Seeder
                 Player::create([
                     'user_id' => $user->id,
                     'player_id' => unique_id().$i,
+                    'division_id' => rand(1,10),
                     'first_name' => fake()->firstName(),
                     'last_name' => fake()->lastName(),
                     'birthdate' => fake()->date(),
