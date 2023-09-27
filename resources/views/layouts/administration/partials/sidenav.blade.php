@@ -230,13 +230,11 @@
                                             </li>
                                         @endif
                                         
-                                        @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
-                                            <li>
-                                                <a href="{{ route('administration.shop.order.my') }}">
-                                                    {{ __('My Orders') }}
-                                                </a>
-                                            </li>
-                                        @endif
+                                        <li>
+                                            <a href="{{ route('administration.shop.order.my') }}">
+                                                {{ __('My Orders') }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             @endif
@@ -296,12 +294,14 @@
                     </li>
                 @endif
 
-                <li>
-                    <a href="{{ route('administration.chat.index') }}"> 
-                        <i class="sl-icon-bubbles"></i>
-                        <span>Messaging</span> 
-                    </a>
-                </li>
+                @role ('developer|admin|coach|player') 
+                    <li>
+                        <a href="{{ route('administration.chat.index') }}"> 
+                            <i class="sl-icon-bubbles"></i>
+                            <span>Messaging</span> 
+                        </a>
+                    </li>
+                @endrole
                 
 
                 @role ('developer|admin') 

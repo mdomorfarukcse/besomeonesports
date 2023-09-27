@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 /* ==============================================
 ===============< Chat Routes >==============
 ===============================================*/
-Route::controller(ChatController::class)->prefix('chat')->name('chat.')->group(function () {
+Route::controller(ChatController::class)->prefix('chat')->name('chat.')->middleware(['role:player|coach|admin|developer'])->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/show/{team}', 'show')->name('show');
     Route::post('/store', 'store')->name('store');
