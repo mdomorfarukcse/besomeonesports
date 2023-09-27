@@ -6,14 +6,16 @@ use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
 use App\Models\League\League;
+use App\Models\Player\Player;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
 use App\Http\Requests\Administration\Team\AssignPlayerRequest;
-use App\Models\Player\Player;
-use Illuminate\Support\Facades\Auth;
+use App\Mail\Administration\Team\TeamInfoToCoachMail;
 
 class TeamController extends Controller
 {
@@ -63,7 +65,6 @@ class TeamController extends Controller
      */
     public function store(TeamStoreRequest $request)
     {
-        // dd($request);
         try{
             $team = new Team();
 
@@ -81,6 +82,11 @@ class TeamController extends Controller
             $team->status = $request->status;
             $team->description = $request->description;
             $team->save();
+
+            $coach = Coach::findOrfail($request->coach_id);
+
+            // Send Mail to the coach email
+            Mail::to($coach->user->email)->send(new TeamInfoToCoachMail($team));
 
             toast('A New Team Has Been Created.', 'success');
             return redirect()->route('administration.team.index');
