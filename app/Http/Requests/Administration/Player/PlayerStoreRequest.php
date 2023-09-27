@@ -34,7 +34,7 @@ class PlayerStoreRequest extends FormRequest
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
-            "extended_address" => ['string', 'max:100'],
+            "extended_address" => ['nullable','string', 'max:100'],
             "position" => ['nullable', 'string'],
             "height" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             "weight" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
