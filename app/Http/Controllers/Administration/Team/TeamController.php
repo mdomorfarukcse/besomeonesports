@@ -6,14 +6,18 @@ use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
 use App\Models\League\League;
+use App\Models\Player\Player;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Administration\Team\TeamInfoToCoachMail;
+use App\Mail\Administration\Team\TeamInfoToPlayerMail;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
+use App\Mail\Administration\Team\TeamPlayerInfoToCoachMail;
 use App\Http\Requests\Administration\Team\TeamUpdateRequest;
 use App\Http\Requests\Administration\Team\AssignPlayerRequest;
-use App\Models\Player\Player;
-use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -22,7 +26,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with(['league', 'players'])->get();
+        $teams = Team::with(['league', 'players'])->orderBy('created_at', 'desc')->get();
         // dd($teams);
         return view('administration.team.index', compact(['teams']));
     }
@@ -53,7 +57,7 @@ class TeamController extends Controller
         $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
-        $team_id = $this->generateUniqueID();
+        $team_id = unique_id(11, 11);
 
         return view('administration.team.create', compact(['leagues', 'divisions', 'coaches', 'team_id']));
     }
@@ -63,7 +67,6 @@ class TeamController extends Controller
      */
     public function store(TeamStoreRequest $request)
     {
-        // dd($request);
         try{
             $team = new Team();
 
@@ -81,6 +84,11 @@ class TeamController extends Controller
             $team->status = $request->status;
             $team->description = $request->description;
             $team->save();
+
+            $coach = Coach::findOrfail($request->coach_id);
+
+            // Send Mail to the coach email
+            Mail::to($coach->user->email)->send(new TeamInfoToCoachMail($team));
 
             toast('A New Team Has Been Created.', 'success');
             return redirect()->route('administration.team.index');
@@ -164,6 +172,15 @@ class TeamController extends Controller
         try{
             DB::transaction(function() use ($request, $team) {
                 $team->players()->syncWithoutDetaching($request->players);
+
+                foreach ($request->players as $playerID) {
+                    $player = Player::findOrfail($playerID);
+                    // Send Mail to the player email
+                    Mail::to($player->user->email)->send(new TeamInfoToPlayerMail($team, $player));
+                }
+                
+                // Send Mail to the coach email
+                Mail::to($team->coach->user->email)->send(new TeamPlayerInfoToCoachMail($team, $request->players));
             }, 5);
 
             toast('Players has been assigned to the team.', 'success');
@@ -198,36 +215,5 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         dd($team);
-    }
-
-
-    // Generate a unique ID with a minimum and maximum length of 10 characters
-    private function generateUniqueID() {
-        $length = 10;
-        $timestampLength = 13; // Length of the timestamp in milliseconds
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-        // Get the current timestamp in milliseconds
-        $timestamp = round(microtime(true) * 1000);
-    
-        // Convert the timestamp to a string and remove the decimal point
-        $timestampString = str_replace('.', '', (string)$timestamp);
-    
-        // Calculate the number of characters needed to fill the remaining length
-        $charactersNeeded = $length - $timestampLength;
-    
-        // Ensure we have enough characters to fill the length
-        while (strlen($timestampString) < $charactersNeeded) {
-            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
-            $timestampString .= $randomCharacter;
-        }
-    
-        // Convert the timestamp to all capital letters
-        $timestampString = strtoupper($timestampString);
-    
-        // Combine the timestamp with the random characters and take the first $length characters
-        $uniqueID = substr($timestampString, 0, $length);
-    
-        return $uniqueID;
     }
 }

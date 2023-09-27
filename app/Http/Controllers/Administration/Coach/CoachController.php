@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Administration\Coach;
 use Exception;
 use App\Models\User;
 use App\Models\Coach\Coach;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -13,7 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Coach\CoachStoreRequest;
 use App\Http\Requests\Administration\Coach\CoachUpdateRequest;
+use App\Mail\Administration\Coach\CoachLoginCredentialMail;
+use App\Mail\Administration\Coach\CoachRequestApproveMail;
+use App\Mail\Administration\Coach\CoachRequestRejectMail;
 use App\Models\Coach\Frontend\CoachRequest;
+use Illuminate\Support\Facades\Mail;
 
 class CoachController extends Controller
 {
@@ -119,6 +122,9 @@ class CoachController extends Controller
                 $coach->status = $request->status;
                 
                 $coach->save();
+
+                // Send Mail to the coach email
+                Mail::to($user->email)->send(new CoachLoginCredentialMail($request));
             }, 5);
 
             toast('A New Coach Has Been Created.','success');
@@ -239,7 +245,7 @@ class CoachController extends Controller
     public function updateRequest(CoachRequest $coach, string $status)
     {
         $status = decrypt($status);
-        dd($coach,$status);
+        // dd($coach,$status);
 
         if ($status === 'Approve') {
             try {
@@ -280,6 +286,9 @@ class CoachController extends Controller
 
                     $coachInfo->save();
 
+                    // Send Mail to the coach email
+                    Mail::to($user->email)->send(new CoachRequestApproveMail($coach));
+
                     $coach->delete();
                 }, 5);
     
@@ -291,6 +300,9 @@ class CoachController extends Controller
                 return redirect()->back()->withInput();
             }
         } else {
+            // Send Mail to the coach email
+            Mail::to($coach->email)->send(new CoachRequestRejectMail($coach));
+
             $coach->delete();
 
             toast('Coach Has Been Canceled.','success');

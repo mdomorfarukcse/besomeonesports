@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Frontend\Coach;
 
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\Coach\CoachStoreRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Coach\Frontend\CoachRequest;
+use App\Http\Requests\Frontend\Coach\CoachStoreRequest;
+use App\Mail\Administration\Coach\CoachRequestMail;
 
 class CoachController extends Controller
 {
@@ -41,6 +44,12 @@ class CoachController extends Controller
             $coach->avatar = $avatar;
 
             $coach->save();
+            
+            $admins = User::role('admin')->get();
+            foreach ($admins as $admin) {
+                // Send Mail to the admin email
+                Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
+            }
 
             toast('Coach Request Has Been Send.','success');
             return redirect()->back();

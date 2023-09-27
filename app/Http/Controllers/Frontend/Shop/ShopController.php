@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Frontend\Shop;
 
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Player\Player;
 use App\Models\Shop\Order\Order;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\Administration\Shop\Order\Admin\NewOrderMail;
+use App\Mail\Administration\Shop\Order\OrderConfirmationMail;
 use App\Models\Shop\Product\Product;
-use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use net\authorize\api\contract\v1\OrderType;
 use net\authorize\api\contract\v1\PaymentType;
@@ -198,6 +201,16 @@ class ShopController extends Controller
                         $customerOrder->transaction_id = $trasactionReport->getTransId();
                         $customerOrder->invoice_number = $invoice_number;
                         $customerOrder->save();
+
+                        // Send Mail to Admin about the Order
+                        $admins = User::role('admin')->get();
+                        foreach ($admins as $admin) {
+                            // Send Mail to the admin email
+                            Mail::to($admin->email)->send(new NewOrderMail($customerOrder, $admin));
+                        }
+                        
+                        // Send Mail to Customer about the Order
+                        Mail::to($customerOrder->email)->send(new OrderConfirmationMail($customerOrder));
             
                         $cartItems = Session::get('cart', []);
                         foreach ($cartItems as $itemKey => $cartItem) {
