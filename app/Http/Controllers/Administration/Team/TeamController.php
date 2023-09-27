@@ -106,7 +106,9 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $players = $team->league->players;
+        $players = $team->league->players()
+                                ->where('division_id', $team->division_id)
+                                ->get();
         // dd($players);
         if ($team->maximum_players < count($team->players)) {
             alert('Player Limit Crossed!', 'Maximum Player is '.$team->maximum_players.'. Please remove extra players', 'warning');

@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
                                     <h5 class="card-title mb-0">Credentials</h5>
@@ -166,21 +166,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
                                     <h5 class="card-title mb-0">Player Info</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12 form-group">
+                                        <div class="form-group col-md-12">
+                                            <label for="division_id">Division <span class="required">*</span></label>
+                                            <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
+                                                <option value="" selected disabled>Select Division</option>
+                                                @foreach ($divisions as $division) 
+                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('division_id')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-8 form-group">
                                             <label for="position">Player Position</label>
                                             <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
                                             @error('position')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-4">
                                             <label for="status">Status <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                                 <option value="">Select Status</option>

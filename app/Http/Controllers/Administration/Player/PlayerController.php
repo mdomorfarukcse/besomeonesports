@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Administration\Player\PlayerLoginCredentialMail;
 use App\Http\Requests\Administration\Player\PlayerStoreRequest;
 use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
+use App\Models\Division\Division;
 
 class PlayerController extends Controller
 {
@@ -66,8 +67,9 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $player_id = $this->generateUniqueID();
-        return view('administration.player.create', compact('player_id'));
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $player_id = unique_id(11, 11);
+        return view('administration.player.create', compact(['player_id', 'divisions']));
     }
 
     /**
@@ -100,6 +102,7 @@ class PlayerController extends Controller
                 
                 $player->user_id = $user->id;
                 $player->player_id = $request->player_id;
+                $player->division_id = $request->division_id;
                 $player->first_name = $request->first_name;
                 $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
@@ -159,7 +162,8 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        return view('administration.player.edit', compact(['player']));
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        return view('administration.player.edit', compact(['player', 'divisions']));
     }
 
     /**
@@ -172,16 +176,16 @@ class PlayerController extends Controller
             DB::transaction(function() use ($request, $player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request->avatar);
-                // dd($request->all(), $avatar);
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
                 $user->name = $playerName;
                 if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
                     $user->avatar = $avatar;
                 }
                 $user->save();
 
+                $player->division_id = $request->division_id;
                 $player->first_name = $request->first_name;
                 $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
@@ -241,38 +245,5 @@ class PlayerController extends Controller
             alert('Player Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
-    }
-
-
-
-
-    // Generate a unique ID with a minimum and maximum length of 10 characters
-    private function generateUniqueID() {
-        $length = 10;
-        $timestampLength = 13; // Length of the timestamp in milliseconds
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-        // Get the current timestamp in milliseconds
-        $timestamp = round(microtime(true) * 1000);
-    
-        // Convert the timestamp to a string and remove the decimal point
-        $timestampString = str_replace('.', '', (string)$timestamp);
-    
-        // Calculate the number of characters needed to fill the remaining length
-        $charactersNeeded = $length - $timestampLength;
-    
-        // Ensure we have enough characters to fill the length
-        while (strlen($timestampString) < $charactersNeeded) {
-            $randomCharacter = $characters[random_int(0, strlen($characters) - 1)];
-            $timestampString .= $randomCharacter;
-        }
-    
-        // Convert the timestamp to all capital letters
-        $timestampString = strtoupper($timestampString);
-    
-        // Combine the timestamp with the random characters and take the first $length characters
-        $uniqueID = substr($timestampString, 0, $length);
-    
-        return $uniqueID;
     }
 }

@@ -201,8 +201,8 @@
                                     <label for="teamLogo"></label>
                                 </div>
                                 <div class="logo-preview">
-                                    @if (!empty($league->logo))
-                                        <div id="imagePreview" style="background-image: url({{ show_image($league->logo) }});"></div>
+                                    @if (!empty($team->logo))
+                                        <div id="imagePreview" style="background-image: url({{ show_image($team->logo) }});"></div>
                                     @else
                                         <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                     @endif

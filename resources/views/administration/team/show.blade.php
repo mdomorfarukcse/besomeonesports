@@ -222,7 +222,7 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header bg-dark border-0">
-                    <h5 class="modal-title">Modal Title</h5>
+                    <h5 class="modal-title">Assign Player(s) for {{ $team->name }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
