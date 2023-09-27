@@ -162,7 +162,8 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        return view('administration.player.edit', compact(['player']));
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        return view('administration.player.edit', compact(['player', 'divisions']));
     }
 
     /**
@@ -175,12 +176,11 @@ class PlayerController extends Controller
             DB::transaction(function() use ($request, $player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request->avatar);
-                // dd($request->all(), $avatar);
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
                 $user->name = $playerName;
                 if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
                     $user->avatar = $avatar;
                 }
                 $user->save();

@@ -85,6 +85,16 @@
                                                     </tr>
                                                 @endif
                                                 <tr>
+                                                    <th>Division</th>
+                                                    <td>
+                                                        <a href="{{ route('administration.division.show', ['division' => $player->division]) }}" target="_blank">
+                                                            <strong class="text-dark">
+                                                                {{ $player->division->name }}
+                                                            </strong>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <th>Name</th>
                                                     <td>{{ $player->user->name }}</td>
                                                 </tr>
