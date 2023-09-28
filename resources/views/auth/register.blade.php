@@ -100,6 +100,18 @@
                                                 @enderror
                                             </div>
 
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="custom-control custom-checkbox float-left d-inline-block">
+                                                            <input type="checkbox" class="custom-control-input" id="agree" name="agree" required>
+                                                            <label class="custom-control-label text-black text-bold" for="agree">Agree</label>
+                                                        </div>                                                        
+                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditionModal" class="ml-1 float-left text-bold">Terms & Conditions?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <button type="submit" class="btn btn-success btn-lg btn-block font-18"><b>{{ __('REGISTER') }}</b></button>
                                         </form>
                                         
@@ -129,5 +141,37 @@
         {{-- custom js --}}
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- End js -->
+
+
+
+
+
+        {{-- Terms & Condition Modal Starts --}}
+        <div class="modal fade" id="termsAndConditionModal" tabindex="-1" role="dialog" aria-labelledby="termsAndConditionModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark border-0">
+                        <h6 class="text-white">Registration Terms & Conditions of {{ config('app.name') }}</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            OKAY
+                            <i class="fa fa-check ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        {{-- Terms & Condition Modal Ends --}}
     </body>
 </html>
