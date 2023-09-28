@@ -41,11 +41,12 @@
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
                     @foreach ($galleries as $keys => $gallery)
                         <div class="col">
-                            <a data-fancybox="wk" href="{{ show_image($gallery->avatar) }}" class="comon-links-divb05">
+                            <a data-fancybox="wk" href="{{ show_image($gallery->path) }}" class="comon-links-divb05">
                                 <figure>
-                                    <img src="{{ show_image($gallery->avatar) }}" alt="{{ $gallery->name }}" />
+                                    <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
+                                        {{ $gallery->league->name }}
                                     </figcaption>
                                 </figure>
                             </a>

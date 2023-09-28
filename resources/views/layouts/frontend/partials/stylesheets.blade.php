@@ -68,6 +68,10 @@
     .pcolor{
         color: #00AAF0 !important;
     }
+    .dropdown-item:focus, .dropdown-item:hover {
+        color: #ffffff !important;
+        background-color: #00aaf0ba !important;
+    }
 </style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>
 
