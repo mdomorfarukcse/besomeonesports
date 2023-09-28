@@ -33,7 +33,7 @@ class ProductStoreRequest extends FormRequest
             'status' => ['required', 'in:Active,Inactive'],
 
             'images' => ['required', 'array'],
-            'images.*' => ['image', 'mimes:jpeg,png,gif', 'max:2048'], // Max size: 2MB
+            'images.*' => ['image', 'mimes:jpeg,jpg,png,gif', 'max:2048'], // Max size: 2MB
         ];
     }
 

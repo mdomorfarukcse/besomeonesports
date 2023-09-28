@@ -14,6 +14,7 @@
     <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Responsive Datatable css -->
     <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/css/jquery.fancybox.min.css') }}" type="text/css" rel="stylesheet"/>
 @endsection
 
 @section('custom_css')
@@ -62,7 +63,7 @@
                                 <th>S/N</th>
                                 <th>Image</th>
                                 <th>Caption</th>
-                                <th>Status</th>
+                                <th>League</th>
                                 <th class="text-right">Actions</th>
                             </tr>
                         </thead>
@@ -71,10 +72,20 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($galleries, $key) }}</b></th>
                                     <td>
-                                        <img src="{{ show_image($gallery->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
+                                        <a data-fancybox="wk" href="{{ show_image($gallery->path) }}" class="comon-links-divb05">
+                                            <figure>
+                                                <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50"/>
+                                            </figure>
+                                        </a>
                                     </td>
                                     <td>{{ $gallery->name }}</td>
-                                    <td>{!! status($gallery->status) !!}</td>
+                                    <td>
+                                        @if(!is_null($gallery->league))
+                                            {{ $gallery->league->name }}
+                                        @else
+                                            <span class="badge badge-dark">No League</span>
+                                        @endif    
+                                    </td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
                                             <a href="{{ route('administration.gallery.destroy', ['gallery' => $gallery]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
@@ -114,6 +125,7 @@
     <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/custom-table-datatable.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.fancybox.min.js') }}"></script>
 @endsection
 
 @section('custom_script')

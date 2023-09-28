@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Gallery;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery\Gallery;
+use App\Models\League\League;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,11 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('administration.gallery.create');
+        $leagues = League::select(['id','name'])
+                        ->whereStatus('Active')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('administration.gallery.create', compact('leagues'));
     }
 
     /**
@@ -32,19 +37,28 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'      => 'required|string',
-            'avatar'    => 'required'
+            'name' => ['required', 'string'],
+            'league_id' => ['nullable', 'exists:leagues,id'],
+            'images' => ['required', 'array'],
+            'images.*' => ['image', 'mimes:jpeg,jpg,png,gif', 'max:2048']
         ]);
 
         try {
-            $avatar = upload_image($request->avatar);
-            $data = $request->all();
-            Gallery::create([
-                'name' => $data['name'],
-                'avatar' => $avatar,
-                'status' => $data['status'],
-            ]);
-            toast('A New Gallery Image Has Been Created.', 'success');
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    // Use the upload_image function to upload each image to the "images" directory
+                    $imageName = upload_image($image);
+                    
+                    if ($imageName) {
+                        $gallery = new Gallery();
+                        $gallery->name = $request->name;
+                        $gallery->league_id = $request->league_id;
+                        $gallery->path = $imageName;
+                        $gallery->save();
+                    }
+                }
+            }
+            toast('Gallery Images Has Been Stored.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
             dd($e);
@@ -61,7 +75,7 @@ class GalleryController extends Controller
             $gallery->delete();
 
             toast('Gallery Has Been Deleted.','success');
-            return redirect()->route('administration.sponsor.index');
+            return redirect()->back();
         } catch (Exception $e) {
             dd($e);
             alert('Gallery Deletation Failed!', 'There is some error! Please fix and try again.', 'error');

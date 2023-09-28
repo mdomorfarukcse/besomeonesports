@@ -313,12 +313,12 @@
                     alt="sportsfbn" />
             </div>
 
-            <div class="top-imgn">
+            {{-- <div class="top-imgn">
                 <img src="{{ asset('frontend/images/white-bg-01.png') }}" alt="bnm" />
             </div>
             <div class="bootom-imgn">
                 <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
-            </div>
+            </div> --}}
         </div>
 
         <div class="mediasection d-inline-block w-100">

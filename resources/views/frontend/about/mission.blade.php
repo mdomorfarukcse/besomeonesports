@@ -41,7 +41,7 @@
                                 <img src="{{ asset('frontend/images/about.webp') }}" alt="pic" />
                             </figure>
                             <figure class="small-img">
-                                <img src="{{ asset('frontend/images/pexels-photo-5586481.webp') }}" alt="pic2" />
+                                <img src="{{ asset('frontend/images/about_imge.jpg') }}" alt="pic2" />
                             </figure>
                         </div>
                         <div class="col">

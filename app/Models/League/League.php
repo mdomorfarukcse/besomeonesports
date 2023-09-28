@@ -13,5 +13,5 @@ class League extends Model
     use HasFactory, Relations, SoftDeletes, CascadeSoftDeletes;
 
     // protected $cascadeDeletes = ['divisions', 'players'];
-    protected $cascadeDeletes = ['rounds'];
+    protected $cascadeDeletes = ['rounds','galleries'];
 }

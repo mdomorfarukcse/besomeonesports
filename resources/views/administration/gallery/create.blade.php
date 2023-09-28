@@ -21,65 +21,48 @@
     /* Custom CSS Here */
 
     /* Image Upload */
-    .avatar-upload {
+    .file-area {
+        width: 100%;
         position: relative;
-        max-width: 205px;
-        margin: 50px auto;
     }
-    .avatar-upload .avatar-edit {
+    .file-area input[type="file"] {
         position: absolute;
-        right: 12px;
-        z-index: 1;
-        top: 10px;
-    }
-    .avatar-upload .avatar-edit input {
-        display: none;
-    }
-    .avatar-upload .avatar-edit input + label {
-        display: inline-block;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 0;
-        border-radius: 100%;
-        background: #ffffff;
-        border: 1px solid;
-        border-color: #a1a1a1;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        font-weight: normal;
-        transition: all 0.2s ease-in-out;
-    }
-    .avatar-upload .avatar-edit input + label:hover {
-        background: #d8d8d8;
-        border-color: #a1a1a1;
-    }
-    .avatar-upload .avatar-edit input + label:after {
-        content: "\f040";
-        font-family: "FontAwesome";
-        color: #757575;
-        position: absolute;
-        top: 5px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        margin: auto;
-    }
-    .avatar-upload .avatar-preview {
-        width: 192px;
-        height: 192px;
-        position: relative;
-        border-radius: 100%;
-        border: 6px solid #f8f8f8;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    }
-    .avatar-upload .avatar-preview > div {
         width: 100%;
         height: 100%;
-        border-radius: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
     }
+    .file-area .file-dummy {
+        width: 100%;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        text-align: center;
+        transition: background 0.3s ease-in-out;
+    }
+    .file-area .file-dummy .success {
+        display: none;
+    }
+    .file-area:hover .file-dummy {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .file-area input[type="file"]:valid + .file-dummy .success {
+        display: inline-block;
+    }
+    .file-area input[type="file"]:valid + .file-dummy .default {
+        display: none;
+    }
+    .file-uploader {
+		padding: 30px 30px 50px;
+		height: 30px;
+		background: #f0f0ff;
+		cursor: pointer;
+	}
     </style>
 @endsection
 
@@ -109,31 +92,30 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="avatar-upload">
-                                <div class="avatar-edit">
-                                    <input type="file" id="galleryAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
-                                    <label for="galleryAvatar"></label>
-                                </div>
-                                <div class="avatar-preview">
-                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
-                                </div>
+                            <div class="product-image-upload form-group">
+                                <label for="images">Upload Gallery Images <span class="required">*</span></label>
+                                <input type="file" accept="image/jpeg,image/png,image/gif" multiple id="images" name="images[]" class="form-control file-uploader" placeholder="Ex: Upload Images" required>
+                                @error('images[]')
+                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="name">Caption <span class="required">*</span></label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="status">Status <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
+                        <div class="form-group col-md-4">
+                            <label for="league_id">League </label>
+                            <select class="select2-single form-control @error('league_id') is-invalid @enderror" name="league_id" >
+                                <option value="">Select League</option>
+                                @foreach ($leagues as $league)
+                                    <option value="{{ $league->id }}">{{ $league->name }}</option>
+                                @endforeach
                             </select>
-                            @error('status')
+                            @error('league_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
@@ -157,26 +139,15 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
 
     <script>
-        // File Uploder
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#galleryAvatar").change(function() {
-            readURL(this);
-        });
+        
     </script>
 @endsection
