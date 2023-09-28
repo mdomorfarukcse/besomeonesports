@@ -133,12 +133,13 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" required/>
                                     <label for="coachAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
+                                <small class="text-dark">[<strong class="text-danger">Note: </strong> Image Must Need to Upload.]</small>
                             </div>
                         </div>
                         <div class="col-md-6">

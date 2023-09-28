@@ -33,7 +33,7 @@ class RoleController extends Controller
                 'name' => $request->name,
             ]);
             toast('A New Role Has Been Created.', 'success');
-            return redirect()->back();
+            return redirect()->route('administration.role.edit.rolepermission', ['id' => $role->id]);
         } catch (Exception $e){
             dd($e);
             alert('Role Creation Failed!', 'There is some error! Please fix and try again.', 'error');
@@ -81,7 +81,7 @@ class RoleController extends Controller
             $role->delete();
 
             toast('Role Has Been Deleted.','success');
-            return redirect()->route('administration.Role.index');
+            return redirect()->route('administration.role.index');
         } catch (Exception $e) {
             dd($e);
             alert('Role Deletation Failed!', 'There is some error! Please fix and try again.', 'error');

@@ -50,9 +50,6 @@ Route::prefix('administration')
             // Sport
             include_once 'sport/sport.php';
 
-            // Settings
-            include_once 'settings/settings.php';
-
             // Faq
             include_once 'faq/faq.php';
 

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('first_name', 50);
             $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
-            $table->string('position', 50)->default('Coach');
+            $table->string('position', 50)->default('Assistant Coach');
             $table->date('birthdate');
             $table->string('phone_number', 20)->unique();
             $table->string('street_address', 100);

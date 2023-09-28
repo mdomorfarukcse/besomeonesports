@@ -68,10 +68,10 @@
 
                                             <div class="form-row mb-3">
                                                 <div class="col-6">
-                                                    <div class="custom-control custom-checkbox text-left">
+                                                    {{-- <div class="custom-control custom-checkbox text-left">
                                                         <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
                                                         <label class="custom-control-label font-14" for="rememberme">{{ __('Remember Me') }}</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="forgot-psw">
