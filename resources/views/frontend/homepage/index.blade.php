@@ -196,13 +196,13 @@
                         Friendswood, Pearland, Alvin, and League City Areas. Grades K - 8th.<span class="d-lg-block">
                             upcoming matches or sports events faster! </span></h6>
                     <div class="d-flex align-items-center">
-                        <a href="#" class="btn subc"> Join Player !</a>
-                        <a href="#" class="btn leaguebtn ms-4"> Become a Coach !</a>
+                        <a href="/register" class="btn subc"> Join Player !</a>
+                        <a href="{{ route('frontend.coach.create') }}" class="btn leaguebtn ms-4"> Become a Coach !</a>
                         {{-- <a href="#" class="btn leaguebtn ms-4"> All Leagues</a> --}}
                     </div>
                 </div>
                 <figure class="m-0 right-imgplya">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="gnm" />
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="besomeone sport" />
                 </figure>
             </div>
         </div>

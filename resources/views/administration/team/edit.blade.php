@@ -258,6 +258,7 @@
                                 <option value="" disabled>Select Gender</option>
                                 <option value="Male" @if ($team->gender === 'Male') selected @endif>Male</option>
                                 <option value="Female" @if ($team->gender === 'Female') selected @endif>Female</option>
+                                <option value="Male & Female" @if ($team->gender === 'Male & Female') selected @endif>Male & Female</option>
                                 <option value="Other" @if ($team->gender === 'Other') selected @endif>Other</option>
                             </select>
                             @error('sport_id')

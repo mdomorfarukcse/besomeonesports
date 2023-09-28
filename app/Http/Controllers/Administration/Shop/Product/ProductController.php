@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product_id = $this->generateUniqueID();
+        $product_id = unique_id(11, 11);
         $categories = Category::select(['id', 'name'])->orderBy('name', 'asc')->get();
         return view('administration.shop.product.create', compact(['categories', 'product_id']));
     }

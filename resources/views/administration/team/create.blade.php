@@ -185,12 +185,13 @@
                         <div class="col-md-12">
                             <div class="logo-upload">
                                 <div class="logo-edit">
-                                    <input type="file" id="teamLogo" name="logo" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="teamLogo" name="logo" accept=".png, .jpg, .jpeg" required/>
                                     <label for="teamLogo"></label>
                                 </div>
                                 <div class="logo-preview">
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
+                                <small class="text-dark">[<strong class="text-danger">Note: </strong> Image Must Need to Upload.]</small>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">
@@ -254,6 +255,7 @@
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
+                                <option value="Male & Female">Male & Female</option>
                                 <option value="Other">Other</option>
                             </select>
                             @error('sport_id')
