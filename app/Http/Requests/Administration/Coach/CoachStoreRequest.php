@@ -25,7 +25,7 @@ class CoachStoreRequest extends FormRequest
             'coach_id' => ['required', 'string', 'unique:coaches,coach_id'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
-            "position" => ['required'],
+            "position" => ['required', 'string'],
             "status" => ['required','in:Active,Inactive,Banned'],
             "first_name" => ['required', 'max:50'],
             "middle_name" => ['nullable', 'string', 'max:50'],
@@ -37,8 +37,8 @@ class CoachStoreRequest extends FormRequest
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
-            "extended_address" => ['string', 'max:100'],
-            "note" => ['string'],
+            "extended_address" => ['nullable', 'string', 'max:100'],
+            "note" => ['nullable', 'string'],
         ];
     }
     

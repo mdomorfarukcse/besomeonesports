@@ -132,7 +132,7 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="coachAvatar" name="avatar" value="{{ show_image($coach->user->avatar) }}" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
                                     <label for="coachAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
@@ -151,8 +151,8 @@
                                             <label for="position">Position <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('position') is-invalid @enderror" name="position" required>
                                                 <option value="">Select Position</option>
-                                                <option value="Main Coach" @if ($coach->position === 'Main Coach') selected @endif>Main Coach</option>
-                                                <option value="Assistant Coach" @if ($coach->position === 'Assistant Coach') selected @endif>Assistant Coach</option>
+                                                <option value="Main Coach" @selected($coach->position === 'Main Coach')>Main Coach</option>
+                                                <option value="Assistant Coach" @selected($coach->position === 'Assistant Coach')>Assistant Coach</option>
                                             </select>
                                             @error('position')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -162,8 +162,8 @@
                                             <label for="status">Status <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                                 <option value="">Select Status</option>
-                                                <option value="Active" @if ($coach->status === 'Active') selected @endif>Active</option>
-                                                <option value="Inactive" @if ($coach->status === 'Inactive') selected @endif>Inactive</option>
+                                                <option value="Active" @selected($coach->status === 'Active')>Active</option>
+                                                <option value="Inactive" @selected($coach->status === 'Inactive')>Inactive</option>
                                             </select>
                                             @error('status')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

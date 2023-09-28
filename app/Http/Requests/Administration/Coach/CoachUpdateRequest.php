@@ -34,8 +34,8 @@ class CoachUpdateRequest extends FormRequest
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
-            "extended_address" => ['string', 'max:100'],
-            "note" => ['string'],
+            "extended_address" => ['nullable', 'string', 'max:100'],
+            "note" => ['nullable', 'string'],
         ];
     }
     
