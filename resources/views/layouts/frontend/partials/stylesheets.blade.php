@@ -72,6 +72,12 @@
         color: #ffffff !important;
         background-color: #00aaf0ba !important;
     }
+    .our-spocerder .leaguebtn {
+        background: #FF9906 !important;
+    }
+    .our-spocerder .btn:hover {
+        background: #E62DBE !important;
+    }
 </style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>
 
