@@ -41,36 +41,13 @@
         
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 g-lg-5 mt-0 mt-lg-4">
                     <div class="col">
-                        <a href="player-details.html" class="crm-teams01">
+                        <a href="#" class="crm-teams01">
                             <figure>
                                 <img src="{{ asset('frontend/images/owner.png') }}" alt="teams01" />
                             </figure>
                             <div class="design">
                                 <h5>Steven Passons</h5>
                                 <p>Owner</p>
-                            </div>
-                        </a>
-                    </div>
-        
-                    <div class="col">
-                        <a href="player-details.html" class="crm-teams01">
-                            <figure>
-                                <img src="{{ asset('frontend/images/team07.jpg') }}" alt="teams01" />
-                            </figure>
-                            <div class="design">
-                                <h5>Baker dane</h5>
-                                <p>Manager</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="player-details.html" class="crm-teams01">
-                            <figure>
-                                <img src="{{ asset('frontend/images/team08.jpg') }}" alt="teams01" />
-                            </figure>
-                            <div class="design">
-                                <h5>Clark dane</h5>
-                                <p>Manager</p>
                             </div>
                         </a>
                     </div>

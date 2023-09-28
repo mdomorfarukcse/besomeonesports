@@ -3,6 +3,7 @@
 namespace App\Models\League\Traits;
 
 use App\Models\Division\Division;
+use App\Models\Gallery\Gallery;
 use App\Models\Player\Player;
 use App\Models\Round\Round;
 use App\Models\Schedule\Schedule;
@@ -89,5 +90,13 @@ trait Relations
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    /**
+     * The galleries that belong to the league.
+     */
+    public function galleries(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
     }
 }

@@ -20,6 +20,8 @@ Route::name('frontend.')->group(function () {
     include_once 'shop/shop.php';
     // Mission
     include_once 'mission/mission.php';
+    // Advertise WIth Us
+    include_once 'advertise/advertise.php';
     // Our Team
     include_once 'ourteam/ourteam.php';
     // Testimonials

@@ -13,7 +13,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::whereStatus('Active')->get();
+        $galleries = Gallery::all();
         return view('frontend.gallery.index', compact(['galleries']));
     }
 }

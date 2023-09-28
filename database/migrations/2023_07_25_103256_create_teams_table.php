@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
 
             $table->string('name', 100);
-            $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
+            $table->enum('gender', ['Male', 'Female', 'Male & Female', 'Other'])->default('Male');
             $table->tinyInteger('maximum_players');
             $table->longText('description')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');

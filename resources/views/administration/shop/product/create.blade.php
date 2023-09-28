@@ -221,7 +221,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description <span class="required">*</span></label>
                             <textarea name="description" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Description">{{ old('description') }}</textarea>
                             @error('description')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

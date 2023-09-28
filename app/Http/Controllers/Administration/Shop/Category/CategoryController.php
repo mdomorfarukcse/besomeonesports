@@ -93,6 +93,15 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+
+            toast('Category Has Been Deleted.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('Category Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }

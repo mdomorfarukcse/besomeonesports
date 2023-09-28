@@ -2,12 +2,13 @@
 <style>
     /* Custom CSS Here */
     .dashboardlink{
-        background-color: #0035eeb3;
+        background-color: #00AAF0;
         color: #fff !important;
         border-radius: 5px;
     }
     .dashboardlink:hover {
-        background: #000000;
+        background: #E62DBE
+;
     }
 </style>
 
@@ -33,6 +34,7 @@
                             <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Team</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
                     </li>

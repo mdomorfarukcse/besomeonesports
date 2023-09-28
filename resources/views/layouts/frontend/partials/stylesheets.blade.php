@@ -16,12 +16,12 @@
 @yield('css_links')
 <style>
     .join-btn {
-        background: #ee1d36;
+        background: #E62DBE;
         padding: 5px 17px !important;
         color: #fff !important;
         margin: 0 15px !important;
         transition: all 0.5s;
-        border: solid 2px #ee1d36 !important;
+        border: solid 2px #E62DBE !important;
     }
     .navbar-nav li:hover > ul.dropdown-menu {
         display: block;
@@ -53,7 +53,7 @@
     }
     .ads-box span, .ban-ati-com span {
         position: absolute;
-        background: #F44336;
+        background: #E62DBE;
         color: #fff;
         font-size: 10px;
         padding: 1px 3px;
@@ -61,6 +61,22 @@
     }
     .ban-ati-com a img {
         width: 100%;
+    }
+    .scolor{
+        color: #E62DBE !important;
+    }
+    .pcolor{
+        color: #00AAF0 !important;
+    }
+    .dropdown-item:focus, .dropdown-item:hover {
+        color: #ffffff !important;
+        background-color: #00aaf0ba !important;
+    }
+    .our-spocerder .leaguebtn {
+        background: #FF9906 !important;
+    }
+    .our-spocerder .btn:hover {
+        background: #E62DBE !important;
     }
 </style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>

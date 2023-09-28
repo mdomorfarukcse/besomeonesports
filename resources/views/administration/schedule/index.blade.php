@@ -74,14 +74,14 @@
                         <tbody>
                             @foreach ($schedules as $key => $schedule)
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ serial($schedules, $key) }}</b></th>
+                                    <th class="fw-bold"><b>#{{ serial($schedules , $key) }}</b></th>
                                     <td>
-                                        <a href="{{ route('administration.league.show', ['league', $schedule->league]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See League Details') }}">
+                                        <a href="{{ route('administration.league.show', ['league' => $schedule->league]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See League Details') }}">
                                             {{ $schedule->league->name }}
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('administration.team.show', ['team', $schedule->teams[0]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
+                                        <a href="{{ route('administration.team.show', ['team' => $schedule->teams[0]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
                                             {{ $schedule->teams[0]->name }}
                                             @if ($schedule->team_id == $schedule->teams[0]->id)
                                                 <i class="feather icon-check text-success"></i>
@@ -90,7 +90,7 @@
                                         <br>
                                         <span class="badge badge-info">VS</span>
                                         <br>
-                                        <a href="{{ route('administration.team.show', ['team', $schedule->teams[1]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
+                                        <a href="{{ route('administration.team.show', ['team' => $schedule->teams[1]]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See This Team Details') }}">
                                             {{ $schedule->teams[1]->name }}
                                             @if ($schedule->team_id == $schedule->teams[1]->id)
                                                 <i class="feather icon-check text-success"></i>
@@ -100,7 +100,7 @@
                                     <td>
                                         <small class="text-info text-bold">
                                             Venue:
-                                            <a href="{{ route('administration.venue.show', ['venue', $schedule->venue]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See Venue Details') }}">
+                                            <a href="{{ route('administration.venue.show', ['venue' => $schedule->venue]) }}" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('See Venue Details') }}">
                                                 {{ $schedule->venue->name }}
                                             </a>
                                         </small>

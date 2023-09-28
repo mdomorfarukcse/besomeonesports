@@ -22,7 +22,7 @@ class ProductStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => ['required', 'string', 'max:10', 'unique:products,product_id'],
+            'product_id' => ['required', 'string', 'unique:products,product_id'],
             'name' => ['required', 'string'],
             'quantity' => ['required', 'integer', 'min:1'],
             'purchase_price' => ['required', 'numeric', 'min:0'],
@@ -33,7 +33,7 @@ class ProductStoreRequest extends FormRequest
             'status' => ['required', 'in:Active,Inactive'],
 
             'images' => ['required', 'array'],
-            'images.*' => ['image', 'mimes:jpeg,png,gif', 'max:2048'], // Max size: 2MB
+            'images.*' => ['image', 'mimes:jpeg,jpg,png,gif', 'max:2048'], // Max size: 2MB
         ];
     }
 

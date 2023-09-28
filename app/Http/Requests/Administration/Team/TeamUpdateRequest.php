@@ -26,7 +26,7 @@ class TeamUpdateRequest extends FormRequest
             'division_id' => 'required|exists:divisions,id|integer',
             'coach_id' => 'nullable|exists:coaches,id|integer',
             'name' => 'required|string|max:100',
-            'gender' => 'required|in:Male,Female,Other',
+            'gender' => 'required|in:Male,Female,Male & Female,Other',
             'maximum_players' => 'required|integer',
             'description' => 'nullable|string',
             'status' => 'required|in:Active,Inactive',

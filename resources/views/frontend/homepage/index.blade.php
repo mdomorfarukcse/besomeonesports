@@ -18,6 +18,7 @@
         .breadcrumb-section {
             display: none;
         }
+
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
@@ -108,7 +109,8 @@
                             selves, both on and off the courts.
                         </p>
 
-                        <h6>Winning and losing are a part of <span>everyday life.</span>  This is not the everyone wins league.</h6>
+                        <h6>Winning and losing are a part of <span>everyday life.</span> This is not the everyone wins
+                            league.</h6>
 
                         <a href="{{ route('frontend.about.index') }}" class="btn btn-about">
                             <span>
@@ -145,7 +147,8 @@
                                 <div class="topikn-div">
                                     <div class="more-details-div d-md-flex align-items-center">
                                         <h5 class="m-0">
-                                            <i class="fas fa-calendar-week"></i> {{ show_date($league->start) }} - {{ show_date($league->end) }}
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($league->start) }} -
+                                            {{ show_date($league->end) }}
                                         </h5>
                                         <h6>/ {{ $league->sport->name }}</h6>
                                     </div>
@@ -161,9 +164,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn bookin-btn"> <i class="fas fa-tags"></i> League Details</a>
-                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i> </a>
+                                        <div
+                                            class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
+                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> League Details</a>
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
+                                                class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -181,6 +188,25 @@
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
             </div>
         </div>
+        <div class="our-spocerder d-inline-block w-100">
+            <div class="container">
+                <div class="col-lg-7">
+                    <h1>Join Our <span> Organization </span></h1>
+                    <h6 class="my-3">Be Someone Sports is a youth sports organization for volleyball and basketball in the
+                        Friendswood, Pearland, Alvin, and League City Areas. Grades K - 8th.<span class="d-lg-block">
+                            upcoming matches or sports events faster! </span></h6>
+                    <div class="d-flex align-items-center">
+                        <a href="/register" class="btn subc"> Join Player !</a>
+                        <a href="{{ route('frontend.coach.create') }}" class="btn leaguebtn ms-4"> Become a Coach !</a>
+                        {{-- <a href="#" class="btn leaguebtn ms-4"> All Leagues</a> --}}
+                    </div>
+                </div>
+                <figure class="m-0 right-imgplya">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="besomeone sport" />
+                </figure>
+            </div>
+        </div>
+
 
         <div class="shop-apge-div">
             <div class="container">
@@ -195,28 +221,31 @@
                             @foreach ($products as $keys => $product)
                                 <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
                                     <div class="comon-items-d1">
-                                        <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="left-div-list">
+                                        <a href="{{ route('frontend.shop.show', ['product' => $product]) }}"
+                                            target="_blank" class="left-div-list">
                                             <figure class="mb-0">
                                                 @if ($product->images->count() > 0)
-                                                    <img src="{{ show_image($product->images->first()->path) }}" alt="sm" />
+                                                    <img src="{{ show_image($product->images->first()->path) }}"
+                                                        alt="sm" />
                                                 @else
                                                     <p>No images available</p>
                                                 @endif
                                             </figure>
                                         </a>
-                    
+
                                         <div class="right-list-div ">
                                             <div class="d-flex mb-1 justify-content-between align-items-center">
                                                 <h6 class="locations-ts">
-                                                    <i class="fas fa-tags"></i> 
-                                                    @foreach ($product->categories as $category) 
+                                                    <i class="fas fa-tags"></i>
+                                                    @foreach ($product->categories as $category)
                                                         <a href="#" class="category">
                                                             {{ print_one_line($category->name, 20) }}
                                                         </a>
                                                     @endforeach
                                                 </h6>
                                             </div>
-                                            <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" target="_blank" class="titel-product">
+                                            <a href="{{ route('frontend.shop.show', ['product' => $product]) }}"
+                                                target="_blank" class="titel-product">
                                                 {{ print_one_line($product->name) }}
                                             </a>
 
@@ -225,12 +254,13 @@
                                             </p>
                                             <h2>${{ $product->price }}</h2>
                                             <div class="d-flex mt-3 align-items-center justify-content-between">
-                                                <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn view-products mt-0">
+                                                <a href="{{ route('frontend.shop.show', ['product' => $product]) }}"
+                                                    class="btn view-products mt-0">
                                                     Add To Cart
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                                         <path
-                                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                                        />
+                                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                                     </svg>
                                                 </a>
                                             </div>
@@ -241,7 +271,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
                 <a href="{{ route('frontend.shop.index') }}" class="btn all-pro-btn mx-auto btn-about">
                     <span>
@@ -313,12 +343,12 @@
                     alt="sportsfbn" />
             </div>
 
-            <div class="top-imgn">
+            {{-- <div class="top-imgn">
                 <img src="{{ asset('frontend/images/white-bg-01.png') }}" alt="bnm" />
             </div>
             <div class="bootom-imgn">
                 <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
-            </div>
+            </div> --}}
         </div>
 
         <div class="mediasection d-inline-block w-100">
@@ -328,12 +358,12 @@
                     <h1>Our <span> Latest Media </span></h1>
                 </div>
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
-                    @foreach ($galleries as $key => $gallery )
+                    @foreach ($galleries as $key => $gallery)
                         <div class="col">
-                            <a data-fancybox="{{ $gallery->name }}" href="{{ show_image($gallery->avatar) }}"
+                            <a data-fancybox="{{ $gallery->name }}" href="{{ show_image($gallery->path) }}"
                                 class="comon-links-divb05">
                                 <figure>
-                                    <img src="{{ show_image($gallery->avatar) }}" alt="{{ $gallery->name }}" />
+                                    <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
                                     </figcaption>
@@ -353,17 +383,17 @@
                     <h1>Our <span> Latest Video </span></h1>
                 </div>
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
-                    @foreach ($videos as $key => $video )
+                    @foreach ($videos as $key => $video)
                         <div class="col-md-6">
                             <iframe width="100%" height="345" src="{{ $video->youtubeurl }}">
                             </iframe>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="ads">
         <div class="container">
             <div class="row">

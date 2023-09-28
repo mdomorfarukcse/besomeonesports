@@ -22,7 +22,7 @@ class HomePageController extends Controller
                                 ->get();
         $products = Product::with(['images', 'categories'])->whereStatus('Active')->limit(8)->get();
         
-        $galleries = Gallery::whereStatus('Active')->limit(8)->get();
+        $galleries = Gallery::limit(8)->get();
         $videos = Video::whereStatus('Active')->limit(8)->get();
         
 
