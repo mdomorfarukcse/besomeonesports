@@ -40,29 +40,21 @@
 
 <!-- Start Row -->
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-5">
         <form action="{{ route('administration.role.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
-            <div class="card m-b-30">
+            <div class="card border m-b-30">
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-0">Create New Role</h5>
+                </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Create New Role</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 form-group">
-                                            <label for="name">Role Name <span class="required">*</span></label>
-                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Permission" required/>
-                                            @error('name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-12 form-group">
+                            <label for="name">Role Name <span class="required">*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Permission" required/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
                         </div>
                     </div>
                 </div>
