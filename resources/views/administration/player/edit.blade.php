@@ -349,7 +349,7 @@
                                         <div class="col-md-6 form-group">
                                             <label for="guardian_relation">Relation With Guardian <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" required>
-                                                <option value="">Select Relation</option>
+                                                <option value="" selected disabled>Select Relation</option>
                                                 <option value="Father" @selected($player->guardian_relation === 'Father')>Father</option>
                                                 <option value="Mother" @selected($player->guardian_relation === 'Mother')>Mother</option>
                                                 <option value="Brother" @selected($player->guardian_relation === 'Brother')>Brother</option>
@@ -369,8 +369,8 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label for="guardian_contact">Guardian Contact No.</label>
-                                            <input type="text" name="guardian_contact" value="{{ $player->guardian_contact }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <label for="guardian_contact">Guardian Contact No. <span class="required">*</span></label>
+                                            <input type="text" name="guardian_contact" value="{{ $player->guardian_contact }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423" required/>
                                             @error('guardian_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

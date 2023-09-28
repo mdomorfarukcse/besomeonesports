@@ -100,7 +100,16 @@
 
 
 @section('breadcrumb')
+    <li class="breadcrumb-item text-capitalize">{{ __('Players') }}</li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Add New Player') }}</li>
+@endsection
+
+
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.player.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="feather icon-user"></i>
+        <b>All Players</b>
+    </a>
 @endsection
 
 
@@ -133,12 +142,13 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="playerAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="playerAvatar" name="avatar" accept=".png, .jpg, .jpeg" required/>
                                     <label for="playerAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
+                                <small class="text-dark">[<strong class="text-danger">Note: </strong> Image Must Need to Upload.]</small>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -272,21 +282,21 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="height">Height</label>
-                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="Frederick Nebraska"/>
+                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="5.6"/>
                                             @error('height')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="weight">Weight</label>
-                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="Frederick Nebraska"/>
+                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="56"/>
                                             @error('weight')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="street_address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
+                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
                                             @error('street_address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -325,7 +335,7 @@
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="father_contact">Father Contact No.</label>
-                                            <input type="phone" name="father_contact" value="{{ old('father_contact') }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="father_contact" value="{{ old('father_contact') }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('father_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -346,7 +356,7 @@
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="mother_contact">Mother Contact No.</label>
-                                            <input type="phone" name="mother_contact" value="{{ old('mother_contact') }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="mother_contact" value="{{ old('mother_contact') }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('mother_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -372,8 +382,8 @@
                                         <div class="col-md-6 form-group">
                                             <label for="guardian_relation">Relation With Guardian <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" required>
-                                                <option value="">Select Relation</option>
-                                                <option value="Father" selected>Father</option>
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Father">Father</option>
                                                 <option value="Mother">Mother</option>
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
@@ -393,7 +403,7 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="guardian_contact">Guardian Contact No. <span class="required">*</span></label>
-                                            <input type="phone" name="guardian_contact" value="{{ old('guardian_contact') }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423" required/>
+                                            <input type="tel" name="guardian_contact" value="{{ old('guardian_contact') }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423" required/>
                                             @error('guardian_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

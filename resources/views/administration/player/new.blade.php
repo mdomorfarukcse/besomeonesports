@@ -139,6 +139,7 @@
                                 <div class="avatar-preview">
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
+                                <small class="text-dark">[<strong class="text-danger">Note: </strong> Image Must Need to Upload.]</small>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -236,14 +237,14 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="height">Height</label>
-                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="Frederick Nebraska"/>
+                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="5.6"/>
                                             @error('height')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="weight">Weight</label>
-                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="Frederick Nebraska"/>
+                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="56"/>
                                             @error('weight')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -289,14 +290,14 @@
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="father_contact">Father Contact No.</label>
-                                            <input type="text" name="father_contact" value="{{ old('father_contact') }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="father_contact" value="{{ old('father_contact') }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('father_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="father_email">Father Email.</label>
-                                            <input type="text" name="father_email" value="{{ old('father_email') }}" class="form-control @error('father_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
+                                            <input type="email" name="father_email" value="{{ old('father_email') }}" class="form-control @error('father_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
                                             @error('father_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -310,14 +311,14 @@
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="mother_contact">Mother Contact No.</label>
-                                            <input type="text" name="mother_contact" value="{{ old('mother_contact') }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="mother_contact" value="{{ old('mother_contact') }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('mother_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="mother_email">Mother Email.</label>
-                                            <input type="text" name="mother_email" value="{{ old('mother_email') }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
+                                            <input type="email" name="mother_email" value="{{ old('mother_email') }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
                                             @error('mother_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -336,8 +337,8 @@
                                         <div class="col-md-6 form-group">
                                             <label for="guardian_relation">Relation With Guardian <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" required>
-                                                <option value="">Select Relation</option>
-                                                <option value="Father" selected>Father</option>
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Father">Father</option>
                                                 <option value="Mother">Mother</option>
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
@@ -356,15 +357,15 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label for="guardian_contact">Guardian Contact No.</label>
-                                            <input type="text" name="guardian_contact" value="{{ old('guardian_contact') }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <label for="guardian_contact">Guardian Contact No. <span class="required">*</span></label>
+                                            <input type="tel" name="guardian_contact" value="{{ old('guardian_contact') }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423" required/>
                                             @error('guardian_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="guardian_email">Guardian Email.</label>
-                                            <input type="text" name="guardian_email" value="{{ old('guardian_email') }}" class="form-control @error('guardian_email') is-invalid @enderror" placeholder="Ex: guardian@mail.com"/>
+                                            <input type="email" name="guardian_email" value="{{ old('guardian_email') }}" class="form-control @error('guardian_email') is-invalid @enderror" placeholder="Ex: guardian@mail.com"/>
                                             @error('guardian_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
