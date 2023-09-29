@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\League;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LeagueStoreRequest extends FormRequest
@@ -24,7 +25,14 @@ class LeagueStoreRequest extends FormRequest
         return [
             'season_id'         => ['required', 'exists:seasons,id'],
             'sport_id'          => ['required', 'exists:sports,id'],
-            'name'              => ['required', 'string', 'max:100', 'unique:leagues,name'],
+            'name' => [
+                'required', 
+                'string',
+                'max:100',
+                Rule::unique('leagues')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+            ],
             'registration_fee'  => ['required', 'numeric', 'between:0,999999.99'],
             'start'             => ['required', 'date'],
             'end'               => ['required', 'date', 'after_or_equal:start'],

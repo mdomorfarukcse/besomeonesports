@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administration\Sport;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SportStoreRequest extends FormRequest
@@ -22,7 +23,13 @@ class SportStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:sports,name'],
+            'name' => [
+                'required', 
+                'string',
+                Rule::unique('sports')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+            ],
             "status" => ['required','in:Active,Inactive'],
         ];
     }

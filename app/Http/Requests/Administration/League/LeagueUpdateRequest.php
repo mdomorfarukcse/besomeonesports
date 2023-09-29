@@ -28,10 +28,12 @@ class LeagueUpdateRequest extends FormRequest
             'season_id' => ['required', 'exists:seasons,id'],
             'sport_id' => ['required', 'exists:sports,id'],
             'name' => [
-                'required',
+                'required', 
                 'string',
                 'max:100',
-                Rule::unique('leagues')->ignore($leagueId),
+                Rule::unique('leagues')->ignore($leagueId)->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
             ],
             'registration_fee'  => ['required', 'numeric', 'between:0,999999.99'],
             'start' => ['required', 'date'],

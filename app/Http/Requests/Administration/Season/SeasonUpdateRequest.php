@@ -29,7 +29,9 @@ class SeasonUpdateRequest extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('seasons')->ignore($seasonId),
+                Rule::unique('seasons')->ignore($seasonId)->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
             ],
             'year' => ['required', 'numeric'],
             'start' => ['required', 'date', 'date_format:Y-m-d'],

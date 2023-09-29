@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Administration\Season;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SeasonStoreRequest extends FormRequest
@@ -22,7 +22,13 @@ class SeasonStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:seasons,name'],
+            'name' => [
+                'required', 
+                'string',
+                Rule::unique('seasons')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+            ],
             'year' => ['required', 'numeric'],
             'start' => ['required', 'date', 'date_format:Y-m-d'],
             'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],

@@ -25,7 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('logo')->nullable();
-            $table->string('name', 100)->unique();
+            $table->string('name', 100);
             $table->double('registration_fee', 8, 2);
             $table->date('start');
             $table->date('end');
