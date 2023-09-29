@@ -216,7 +216,7 @@
                 </div>
                 <div id="products" class="mt-4">
                     <div class="d-none d-md-block">
-                        <div class="row g-lg-4 justify-content-between">
+                        <div class="row g-lg-4 ">
 
                             @foreach ($products as $keys => $product)
                                 <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
