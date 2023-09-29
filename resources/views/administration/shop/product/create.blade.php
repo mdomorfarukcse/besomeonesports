@@ -158,7 +158,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="colors">Colors <span class="required">*</span></label>
-                            <select name="colors[]" id="colors" class="form-control @error('colors') is-invalid @enderror" multiple="multiple">
+                            <select name="colors[]" id="colors" class="form-control @error('colors') is-invalid @enderror" multiple="multiple" required>
                                 @foreach (old('colors', []) as $selectedColor)
                                     <option value="{{ $selectedColor }}" selected>{{ $selectedColor }}</option>
                                 @endforeach
@@ -169,7 +169,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="sizes">Sizes <span class="required">*</span></label>
-                            <select name="sizes[]" id="sizes" class="form-control @error('sizes') is-invalid @enderror" multiple="multiple">
+                            <select name="sizes[]" id="sizes" class="form-control @error('sizes') is-invalid @enderror" multiple="multiple" required>
                                 @foreach (old('sizes', []) as $selectedSize)
                                     <option value="{{ $selectedSize }}" selected>{{ $selectedSize }}</option>
                                 @endforeach
