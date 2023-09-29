@@ -46,7 +46,9 @@
                                     <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
-                                        {{ $gallery->league->name }}
+                                        @if (!is_null($gallery->league)) 
+                                            {{ $gallery->league->name }}
+                                        @endif
                                     </figcaption>
                                 </figure>
                             </a>

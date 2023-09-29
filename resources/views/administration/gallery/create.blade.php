@@ -100,14 +100,14 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-6 form-group">
                             <label for="name">Caption <span class="required">*</span></label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="league_id">League </label>
                             <select class="select2-single form-control @error('league_id') is-invalid @enderror" name="league_id" >
                                 <option value="">Select League</option>
