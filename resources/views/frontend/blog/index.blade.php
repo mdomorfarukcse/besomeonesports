@@ -71,7 +71,27 @@
             </div>
         </div>
     </section>
-    
+    <section class="ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ban-ati-com ads-all-list">
+                        @if (!is_null($bottom_ad)) 
+                            <a href="{{ $bottom_ad->url }}">
+                                <span>Ad</span>
+                                <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
+                            </a>
+                        @else
+                            <a href="/contact">
+                                <span>Ad</span>
+                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- End row -->
 

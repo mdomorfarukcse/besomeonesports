@@ -142,10 +142,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ban-ati-com ads-all-list">
-                        <a href="#">
-                            <span>Ad</span>
-                            <img src="https://unsplash.it/g/1100/100" height="100" alt="" />
-                        </a>
+                        @if (!is_null($bottom_ad)) 
+                            <a href="{{ $bottom_ad->url }}">
+                                <span>Ad</span>
+                                <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
+                            </a>
+                        @else
+                            <a href="/contact">
+                                <span>Ad</span>
+                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
