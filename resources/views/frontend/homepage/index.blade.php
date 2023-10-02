@@ -88,6 +88,11 @@
                                 <span>Ad</span>
                                 <img src="{{ show_image($top_ad->avatar) }}" height="100" alt="" />
                             </a>
+                        @else
+                            <a href="/contact">
+                                <span>Ad</span>
+                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
+                            </a>
                         @endif
                     </div>
                 </div>
@@ -408,6 +413,11 @@
                             <a href="{{ $bottom_ad->url }}">
                                 <span>Ad</span>
                                 <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
+                            </a>
+                        @else
+                            <a href="/contact">
+                                <span>Ad</span>
+                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
                             </a>
                         @endif
                     </div>

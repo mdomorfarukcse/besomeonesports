@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\Appinfo;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ads\Ads;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AppinfoController extends Controller
 {
@@ -12,6 +13,13 @@ class AppinfoController extends Controller
      */
     public function index()
     {
-        return view('frontend.about.app-info');
+        $today = now()->toDateString(); 
+        $bottom_ad = Ads::whereDate('startdate', '<=', $today)
+                    ->whereDate('enddate', '>=', $today)
+                    ->wherePosition('aboutpages')
+                    ->whereStatus('Active')
+                    ->inRandomOrder()
+                    ->first();
+        return view('frontend.about.app-info', compact(['bottom_ad']));
     }
 }
