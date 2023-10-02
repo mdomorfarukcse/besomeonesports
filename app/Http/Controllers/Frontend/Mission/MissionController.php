@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\Mission;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ads\Ads;
 use App\Models\League\League;
+use App\Http\Controllers\Controller;
 
 class MissionController extends Controller
 {
@@ -12,9 +13,16 @@ class MissionController extends Controller
      */
     public function index()
     {
+        $today = now()->toDateString(); 
         $upcomingLeagues = League::whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
-        return view('frontend.about.mission', compact(['upcomingLeagues']));
+        $bottom_ad = Ads::whereDate('startdate', '<=', $today)
+                                ->whereDate('enddate', '>=', $today)
+                                ->wherePosition('aboutpages')
+                                ->whereStatus('Active')
+                                ->inRandomOrder()
+                                ->first();
+        return view('frontend.about.mission', compact(['upcomingLeagues','bottom_ad']));
     }
 }

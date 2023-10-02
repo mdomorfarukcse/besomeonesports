@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Frontend\Shop;
 
 use Exception;
 use App\Models\User;
+use App\Models\Ads\Ads;
 use Illuminate\Http\Request;
 use App\Models\Player\Player;
 use App\Models\Shop\Order\Order;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mail\Administration\Shop\Order\Admin\NewOrderMail;
-use App\Mail\Administration\Shop\Order\OrderConfirmationMail;
 use App\Models\Shop\Product\Product;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +20,9 @@ use net\authorize\api\contract\v1\CreditCardType;
 use net\authorize\api\contract\v1\CustomerDataType;
 use net\authorize\api\contract\v1\NameAndAddressType;
 use net\authorize\api\contract\v1\TransactionRequestType;
+use App\Mail\Administration\Shop\Order\Admin\NewOrderMail;
 use net\authorize\api\contract\v1\CreateTransactionRequest;
+use App\Mail\Administration\Shop\Order\OrderConfirmationMail;
 use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 
@@ -32,8 +33,15 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $today = now()->toDateString(); 
+        $bottom_ad = Ads::whereDate('startdate', '<=', $today)
+                    ->whereDate('enddate', '>=', $today)
+                    ->wherePosition('product')
+                    ->whereStatus('Active')
+                    ->inRandomOrder()
+                    ->first();
         $products = Product::with(['images', 'categories'])->whereStatus('Active')->paginate(12);
-        return view('frontend.shop.index', compact(['products']));
+        return view('frontend.shop.index', compact(['products','product']));
     }
 
     /**
@@ -41,6 +49,13 @@ class ShopController extends Controller
      */
     public function show(Product $product)
     {
+        $today = now()->toDateString(); 
+        $bottom_ad = Ads::whereDate('startdate', '<=', $today)
+                    ->whereDate('enddate', '>=', $today)
+                    ->wherePosition('product')
+                    ->whereStatus('Active')
+                    ->inRandomOrder()
+                    ->first();
         $product = Product::whereId($product->id)->with([
                             'categories' => function($categories) {
                                 $categories->select(['id', 'name']);
@@ -55,7 +70,7 @@ class ShopController extends Controller
                         
         // dd($products);
 
-        return  view('frontend.shop.show', compact(['product', 'products']));
+        return  view('frontend.shop.show', compact(['product', 'products','bottom_ad']));
     }
 
     /**
