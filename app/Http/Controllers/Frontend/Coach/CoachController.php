@@ -48,7 +48,7 @@ class CoachController extends Controller
             $admins = User::role('admin')->get();
             foreach ($admins as $admin) {
                 // Send Mail to the admin email
-                Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
+                //Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
             }
 
             toast('Coach Request Has Been Send.','success');
