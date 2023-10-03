@@ -41,7 +41,7 @@ class ShopController extends Controller
                     ->inRandomOrder()
                     ->first();
         $products = Product::with(['images', 'categories'])->whereStatus('Active')->paginate(12);
-        return view('frontend.shop.index', compact(['products','product']));
+        return view('frontend.shop.index', compact(['products','bottom_ad']));
     }
 
     /**
