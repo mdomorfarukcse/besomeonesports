@@ -75,7 +75,7 @@
                                                             $permissions = App\Models\User::getpermissionByGroupName($group->group_name);
                                                         @endphp
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheck{{ $group->group_name }}" {{ App\Models\User::roleHasPermisisons($role,$permissions) ? 'checked' : '' }} />
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck{{ $group->group_name }}" {{ App\Models\User::roleHasPermissions($role,$permissions) ? 'checked' : '' }} />
                                                             <label class="custom-control-label" for="customCheck{{ $group->group_name }}">{{ $group->group_name }}</label>
                                                         </div>
                                                     </div>
