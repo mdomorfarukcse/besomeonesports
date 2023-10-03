@@ -78,6 +78,13 @@
     .our-spocerder .btn:hover {
         background: #E62DBE !important;
     }
+    .mobile-menu .nav-link {
+        font-family: "Roboto",sans-serif;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 15px;
+        color: #1f1f26;
+    }
 </style>
 <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet"/>
 
