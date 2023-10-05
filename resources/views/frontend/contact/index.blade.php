@@ -54,11 +54,11 @@
                                 </li>
                                 <li>
                                     <span class="d-block"> ADDRESS </span>
-                                    <span> <i class="fas fa-map-marker-alt"></i> 832-421-2895</span>
+                                    <span> <i class="fas fa-map-marker-alt"></i>Friendswood, Texas, United States </span>
                                 </li>
                                 <li>
                                     <span class="d-block"> PHONE </span>
-                                    <span> <i class="fas fa-phone-alt"></i> Friendswood, Texas, United States</span>
+                                    <span> <i class="fas fa-phone-alt"></i> 832-421-2895</span>
                                 </li>
                             </ul>
                             <h2 class="mt-5">Get In Touch</h2>
