@@ -57,7 +57,7 @@ class TeamController extends Controller
         $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
-        $team_id = unique_id(11, 11);
+        $team_id = unique_id(11, 11).rand(1,5000);
 
         return view('administration.team.create', compact(['leagues', 'divisions', 'coaches', 'team_id']));
     }
