@@ -223,7 +223,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label for="rounds">League Rounds <span class="required">*</span></label>
-                            <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple">
+                            <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple" required>
                                 @foreach (old('rounds', []) as $selectedRound)
                                     <option value="{{ $selectedRound }}" selected>{{ $selectedRound }}</option>
                                 @endforeach
