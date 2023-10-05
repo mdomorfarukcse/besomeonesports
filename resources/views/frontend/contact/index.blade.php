@@ -54,7 +54,7 @@
                                 </li>
                                 <li>
                                     <span class="d-block"> ADDRESS </span>
-                                    <span> <i class="fas fa-map-marker-alt"></i>Friendswood, Texas, United States </span>
+                                    <span> <i class="fas fa-map-marker-alt"></i> Friendswood, Texas, United States </span>
                                 </li>
                                 <li>
                                     <span class="d-block"> PHONE </span>
