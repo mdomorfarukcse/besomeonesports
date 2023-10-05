@@ -14,6 +14,8 @@ Route::name('frontend.')->group(function () {
     include_once 'contact/contact.php';
     // Coach
     include_once 'coach/coach.php';
+    // Referee
+    include_once 'referee/referee.php';
     // league
     include_once 'league/league.php';
     // Shop

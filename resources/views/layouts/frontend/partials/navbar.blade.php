@@ -53,7 +53,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item " href="{{ route('frontend.sponsors.index') }}" >Sponsors</a></li>
                             <li><a class="dropdown-item " href="{{ route('frontend.coach.create') }}" >Become a Coach</a></li>
-                            <li><a class="dropdown-item " href="/contact" >Become a Referee</a></li>
+                            <li><a class="dropdown-item " href="{{ route('frontend.referee.create') }}" >Become a Referee</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
