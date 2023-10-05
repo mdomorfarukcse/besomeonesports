@@ -105,9 +105,9 @@
                                                     <div class="col-md-12">
                                                         <div class="custom-control custom-checkbox float-left d-inline-block">
                                                             <input type="checkbox" class="custom-control-input" id="agree" name="agree" required>
-                                                            <label class="custom-control-label text-black text-bold" for="agree">Agree</label>
+                                                            <label class="custom-control-label text-black text-bold" for="agree">I Agree </label>
                                                         </div>                                                        
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditionModal" class="ml-1 float-left text-bold">Terms & Conditions?</a>
+                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditionModal" class="ml-1 float-left text-bold">Disclaimer!</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,17 +151,19 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-dark border-0">
-                        <h6 class="text-white">Registration Terms & Conditions of {{ config('app.name') }}</h6>
+                        <h6 class="text-white">Disclaimer  of {{ config('app.name') }}</h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                        <h4>Welcome to Be Someone Sports!</h4>
+                        <p>Be Someone Sports, we are committed to providing a safe and positive online environment for kids who are passionate about sports. We take your privacy seriously and want to assure you of the following:</p> 
+                        <p>1. **Privacy Protection:** We do not share your personal information with third parties without your consent. Your data is handled securely and in accordance with our Privacy Policy.</p> 
+                        <p>2. **Zero Tolerance for Negative Activities:** Be Someone Sports strictly prohibits any form of negative behavior, bullying, or harmful activities. We maintain a positive and respectful community where sportsmanship and teamwork are valued.</p> 
+                        <p>3. **User Responsibility:** By signing up and using Be Someone Sports, users agree to abide by our Terms of Use and Privacy Policy. It's important to understand and follow these guidelines to ensure a safe and enjoyable sports league experience.</p> 
+                        <p>We are here to create a space where young athletes can learn, compete, and have fun while staying safe. If you ever come across any concerns or issues, please don't hesitate to reach out to our support team.</p> 
+                        <p>Thank you for being a part of Be Someone Sports. Together, we can promote sportsmanship and teamwork in the digital world!</p> 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">
