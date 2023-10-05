@@ -38,12 +38,9 @@
                     <div class="col">
                         <div class="faq-section1 text-center">
                             <img src="{{ asset('assets/images/logo.png') }}" alt="logo"  width="100%"/>
-                            <h4 class="mt-3">
-                                Be Someone Sports was created to upgrade every aspect of youth sports and to provide a fun
-                                family friendly environment for everyone to enjoy. We offer Recreational Basketball and
-                                Volleyball leagues for kids of all school ages in the Friendswood and Pearland areas. We
-                                host Select tournaments and sports camps.
-                            </h4>
+                            <h5 class="mt-3" style="text-align: initial;line-height: 30px;">
+                                Welcome to Be Someone Sports' contact page! If you have any questions, inquiries, or are interested in getting involved with our sports programs, please don't hesitate to reach out. We've made it easy for you to connect with us. Simply fill out the form below with your name, email, and phone number. You can also let us know your specific interests, whether it's becoming a referee, a team mom, a coach, or joining our exciting league. We offer opportunities in both Pearland and Friendswood, so be sure to check the location that suits you best. We'll get back to you promptly with the information you need to get started on your sports journey with Be Someone Sports.
+                            </h5>
 
                         </div>
                     </div>
@@ -95,6 +92,19 @@
                                         <div class="from-group">
                                             <textarea class="form-control" name="message" placeholder="Message" required></textarea>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label><strong>Interested in:</strong></label><br>
+                                        <input type="checkbox" id="referee" name="interests[]" value="Referee"> Referee<br>
+                                        <input type="checkbox" id="team_mom" name="interests[]" value="Team Mom"> Team Mom<br>
+                                        <input type="checkbox" id="coach" name="interests[]" value="Coach"> Coach<br>
+                                        <input type="checkbox" id="join_league" name="interests[]" value="Joining the League"> Joining the League<br>
+                                        <input type="checkbox" id="more_info" name="interests[]" value="More Info about Be Someone Sports League"> More Info about Be Someone Sports League<br><br>
+                                    </div>
+                                    <div class="col-lg-12">    
+                                        <label for="location"><strong>Select Location:</strong></label><br>
+                                        <input type="checkbox" id="pearland" name="locations[]" value="Pearland"> Pearland<br>
+                                        <input type="checkbox" id="friendswood" name="locations[]" value="Friendswood"> Friendswood<br><br>
                                     </div>
                                     <div class="col-lg-12">
                                         <input type="submit" name="submit" class="btn comon-btn" value="Submit" />
