@@ -136,7 +136,7 @@ class PlayerController extends Controller
                 $player->save();
 
                 // Send Mail to the player email
-                Mail::to($user->email)->send(new PlayerLoginCredentialMail($request));
+                //Mail::to($user->email)->send(new PlayerLoginCredentialMail($request));
             }, 5);
 
             toast('A New Player Has Been Created.','success');
