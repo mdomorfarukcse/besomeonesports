@@ -52,7 +52,7 @@
                             @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                             @endif
-                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
                                 <li><a href="{{ route('administration.team.my') }}">My Teams</a></li>
                             @endif
                             @if (auth()->user()->can('team.create'))
@@ -73,7 +73,7 @@
                             @if (auth()->user()->can('league.index'))
                                 <li><a href="{{ route('administration.league.index') }}">All Leagues</a></li>
                             @endif
-                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach'))
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
                                 <li><a href="{{ route('administration.league.my') }}">My Leagues</a></li>
                             @endif
                             @if (auth()->user()->can('league.create'))
@@ -148,7 +148,7 @@
                             @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
                             @endif
-                            @if (auth()->user()->hasRole('coach'))
+                            @if (auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
                                 <li><a href="{{ route('administration.player.my') }}">My Players</a></li>
                             @endif
                             @if (auth()->user()->can('player.create'))

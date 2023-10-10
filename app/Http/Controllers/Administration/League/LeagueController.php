@@ -70,8 +70,12 @@ class LeagueController extends Controller
             $player = Player::with('leagues')->whereId(Auth::user()->player->id)->firstOrFail();
 
             $leagues = $player->leagues;
+        } elseif (Auth::user()->hasRole('guardian')) {
+            $player = Player::with('leagues')->whereGuardianId(Auth::user()->id)->firstOrFail();
+
+            $leagues = $player->leagues;
         } else {
-            $leagues = NULL;
+            $leagues = [];
         }
         // dd($leagues);
         return view('administration.league.my', compact(['leagues']));

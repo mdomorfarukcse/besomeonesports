@@ -45,18 +45,28 @@ class PlayerController extends Controller
             
             // Get the players associated with teams where the coach is the coach
             $players = Player::select(['id', 'user_id', 'player_id', 'contact_number', 'status'])
-            ->whereHas('teams', function ($team) use ($coach) {
-                $team->where('coach_id', $coach->id);
-            })
-            ->with([
-                'user' => function($user) {
-                    $user->select(['id', 'name', 'email', 'avatar']);
-                }
-            ])
-            ->orderBy('created_at', 'desc')
-            ->get();            
+                                ->whereHas('teams', function ($team) use ($coach) {
+                                    $team->where('coach_id', $coach->id);
+                                })
+                                ->with([
+                                    'user' => function($user) {
+                                        $user->select(['id', 'name', 'email', 'avatar']);
+                                    }
+                                ])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
+        } elseif (Auth::user()->hasRole('guardian')) {            
+            // Get the players associated with teams where the guardian
+            $players = Player::whereGuardianId(auth()->user()->id)
+                                ->with([
+                                    'user' => function($user) {
+                                        $user->select(['id', 'name', 'email', 'avatar']);
+                                    }
+                                ])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
         } else {
-            $players = NULL;
+            $players = [];
         }
 
         return view('administration.player.my', compact(['players']));
