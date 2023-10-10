@@ -211,25 +211,29 @@
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom" style="padding: 12px 20px;">
                                     <h5 class="card-title float-left mb-0" style="margin-top: 4px;">Guardian Info</h5>
-                                    <a href="{{ route('administration.guardian.create') }}" class="btn btn-dark btn-sm float-right font-13">
-                                        <i class="la la-plus"></i>
-                                        Add New
-                                    </a>
+                                    @role ('developer|admin') 
+                                        <a href="{{ route('administration.guardian.create') }}" class="btn btn-dark btn-sm float-right font-13">
+                                            <i class="la la-plus"></i>
+                                            Add New
+                                        </a>
+                                    @endrole
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="guardian_id">Guardian</label>
-                                            <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id">
-                                                <option value="" selected disabled>Select Guardian</option>
-                                                @foreach ($guardians as $guardian) 
-                                                    <option value="{{ $guardian->id }}">{{ $guardian->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('guardian_id')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
+                                        @role ('developer|admin') 
+                                            <div class="form-group col-md-12">
+                                                <label for="guardian_id">Guardian</label>
+                                                <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id">
+                                                    <option value="" selected disabled>Select Guardian</option>
+                                                    @foreach ($guardians as $guardian) 
+                                                        <option value="{{ $guardian->id }}">{{ $guardian->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('guardian_id')
+                                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                @enderror
+                                            </div>
+                                        @endrole
                                         <div class="col-md-12 form-group">
                                             <label for="guardian_relation">Relation With Guardian</label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation">

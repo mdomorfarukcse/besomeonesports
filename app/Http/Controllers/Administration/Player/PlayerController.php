@@ -91,8 +91,9 @@ class PlayerController extends Controller
     public function store(PlayerStoreRequest $request)
     {
         // dd($request->all());
+        $player = null;
         try {
-            DB::transaction(function() use ($request) {
+            DB::transaction(function() use ($request, &$player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
                 $avatar = upload_image($request->avatar);
@@ -142,8 +143,14 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
-                $player->guardian_id = $request->guardian_id;
-                $player->guardian_relation = $request->guardian_relation;
+                if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                    $player->guardian_id = Auth::user()->id;
+                    $player->guardian_relation = $request->guardian_relation;
+                } else {
+                    $player->guardian_id = $request->guardian_id;
+                    $player->guardian_relation = $request->guardian_relation;
+                }
+                
                 
                 $player->save();
 
@@ -152,7 +159,7 @@ class PlayerController extends Controller
             }, 5);
 
             toast('A New Player Has Been Created.','success');
-            return redirect()->route('administration.player.index');
+            return redirect()->route('administration.player.show', ['player' => $player->id]);
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             dd($e);
@@ -225,8 +232,13 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
-                $player->guardian_id = $request->guardian_id;
-                $player->guardian_relation = $request->guardian_relation;
+                if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                    $player->guardian_id = Auth::user()->id;
+                    $player->guardian_relation = $request->guardian_relation;
+                } else {
+                    $player->guardian_id = $request->guardian_id;
+                    $player->guardian_relation = $request->guardian_relation;
+                }
                 
                 $player->save();
             }, 5);

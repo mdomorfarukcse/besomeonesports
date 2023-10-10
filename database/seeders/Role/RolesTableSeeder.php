@@ -353,7 +353,9 @@ class RolesTableSeeder extends Seeder
                     'dashboard.index',
 
                     'player.index',
+                    'player.create',
                     'player.show',
+                    'player.update',
                     
                     'league.index',
                     'league.show',
