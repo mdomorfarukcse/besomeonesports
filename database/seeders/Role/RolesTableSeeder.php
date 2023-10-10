@@ -17,6 +17,7 @@ class RolesTableSeeder extends Seeder
             'developer',
             'admin',
             'coach',
+            'guardian',
             'player',
             'user',
         ];
@@ -56,6 +57,12 @@ class RolesTableSeeder extends Seeder
                     'coach.show',
                     'coach.update',
                     'coach.destroy',
+                    
+                    'guardian.index',
+                    'guardian.create',
+                    'guardian.show',
+                    'guardian.update',
+                    'guardian.destroy',
                     
                     'player.index',
                     'player.create',
@@ -203,6 +210,12 @@ class RolesTableSeeder extends Seeder
                     'coach.update',
                     'coach.destroy',
                     
+                    'guardian.index',
+                    'guardian.create',
+                    'guardian.show',
+                    'guardian.update',
+                    'guardian.destroy',
+                    
                     'player.index',
                     'player.create',
                     'player.show',
@@ -306,6 +319,36 @@ class RolesTableSeeder extends Seeder
                     'ads.destroy',
                 ];
             } elseif ($role === 'coach') {
+                $permissions = [
+                    'dashboard.index',
+
+                    'player.index',
+                    'player.show',
+                    
+                    'league.index',
+                    'league.show',
+                    
+                    'league_registration.index',
+                    'league_registration.create',
+                    'league_registration.show',
+                    
+                    'team.index',
+                    'team.show',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    
+                    'shop_product.index',
+                    'shop_product.show',
+                    
+                    'shop_category.index',
+                    'shop_category.show',
+                    
+                    'schedule.index',
+                    'schedule.show',
+                ];
+            } elseif ($role === 'guardian') {
                 $permissions = [
                     'dashboard.index',
 

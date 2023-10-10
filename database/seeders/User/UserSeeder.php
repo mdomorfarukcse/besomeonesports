@@ -82,6 +82,26 @@ class UserSeeder extends Seeder
             'note' => fake()->sentence(10, true),
             'status' => fake()->randomElement(['Active', 'Inactive', 'Banned'])
         ]);
+
+        
+        
+        // Create a guardian
+        $guardian = User::create([
+            'name' => 'Demo Guardian',
+            'email' => 'guardian@mail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'birthdate' => fake()->date(),
+            'contact_number' => fake()->phoneNumber(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->words(2, true),
+            'postal_code' => fake()->postcode(),
+        ]);
+        // Assign a role to the guardian
+        $guardianRole = Role::findByName('guardian');
+        $guardian->assignRole($guardianRole);
         
 
         // Create a player
@@ -114,10 +134,6 @@ class UserSeeder extends Seeder
             'mother_name' => fake()->name(),
             'mother_email' => fake()->safeEmail(),
             'mother_contact' => fake()->phoneNumber(),
-            'guardian_relation' => fake()->randomElement(['Father', 'Mother', 'Brother']),
-            'guardian_name' => fake()->name(),
-            'guardian_email' => fake()->safeEmail(),
-            'guardian_contact' => fake()->phoneNumber(),
             'status' => 'Active',
         ]);
         

@@ -119,6 +119,24 @@
                     </li>
                 @endif
                 
+                @if (auth()->user()->can('guardian.index') || auth()->user()->can('guardian.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="mdi mdi-account-network"></i>
+                            <span>Guardians</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.guardian.index') }}">All Guardians</a></li>
+                            @endif
+                            @if (auth()->user()->can('guardian.create'))
+                                <li><a href="{{ route('administration.guardian.create') }}">Add New Guardian</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+                
                 @if (auth()->user()->can('player.index') || auth()->user()->can('player.create'))
                     <li>
                         <a href="javaScript:void();"> 

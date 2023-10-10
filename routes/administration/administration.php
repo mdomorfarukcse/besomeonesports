@@ -23,6 +23,9 @@ Route::prefix('administration')
             // Division
             include_once 'division/division.php';
             
+            // guardian
+            include_once 'guardian/guardian.php';
+            
             // Player
             include_once 'player/player.php';
             
