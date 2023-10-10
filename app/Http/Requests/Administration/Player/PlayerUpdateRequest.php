@@ -47,10 +47,8 @@ class PlayerUpdateRequest extends FormRequest
             "mother_contact" => ['nullable', 'string', 'max:20'],
 
             // Guardian Info
-            "guardian_relation" => ['required', 'string'],
-            "guardian_name" => ['required', 'string'],
-            "guardian_email" => ['nullable', 'email'],
-            "guardian_contact" => ['required', 'string', 'max:20'],
+            "guardian_id" => ['nullable', 'integer', 'exists:users,id'],
+            "guardian_relation" => ['nullable', 'string'],
         ];
     }
     

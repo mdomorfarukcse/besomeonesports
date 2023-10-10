@@ -69,7 +69,10 @@ class PlayerController extends Controller
     {
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $player_id = unique_id(11, 11);
-        return view('administration.player.create', compact(['player_id', 'divisions']));
+
+        $guardianRole = Role::where('name', 'guardian')->first();
+        $guardians = $guardianRole->users;
+        return view('administration.player.create', compact(['player_id', 'divisions', 'guardians']));
     }
 
     /**
@@ -77,6 +80,7 @@ class PlayerController extends Controller
      */
     public function store(PlayerStoreRequest $request)
     {
+        // dd($request->all());
         try {
             DB::transaction(function() use ($request) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
@@ -128,10 +132,8 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
+                $player->guardian_id = $request->guardian_id;
                 $player->guardian_relation = $request->guardian_relation;
-                $player->guardian_name = $request->guardian_name;
-                $player->guardian_email = $request->guardian_email;
-                $player->guardian_contact = $request->guardian_contact;
                 
                 $player->save();
 
@@ -163,7 +165,9 @@ class PlayerController extends Controller
     public function edit(Player $player)
     {
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        return view('administration.player.edit', compact(['player', 'divisions']));
+        $guardianRole = Role::where('name', 'guardian')->first();
+        $guardians = $guardianRole->users;
+        return view('administration.player.edit', compact(['player', 'divisions', 'guardians']));
     }
 
     /**
@@ -211,10 +215,8 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
+                $player->guardian_id = $request->guardian_id;
                 $player->guardian_relation = $request->guardian_relation;
-                $player->guardian_name = $request->guardian_name;
-                $player->guardian_email = $request->guardian_email;
-                $player->guardian_contact = $request->guardian_contact;
                 
                 $player->save();
             }, 5);
