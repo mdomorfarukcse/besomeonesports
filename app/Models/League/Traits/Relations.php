@@ -51,6 +51,14 @@ trait Relations
     }
 
     /**
+     * The referees that belong to the league.
+     */
+    public function referees(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'referee_id');
+    }
+
+    /**
      * The divisions that belong to the league.
      */
     public function divisions(): BelongsToMany

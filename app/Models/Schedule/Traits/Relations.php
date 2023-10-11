@@ -6,6 +6,7 @@ use App\Models\Court\Court;
 use App\Models\League\League;
 use App\Models\Round\Round;
 use App\Models\Team\Team;
+use App\Models\User;
 use App\Models\Venue\Venue;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,6 +19,14 @@ trait Relations
     public function league(): BelongsTo
     {
         return $this->belongsTo(League::class);
+    }
+    
+    /**
+     * Get the referee that owns the schedule.
+     */
+    public function referee(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'referee_id');
     }
     
     /**
