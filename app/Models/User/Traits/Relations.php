@@ -35,7 +35,7 @@ trait Relations
      */
     public function players(): HasMany
     {
-        return $this->hasOne(Player::class, 'guardian_id');
+        return $this->hasMany(Player::class, 'guardian_id');
     }
     
 
