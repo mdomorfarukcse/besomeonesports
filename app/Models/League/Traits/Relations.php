@@ -55,7 +55,7 @@ trait Relations
      */
     public function referees(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'referee_id');
+        return $this->belongsToMany(User::class, 'league_referee', 'league_id', 'referee_id');
     }
 
     /**

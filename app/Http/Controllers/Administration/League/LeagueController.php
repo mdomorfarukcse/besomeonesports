@@ -26,6 +26,7 @@ use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use App\Http\Requests\Administration\League\LeagueUpdateRequest;
+use App\Models\User;
 use App\Rules\Administration\League\LeagueRegistration\UniqueLeaguePlayerRule;
 
 class LeagueController extends Controller
@@ -90,8 +91,9 @@ class LeagueController extends Controller
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $referees = User::role('referee')->get();
 
-        return view('administration.league.create', compact(['seasons', 'sports', 'divisions', 'venues']));
+        return view('administration.league.create', compact(['seasons', 'sports', 'divisions', 'venues', 'referees']));
     }
 
     /**
@@ -119,6 +121,7 @@ class LeagueController extends Controller
 
                 $league->divisions()->attach($request->divisions);
                 $league->venues()->attach($request->venues);
+                $league->referees()->attach($request->referees);
 
                 foreach ($request->rounds as $roundName) {
                     $round = new Round(['name' => $roundName]);
@@ -128,10 +131,9 @@ class LeagueController extends Controller
 
             toast('A New League Has Been Created.', 'success');
             return redirect()->route('administration.league.index');
-
         } catch (Exception $e){
             dd($e);
-            alert('DIvision Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('League Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }
@@ -150,7 +152,8 @@ class LeagueController extends Controller
                             },
                             'divisions',
                             'venues',
-                            'teams'
+                            'referees',
+                            'teams',
                         ])
                         ->firstOrFail();
         return  view('administration.league.show', compact(['league']));
@@ -165,6 +168,7 @@ class LeagueController extends Controller
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $referees = User::role('referee')->get();
 
         $league = League::whereId($league->id)->with([
                             'season' => function($season) {
@@ -174,10 +178,11 @@ class LeagueController extends Controller
                                 $sport->select(['id', 'name']);
                             },
                             'divisions',
-                            'venues'
+                            'venues',
+                            'referees'
                         ])
                         ->firstOrFail();
-        return  view('administration.league.edit', compact(['league', 'seasons', 'sports', 'divisions', 'venues']));
+        return  view('administration.league.edit', compact(['league', 'seasons', 'sports', 'divisions', 'venues', 'referees']));
     }
 
     /**

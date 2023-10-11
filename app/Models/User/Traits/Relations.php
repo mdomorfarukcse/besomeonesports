@@ -44,7 +44,7 @@ trait Relations
      */
     public function leagues(): BelongsToMany
     {
-        return $this->belongsToMany(League::class, 'referee_id');
+        return $this->belongsToMany(League::class, 'league_referee', 'referee_id', 'league_id');
     }
     
     /**

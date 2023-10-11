@@ -222,6 +222,18 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-12">
+                            <label for="referees[]">League Referees <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('referees[]') is-invalid @enderror" name="referees[]" multiple="multiple" required>
+                                <option value="">Select Referees</option>
+                                @foreach ($referees as $referee)
+                                    <option value="{{ $referee->id }}">{{ $referee->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('referees[]')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="rounds">League Rounds <span class="required">*</span></label>
                             <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple" required>
                                 @foreach (old('rounds', []) as $selectedRound)
