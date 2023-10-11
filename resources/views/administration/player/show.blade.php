@@ -196,39 +196,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="card border m-b-30">
-                                    <div class="card-header bg-primary-rgba border-bottom">
-                                        <h5 class="card-title text-primary mb-0">Guardian's Information</h5>
-                                    </div>
-                                    <div class="card-body py-2">
-                                        <div class="row">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>Guardian Name</th>
-                                                            <td>{{ $player->guardian_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Guardian Relation</th>
-                                                            <td>{{ $player->guardian_relation }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Guardian Email</th>
-                                                            <td>{{ $player->guardian_email }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Guardian Contact</th>
-                                                            <td>{{ $player->guardian_contact }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                            @if (!is_null($player->guardian_id)) 
+                                <div class="col-md-12">
+                                    <div class="card border m-b-30">
+                                        <div class="card-header bg-primary-rgba border-bottom">
+                                            <h5 class="card-title text-primary mb-0">Guardian's Information</h5>
+                                        </div>
+                                        <div class="card-body py-2">
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Guardian Name</th>
+                                                                <td>
+                                                                    <a href="{{ route('administration.guardian.show', ['guardian' => $player->guardian]) }}" target="_blank" class="text-dark text-bold">
+                                                                        {{ $player->guardian->name }}
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Guardian Relation</th>
+                                                                <td>{{ $player->guardian_relation }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Guardian Email</th>
+                                                                <td>{{ $player->guardian->email }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Guardian Contact</th>
+                                                                <td>{{ $player->guardian->contact_number }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

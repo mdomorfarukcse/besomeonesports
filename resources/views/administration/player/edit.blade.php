@@ -143,14 +143,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
                                     <h5 class="card-title mb-0">Player Info</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-12">
                                             <label for="division_id">Division <span class="required">*</span></label>
                                             <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
                                                 <option value="" selected disabled>Select Division</option>
@@ -162,7 +162,7 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-8">
                                             <label for="position">Player Position</label>
                                             <input type="text" name="position" value="{{ $player->position }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
                                             @error('position')
@@ -177,6 +177,52 @@
                                                 <option value="Inactive" @if ($player->status === 'Inactive') selected @endif>Inactive</option>
                                             </select>
                                             @error('status')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border m-b-30">
+                                <div class="card-header border-bottom" style="padding: 12px 20px;">
+                                    <h5 class="card-title float-left mb-0" style="margin-top: 4px;">Guardian Info</h5>
+                                    @role ('developer|admin') 
+                                        <a href="{{ route('administration.guardian.create') }}" class="btn btn-dark btn-sm float-right font-13">
+                                            <i class="la la-plus"></i>
+                                            Add New
+                                        </a>
+                                    @endrole
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        @role ('developer|admin')
+                                            <div class="form-group col-md-12">
+                                                <label for="guardian_id">Guardian</label>
+                                                <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id">
+                                                    <option value="" selected disabled>Select Guardian</option>
+                                                    @foreach ($guardians as $guardian) 
+                                                        <option value="{{ $guardian->id }}" @selected($guardian->id === $player->guardian_id)>{{ $guardian->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('guardian_id')
+                                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                @enderror
+                                            </div>
+                                        @endrole
+                                        <div class="col-md-12 form-group">
+                                            <label for="guardian_relation">Relation With Guardian @role('guardian') <span class="required">*</span> @endrole</label>
+                                            <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" @role('guardian') required @endrole>
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Father" @selected($player->guardian_relation === 'Father')>Father</option>
+                                                <option value="Mother" @selected($player->guardian_relation === 'Mother')>Mother</option>
+                                                <option value="Brother" @selected($player->guardian_relation === 'Brother')>Brother</option>
+                                                <option value="Sister" @selected($player->guardian_relation === 'Sister')>Sister</option>
+                                                <option value="Uncle" @selected($player->guardian_relation === 'Uncle')>Uncle</option>
+                                                <option value="Aunty" @selected($player->guardian_relation === 'Aunty')>Aunty</option>
+                                            </select>
+                                            @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
@@ -332,53 +378,6 @@
                                             <label for="mother_email">Mother Email.</label>
                                             <input type="text" name="mother_email" value="{{ $player->mother_email }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
                                             @error('mother_email')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Local Guardian Info</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="guardian_relation">Relation With Guardian <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" required>
-                                                <option value="" selected disabled>Select Relation</option>
-                                                <option value="Father" @selected($player->guardian_relation === 'Father')>Father</option>
-                                                <option value="Mother" @selected($player->guardian_relation === 'Mother')>Mother</option>
-                                                <option value="Brother" @selected($player->guardian_relation === 'Brother')>Brother</option>
-                                                <option value="Sister" @selected($player->guardian_relation === 'Sister')>Sister</option>
-                                                <option value="Uncle" @selected($player->guardian_relation === 'Uncle')>Uncle</option>
-                                                <option value="Aunty" @selected($player->guardian_relation === 'Aunty')>Aunty</option>
-                                            </select>
-                                            @error('guardian_relation')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="guardian_name">Guardian Name <span class="required">*</span></label>
-                                            <input type="text" name="guardian_name" value="{{ $player->guardian_name }}" class="form-control @error('guardian_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
-                                            @error('guardian_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="guardian_contact">Guardian Contact No. <span class="required">*</span></label>
-                                            <input type="text" name="guardian_contact" value="{{ $player->guardian_contact }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423" required/>
-                                            @error('guardian_contact')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="guardian_email">Guardian Email.</label>
-                                            <input type="text" name="guardian_email" value="{{ $player->guardian_email }}" class="form-control @error('guardian_email') is-invalid @enderror" placeholder="Ex: guardian@mail.com"/>
-                                            @error('guardian_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

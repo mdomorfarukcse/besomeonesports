@@ -18,10 +18,16 @@ return new class extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('restrict');
+            
+            $table->foreignId('guardian_id')
+                  ->nullable()
+                  ->constrained('users')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->string('guardian_relation', 100)->nullable();
 
             $table->string('player_id')
-                  ->unique()
-                  ->comment('The Player ID Prefix Should be BSSPLAYER. The Player ID Example: BSSPLAYER202302010001');
+                  ->unique();
 
             $table->foreignId('division_id')
                     ->constrained()
@@ -50,12 +56,6 @@ return new class extends Migration
             $table->string('mother_name', 100);
             $table->string('mother_email', 100)->nullable();
             $table->string('mother_contact', 20)->nullable();
-
-            // Local Guardian Info
-            $table->string('guardian_relation', 100);
-            $table->string('guardian_name', 100);
-            $table->string('guardian_contact', 100);
-            $table->string('guardian_email', 100)->nullable();
 
             $table->enum('status', [
                 'Active', 

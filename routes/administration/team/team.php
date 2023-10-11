@@ -8,7 +8,7 @@ use App\Http\Controllers\Administration\Team\TeamController;
 ===============================================*/
 Route::controller(TeamController::class)->prefix('team')->name('team.')->group(function () {
     Route::get('/', 'index')->name('index')->middleware(['can:team.index', 'role:admin|developer']);
-    Route::get('/my', 'myTeam')->name('my')->middleware(['role:coach|player']);
+    Route::get('/my', 'myTeam')->name('my')->middleware(['role:coach|player|guardian']);
     Route::get('/create', 'create')->name('create')->middleware(['can:team.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:team.create']);
     Route::get('/show/{team}', 'show')->name('show')->middleware(['can:team.show']);

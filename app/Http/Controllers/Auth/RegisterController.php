@@ -81,11 +81,11 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:player,user',
+            'role' => 'required|in:guardian,player,user',
             "agree" => ['required','in:on'],
         ], [
             'email.unique' => 'This email is already registered.',
-            'role.in' => 'The role should only Player or User.',
+            'role.in' => 'The role should only Guardian, Player or User.',
             'password.confirmed' => 'Password confirmation does not match.',
             'agree.required' => 'You must have to read the Terms & Conditions and agree it.',
         ]);

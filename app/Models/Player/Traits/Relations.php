@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait Relations
 {
     /**
-     * Get the user for the coach.
+     * Get the user for the player.
      */
     public function user(): BelongsTo
     {
@@ -20,7 +20,15 @@ trait Relations
     }
     
     /**
-     * Get the division for the coach.
+     * Get the guardian for the player.
+     */
+    public function guardian(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'guardian_id');
+    }
+    
+    /**
+     * Get the division for the player.
      */
     public function division(): BelongsTo
     {

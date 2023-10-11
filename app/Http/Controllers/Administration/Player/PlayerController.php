@@ -45,18 +45,28 @@ class PlayerController extends Controller
             
             // Get the players associated with teams where the coach is the coach
             $players = Player::select(['id', 'user_id', 'player_id', 'contact_number', 'status'])
-            ->whereHas('teams', function ($team) use ($coach) {
-                $team->where('coach_id', $coach->id);
-            })
-            ->with([
-                'user' => function($user) {
-                    $user->select(['id', 'name', 'email', 'avatar']);
-                }
-            ])
-            ->orderBy('created_at', 'desc')
-            ->get();            
+                                ->whereHas('teams', function ($team) use ($coach) {
+                                    $team->where('coach_id', $coach->id);
+                                })
+                                ->with([
+                                    'user' => function($user) {
+                                        $user->select(['id', 'name', 'email', 'avatar']);
+                                    }
+                                ])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
+        } elseif (Auth::user()->hasRole('guardian')) {            
+            // Get the players associated with teams where the guardian
+            $players = Player::whereGuardianId(auth()->user()->id)
+                                ->with([
+                                    'user' => function($user) {
+                                        $user->select(['id', 'name', 'email', 'avatar']);
+                                    }
+                                ])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
         } else {
-            $players = NULL;
+            $players = [];
         }
 
         return view('administration.player.my', compact(['players']));
@@ -69,7 +79,10 @@ class PlayerController extends Controller
     {
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $player_id = unique_id(11, 11);
-        return view('administration.player.create', compact(['player_id', 'divisions']));
+
+        $guardianRole = Role::where('name', 'guardian')->first();
+        $guardians = $guardianRole->users;
+        return view('administration.player.create', compact(['player_id', 'divisions', 'guardians']));
     }
 
     /**
@@ -77,8 +90,10 @@ class PlayerController extends Controller
      */
     public function store(PlayerStoreRequest $request)
     {
+        // dd($request->all());
+        $player = null;
         try {
-            DB::transaction(function() use ($request) {
+            DB::transaction(function() use ($request, &$player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
                 $avatar = upload_image($request->avatar);
@@ -128,10 +143,14 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
-                $player->guardian_relation = $request->guardian_relation;
-                $player->guardian_name = $request->guardian_name;
-                $player->guardian_email = $request->guardian_email;
-                $player->guardian_contact = $request->guardian_contact;
+                if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                    $player->guardian_id = Auth::user()->id;
+                    $player->guardian_relation = $request->guardian_relation;
+                } else {
+                    $player->guardian_id = $request->guardian_id;
+                    $player->guardian_relation = $request->guardian_relation;
+                }
+                
                 
                 $player->save();
 
@@ -140,7 +159,7 @@ class PlayerController extends Controller
             }, 5);
 
             toast('A New Player Has Been Created.','success');
-            return redirect()->route('administration.player.index');
+            return redirect()->route('administration.player.show', ['player' => $player->id]);
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             dd($e);
@@ -163,7 +182,9 @@ class PlayerController extends Controller
     public function edit(Player $player)
     {
         $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        return view('administration.player.edit', compact(['player', 'divisions']));
+        $guardianRole = Role::where('name', 'guardian')->first();
+        $guardians = $guardianRole->users;
+        return view('administration.player.edit', compact(['player', 'divisions', 'guardians']));
     }
 
     /**
@@ -211,10 +232,13 @@ class PlayerController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
-                $player->guardian_relation = $request->guardian_relation;
-                $player->guardian_name = $request->guardian_name;
-                $player->guardian_email = $request->guardian_email;
-                $player->guardian_contact = $request->guardian_contact;
+                if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                    $player->guardian_id = Auth::user()->id;
+                    $player->guardian_relation = $request->guardian_relation;
+                } else {
+                    $player->guardian_id = $request->guardian_id;
+                    $player->guardian_relation = $request->guardian_relation;
+                }
                 
                 $player->save();
             }, 5);

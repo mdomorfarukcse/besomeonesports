@@ -44,10 +44,6 @@ class PlayerSeeder extends Seeder
                     'mother_name' => fake()->name(),
                     'mother_email' => fake()->safeEmail(),
                     'mother_contact' => fake()->phoneNumber(),
-                    'guardian_relation' => fake()->randomElement(['Father', 'Mother', 'Brother']),
-                    'guardian_name' => fake()->name(),
-                    'guardian_email' => fake()->safeEmail(),
-                    'guardian_contact' => fake()->phoneNumber(),
                     'status' => fake()->randomElement(['Active', 'Inactive', 'Banned'])
                 ]);
             }

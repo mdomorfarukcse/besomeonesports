@@ -56,20 +56,20 @@
 @endsection
 
 
-@if (auth()->user()->can('league.update')) 
-    @section('breadcrumb_buttons')
+@section('breadcrumb_buttons')
+    @if (auth()->user()->can('league.update')) 
         <a href="{{ route('administration.league.edit', ['league' => $league]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
             <i class="feather icon-pen"></i>
             <b>Edit League Info</b>
         </a>
-        @if (auth()->user()->can('league_registration.create'))
-            <a href="{{ route('administration.league.registration', ['league' => $league]) }}" class="btn btn-dark btn-outline-custom fw-bolder">
-                <i class="la la-check"></i>
-                <b>Register Now</b>
-            </a>
-        @endif
-    @endsection
-@endif
+    @endif
+    @if (auth()->user()->can('league_registration.create'))
+        <a href="{{ route('administration.league.registration', ['league' => $league]) }}" class="btn btn-dark btn-outline-custom fw-bolder">
+            <i class="la la-check"></i>
+            <b>Register Now</b>
+        </a>
+    @endif
+@endsection
 
 
 

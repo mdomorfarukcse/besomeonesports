@@ -70,8 +70,12 @@ class LeagueController extends Controller
             $player = Player::with('leagues')->whereId(Auth::user()->player->id)->firstOrFail();
 
             $leagues = $player->leagues;
+        } elseif (Auth::user()->hasRole('guardian')) {
+            $player = Player::with('leagues')->whereGuardianId(Auth::user()->id)->firstOrFail();
+
+            $leagues = $player->leagues;
         } else {
-            $leagues = NULL;
+            $leagues = [];
         }
         // dd($leagues);
         return view('administration.league.my', compact(['leagues']));
@@ -258,7 +262,15 @@ class LeagueController extends Controller
      * League Registration Form
      */
     public function registration(League $league) {
-        $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        if (Auth::user()->hasRole('guardian')) {
+            $players = Player::select(['id', 'user_id', 'guardian_id'])
+                                ->with(['user'])
+                                ->whereGuardianId(Auth::user()->id)
+                                ->whereStatus('Active')
+                                ->get();
+        } else {
+            $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        }
         // dd($players);
         return view('administration.league.registration.create', compact(['league', 'players']));
     }

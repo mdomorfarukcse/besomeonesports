@@ -28,6 +28,14 @@ trait Relations
     }
     
     /**
+     * Get the players associated with the user(guardian).
+     */
+    public function players(): HasMany
+    {
+        return $this->hasOne(Player::class, 'guardian_id');
+    }
+    
+    /**
      * The orders that belong to the user.
      */
     public function orders(): HasMany

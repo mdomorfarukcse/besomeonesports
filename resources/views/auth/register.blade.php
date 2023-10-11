@@ -60,6 +60,7 @@
                                                 class="form-control @error('role') is-invalid @enderror" required>
                                                 <option value="" selected disabled>Select Role</option>
                                                 <option value="user">User</option>
+                                                <option value="guardian">Guardian</option>
                                                 <option value="player">Player</option>
                                             </select>
 
