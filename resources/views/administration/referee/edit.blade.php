@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Admin'))
+@section('page_title', __('Update Referee Information'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -96,21 +96,26 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Admin') }}</b>
+    <b class="text-uppercase">{{ __('Update Referee Information') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Manage Users') }}</li>
-    <li class="breadcrumb-item text-capitalize">{{ __('Admins') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Admin') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Referees') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.referee.index') }}">{{ __('All Referees') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.referee.show', ['referee' => $referee]) }}">{{ __('Show Details') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Update Information') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.user.manage.admin.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
-        <i class="fa fa-user-secret"></i>
-        <b>All Admins</b>
+    <a href="{{ route('administration.referee.show', ['referee' => $referee]) }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+        <i class="fa fa-arrow-left"></i>
+        <b>Back</b>
     </a>
 @endsection
 
@@ -121,11 +126,11 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.user.manage.admin.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.referee.update', ['referee' => $referee]) }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title text-dark mb-0">Create New Admin</h5>
+                    <h5 class="card-title text-dark mb-0">Update Referee Information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -146,11 +151,15 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="userAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" id="userAvatar" name="avatar" value="{{ show_image($referee->avatar) }}" accept=".png, .jpg, .jpeg" />
                                     <label for="userAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
-                                    <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                    @if (is_null($referee->avatar))
+                                        <div id="imagePreview" style="background-image: url('https://fakeimg.pl/500x500');"></div>
+                                    @else
+                                        <div id="imagePreview" style="background-image: url({{ show_image($referee->avatar) }});"></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -164,56 +173,56 @@
                                     <div class="row">
                                         <div class="col-md-4 form-group">
                                             <label for="name">Full Name <span class="required">*</span></label>
-                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Joseph Sudan" required/>
+                                            <input type="text" name="name" value="{{ $referee->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Joseph Sudan" required/>
                                             @error('name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="email">Email <span class="required">*</span></label>
-                                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="joseph@mail.com" required/>
+                                            <input type="text" name="email" value="{{ $referee->email }}" class="form-control @error('email') is-invalid @enderror" placeholder="joseph@mail.com" required/>
                                             @error('email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="birthdate">Birthdate <span class="required">*</span></label>
-                                            <input type="date" name="birthdate" class="form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" required/>
+                                            <input type="date" name="birthdate" value="{{ $referee->birthdate }}" class="form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" required/>
                                             @error('birthdate')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="contact_number">Contact Number <span class="required">*</span></label>
-                                            <input type="tel" name="contact_number" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
+                                            <input type="tel" name="contact_number" value="{{ $referee->contact_number }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
                                             @error('contact_number')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="city">City <span class="required">*</span></label>
-                                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
+                                            <input type="text" name="city" value="{{ $referee->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="state">State/Province <span class="required">*</span></label>
-                                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
+                                            <input type="text" name="state" value="{{ $referee->state }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="postal_code">Postal Code <span class="required">*</span></label>
-                                            <input type="text" name="postal_code" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
+                                            <input type="text" name="postal_code" value="{{ $referee->postal_code }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                             @error('postal_code')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <label for="address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
+                                            <input type="text" name="address" value="{{ $referee->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
                                             @error('address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -227,7 +236,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-dark btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create Admin</span>
+                        <span class="text-bold">Update Referee Information</span>
                     </button>
                 </div>
             </div>

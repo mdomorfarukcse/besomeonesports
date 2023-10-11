@@ -135,6 +135,20 @@
                                     <td>{!! status($league->status) !!}</td>
                                 </tr>
                                 <tr>
+                                    <th>Referees</th>
+                                    <td>
+                                        <ol>
+                                            @foreach ($league->referees as $referee)
+                                                <li>
+                                                    <a href="{{ route('administration.referee.show', ['referee' => $referee]) }}" target="_blank" class="text-dark text-bold" data-toggle="tooltip" data-placement="top" title="Click to see {{ $referee->name }} details">
+                                                        {{ $referee->name }}
+                                                    </a>    
+                                                </li>  
+                                            @endforeach
+                                        </ol>    
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Divisions</th>
                                     <td>
                                         <ol>

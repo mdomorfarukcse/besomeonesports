@@ -101,7 +101,6 @@
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Manage Users') }}</li>
     <li class="breadcrumb-item text-capitalize">{{ __('Guardians') }}</li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Create New Guardian') }}</li>
 @endsection
@@ -227,7 +226,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-dark btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Update Profile</span>
+                        <span class="text-bold">Create Guardian</span>
                     </button>
                 </div>
             </div>

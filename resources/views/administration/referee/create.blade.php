@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Admin'))
+@section('page_title', __('Create New Referee'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -96,21 +96,20 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Admin') }}</b>
+    <b class="text-uppercase">{{ __('Create New Referee') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Manage Users') }}</li>
-    <li class="breadcrumb-item text-capitalize">{{ __('Admins') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Admin') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Referees') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Referee') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.user.manage.admin.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.referee.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="fa fa-user-secret"></i>
-        <b>All Admins</b>
+        <b>All Referees</b>
     </a>
 @endsection
 
@@ -121,11 +120,11 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.user.manage.admin.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.referee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title text-dark mb-0">Create New Admin</h5>
+                    <h5 class="card-title text-dark mb-0">Create New Referee</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -227,7 +226,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-dark btn-outline-custom float-right">
                         <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create Admin</span>
+                        <span class="text-bold">Create Referee</span>
                     </button>
                 </div>
             </div>

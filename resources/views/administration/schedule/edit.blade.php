@@ -31,6 +31,12 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item text-capitalize">{{ __('Schedules') }}</li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.schedule.index') }}">{{ __('All Schedules') }}</a>
+    </li>
+    <li class="breadcrumb-item text-capitalize">
+        <a href="{{ route('administration.schedule.show', ['schedule' => $schedule]) }}">{{ __('Show Details') }}</a>
+    </li>
     <li class="breadcrumb-item text-capitalize active">{{ __('Update Schedule') }}</li>
 @endsection
 
@@ -62,7 +68,7 @@
                             <label for="">End Time <span class="required">*</span></label>
                             <input type="time" class="form-control" value="{{ $schedule->end }}" name="end" id="end" />
                         </div>
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-4">
                             <label for="">Choose An League <span class="required">*</span></label>
                             <select class="select2-single form-control @error('league_id') is-invalid @enderror" name="league_id" id="league_id" required>
                                 <option value="">Select League</option>
@@ -75,6 +81,12 @@
                             @error('league_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="">Select Referee <span class="required">*</span></label>
+                            <select class="select2-single form-control" name="referee_id" id="referee_id" required disabled>
+                                <option value="" selected>Select Referee</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Select Round <span class="required">*</span></label>
@@ -136,6 +148,7 @@
     <script>
         // Get references to the league and team dropdowns
         const leagueDropdown = $('#league_id');
+        const refereeDropdown = $('#referee_id');
         const roundDropdown = $('#round_id');
         const teamDropdown1 = $('#team_one');
         const teamDropdown2 = $('#team_two');
@@ -147,6 +160,7 @@
             const selectedLeagueId = $(this).val();
     
             // Clear the current options in the team dropdown
+            refereeDropdown.empty().append('<option value="" selected>Select Referee</option>');
             roundDropdown.empty().append('<option value="" selected>Select Round</option>');
             teamDropdown1.empty().append('<option value="" selected>Select Team</option>');
             teamDropdown2.empty().append('<option value="" selected>Select Team</option>');
@@ -154,16 +168,38 @@
     
             // Disable the team dropdown if no league is selected
             if (!selectedLeagueId) {
+                refereeDropdown.prop('disabled', true);
                 roundDropdown.prop('disabled', true);
                 teamDropdown1.prop('disabled', true);
                 teamDropdown2.prop('disabled', true);
                 venueDropdown.prop('disabled', true);
             } else {
                 // Enable the team dropdown if an league is selected
+                refereeDropdown.prop('disabled', false);
                 roundDropdown.prop('disabled', false);
                 teamDropdown1.prop('disabled', false);
                 teamDropdown2.prop('disabled', false);
                 venueDropdown.prop('disabled', false);
+
+                // Send an AJAX request to fetch referees for the selected league
+                $.ajax({
+                    url: `/administration/schedule/referees/${selectedLeagueId}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // console.log('Received data:', data);
+                        // Populate the referee dropdown with the fetched referees
+                        $.each(data, function(index, referee) {
+                            refereeDropdown.append($('<option>', {
+                                value: referee.id,
+                                text: referee.name
+                            }));
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
 
                 // Send an AJAX request to fetch rounds for the selected league
                 $.ajax({
@@ -270,10 +306,37 @@
             const leagueID = {{ $schedule->league->id }};
             // console.log(leagueID);
             // Enable the team dropdown if an league is selected
+            refereeDropdown.prop('disabled', false);
             roundDropdown.prop('disabled', false);
             teamDropdown1.prop('disabled', false);
             teamDropdown2.prop('disabled', false);
             venueDropdown.prop('disabled', false);
+
+            // Send an AJAX request to fetch referees for the selected league
+            $.ajax({
+                url: `/administration/schedule/referees/${leagueID}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Populate the referee dropdown with the fetched referees
+                    $.each(data, function(index, referee) {
+                        var referee_data = $('<option>', {
+                            value: referee.id,
+                            text: referee.name
+                        });
+
+                        // Check if the referee.id matches $schedule->league->id and add "selected" attribute
+                        if (referee.id == '{{ $schedule->referee->id }}') {
+                            referee_data.attr('selected', 'selected');
+                        }
+
+                        refereeDropdown.append(referee_data);
+                    });    
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
 
             // Send an AJAX request to fetch rounds for the selected league
             $.ajax({
@@ -283,17 +346,17 @@
                 success: function(data) {
                     // Populate the round dropdown with the fetched rounds
                     $.each(data, function(index, round) {
-                        var round = $('<option>', {
+                        var round_data = $('<option>', {
                             value: round.id,
                             text: round.name
                         });
 
                         // Check if the round.id matches $schedule->league->id and add "selected" attribute
                         if (round.id == '{{ $schedule->round->id }}') {
-                            round.attr('selected', 'selected');
+                            round_data.attr('selected', 'selected');
                         }
 
-                        roundDropdown.append(round);
+                        roundDropdown.append(round_data);
                     });    
                 },
                 error: function(error) {

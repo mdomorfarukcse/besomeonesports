@@ -18,6 +18,11 @@ return new class extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
             
+            $table->foreignId('referee_id')
+                  ->constrained('users')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            
             $table->foreignId('round_id')
                   ->constrained()
                   ->onUpdate('cascade')

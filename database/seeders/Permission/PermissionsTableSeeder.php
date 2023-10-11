@@ -19,6 +19,7 @@ class PermissionsTableSeeder extends Seeder
             'venue',
             'court',
             'coach',
+            'referee',
             'guardian',
             'player',
             'division',

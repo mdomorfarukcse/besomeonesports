@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 ===============================================*/
 Route::controller(LeagueController::class)->prefix('league')->name('league.')->group(function () {
     Route::get('/', 'index')->name('index')->middleware(['can:league.index']);
-    Route::get('/my', 'myLeagues')->name('my')->middleware(['role:coach|player|guardian']);
+    Route::get('/my', 'myLeagues')->name('my')->middleware(['role:coach|referee|player|guardian']);
     Route::get('/create', 'create')->name('create')->middleware(['can:league.create']);
     Route::post('/store', 'store')->name('store')->middleware(['can:league.create']);
     Route::get('/show/{league}', 'show')->name('show')->middleware(['can:league.show']);

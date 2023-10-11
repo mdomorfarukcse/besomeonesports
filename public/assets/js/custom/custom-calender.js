@@ -59,12 +59,14 @@
                 events: "/administration/schedule/calender/json",
                 
                 eventClick: function (event) {
-                    console.log(event);
+                    // console.log(event);
+                    // console.log(event.start._i);
+                    // console.log(event.end._i);
                     $('#league_detail_modal').modal('show');
                     var league_name = event.league_name;
                     var team_name = event.title;
                     var league_start = event.start._i;
-                    // var league_end = event.end._i;
+                    var league_end = event.end._i;
                     var venue_name = event.venue_name;
                     var court_name = event.court_name;
                     $('#league_title').html(league_name);
@@ -72,7 +74,7 @@
                     $('#venue_name').html(venue_name);
                     $('#court_name').html(court_name);
                     $('#league_start').html(league_start);
-                    // $('#league_end').html(league_end);
+                    $('#league_end').html(league_end);
 
                     // Assuming you have a JavaScript variable named 'event' containing the schedule_id
                     var scheduleId = event.schedule_id;

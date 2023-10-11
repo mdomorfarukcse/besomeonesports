@@ -3,11 +3,14 @@
 namespace App\Models\User\Traits;
 
 use App\Models\Coach\Coach;
+use App\Models\League\League;
 use App\Models\Player\Player;
 use App\Models\Message\Message;
+use App\Models\Schedule\Schedule;
 use App\Models\Shop\Order\Order;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait Relations
 {
@@ -33,6 +36,23 @@ trait Relations
     public function players(): HasMany
     {
         return $this->hasOne(Player::class, 'guardian_id');
+    }
+    
+
+    /**
+     * The leagues that belong to the referee(user).
+     */
+    public function leagues(): BelongsToMany
+    {
+        return $this->belongsToMany(League::class, 'league_referee', 'referee_id', 'league_id');
+    }
+    
+    /**
+     * The schedules that belong to the user.
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class, 'referee_id');
     }
     
     /**
