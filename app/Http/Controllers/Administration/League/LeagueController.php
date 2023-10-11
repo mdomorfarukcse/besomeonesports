@@ -75,6 +75,10 @@ class LeagueController extends Controller
             $player = Player::with('leagues')->whereGuardianId(Auth::user()->id)->firstOrFail();
 
             $leagues = $player->leagues;
+        } elseif (Auth::user()->hasRole('referee')) {
+            $referee = User::role('referee')->whereId(Auth::user()->id)->firstOrFail();
+
+            $leagues = $referee->leagues;
         } else {
             $leagues = [];
         }
