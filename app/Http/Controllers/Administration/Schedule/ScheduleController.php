@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule\Schedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\Schedule\ScheduleStoreRequest;
 use App\Models\Round\Round;
 
 class ScheduleController extends Controller
@@ -126,7 +127,7 @@ class ScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ScheduleStoreRequest $request)
     {
         // dd($request->all());
         try {

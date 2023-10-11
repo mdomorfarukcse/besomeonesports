@@ -25,6 +25,7 @@ class ScheduleStoreRequest extends FormRequest
     {
         return [
             'league_id' => 'required|exists:leagues,id',
+            'referee_id' => 'required|exists:users,id',
             'venue_id' => 'required|exists:venues,id',
             'court_id' => 'required|exists:courts,id',
             'date' => 'required|date|after_or_equal:today',
@@ -43,28 +44,28 @@ class ScheduleStoreRequest extends FormRequest
                 'required',
                 'array',
                 'size:2',
-                Rule::distinct('teams'),
+                'distinct',
                 Rule::exists('teams', 'id')->whereIn('id', $this->input('teams')),
             ],
-            'check_schedule' => [
-                'required',
-                function ($attribute, $value, $fail) {
-                    // Check if there are overlapping schedules for the same date, venue, and court
-                    $overlap = Schedule::where('date', $this->input('date'))
-                        ->where('venue_id', $this->input('venue_id'))
-                        ->where('court_id', $this->input('court_id'))
-                        ->where(function ($query) {
-                            $query->whereBetween('start', [$this->input('start'), $this->input('end')])
-                                ->orWhereBetween('end', [$this->input('start'), $this->input('end')]);
-                        })
-                        ->where('id', '!=', $this->route('schedule'))
-                        ->exists();
+            // 'check_schedule' => [
+            //     'required',
+            //     function ($attribute, $value, $fail) {
+            //         // Check if there are overlapping schedules for the same date, venue, and court
+            //         $overlap = Schedule::where('date', $this->input('date'))
+            //             ->where('venue_id', $this->input('venue_id'))
+            //             ->where('court_id', $this->input('court_id'))
+            //             ->where(function ($query) {
+            //                 $query->whereBetween('start', [$this->input('start'), $this->input('end')])
+            //                     ->orWhereBetween('end', [$this->input('start'), $this->input('end')]);
+            //             })
+            //             ->where('id', '!=', $this->route('schedule'))
+            //             ->exists();
 
-                    if ($overlap) {
-                        $fail('The schedule overlaps with an existing schedule.');
-                    }
-                },
-            ],
+            //         if ($overlap) {
+            //             $fail('The schedule overlaps with an existing schedule.');
+            //         }
+            //     },
+            // ],
         ];
     }
 
@@ -75,7 +76,7 @@ class ScheduleStoreRequest extends FormRequest
             'teams.size' => 'Exactly two teams are required.',
             'teams.distinct' => 'The selected teams must be different.',
             'teams.exists' => 'One or more selected teams do not exist.',
-            'check_schedule' => 'The schedule overlaps with an existing schedule.',
+            // 'check_schedule' => 'The schedule overlaps with an existing schedule.',
         ];
     }
 }
