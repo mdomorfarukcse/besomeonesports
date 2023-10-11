@@ -54,6 +54,75 @@
 
 <!-- Start Row -->
 <div class="row justify-content-center">
+    <div class="col-md-6 mb-4">
+        <div class="card border">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <h5 class="card-title mb-0 text-bold">League's Information</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body py-2">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr class="text-center">
+                                    <td colspan="2">
+                                        <div class="user-avatar">
+                                            <img src="{{ show_image($league->logo) }}" alt="League Logo" class="img-thumbnail" width="200">
+                                        </div>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>League Name</th>
+                                    <td>
+                                        <a href="{{ route('administration.league.show', ['league' => $league]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->name }} details" class="text-dark text-bold">
+                                            {{ $league->name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Season</th>
+                                    <td>
+                                        <a href="{{ route('administration.season.show', ['season' => $league->season]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->season->name }} details" class="text-dark text-bold">
+                                            {{ $league->season->name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sport</th>
+                                    <td>
+                                        <a href="{{ route('administration.sport.show', ['sport' => $league->sport]) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Click to see {{ $league->sport->name }} details" class="text-dark text-bold">
+                                            {{ $league->sport->name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Registration Fee</th>
+                                    <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
+                                </tr>
+                                <tr>
+                                    <th>League Start Date</th>
+                                    <td>{{ $league->start }}</td>
+                                </tr>
+                                <tr>
+                                    <th>League End Date</th>
+                                    <td>{{ $league->end }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{!! status($league->status) !!}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-6">
         <form action="{{ route('administration.league.registration.store', ['league' => $league]) }}" method="post" class="card-form" enctype="multipart/form-data" autocomplete="off">
             @csrf
@@ -64,12 +133,13 @@
             <input type="hidden" name="league_id" value="{{ $league->id }}">
             <div class="card border m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title mb-0">New Registration</h5>
+                    <h5 class="card-title mb-0 float-left">Confirm Registration</h5>
+                    <h5 class="float-right mb-0 text-bold text-primary">${{ $league->registration_fee }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-12">
-                                @role('admin|developer')
+                                @role('admin|developer|guardian')
                                     <label for="player_id">Player <span class="required">*</span></label>
                                     <select class="select2-single form-control @error('player_id') is-invalid @enderror" name="player_id" required>
                                         <option value="">Select Player</option>

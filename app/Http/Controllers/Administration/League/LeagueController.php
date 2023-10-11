@@ -262,7 +262,15 @@ class LeagueController extends Controller
      * League Registration Form
      */
     public function registration(League $league) {
-        $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        if (Auth::user()->hasRole('guardian')) {
+            $players = Player::select(['id', 'user_id', 'guardian_id'])
+                                ->with(['user'])
+                                ->whereGuardianId(Auth::user()->id)
+                                ->whereStatus('Active')
+                                ->get();
+        } else {
+            $players = Player::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
+        }
         // dd($players);
         return view('administration.league.registration.create', compact(['league', 'players']));
     }
