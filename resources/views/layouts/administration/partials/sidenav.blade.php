@@ -73,9 +73,9 @@
                             @if (auth()->user()->can('league.index'))
                                 <li><a href="{{ route('administration.league.index') }}">All Leagues</a></li>
                             @endif
-                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
+                            @role ('guardian|player|coach|referee')
                                 <li><a href="{{ route('administration.league.my') }}">My Leagues</a></li>
-                            @endif
+                            @endrole
                             @if (auth()->user()->can('league.create'))
                                 <li><a href="{{ route('administration.league.create') }}">Create New League</a></li>
                             @endif
@@ -175,6 +175,25 @@
                                 <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
                                 @if (auth()->user()->can('coach.create'))
                                     <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
+                                @endif
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if (auth()->user()->can('referee.index') || auth()->user()->can('referee.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="mdi mdi-account-edit"></i>
+                            <span>Referees</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.referee.index') }}">All Referees</a></li>
+                                
+                                @if (auth()->user()->can('referee.create'))
+                                    <li><a href="{{ route('administration.referee.create') }}">Create New Referee</a></li>
                                 @endif
                             @endif
                         </ul>

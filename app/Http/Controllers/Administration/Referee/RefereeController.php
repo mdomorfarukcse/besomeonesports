@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Administration\Guardian;
+namespace App\Http\Controllers\Administration\Referee;
 
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Administration\Guardian\GuardianStoreRequest;
-use App\Http\Requests\Administration\Guardian\GuardianUpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Administration\Referee\RefereeStoreRequest;
+use App\Http\Requests\Administration\Referee\RefereeUpdateRequest;
 
-class GuardianController extends Controller
+class RefereeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $guardians = User::role('guardian')->get();
+        $referees = User::role('referee')->get();
         
-        return view('administration.guardian.index', compact(['guardians']));
+        return view('administration.referee.index', compact(['referees']));
     }
 
     /**
@@ -28,13 +28,13 @@ class GuardianController extends Controller
      */
     public function create()
     {
-        return view('administration.guardian.create');
+        return view('administration.referee.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(GuardianStoreRequest $request)
+    public function store(RefereeStoreRequest $request)
     {
         // dd($request->all());
         try {
@@ -57,14 +57,14 @@ class GuardianController extends Controller
                 $user->save();
                 
                 // Assign the provided role to the user
-                $role = Role::where('name', 'guardian')->firstOrFail();
+                $role = Role::where('name', 'referee')->firstOrFail();
                 if ($role) {
                     $user->assignRole($role);
                 }
             }, 5);
 
-            toast('A New Guardian Has Been Created.','success');
-            return redirect()->route('administration.guardian.index');
+            toast('A New Referee Has Been Created.','success');
+            return redirect()->route('administration.referee.index');
         } catch (Exception $error) {
             throw new Exception($error->getMessage());
             return redirect()->back()->withInput();
@@ -74,43 +74,42 @@ class GuardianController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $guardian)
+    public function show(User $referee)
     {
-        return view('administration.guardian.show', compact(['guardian']));
+        return view('administration.referee.show', compact(['referee']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $guardian)
+    public function edit(User $referee)
     {
-        return view('administration.guardian.edit', compact(['guardian']));
+        return view('administration.referee.edit', compact(['referee']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(GuardianUpdateRequest $request, User $guardian)
+    public function update(RefereeUpdateRequest $request, User $referee)
     {
-        // dd($request->all(), $guardian);
         try {
-            DB::transaction(function() use ($request, $guardian) {
+            DB::transaction(function() use ($request, $referee) {
                 $avatar = upload_image($request->avatar);
 
-                $guardian->name = $request->name;
-                $guardian->email = $request->email;
-                $guardian->birthdate = $request->birthdate;
-                $guardian->contact_number = $request->contact_number;
-                $guardian->city = $request->city;
-                $guardian->state = $request->state;
-                $guardian->postal_code = $request->postal_code;
-                $guardian->address = $request->address;
-                $guardian->avatar = $avatar;
+                $referee->name = $request->name;
+                $referee->email = $request->email;
+                $referee->birthdate = $request->birthdate;
+                $referee->contact_number = $request->contact_number;
+                $referee->city = $request->city;
+                $referee->state = $request->state;
+                $referee->postal_code = $request->postal_code;
+                $referee->address = $request->address;
+                $referee->avatar = $avatar;
 
-                $guardian->save();
+                $referee->save();
             }, 5);
 
-            toast('Guardian Information Has Been Updated.','success');
+            toast('Referee Information Has Been Updated.','success');
             return redirect()->back();
         } catch (Exception $error) {
             throw new Exception($error->getMessage());
@@ -121,12 +120,12 @@ class GuardianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $guardian)
+    public function destroy(User $referee)
     {
         try {
-            $guardian->delete();
+            $referee->delete();
 
-            toast('Guardian Has Been Deleted.','success');
+            toast('Referee Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

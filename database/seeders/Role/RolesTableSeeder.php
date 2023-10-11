@@ -17,6 +17,7 @@ class RolesTableSeeder extends Seeder
             'developer',
             'admin',
             'coach',
+            'referee',
             'guardian',
             'player',
             'user',
@@ -57,6 +58,12 @@ class RolesTableSeeder extends Seeder
                     'coach.show',
                     'coach.update',
                     'coach.destroy',
+                    
+                    'referee.index',
+                    'referee.create',
+                    'referee.show',
+                    'referee.update',
+                    'referee.destroy',
                     
                     'guardian.index',
                     'guardian.create',
@@ -210,6 +217,12 @@ class RolesTableSeeder extends Seeder
                     'coach.update',
                     'coach.destroy',
                     
+                    'referee.index',
+                    'referee.create',
+                    'referee.show',
+                    'referee.update',
+                    'referee.destroy',
+                    
                     'guardian.index',
                     'guardian.create',
                     'guardian.show',
@@ -321,6 +334,9 @@ class RolesTableSeeder extends Seeder
             } elseif ($role === 'coach') {
                 $permissions = [
                     'dashboard.index',
+                    
+                    'referee.index',
+                    'referee.show',
 
                     'player.index',
                     'player.show',
@@ -348,9 +364,38 @@ class RolesTableSeeder extends Seeder
                     'schedule.index',
                     'schedule.show',
                 ];
+            } elseif ($role === 'referee') {
+                $permissions = [
+                    'dashboard.index',
+                    
+                    'referee.show',
+                    
+                    'player.show',
+                    
+                    'league.index',
+                    'league.show',
+                    
+                    'team.show',
+                    
+                    'shop_order.index',
+                    'shop_order.create',
+                    'shop_order.show',
+                    
+                    'shop_product.index',
+                    'shop_product.show',
+                    
+                    'shop_category.index',
+                    'shop_category.show',
+                    
+                    'schedule.index',
+                    'schedule.show',
+                ];
             } elseif ($role === 'guardian') {
                 $permissions = [
                     'dashboard.index',
+                    
+                    'referee.index',
+                    'referee.show',
 
                     'player.index',
                     'player.create',

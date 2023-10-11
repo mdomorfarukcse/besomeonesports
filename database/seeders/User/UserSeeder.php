@@ -85,6 +85,26 @@ class UserSeeder extends Seeder
 
         
         
+        // Create a Referee
+        $referee = User::create([
+            'name' => 'Demo Referee',
+            'email' => 'referee@mail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'birthdate' => fake()->date(),
+            'contact_number' => fake()->phoneNumber(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->words(2, true),
+            'postal_code' => fake()->postcode(),
+        ]);
+        // Assign a role to the Referee
+        $refereeRole = Role::findByName('referee');
+        $referee->assignRole($refereeRole);
+
+        
+        
         // Create a guardian
         $guardian = User::create([
             'name' => 'Demo Guardian',

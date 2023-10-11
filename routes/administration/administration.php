@@ -32,6 +32,9 @@ Route::prefix('administration')
             // Coach
             include_once 'coach/coach.php';
             
+            // referee
+            include_once 'referee/referee.php';
+            
             // Team
             include_once 'team/team.php';
             
