@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Create New Guardian'))
+@section('page_title', __('Create New Referee'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -96,20 +96,20 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Create New Guardian') }}</b>
+    <b class="text-uppercase">{{ __('Create New Referee') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item text-capitalize">{{ __('Guardians') }}</li>
-    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Guardian') }}</li>
+    <li class="breadcrumb-item text-capitalize">{{ __('Referees') }}</li>
+    <li class="breadcrumb-item text-capitalize active">{{ __('Create New Referee') }}</li>
 @endsection
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.guardian.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.referee.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
         <i class="fa fa-user-secret"></i>
-        <b>All Guardians</b>
+        <b>All Referees</b>
     </a>
 @endsection
 
@@ -120,11 +120,11 @@
 <!-- Start Row -->
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{ route('administration.guardian.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('administration.referee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="card m-b-30">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title text-dark mb-0">Create New Guardian</h5>
+                    <h5 class="card-title text-dark mb-0">Create New Referee</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
