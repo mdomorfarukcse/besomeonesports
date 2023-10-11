@@ -62,7 +62,7 @@
                             <label for="">End Time <span class="required">*</span></label>
                             <input type="time" class="form-control" value="" name="end" id="end" />
                         </div>
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-4">
                             <label for="">Choose An League <span class="required">*</span></label>
                             <select class="select2-single form-control" name="league_id" id="league_id" required>
                                 <option value="" selected>Select League</option>
@@ -74,6 +74,12 @@
                                 <span class="text-danger">Note: </span>
                                 You can select only those league which have at least Two teams.
                             </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="">Select Referee <span class="required">*</span></label>
+                            <select class="select2-single form-control" name="referee_id" id="referee_id" required disabled>
+                                <option value="" selected>Select Referee</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Select Round <span class="required">*</span></label>
@@ -136,6 +142,7 @@
     <script>
         // Get references to the league and team dropdowns
         const leagueDropdown = $('#league_id');
+        const refereeDropdown = $('#referee_id');
         const roundDropdown = $('#round_id');
         const teamDropdown1 = $('#team_one');
         const teamDropdown2 = $('#team_two');
@@ -147,6 +154,7 @@
             const selectedLeagueId = $(this).val();
     
             // Clear the current options in the team dropdown
+            refereeDropdown.empty().append('<option value="" selected>Select Referee</option>');
             roundDropdown.empty().append('<option value="" selected>Select Round</option>');
             teamDropdown1.empty().append('<option value="" selected>Select Team</option>');
             teamDropdown2.empty().append('<option value="" selected>Select Team</option>');
@@ -154,16 +162,37 @@
     
             // Disable the team dropdown if no league is selected
             if (!selectedLeagueId) {
+                refereeDropdown.prop('disabled', true);
                 roundDropdown.prop('disabled', true);
                 teamDropdown1.prop('disabled', true);
                 teamDropdown2.prop('disabled', true);
                 venueDropdown.prop('disabled', true);
             } else {
                 // Enable the team dropdown if an league is selected
+                refereeDropdown.prop('disabled', false);
                 roundDropdown.prop('disabled', false);
                 teamDropdown1.prop('disabled', false);
                 teamDropdown2.prop('disabled', false);
                 venueDropdown.prop('disabled', false);
+
+                // Send an AJAX request to fetch referees for the selected league
+                $.ajax({
+                    url: `/administration/schedule/referees/${selectedLeagueId}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Populate the referee dropdown with the fetched referees
+                        $.each(data, function(index, referee) {
+                            refereeDropdown.append($('<option>', {
+                                value: referee.id,
+                                text: referee.name
+                            }));
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
 
                 // Send an AJAX request to fetch rounds for the selected league
                 $.ajax({

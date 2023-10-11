@@ -83,33 +83,55 @@
                             <tbody>
                                 <tr>
                                     <th>League</th>
-                                    <td>{{ $schedule->league->name }}</td>
+                                    <td>
+                                        <a href="{{ route('administration.league.show', ['league' => $schedule->league]) }}" target="_blank" class="text-dark text-bold">
+                                            {{ $schedule->league->name }}
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Team 1</th>
                                     <td>
-                                        {{ $schedule->teams[0]->name }}
-                                        @if ($schedule->team_id == $schedule->teams[0]->id)
-                                            <sup class="badge badge-success text-bold px-1 pt-1">Winner</sup>
-                                        @endif
+                                        <a href="{{ route('administration.team.show', ['team' => $schedule->teams[0]]) }}" target="_blank" class="text-dark text-bold">
+                                            {{ $schedule->teams[0]->name }}
+                                            @if ($schedule->team_id == $schedule->teams[0]->id)
+                                                <sup class="badge badge-success text-bold px-1 pt-1">Winner</sup>
+                                            @endif
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Team 2</th>
                                     <td>
-                                        {{ $schedule->teams[1]->name }}
-                                        @if ($schedule->team_id == $schedule->teams[1]->id)
-                                            <sup class="badge badge-success text-bold px-1 pt-1">Winner</sup>
-                                        @endif
+                                        <a href="{{ route('administration.team.show', ['team' => $schedule->teams[1]]) }}" target="_blank" class="text-dark text-bold">
+                                            {{ $schedule->teams[1]->name }}
+                                            @if ($schedule->team_id == $schedule->teams[1]->id)
+                                                <sup class="badge badge-success text-bold px-1 pt-1">Winner</sup>
+                                            @endif
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Referee</th>
+                                    <td>
+                                        <a href="{{ route('administration.referee.show', ['referee' => $schedule->referee]) }}" target="_blank" class="text-dark text-bold">
+                                            {{ $schedule->referee->name }}
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Venue</th>
-                                    <td>{{ $schedule->venue->name }}</td>
+                                    <td>
+                                        <a href="{{ route('administration.venue.show', ['venue' => $schedule->venue]) }}" target="_blank" class="text-dark text-bold">
+                                            {{ $schedule->venue->name }}
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Court</th>
-                                    <td>{{ $schedule->court->name }}</td>
+                                    <td>
+                                        {{ $schedule->court->name }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Date</th>

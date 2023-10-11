@@ -73,6 +73,12 @@ class ScheduleController extends Controller
         return response()->json($calender_data);
     }
 
+    public function referees(Request $request, $league) {
+        $referees = League::findOrFail($league)->referees;
+
+        return response()->json($referees);
+    }
+
     public function rounds(Request $request, $league) {
         $rounds = League::findOrFail($league)->rounds;
 
@@ -104,6 +110,7 @@ class ScheduleController extends Controller
     {
         $leagues = League::select(['id', 'name', 'status'])
                         ->with([
+                            'referees', 
                             'teams', 
                             'venues' => function($venue) {
                                 $venue->with(['courts']);
@@ -126,6 +133,7 @@ class ScheduleController extends Controller
             DB::transaction(function() use ($request) {
                 $schedule = new Schedule();
                 $schedule->league_id = $request->league_id;
+                $schedule->referee_id = $request->referee_id;
                 $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;
@@ -160,8 +168,10 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
+        // dd($schedule->referee);
         $leagues = League::select(['id', 'name', 'status'])
                         ->with([
+                            'referees', 
                             'teams', 
                             'venues' => function($venue) {
                                 $venue->with(['courts']);
@@ -178,10 +188,11 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        // dd($request->all(),$schedule);
+        // dd($request->all(),$schedule->teams);
         try {
             DB::transaction(function() use ($request, $schedule) {
                 $schedule->league_id = $request->league_id;
+                $schedule->referee_id = $request->referee_id;
                 $schedule->round_id = $request->round_id;
                 $schedule->venue_id = $request->venue_id;
                 $schedule->court_id = $request->court_id;

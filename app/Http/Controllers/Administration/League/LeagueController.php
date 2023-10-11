@@ -213,6 +213,7 @@ class LeagueController extends Controller
                 // Sync the divisions and venues in the pivot tables
                 $league->divisions()->sync($request->divisions);
                 $league->venues()->sync($request->venues);
+                $league->referees()->sync($request->referees);
 
                 // Get the current rounds associated with the league
                 $currentRounds = $league->rounds->pluck('name')->toArray();
