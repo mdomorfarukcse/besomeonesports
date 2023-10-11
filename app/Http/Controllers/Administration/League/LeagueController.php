@@ -58,25 +58,26 @@ class LeagueController extends Controller
      */
     public function myLeagues()
     {
-        if (Auth::user()->hasRole('coach')) {
+        $authUser = Auth::user();
+        if ($authUser->hasRole('coach')) {
             // Get the coach
-            $coach = Auth::user()->coach;
+            $coach = $authUser->coach;
             
             // Get the leagues associated with teams where the coach is the coach
             $leagues = League::whereHas('teams', function ($team) use ($coach) {
                 $team->where('coach_id', $coach->id);
             })->get();
             
-        } elseif (Auth::user()->hasRole('player')) {
-            $player = Player::with('leagues')->whereId(Auth::user()->player->id)->firstOrFail();
+        } elseif ($authUser->hasRole('player')) {
+            $player = Player::with('leagues')->whereId($authUser->player->id)->firstOrFail();
 
             $leagues = $player->leagues;
-        } elseif (Auth::user()->hasRole('guardian')) {
-            $player = Player::with('leagues')->whereGuardianId(Auth::user()->id)->firstOrFail();
+        } elseif ($authUser->hasRole('guardian')) {
+            $player = Player::with('leagues')->whereGuardianId($authUser->id)->firstOrFail();
 
             $leagues = $player->leagues;
-        } elseif (Auth::user()->hasRole('referee')) {
-            $referee = User::role('referee')->whereId(Auth::user()->id)->firstOrFail();
+        } elseif ($authUser->hasRole('referee')) {
+            $referee = User::role('referee')->whereId($authUser->id)->firstOrFail();
 
             $leagues = $referee->leagues;
         } else {
