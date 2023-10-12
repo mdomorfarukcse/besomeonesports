@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Frontend\Referee;
 
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\User\Frontend\RefereeRequest;
+use App\Http\Requests\Frontend\Referee\RefereeStoreRequest;
 
 class RefereeController extends Controller
 {
@@ -26,9 +30,32 @@ class RefereeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RefereeStoreRequest $request)
     {
-        //
+        // dd($request->all());
+        try {
+            $referee = new RefereeRequest();
+            
+            $referee->fill($request->except('avatar'));
+
+            $avatar = upload_image($request->avatar);
+            $referee->avatar = $avatar;
+
+            $referee->save();
+            
+            $admins = User::role('admin')->get();
+            foreach ($admins as $admin) {
+                // Send Mail to the admin email
+                //Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
+            }
+
+            toast('Referee Request Has Been Send.','success');
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e);
+            alert('referee Request Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

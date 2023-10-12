@@ -14,4 +14,9 @@ Route::controller(RefereeController::class)->prefix('referee')->name('referee.')
     Route::get('/edit/{referee}', 'edit')->name('edit')->middleware(['can:referee.update']);
     Route::post('/update/{referee}', 'update')->name('update')->middleware(['can:referee.update']);
     Route::get('/destroy/{referee}', 'destroy')->name('destroy')->middleware(['can:referee.destroy']);
+    
+    
+    Route::get('/request', 'request')->name('request')->middleware(['role:admin|developer']);
+    Route::get('/request/show/{referee}', 'requestShow')->name('request.show')->middleware(['role:admin|developer']);
+    Route::get('/request/show/{referee}/{status}', 'updateRequest')->name('request.update')->middleware(['role:admin|developer']);
 });

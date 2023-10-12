@@ -191,7 +191,7 @@
                         <ul class="vertical-submenu">
                             @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <li><a href="{{ route('administration.referee.index') }}">All Referees</a></li>
-                                
+                                <li><a href="{{ route('administration.referee.request') }}">Referee Requests</a></li>
                                 @if (auth()->user()->can('referee.create'))
                                     <li><a href="{{ route('administration.referee.create') }}">Create New Referee</a></li>
                                 @endif

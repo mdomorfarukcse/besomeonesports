@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Coach'))
+@section('page_title', __('Referee'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -98,17 +98,31 @@
                 <h5>Referee Request</h5>
                 <h1>Want to be a <span> Referee? </span></h1>
             </div>
-            <div class="row  justify-content-center mt-2 mb-5">
+            <div class="row justify-content-center mt-2 mb-5">
+                @if ($errors->any())
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            @foreach ($errors->all() as $error) 
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{{ $error }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="col-md-8">
                     <div class="contact-use-div">
-                        <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <form action="{{ route('frontend.referee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
-                                            <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
-                                            <label for="coachAvatar"></label>
+                                            <input type="file" id="refereeAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                            <label for="refereeAvatar"></label>
                                         </div>
                                         <div class="avatar-preview">
                                             <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
@@ -166,8 +180,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="Contact Number *" required />
-                                        @error('phone_number')
+                                        <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control" placeholder="Contact Number *" required />
+                                        @error('contact_number')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
@@ -196,25 +210,17 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="from-group">
-                                        <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control" placeholder="Street Address *" required />
-                                        @error('street_address')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="from-group">
-                                        <input type="text" name="extended_address" value="{{ old('extended_address') }}" class="form-control" placeholder="Extended Address *" required />
-                                        @error('extended_address')
+                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Address *" required />
+                                        @error('address')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <button type="submit" name="submit" class="btn btn-dark btn-lg float-end">Submit Request</button>
+                                    <button type="submit" class="btn btn-dark btn-lg float-end">Submit Request</button>
                                 </div>
                             </div>
                         </form>
@@ -250,7 +256,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#coachAvatar").change(function() {
+        $("#refereeAvatar").change(function() {
             readURL(this);
         });
     </script>

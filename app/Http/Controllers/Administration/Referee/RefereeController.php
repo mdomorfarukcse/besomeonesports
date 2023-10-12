@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Administration\Referee\RefereeStoreRequest;
 use App\Http\Requests\Administration\Referee\RefereeUpdateRequest;
+use App\Models\User\Frontend\RefereeRequest;
 
 class RefereeController extends Controller
 {
@@ -131,5 +132,90 @@ class RefereeController extends Controller
             throw new Exception($e->getMessage());
             return redirect()->back()->withInput();
         }
+    }
+
+    
+    
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function request()
+    {
+        $referees = RefereeRequest::all();
+
+        return view('administration.referee.request', compact(['referees']));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function requestShow(RefereeRequest $referee)
+    {
+        return view('administration.referee.request_show', compact(['referee']));
+    }
+    
+    
+    /**
+     * Update Request Status
+     */
+    public function updateRequest(RefereeRequest $referee, string $status)
+    {
+        $status = decrypt($status);
+        // dd($referee,$status);
+
+        if ($status === 'Approve') {
+            try {
+                DB::transaction(function() use ($referee) {
+                    $refereeName = $referee->first_name.' '.$referee->middle_name.' '.$referee->last_name;
+                    
+                    // Store Credentials into User
+                    $user = User::create([
+                        'name' => $refereeName,
+                        'email' => $referee->email,
+                        'password' => Hash::make($referee->password),
+                        'avatar' => $referee->avatar,
+                    ]);
+            
+                    // Assign the provided role to the user
+                    $role = Role::where('name', 'referee')->firstOrFail();
+                    if ($role) {
+                        $user->assignRole($role);
+                    }
+                    
+                    $user->birthdate = $referee->birthdate;
+                    $user->contact_number = $referee->contact_number;
+                    $user->city = $referee->city;
+                    $user->state = $referee->state;
+                    $user->postal_code = $referee->postal_code;
+                    $user->address = $referee->address;
+
+                    $user->save();
+
+                    // Send Mail to the referee email
+                    //Mail::to($user->email)->send(new refereeRequestApproveMail($referee));
+
+                    $referee->delete();
+                }, 5);
+    
+                toast('A New Referee Has Been Created.','success');
+                return redirect()->route('administration.referee.request');
+            } catch (Exception $e) {
+                dd($e);
+                alert('Referee Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+                return redirect()->back()->withInput();
+            }
+        } else {
+            // Send Mail to the referee email
+            //Mail::to($referee->email)->send(new refereeRequestRejectMail($referee));
+
+            $referee->delete();
+
+            toast('Referee Has Been Canceled.','success');
+            return redirect()->route('administration.referee.request');
+        }
+        
+
+        return view('administration.referee.request_show', compact(['referee']));
     }
 }
