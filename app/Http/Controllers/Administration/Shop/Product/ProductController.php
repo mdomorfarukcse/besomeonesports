@@ -161,7 +161,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        toast('You cannot delete any product.', 'warning');
+        return redirect()->back();
     }
 
     /**

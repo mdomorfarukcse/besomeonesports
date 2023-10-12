@@ -74,7 +74,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        toast('You cannot delete any order.', 'warning');
+        return redirect()->back();
     }
 
     /**
