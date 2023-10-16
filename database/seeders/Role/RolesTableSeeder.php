@@ -394,7 +394,6 @@ class RolesTableSeeder extends Seeder
                 $permissions = [
                     'dashboard.index',
                     
-                    'referee.index',
                     'referee.show',
 
                     'player.index',
