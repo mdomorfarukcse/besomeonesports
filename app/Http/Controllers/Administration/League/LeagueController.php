@@ -73,9 +73,14 @@ class LeagueController extends Controller
 
             $leagues = $player->leagues;
         } elseif ($authUser->hasRole('guardian')) {
-            $player = Player::with('leagues')->whereGuardianId($authUser->id)->firstOrFail();
+            $guardianPlayers = $authUser->players()->count();
+            if ($guardianPlayers > 0) { 
+                $player = Player::with('leagues')->whereGuardianId($authUser->id)->firstOrFail();
 
-            $leagues = $player->leagues;
+                $leagues = $player->leagues;
+            } else {
+                $leagues = [];
+            }
         } elseif ($authUser->hasRole('referee')) {
             $referee = User::role('referee')->whereId($authUser->id)->firstOrFail();
 
@@ -83,7 +88,6 @@ class LeagueController extends Controller
         } else {
             $leagues = [];
         }
-        // dd($leagues);
         return view('administration.league.my', compact(['leagues']));
     }
 

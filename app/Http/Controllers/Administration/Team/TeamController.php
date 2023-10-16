@@ -43,9 +43,15 @@ class TeamController extends Controller
 
             $teams = $player->teams;
         } elseif (Auth::user()->hasRole('guardian')) {
-            $player = Player::with('teams')->whereGuardianId(Auth::user()->id)->firstOrFail();
+            $guardianPlayers = Auth::user()->players()->count();
+            if ($guardianPlayers > 0) { 
+                $player = Player::with('teams')->whereGuardianId(Auth::user()->id)->firstOrFail();
 
-            $teams = $player->teams;
+                $teams = $player->teams;
+            } else {
+                $teams = [];
+            }
+            
         } else {
             $teams = [];
         }
