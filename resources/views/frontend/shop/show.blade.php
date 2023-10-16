@@ -88,7 +88,7 @@
                             <div class="menu-dl-right mt-5">
                                 <h2 class="comon-heading m-0">{{ $product->name }}</h2>
                                 <h3 class="price-dlm">${{ $product->price }}</h3>
-                                <h5>Size</h5>
+                                <h5>Size <sup class="text-danger">*</sup></h5>
                                 <ul class="list-unstyled d-flex sixe-menu-q size-checkbox">
                                     @foreach (json_decode($product->sizes) as $key => $size)
                                         <li>
@@ -99,7 +99,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <h5>Color</h5>
+                                <h5>Color <sup class="text-danger">*</sup></h5>
                                 <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
                                     @foreach (json_decode($product->colors) as $key => $color)
                                         <li>
@@ -110,20 +110,32 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <h5>Quantity</h5>
+                                <h5>Quantity <sup class="text-danger">*</sup></h5>
     
                                 <div class="quantity-control" data-quantity="">
                                     <button type="button" class="quantity-btn" data-quantity-minus="">
                                         <div class="fa fa-minus text-dark"></div>
                                     </button>
-                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="0.1" min="1" max="" name="porduct_quantity" required/>
+                                    <input type="number" class="quantity-input" data-quantity-target="" value="1" step="1" min="1" max="{{ $product->quantity }}" name="porduct_quantity" required/>
                                     <button type="button" class="quantity-btn" data-quantity-plus="">
                                         <div class="fa fa-plus text-dark"></div>
                                     </button>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="from-group">
+                                            <h5>Note</h5>
+                                            <textarea rows="4" class="form-control border" name="note" placeholder="Ex: Player Name, Number or any instruction"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
     
-                                <button class="btn crat-btnh mt-5" type="submit">
-                                    <span> <i class="fas fa-shopping-cart"></i> </span> Add to Cart
+                                <button class="btn btn-info btn-lg mt-4" type="submit">
+                                    <span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </span>
+                                    Add to Cart
                                 </button>
                             </div>
                         </form>
