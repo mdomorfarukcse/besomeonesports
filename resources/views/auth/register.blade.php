@@ -75,7 +75,7 @@
                                             <input type="text" value="{{ old('name') }}" name="name"
                                                 autocomplete="off" autofocus
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="{{ __('Full Name') }}" tabindex="0" required>
+                                                placeholder="{{ __('Full Name*') }}" tabindex="0" required>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                                             <input type="email" value="{{ old('email') }}" name="email" required
                                                 autocomplete="off" autofocus tabindex="0"
                                                 class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="{{ __('Email') }}">
+                                                placeholder="{{ __('Email*') }}">
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
