@@ -32,24 +32,32 @@
 
     <!-- Start row -->
     <section class="float-start w-100 sub-headh-bask body-part pt-0">
-        <div class="palyerspage d-inline-block w-100">
-            <div class="container">
-                <div class="mindle-heading text-center">
-                    <h5>Team</h5>
-                    <h1>Our <span> Team </span></h1>
-                </div>
-        
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 g-lg-5 mt-0 mt-lg-4">
-                    <div class="col">
-                        <a href="#" class="crm-teams01">
-                            <figure>
-                                <img src="{{ asset('frontend/images/owner.png') }}" alt="teams01" />
+        <div class="about-page-main comon-sub-page-main d-inline-block w-100">
+            <div class="about-club-top">
+                <div class="container">
+                    <div class="mindle-heading text-center">
+                        <h5>Owner</h5>
+                        <h1>Our <span> Owner </span></h1>
+                    </div>
+                    <div class="row row-cols-1 row-cols-lg-2 g-lg-5 mt-0 mt-lg-4">
+                        <div class="col position-relative">
+                            <figure class="big-img">
+                                <img src="{{ asset('frontend/images/owner.png') }}" alt="pic" />
                             </figure>
-                            <div class="design">
-                                <h5>Steven Passons</h5>
-                                <p>Owner</p>
-                            </div>
-                        </a>
+                        </div>
+                        <div class="col">
+                            <h5 class="samll-sub mb-1 mt-0">Owner</h5>
+                            <h2 class="comon-heading m-0">Steven Passons</h2>
+                            <p class="mt-3">
+                                At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
+                                full potential through sports. We Strive to create a positive and inclusive environment
+                                where everyone can develop their skills, build confidence, and experience the joys of
+                                athletic achievement. Through our programs and activities, we aim to promote physical
+                                fitness, teamwork, and sportsmanship, while instilling values as determination,
+                                perseverance, and respect. Our ultimate goal is to help individuals become their best
+                                selves, both on and off the courts.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
