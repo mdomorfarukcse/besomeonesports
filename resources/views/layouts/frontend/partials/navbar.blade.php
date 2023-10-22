@@ -28,7 +28,7 @@
                         <a class="nav-link dropdown-toggle {{ Request::is('about*') || Request::is('mission*') || Request::is('our-team*')  || Request::is('testimonials*') || Request::is('faqs*') || Request::is('app-info*') ? 'active' : '' }}" href="{{ route('frontend.about.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> About Us </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.mission.index') }}">Mission</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Our Owner</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Our CEO</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>

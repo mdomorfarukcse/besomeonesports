@@ -36,8 +36,8 @@
             <div class="about-club-top">
                 <div class="container">
                     <div class="mindle-heading text-center">
-                        <h5>Owner</h5>
-                        <h1>Our <span> Owner </span></h1>
+                        <h5>CEO</h5>
+                        <h1>Our <span> CEO </span></h1>
                     </div>
                     <div class="row row-cols-1 row-cols-lg-2 g-lg-5 mt-0 mt-lg-4">
                         <div class="col position-relative">
@@ -46,7 +46,7 @@
                             </figure>
                         </div>
                         <div class="col">
-                            <h5 class="samll-sub mb-1 mt-0">Owner</h5>
+                            <h5 class="samll-sub mb-1 mt-0">CEO</h5>
                             <h2 class="comon-heading m-0">Steven Passons</h2>
                             <p class="mt-3">
                                 At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
@@ -62,6 +62,25 @@
                 </div>
             </div>
         </div>
+        <section class="float-start w-100">
+            <div class="mediasection d-inline-block w-100">
+                <div class="container">
+                    <div class="mindle-heading text-center">
+                        <h5>Video</h5>
+                        <h1>Our <span> CEO Videos </span></h1>
+                    </div>
+                    <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
+                        <div class="col-md-12">
+                            <iframe width="100%" height="500" src="https://www.youtube.com/embed/-H2GTIv9ZK8"
+                                title="Be Someone Sports empowers young athletes and gives back to the community"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="about-page-main comon-sub-page-main d-inline-block w-100">
             <div class="about-club-top">
                 <div class="container">
@@ -81,15 +100,15 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
-    
+
     <section class="ads">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($bottom_ad)) 
+                        @if (!is_null($bottom_ad))
                             <a href="{{ $bottom_ad->url }}">
                                 <span>Ad</span>
                                 <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
