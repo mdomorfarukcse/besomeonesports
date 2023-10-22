@@ -18,6 +18,8 @@ Route::name('frontend.')->group(function () {
     include_once 'referee/referee.php';
     // league
     include_once 'league/league.php';
+    // schedule
+    include_once 'schedule/schedule.php';
     // Shop
     include_once 'shop/shop.php';
     // Mission
