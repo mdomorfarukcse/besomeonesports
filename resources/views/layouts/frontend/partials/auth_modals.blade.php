@@ -12,7 +12,7 @@
                             <p>We'll email you a link to reset your password</p>
                             <div class="cm-select-login mt-3">
                                 <div class="phone-div">
-                                    <input type="email" name="email" class="form-control" placeholder="Enter Your Email" required />
+                                    <input type="email" name="email" class="form-control" placeholder="Enter Your Email*" required />
                                 </div>
                             </div>
 
@@ -40,7 +40,7 @@
                         <div class="login-modal-pn">
                             <div class="cm-select-login mt-3">
                                 <div class="country-dp">
-                                    <input type="email" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required/>
+                                    <input type="email" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email*" required/>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -91,7 +91,7 @@
                                     <input type="text" name="fullname" class="form-control" placeholder="Full Name" required />
                                 </div>
                                 <div class="phone-div">
-                                    <input type="email" name="phone" class="form-control" placeholder="Email or Phone Number" required />
+                                    <input type="email" name="phone" class="form-control" placeholder="Email or Phone Number*" required />
                                 </div>
                                 <div class="phone-div">
                                     <input type="password" name="password" class="form-control" placeholder="Create Password" required />

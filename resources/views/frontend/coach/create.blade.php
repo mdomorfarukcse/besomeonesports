@@ -118,7 +118,7 @@
                                 
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email *" required />
+                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email*" required />
                                         @error('email')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
