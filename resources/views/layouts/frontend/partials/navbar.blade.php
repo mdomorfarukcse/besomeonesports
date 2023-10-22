@@ -59,8 +59,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('press*') || Request::is('blog*') ? 'active' : '' }}"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">MEDIA RELATIONS </a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Media Relations </a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.media-inquiries.index') }}">Media Inquiries</a></li>
                         </ul>
                     </li>
