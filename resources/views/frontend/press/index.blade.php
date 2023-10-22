@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Press Release'))
+@section('page_title', __('Media Relations'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -20,12 +20,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Press Release') }}</b>
+    <b class="text-uppercase">{{ __('Media Relations') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">{{ __('Press Release') }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Media Relations') }}</li>
 @endsection
 
 @section('content')
@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5">
-                        <h2 class="comon-heading">Our Press Releases</h2>
+                        <h2 class="comon-heading">Our Media Relations</h2>
                     </div>
                 </div>
     

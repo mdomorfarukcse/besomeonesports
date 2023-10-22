@@ -31,7 +31,6 @@
                             <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Our CEO</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
                     </li>
@@ -49,9 +48,10 @@
                         </ul>
                     </li> --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Partners </a>
+                        <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> OUR SPONSORS  </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item " href="{{ route('frontend.sponsors.index') }}" >Sponsors</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>
                             <li><a class="dropdown-item " href="{{ route('frontend.coach.create') }}" >Become a Coach</a></li>
                             <li><a class="dropdown-item " href="{{ route('frontend.referee.create') }}" >Become a Referee</a></li>
                         </ul>
@@ -59,7 +59,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('press*') || Request::is('blog*') ? 'active' : '' }}"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Press Releases</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">MEDIA RELATIONS </a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.media-inquiries.index') }}">Media Inquiries</a></li>
                         </ul>

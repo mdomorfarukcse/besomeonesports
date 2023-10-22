@@ -34,7 +34,7 @@ Route::name('frontend.')->group(function () {
     include_once 'appinfo/appinfo.php';
     // App Info
     include_once 'sponsors/sponsors.php';
-    // Press Release
+    // Media Relations
     include_once 'press/press.php';
     // Blog
     include_once 'blog/blog.php';

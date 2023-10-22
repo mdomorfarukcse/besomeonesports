@@ -25,7 +25,7 @@
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">{{ __('Press Release') }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Media Relations') }}</li>
 @endsection
 
 @section('content')

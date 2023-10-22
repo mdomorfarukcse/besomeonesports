@@ -110,7 +110,7 @@
                 <div class="contact-use-div mt-3 mt-lg-3 text-center">
                     <h2 class="mt-5">Get In Touch</h2>
                     <h5 class="pcolor mt-3">
-                        Become a Sponsor Today! Contact us through the form below and a Be Someone Sports representative will assist you.
+                        Advertising and Sponsor Today! Contact us through the form below and a Be Someone Sports representative will assist you.
                     </h5>
                     <form name="fmn" action="" method="post">
                         <div class="row mt-4">
