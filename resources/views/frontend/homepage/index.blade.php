@@ -426,6 +426,42 @@
         </div>
     </section>
     <!-- End row -->
+    <!-- Modal -->
+    <div class="modal fade " id="leaguemodal" tabindex="-1" aria-labelledby="leaguemodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="leaguemodalLabel">Upcoming League</h1>
+                    <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
+                        <i class="la la-check"></i>
+                        <b>Register Now</b>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @if (!is_null($modalLeague)) 
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (!empty($modalLeague->logo))
+                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height="" width="100%" alt="modalLeague">
+                                @endif
+                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the everyone wins league.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-success btn-outline-custom fw-bolder" style="
+                            float: right;">
+                            <i class="la la-check"></i>
+                            <b>Register Now</b>
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -436,7 +472,10 @@
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
-    <script>
-        // Custom Script Here
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $("#leaguemodal").modal("show");
+        });
     </script>
+    
 @endsection
