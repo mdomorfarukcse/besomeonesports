@@ -77,10 +77,10 @@
                                     <a href="{{ route('frontend.about.index') }}">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.press.index') }}">News</a>
+                                    <a href="{{ route('frontend.schedule.index') }}">Schedule</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.contact.index') }}">Contact</a>
+                                    <a href="/register">Register Now</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('frontend.coach.create') }}">Become A Coach?</a>

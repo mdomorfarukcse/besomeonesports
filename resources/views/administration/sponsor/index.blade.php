@@ -62,6 +62,7 @@
                                 <th>S/N</th>
                                 <th>Logo</th>
                                 <th>Name</th>
+                                <th>URL</th>
                                 <th>Status</th>
                                 <th class="text-right">Actions</th>
                             </tr>
@@ -74,6 +75,7 @@
                                         <img src="{{ show_image($sponsor->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
                                     </td>
                                     <td>{{ $sponsor->name }}</td>
+                                    <td>{{ $sponsor->url }}</td>
                                     <td>{!! status($sponsor->status) !!}</td>
                                     <td class="text-right">
                                         <div class="action-btn-group mr-3">
