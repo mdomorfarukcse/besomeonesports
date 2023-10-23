@@ -32,28 +32,55 @@
 
     <!-- Start row -->
     <section class="float-start w-100 sub-headh-bask body-part pt-0">
-        <div class="palyerspage d-inline-block w-100">
-            <div class="container">
-                <div class="mindle-heading text-center">
-                    <h5>Team</h5>
-                    <h1>Our <span> Team </span></h1>
-                </div>
-        
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 g-lg-5 mt-0 mt-lg-4">
-                    <div class="col">
-                        <a href="#" class="crm-teams01">
-                            <figure>
-                                <img src="{{ asset('frontend/images/owner.png') }}" alt="teams01" />
+        <div class="about-page-main comon-sub-page-main d-inline-block w-100">
+            <div class="about-club-top">
+                <div class="container">
+                    <div class="mindle-heading text-center">
+                        <h5>CEO</h5>
+                        <h1>Our <span> CEO </span></h1>
+                    </div>
+                    <div class="row row-cols-1 row-cols-lg-2 g-lg-5 mt-0 mt-lg-4">
+                        <div class="col position-relative">
+                            <figure class="big-img">
+                                <img src="{{ asset('frontend/images/owner.png') }}" alt="pic" />
                             </figure>
-                            <div class="design">
-                                <h5>Steven Passons</h5>
-                                <p>Owner</p>
-                            </div>
-                        </a>
+                        </div>
+                        <div class="col">
+                            <h5 class="samll-sub mb-1 mt-0">CEO</h5>
+                            <h2 class="comon-heading m-0">Steven Passons</h2>
+                            <p class="mt-3">
+                                At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
+                                full potential through sports. We Strive to create a positive and inclusive environment
+                                where everyone can develop their skills, build confidence, and experience the joys of
+                                athletic achievement. Through our programs and activities, we aim to promote physical
+                                fitness, teamwork, and sportsmanship, while instilling values as determination,
+                                perseverance, and respect. Our ultimate goal is to help individuals become their best
+                                selves, both on and off the courts.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <section class="float-start w-100">
+            <div class="mediasection d-inline-block w-100">
+                <div class="container">
+                    <div class="mindle-heading text-center">
+                        <h5>Video</h5>
+                        <h1>Our <span> CEO Videos </span></h1>
+                    </div>
+                    <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
+                        <div class="col-md-12">
+                            <iframe width="100%" height="500" src="https://www.youtube.com/embed/-H2GTIv9ZK8"
+                                title="Be Someone Sports empowers young athletes and gives back to the community"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="about-page-main comon-sub-page-main d-inline-block w-100">
             <div class="about-club-top">
                 <div class="container">
@@ -73,15 +100,15 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
-    
+
     <section class="ads">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($bottom_ad)) 
+                        @if (!is_null($bottom_ad))
                             <a href="{{ $bottom_ad->url }}">
                                 <span>Ad</span>
                                 <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
@@ -97,18 +124,6 @@
             </div>
         </div>
     </section>
-    <div class="location-div01 d-inline-block w-100">
-        <div class="mindle-heading text-center">
-            <h5>Map</h5>
-            <h1>Office <span> Location </span></h1>
-        </div>
-        <span class="bgi-text light-tsext01"> Map </span>
-
-        <iframe class="w-100 mt-5"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d444897.3091659081!2d-95.2459789!3d29.4065695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640859fbe88c531%3A0x32451695f313c938!2sBe%20Someone%20Sports-%20Youth%20Sports%20%7C%20Youth%20Basketball%20%7C%20Youth%20Volleyball%20%7C%20AAU%20Tournaments!5e0!3m2!1sen!2sbd!4v1691411696578!5m2!1sen!2sbd"
-            height="450" style="border: 0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
     <!-- End row -->
 
 @endsection

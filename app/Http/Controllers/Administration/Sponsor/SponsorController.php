@@ -33,6 +33,7 @@ class SponsorController extends Controller
     {
         $this->validate($request, [
             'name'      => 'required|string',
+            'url' => 'required',
             'avatar'    => 'required'
         ]);
 
@@ -41,6 +42,7 @@ class SponsorController extends Controller
             $data = $request->all();
             Sponsor::create([
                 'name' => $data['name'],
+                'url' => $data['url'],
                 'avatar' => $avatar,
                 'status' => $data['status'],
             ]);

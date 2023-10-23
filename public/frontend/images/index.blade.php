@@ -104,19 +104,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="location-div01 d-inline-block w-100">
-                    <div class="mindle-heading text-center">
-                        <h5>Map</h5>
-                        <h1>Office <span> Location </span></h1>
-                    </div>
-                    <span class="bgi-text light-tsext01"> Map </span>
-
-                    <iframe class="w-100 mt-5"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d444897.3091659081!2d-95.2459789!3d29.4065695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640859fbe88c531%3A0x32451695f313c938!2sBe%20Someone%20Sports-%20Youth%20Sports%20%7C%20Youth%20Basketball%20%7C%20Youth%20Volleyball%20%7C%20AAU%20Tournaments!5e0!3m2!1sen!2sbd!4v1691411696578!5m2!1sen!2sbd"
-                        height="450" style="border: 0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
             </div>
         </div>
     </section>

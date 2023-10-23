@@ -75,7 +75,7 @@
                                             <input type="text" value="{{ old('name') }}" name="name"
                                                 autocomplete="off" autofocus
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="{{ __('Full Name') }}" tabindex="0" required>
+                                                placeholder="{{ __('Full Name*') }}" tabindex="0" required>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                                             <input type="email" value="{{ old('email') }}" name="email" required
                                                 autocomplete="off" autofocus tabindex="0"
                                                 class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="{{ __('Email') }}">
+                                                placeholder="{{ __('Email*') }}">
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                                                             <p> I agree to <a href="javascript:void(0);"
                                                                     data-toggle="modal"
                                                                     data-target="#termsAndConditionModal"
-                                                                    class="ml-1 text-bold">Disclaimer!</a></p>
+                                                                    class="ml-1 text-bold">Sports Etiquette!</a></p>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -189,7 +189,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark border-0">
-                    <h6 class="text-white">Disclaimer of {{ config('app.name') }}</h6>
+                    <h6 class="text-white">Sports Etiquette of {{ config('app.name') }}</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

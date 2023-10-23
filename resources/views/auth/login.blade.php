@@ -47,7 +47,7 @@
                                             <h4 class="text-primary my-4"><b>{{ __('LOGIN') }}</b></h4>
 
                                             <div class="form-group">
-                                                <input type="email" value="{{ old('email') }}" name="email" required autocomplete="off" autofocus tabindex="0" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Login Email') }}">
+                                                <input type="email" value="{{ old('email') }}" name="email" required autocomplete="off" autofocus tabindex="0" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Login Email*') }}">
 
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">

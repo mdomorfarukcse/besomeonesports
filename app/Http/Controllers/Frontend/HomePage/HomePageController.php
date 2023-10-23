@@ -22,6 +22,9 @@ class HomePageController extends Controller
         $upcomingLeagues = League::whereStatus('Active')
                                 ->orderBy('start', 'asc')
                                 ->get();
+        $modalLeague = League::whereStatus('Active')
+                                ->inRandomOrder()
+                                ->first();
         $products = Product::with(['images', 'categories'])->whereStatus('Active')->limit(8)->get();
         
         $galleries = Gallery::limit(8)->get();
@@ -49,6 +52,6 @@ class HomePageController extends Controller
             'coaches' => $coaches,
             'players' => $players
         ];                  
-        return view('frontend.homepage.index', compact(['upcomingLeagues','products','total','galleries','videos','top_ad','bottom_ad']));
+        return view('frontend.homepage.index', compact(['upcomingLeagues','modalLeague','products','total','galleries','videos','top_ad','bottom_ad']));
     }
 }

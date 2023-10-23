@@ -60,16 +60,15 @@
                             <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
                             <h2 class="comon-heading m-0">Sponsors</h2>
                         </div>
-
                         @foreach ($sponsors as $key => $sponsor)
                             <div class="col-md-2">
-                                <div class="single_sponsor">
-                                    <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
-                                </div>
+                                <a href="{{ $sponsor->url }}">
+                                    <div class="single_sponsor">
+                                        <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
-                            
-                        
                     </div>
                 </div>
             </div>

@@ -119,14 +119,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="name">Company Name <span class="required">*</span></label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="col-md-4 form-group">
+                            <label for="url">URL <span class="required">*</span></label>
+                            <input type="text" name="url" value="{{ old('url') }}" class="form-control @error('url') is-invalid @enderror" placeholder="Sponsor Website URL" required/>
+                            @error('url')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>

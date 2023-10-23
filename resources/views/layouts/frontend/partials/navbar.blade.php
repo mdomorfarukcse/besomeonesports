@@ -21,17 +21,16 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.homepage.index') }}">Home</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('about*') || Request::is('mission*') || Request::is('our-team*')  || Request::is('testimonials*') || Request::is('faqs*') || Request::is('app-info*') ? 'active' : '' }}" href="{{ route('frontend.about.index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> About Us </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.mission.index') }}">Mission</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Team</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.ourteam.index') }}">Our CEO</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.testimonials.index') }}">Testimonials</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.faqs.index') }}">FAQs</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.appinfo.index') }}">App Info</a></li>
                         </ul>
                     </li>
@@ -49,9 +48,10 @@
                         </ul>
                     </li> --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Partners </a>
+                        <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> OUR SPONSORS  </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item " href="{{ route('frontend.sponsors.index') }}" >Sponsors</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Advertise With Us</a></li>
                             <li><a class="dropdown-item " href="{{ route('frontend.coach.create') }}" >Become a Coach</a></li>
                             <li><a class="dropdown-item " href="{{ route('frontend.referee.create') }}" >Become a Referee</a></li>
                         </ul>
@@ -59,8 +59,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('press*') || Request::is('blog*') ? 'active' : '' }}"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> News </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Press Releases</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.blog.index') }}">Blogs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.press.index') }}">Media Relations </a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.media-inquiries.index') }}">Media Inquiries</a></li>
                         </ul>
                     </li>
@@ -71,7 +71,7 @@
                         <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="{{ route('frontend.shop.index') }}">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('contact*') ? 'active' : '' }}" href="{{ route('frontend.contact.index') }}">Contact</a>
+                        <a class="nav-link {{ Request::is('contact*') ? 'active' : '' }}" href="{{ route('frontend.contact.index') }}">Contact Us</a>
                     </li>
                     @auth
                         <li class="nav-item">

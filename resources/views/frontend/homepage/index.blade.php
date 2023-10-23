@@ -22,6 +22,15 @@
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
+        #carouselleague .carousel-caption{
+            background: #000000ad;
+        }
+        #carouselleague .carousel-item {
+            height: 480px;
+        }
+        #carouselleague img {
+            max-height: 470px;
+        }
     </style>
 @endsection
 
@@ -148,41 +157,35 @@
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
-                    <div class="next-matchu mt-4">
-                        @foreach ($upcomingLeagues as $key => $league)
-                            <div class="comon-matchbn">
-                                <div class="topikn-div">
-                                    <div class="more-details-div d-md-flex align-items-center">
-                                        <h5 class="m-0">
-                                            <i class="fas fa-calendar-week"></i> {{ show_date($league->start) }} -
-                                            {{ show_date($league->end) }}
-                                        </h5>
-                                        <h6>/ {{ $league->sport->name }}</h6>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-8">
-                                            <div class="row align-items-center justify-content-center">
-                                                <div class="col-12">
-                                                    <div class="cul-div">
-                                                        <h6>
-                                                            {{ $league->name }}
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
-                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
-                                                class="btn bookin-btn"> <i class="fas fa-tags"></i> League Details</a>
-                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
-                                                class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
-                                            </a>
-                                        </div>
+                    <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            @foreach ($upcomingLeagues as $key => $league)
+                                <button type="button" data-bs-target="#carouselleague" data-bs-slide-to="{{ $key }}" class="@if($key == 1) active @endif" aria-current="true" aria-label="Slide 1"></button>
+                            @endforeach
+                        </div>
+                        <div class="carousel-inner">
+                            @foreach ($upcomingLeagues as $key => $league)
+                                <div class="carousel-item @if($key == 1) active @endif">
+                                    <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{ $league->name }}</h6>
+                                        <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
+                                        <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
+                                            class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
+                                        <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
+                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselleague" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -357,7 +360,7 @@
                 <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
             </div> --}}
         </div>
-
+        
         <div class="mediasection d-inline-block w-100">
             <div class="container">
                 <div class="mindle-heading text-center">
@@ -403,7 +406,55 @@
             </div>
         </div>
     </section>
+    {{-- <section class="float-start w-100">
+        <div class="match-result-div">
+            <div class="container">
+                <div class="mindle-heading text-center">
+                    <h5>Upcoming Leagues</h5>
+                    <h1>REGISTER FOR EVENTS HERE</h1>
+                </div>
 
+                <div class="col-lg-9 mt-5 mx-auto">
+                    <div class="next-matchu mt-4">
+                        @foreach ($upcomingLeagues as $key => $league)
+                            <div class="comon-matchbn">
+                                <div class="topikn-div">
+                                    <div class="more-details-div d-md-flex align-items-center">
+                                        <h5 class="m-0">
+                                            <i class="fas fa-calendar-week"></i> {{ show_date($league->start) }} -
+                                            {{ show_date($league->end) }}
+                                        </h5>
+                                        <h6>/ {{ $league->sport->name }}</h6>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-8">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-12">
+                                                    <div class="cul-div">
+                                                        <h6>
+                                                            {{ $league->name }}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-md-4 mt-3 mt-md-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+                                            <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
+                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
+                                            <a href="{{ route('administration.league.show', ['league' => $league]) }}"
+                                                class="btn btn-bok-link"> <i class="fas fa-external-link-square-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
     <section class="ads">
         <div class="container">
             <div class="row">
@@ -426,6 +477,42 @@
         </div>
     </section>
     <!-- End row -->
+    <!-- Modal -->
+    <div class="modal fade " id="leaguemodal" tabindex="-1" aria-labelledby="leaguemodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="leaguemodalLabel">Upcoming League</h1>
+                    <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
+                        <i class="la la-check"></i>
+                        <b>Register Now</b>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @if (!is_null($modalLeague)) 
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (!empty($modalLeague->logo))
+                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height="" width="100%" alt="modalLeague">
+                                @endif
+                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the everyone wins league.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-success btn-outline-custom fw-bolder" style="
+                            float: right;">
+                            <i class="la la-check"></i>
+                            <b>Register Now</b>
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -436,7 +523,10 @@
 
 @section('custom_script')
     {{--  External Custom Javascript  --}}
-    <script>
-        // Custom Script Here
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $("#leaguemodal").modal("show");
+        });
     </script>
+    
 @endsection
