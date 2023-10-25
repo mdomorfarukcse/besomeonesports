@@ -6,7 +6,7 @@
                     <a href="#" class="col-lg-5 col-lg-offset-2">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="logo" />
                     </a>
-                    <p class="col-lg-8 ms-md-4 mt-4 mt-md-0 text-white spt"> At Be Someone Sports, our missions is to
+                    <p class="col-lg-8 ms-md-4 mt-4 mt-md-0 text-white spt"> At Be Someone Sports, our mission is to
                         inspire and empower individuals to achieve their full potential through sports</p>
                 </div>
                 <div class="support-section mt-4">
