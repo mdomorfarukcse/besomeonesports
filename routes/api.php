@@ -39,6 +39,6 @@ Route::middleware(['web'])->group(function () {
 /*==============================================================
 =========================< Auth Routes >========================
 ==============================================================*/
-Route::middleware(['auth', 'player_exist'])->group(function () {
+Route::middleware(['auth:api', 'player_exist'])->group(function () {
     include_once 'api/administration/administration.php';
 });
