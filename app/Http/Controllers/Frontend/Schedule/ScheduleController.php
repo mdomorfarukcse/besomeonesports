@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Schedule;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule\Schedule;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -13,6 +14,15 @@ class ScheduleController extends Controller
     public function index()
     {
         return view('frontend.schedule.index');
+    }
+    
+    /**
+     * API Index.
+     */
+    public function apiIndex()
+    {
+        $schedules = Schedule::whereStatus('Active')->get();
+        return response()->json(['schedules' => $schedules]);
     }
 
     /**
@@ -37,6 +47,14 @@ class ScheduleController extends Controller
     public function show(string $id)
     {
         //
+    }
+    
+    /**
+     * API Show.
+     */
+    public function apiShow(Schedule $schedule)
+    {
+        return response()->json(['schedule' => $schedule]);
     }
 
     /**

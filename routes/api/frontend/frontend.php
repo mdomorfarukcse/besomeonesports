@@ -10,4 +10,6 @@ Route::prefix('frontend')
         ->group(function () {
             // league
             include_once 'league/league.php';
+            // schedule
+            include_once 'schedule/schedule.php';
         });
