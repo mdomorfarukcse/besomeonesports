@@ -401,4 +401,111 @@ class LeagueController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+
+    /**
+     * League Registration Store
+     */
+    public function apiRegisterPlayer(Request $request, League $league) {
+        // dd($request->all(), $league);
+        $request->validate([
+            'league_id' => 'required|exists:leagues,id',
+            'player_id' => ['required', 'exists:players,id', new UniqueLeaguePlayerRule],
+        ], [
+            'league_id.required' => 'The league field is required.',
+            'league_id.exists' => 'The selected league is invalid.',
+            'player_id.required' => 'You didn\'t select any player.',
+            'player_id.exists' => 'The selected player is not registered yet.',
+        ]);
+        
+        try{
+            $cardNumber = $request->card_number;
+            $expirationDate = $request->card_expiry;
+            $cvv = $request->card_cvc;
+
+            $player = Player::with('user')->whereId($request->player_id)->firstOrFail();
+
+            $invoice_number = 'EPRI'.unique_id(11,11);
+
+            // Remove any non-numeric characters from the card number
+            $cleanedCardNumber = preg_replace('/\D/', '', $cardNumber);
+
+            $merchantAuthentication = new MerchantAuthenticationType();
+            $merchantAuthentication->setName(env('AUTHORIZENET_API_LOGIN_ID'));
+            $merchantAuthentication->setTransactionKey(env('AUTHORIZENET_TRANSACTION_KEY'));
+
+            $creditCard = new CreditCardType();
+            $creditCard->setCardNumber($cleanedCardNumber); // Use the cleaned card number
+            $creditCard->setExpirationDate($expirationDate);
+            $creditCard->setCardCode($cvv);
+
+            $payment = new PaymentType();
+            $payment->setCreditCard($creditCard);
+
+            $transactionRequestType = new TransactionRequestType();
+            $transactionRequestType->setTransactionType("authCaptureTransaction");
+            $transactionRequestType->setAmount($league->registration_fee);
+            $transactionRequestType->setPayment($payment);
+
+            // Set order information
+            $description = 'League ('.$league->name.') Registration By Player ('.$player->user->name.')';
+            $order = new OrderType();
+            $order->setInvoiceNumber($invoice_number);
+            $order->setDescription($description);
+            $transactionRequestType->setOrder($order);
+
+            // Set customer information
+            $customerData = new CustomerDataType();
+            $customerData->setId($player->player_id);
+            $transactionRequestType->setCustomer($customerData);
+
+            // Set shipping information
+            $shippingInfo = new NameAndAddressType();
+            $shippingInfo->setFirstName($player->first_name);
+            $shippingInfo->setLastName($player->last_name);
+            $shippingInfo->setAddress($player->street_address);
+            $shippingInfo->setCity($player->city);
+            $shippingInfo->setState($player->state);
+            $shippingInfo->setZip($player->postal_code);
+            $transactionRequestType->setShipTo($shippingInfo);
+
+            $tr_request = new CreateTransactionRequest();
+            $tr_request->setMerchantAuthentication($merchantAuthentication);
+            $tr_request->setRefId("ref" . time());
+            $tr_request->setTransactionRequest($transactionRequestType);
+
+            $controller = new CreateTransactionController($tr_request);
+            $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
+
+            if ($response != null) {
+                $trasactionReport = $response->getTransactionResponse();
+
+                if ($trasactionReport != null && $trasactionReport->getResponseCode() == "1") {
+                    // dd($response, $trasactionReport, $trasactionReport->getTransId());
+
+                    DB::transaction(function () use ($request, $league, $trasactionReport, $invoice_number) {
+                        $paidBy = decrypt($request->paid_by);
+
+                        // Attach the player to the league
+                        $league->players()->attach($request->player_id, [
+                            'paid_by' => $paidBy,
+                            'total_paid' => $league->registration_fee,
+                            'transaction_id' => $trasactionReport->getTransId(),
+                            'invoice_number' => $invoice_number,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    }, 5);
+
+                    return response()->json(['league' => $league]);
+                } else {
+                    return response()->json(['error' => $response->getMessages()->getMessage()[0]->getText()]);
+                }
+            } else {
+                return response()->json(['error' => 'Payment Failed! '.$response->getMessages()->getMessage()[0]->getText()]);
+            }
+        } catch (Exception $e){
+            return response()->json(['error' => 'Registration Failed! There is some error! Please fix and try again.']);
+        }
+    }
 }
