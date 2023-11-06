@@ -41,7 +41,8 @@ class PermissionsTableSeeder extends Seeder
             'video',
             'blog',
             'gallery',
-            'news'
+            'news',
+            'contact',
         ];
 
         foreach ($groups as $group) {

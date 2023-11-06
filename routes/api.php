@@ -23,3 +23,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:api');
+
+
+
+/*==============================================================
+======================< API Routes >=================
+==============================================================*/
+/*==============================================================
+======================< Non-Auth Routes >=======================
+==============================================================*/
+Route::middleware(['web'])->group(function () {
+    include_once 'api/frontend/frontend.php';
+});
+
+/*==============================================================
+=========================< Auth Routes >========================
+==============================================================*/
+Route::middleware(['auth:api', 'player_exist'])->group(function () {
+    include_once 'api/administration/administration.php';
+});

@@ -356,6 +356,7 @@
                             <li><a href="{{ route('administration.sponsor.index') }}">Sponsors</a></li>
                             <li><a href="{{ route('administration.gallery.index') }}">Gallery</a></li>
                             <li><a href="{{ route('administration.video.index') }}">Video</a></li>
+                            <li><a href="{{ route('administration.contact.index') }}">Contact</a></li>
                         </ul>
                     </li>
                 @endrole

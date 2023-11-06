@@ -62,17 +62,18 @@
                                 </li>
                             </ul>
                             <h2 class="mt-5">Get In Touch</h2>
-                            <form name="fmn" action="" method="post">
+                            <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
+                                @csrf
                                 <div class="row mt-4">
                                     <div class="col-lg-6">
                                         <div class="from-group">
-                                            <input type="text" name="firstname" class="form-control"
+                                            <input type="text" name="first_name" class="form-control"
                                                 placeholder="First Name*" required />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="from-group">
-                                            <input type="text" name="lastname" class="form-control"
+                                            <input type="text" name="last_name" class="form-control"
                                                 placeholder="Last Name*" required />
                                         </div>
                                     </div>
@@ -95,19 +96,19 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <label><strong>Interested in:</strong></label><br>
-                                        <input type="checkbox" id="referee" name="interests[]" value="Referee"> Referee<br>
-                                        <input type="checkbox" id="team_mom" name="interests[]" value="Team Mom"> Team Mom<br>
-                                        <input type="checkbox" id="coach" name="interests[]" value="Coach"> Coach<br>
-                                        <input type="checkbox" id="join_league" name="interests[]" value="Joining the League"> Joining the League<br>
-                                        <input type="checkbox" id="more_info" name="interests[]" value="More Info about Be Someone Sports League"> More Info about Be Someone Sports League<br><br>
+                                        <input type="checkbox" id="referee" name="interested_in[]" value="Referee"> Referee<br>
+                                        <input type="checkbox" id="team_mom" name="interested_in[]" value="Team Mom"> Team Mom<br>
+                                        <input type="checkbox" id="coach" name="interested_in[]" value="Coach"> Coach<br>
+                                        <input type="checkbox" id="join_league" name="interested_in[]" value="Joining the League"> Joining the League<br>
+                                        <input type="checkbox" id="more_info" name="interested_in[]" value="More Info about Be Someone Sports League"> More Info about Be Someone Sports League<br><br>
                                     </div>
                                     <div class="col-lg-12">    
                                         <label for="location"><strong>Select Location:</strong></label><br>
-                                        <input type="checkbox" id="pearland" name="locations[]" value="Pearland"> Pearland<br>
-                                        <input type="checkbox" id="friendswood" name="locations[]" value="Friendswood"> Friendswood<br><br>
+                                        <input type="checkbox" id="pearland" name="location[]" value="Pearland"> Pearland<br>
+                                        <input type="checkbox" id="friendswood" name="location[]" value="Friendswood"> Friendswood<br><br>
                                     </div>
                                     <div class="col-lg-12">
-                                        <input type="submit" name="submit" class="btn comon-btn" value="Submit" />
+                                        <button type="submit" class="btn comon-btn">Send Message</button>
                                     </div>
                                 </div>
                             </form>
