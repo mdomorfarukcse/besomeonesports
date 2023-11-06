@@ -90,6 +90,45 @@ class LeagueController extends Controller
         }
         return view('administration.league.my', compact(['leagues']));
     }
+    
+    /**
+     * Display a listing of the resource.
+     */
+    public function apiMyLeagues()
+    {
+        $authUser = Auth::user();
+        if ($authUser->hasRole('coach')) {
+            // Get the coach
+            $coach = $authUser->coach;
+            
+            // Get the leagues associated with teams where the coach is the coach
+            $leagues = League::whereHas('teams', function ($team) use ($coach) {
+                $team->where('coach_id', $coach->id);
+            })->get();
+            
+        } elseif ($authUser->hasRole('player')) {
+            $player = Player::with('leagues')->whereId($authUser->player->id)->firstOrFail();
+
+            $leagues = $player->leagues;
+        } elseif ($authUser->hasRole('guardian')) {
+            $guardianPlayers = $authUser->players()->count();
+            if ($guardianPlayers > 0) { 
+                $player = Player::with('leagues')->whereGuardianId($authUser->id)->firstOrFail();
+
+                $leagues = $player->leagues;
+            } else {
+                $leagues = [];
+            }
+        } elseif ($authUser->hasRole('referee')) {
+            $referee = User::role('referee')->whereId($authUser->id)->firstOrFail();
+
+            $leagues = $referee->leagues;
+        } else {
+            $leagues = [];
+        }
+        return response()->json(['leagues' => $leagues]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -166,6 +205,27 @@ class LeagueController extends Controller
                         ])
                         ->firstOrFail();
         return  view('administration.league.show', compact(['league']));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function apiShow(League $league)
+    {
+        $league = League::whereId($league->id)->with([
+                            'season' => function($season) {
+                                $season->select(['id', 'name']);
+                            },
+                            'sport' => function($sport) {
+                                $sport->select(['id', 'name']);
+                            },
+                            'divisions',
+                            'venues',
+                            'referees',
+                            'teams',
+                        ])
+                        ->firstOrFail();
+    return response()->json(['league' => $league]);
     }
 
     /**
@@ -505,7 +565,7 @@ class LeagueController extends Controller
                 return response()->json(['error' => 'Payment Failed! '.$response->getMessages()->getMessage()[0]->getText()]);
             }
         } catch (Exception $e){
-            return response()->json(['error' => 'Registration Failed! There is some error! Please fix and try again.']);
+            return response()->json(['error' => 'Registration Failed! There is some error! Please fix and try again. The Error is: '.$e->getMessage()]);
         }
     }
 }
