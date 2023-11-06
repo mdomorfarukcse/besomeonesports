@@ -83,6 +83,9 @@ Route::prefix('administration')
             // Ads
             include_once 'ads/ads.php';
 
+            // Contact
+            include_once 'contact/contact.php';
+
             // Manage User
             include_once 'user_management/user_management.php';
         });
