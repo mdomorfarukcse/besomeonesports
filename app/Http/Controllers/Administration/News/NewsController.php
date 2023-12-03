@@ -18,6 +18,15 @@ class NewsController extends Controller
         return view('administration.news.index', compact(['news']));
     }
 
+    public function apiIndex()
+    {
+        $news = News::all();
+        // Hide the specified columns
+        $news->makeHidden(['updated_at']);
+        
+        return response()->json($news);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -54,6 +63,16 @@ class NewsController extends Controller
     public function show(News $news)
     {
         return view('administration.news.show', compact(['news']));
+    }
+    
+    /**
+     * Display the specified resource.
+     */
+    public function apiShow(News $news)
+    {
+        $news->makeHidden(['updated_at']);
+        
+        return response()->json($news);
     }
 
     /**

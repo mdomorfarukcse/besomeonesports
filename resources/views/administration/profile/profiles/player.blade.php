@@ -145,21 +145,32 @@
                                         <div class="table-responsive">
                                             <table class="table table-bordered mb-0">
                                                 <tbody>
-                                                    <tr>
-                                                        <th>Guardian Name</th>
-                                                        <td>{{ $profile->player->guardian_name }}</td>
+                                                    <tr class="text-center">
+                                                        <td colspan="2">
+                                                            <div class="user-avatar">
+                                                                @if (is_null($profile->player->guardian->avatar)) 
+                                                                    <img src="https://fakeimg.pl/200x200" alt="User Avatar" class="img-thumbnail" width="150">
+                                                                @else 
+                                                                    <img src="{{ show_image($profile->player->guardian->avatar) }}" alt="User Avatar" class="img-thumbnail" width="150">
+                                                                @endif
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Guardian Relation</th>
+                                                        <th>Name</th>
+                                                        <td>{{ $profile->player->guardian->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Relation</th>
                                                         <td>{{ $profile->player->guardian_relation }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Guardian Email</th>
-                                                        <td>{{ $profile->player->guardian_email }}</td>
+                                                        <th>Email</th>
+                                                        <td>{{ $profile->player->guardian->email }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Guardian Contact</th>
-                                                        <td>{{ $profile->player->guardian_contact }}</td>
+                                                        <th>Contact</th>
+                                                        <td>{{ $profile->player->guardian->contact_number }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
