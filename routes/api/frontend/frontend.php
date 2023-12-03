@@ -14,6 +14,8 @@ Route::prefix('frontend')
             include_once 'schedule/schedule.php';
             // contact
             include_once 'contact/contact.php';
+            // news
+            include_once 'news/news.php';
             // settings
             include_once 'settings/settings.php';
         });
