@@ -43,6 +43,9 @@ class PermissionsTableSeeder extends Seeder
             'gallery',
             'news',
             'contact',
+
+            // Settings
+            'settings',
         ];
 
         foreach ($groups as $group) {
