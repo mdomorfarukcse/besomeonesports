@@ -219,23 +219,16 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="guardian_name">Guardian Name <span class="required">*</span></label>
-                                        <input type="text" name="guardian_name" value="{{ $profile->player->guardian_name }}" class="form-control @error('guardian_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
-                                        @error('guardian_name')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="guardian_contact">Guardian Contact No.</label>
-                                        <input type="text" name="guardian_contact" value="{{ $profile->player->guardian_contact }}" class="form-control @error('guardian_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
-                                        @error('guardian_contact')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="guardian_email">Guardian Email.</label>
-                                        <input type="text" name="guardian_email" value="{{ $profile->player->guardian_email }}" class="form-control @error('guardian_email') is-invalid @enderror" placeholder="Ex: guardian@mail.com"/>
-                                        @error('guardian_email')
+                                        <label for="guardian_id">Select Guardian <span class="required">*</span></label>
+                                        <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id" required>
+                                            <option value="">Select Guardian</option>
+                                            @foreach ($guardians as $guardian) 
+                                                <option value="{{ $guardian->id }}" @selected($guardian->id === $profile->player->guardian_id)>
+                                                    {{ $guardian->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('guardian_id')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>

@@ -27,6 +27,38 @@ class ProfileController extends Controller
         // dd($profile);
         return view('administration.profile.index', compact(['profile']));
     }
+    
+    public function apiIndex()
+    {
+        $auth_user_id = Auth::user()->id;
+        $profile = User::with(['player', 'coach'])->whereId($auth_user_id)->firstOrFail();
+        
+        $profile->makeHidden([
+            'email_verified_at', 
+            'remember_token', 
+            'created_at', 
+            'updated_at', 
+            'deleted_at'
+        ]);
+        
+        if ($profile->player) {
+            $profile->player->makeHidden([
+                'created_at', 
+                'updated_at', 
+                'deleted_at'
+            ]);
+        }
+    
+        if ($profile->coach) {
+            $profile->coach->makeHidden([
+                'created_at', 
+                'updated_at', 
+                'deleted_at'
+            ]);
+        }
+
+        return response()->json($profile);
+    }
 
     /**
      * Show the form for security.
@@ -74,6 +106,42 @@ class ProfileController extends Controller
         }
     }
 
+
+    public function apiPasswordUpdate(Request $request)
+    {
+        $user = Auth::user();
+        // dd($request->all(), $user);
+        // Validate the request data
+        $request->validate([
+            'old_password' => [
+                'required',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        $fail('The old password is incorrect.');
+                    }
+                },
+            ],
+            'new_password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                Rule::notIn([$request->input('old_password')]),
+            ],
+        ], [
+            'new_password.not_in' => 'The new password must not be the same as the old password.',
+        ]);
+
+        try{
+            $user->update([
+                'password' => Hash::make($request->input('new_password')),
+            ]);
+
+            return response()->json(['success' => 'Password Updated']);
+        } catch (Exception $e){
+            return response()->json(['error' => 'There is some error! The Error is: ' . $e->getMessage()]);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -82,7 +150,13 @@ class ProfileController extends Controller
         $auth_user_id = Auth::user()->id;
         $profile = User::with(['player', 'coach'])->whereId($auth_user_id)->firstOrFail();
 
-        return view('administration.profile.edit', compact(['profile']));
+        if($profile->player) {
+            $guardians = User::role('guardian')->get();
+        } else {
+            $guardians = null;
+        }
+        // dd($guardians);
+        return view('administration.profile.edit', compact(['profile', 'guardians']));
     }
 
     /**
@@ -129,10 +203,8 @@ class ProfileController extends Controller
                 $player->mother_contact = $request->mother_contact;
                 
                 // Guardian Info
+                $player->guardian_id = $request->guardian_id;
                 $player->guardian_relation = $request->guardian_relation;
-                $player->guardian_name = $request->guardian_name;
-                $player->guardian_email = $request->guardian_email;
-                $player->guardian_contact = $request->guardian_contact;
                 
                 $player->save();
             }, 5);
@@ -284,6 +356,42 @@ class ProfileController extends Controller
             dd($e);
             alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
+        }
+    }
+
+
+    public function apiUpdateProfile(Request $request) {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string',
+            'contact_number' => 'required|string',
+            'birthdate' => 'required|date|date_format:Y-m-d',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'postal_code' => 'required|string',
+            'address' => 'required|string',
+        ]);
+
+        $user = Auth::user();
+        try {
+            if (isset($request->avatar)) {
+                $avatar = upload_image($request->avatar);
+                $user->avatar = $avatar;
+            }
+
+            $user->name = $request->name;
+            $user->contact_number = $request->contact_number;
+            $user->birthdate = $request->birthdate;
+            $user->city = $request->city;
+            $user->state = $request->state;
+            $user->postal_code = $request->postal_code;
+            $user->address = $request->address;
+
+            $user->save();
+
+            return response()->json(['user' => $user]);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'There is some error! The Error is: ' . $e->getMessage()]);
         }
     }
 }
