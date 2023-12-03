@@ -86,6 +86,9 @@ Route::prefix('administration')
             // Contact
             include_once 'contact/contact.php';
 
+            // settings
+            include_once 'settings/settings.php';
+
             // Manage User
             include_once 'user_management/user_management.php';
         });

@@ -12,4 +12,6 @@ Route::prefix('administration')
             include_once 'league/league.php';
             // chat
             include_once 'chat/chat.php';
+            // profile
+            include_once 'profile/profile.php';
         });

@@ -407,9 +407,22 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javaScript:void();">
+                            <i class="fa fa-cogs"></i>
+                            <span>Settings</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            <li>
+                                <a href="{{ route('administration.settings.app.index') }}">
+                                    {{ __('App Setting') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endrole
-
-
+                
                 <li>
                     <a href="/" target="_blank"> 
                         <i class="sl-icon-home"></i>
