@@ -41,6 +41,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        set_time_limit(0);
     }
 
     public function login(Request $request)
