@@ -48,33 +48,57 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try{
-            $response = Http::post(config('app.url').'/api/login', [
+            // $response = Http::post(config('app.url').'/api/login', [
+            //     'email' => $request->email,
+            //     'password' => $request->password,
+            // ]);
+            $url = config('app.url') . '/api/login';
+            $postData = [
                 'email' => $request->email,
                 'password' => $request->password,
-            ]);
+            ];
 
-            // Check if the request was successful
-            if ($response->successful()) {
-                $data = $response->json();
+            // Initialize cURL session
+            $ch = curl_init($url);
 
-                // Extract the token and user data from the response
-                $token = $data['token'];
-                $userData = $data['user'];
+            // Set cURL options
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
-                // Store the token in the session or any other desired storage mechanism
-                // For example, store it in the session:
-                session(['access_token' => $token]);
-
-                // Authenticate the user
-                // Assuming you have a User model and the authentication logic
-                $user = User::where('email', $userData['email'])->first();
-                auth()->login($user);
-
-                // Redirect or return a response based on successful login
-                // return redirect()->route('administration.dashboard.index');
-                toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
-                return redirect()->intended();
+            // Execute cURL session
+            $curl_response = curl_exec($ch);
+           
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                // Handle cURL error
+                return redirect()->route('login')->with('error', 'Something is Wrong. Please try again');
             }
+            // Close cURL session
+            curl_close($ch);
+
+            // Process the response as needed
+            
+            // Check if the request was successful
+            $data = json_decode($curl_response, true);
+
+            // Extract the token and user data from the response
+            $token = $data['token'];
+            $userData = $data['user'];
+
+            // Store the token in the session or any other desired storage mechanism
+            // For example, store it in the session:
+            session(['access_token' => $token]);
+
+            // Authenticate the user
+            // Assuming you have a User model and the authentication logic
+            $user = User::where('email', $userData['email'])->first();
+            auth()->login($user);
+
+            // Redirect or return a response based on successful login
+            // return redirect()->route('administration.dashboard.index');
+            toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
+            return redirect()->intended();
         } catch (Exception $e) {
 
             // Handle failed login
