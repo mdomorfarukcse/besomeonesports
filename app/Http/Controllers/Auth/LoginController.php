@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,45 +41,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        set_time_limit(0);
     }
 
     public function login(Request $request)
     {
-        try{
-            // $response = Http::post(config('app.url').'/api/login', [
-            //     'email' => $request->email,
-            //     'password' => $request->password,
-            // ]);
-            $url = config('app.url') . '/api/login';
-            $postData = [
-                'email' => $request->email,
-                'password' => $request->password,
-            ];
+        $response = Http::post(config('app.url').'/api/login', [
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
 
-            // Initialize cURL session
-            $ch = curl_init($url);
-
-            // Set cURL options
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-
-            // Execute cURL session
-            $curl_response = curl_exec($ch);
-           
-            // Check for cURL errors
-            if (curl_errno($ch)) {
-                // Handle cURL error
-                return redirect()->route('login')->with('error', 'Something is Wrong. Please try again');
-            }
-            // Close cURL session
-            curl_close($ch);
-
-            // Process the response as needed
-            
-            // Check if the request was successful
-            $data = json_decode($curl_response, true);
+        // Check if the request was successful
+        if ($response->successful()) {
+            $data = $response->json();
 
             // Extract the token and user data from the response
             $token = $data['token'];
@@ -94,18 +66,16 @@ class LoginController extends Controller
             // Assuming you have a User model and the authentication logic
             $user = User::where('email', $userData['email'])->first();
             auth()->login($user);
-            
-            // Redirect or return a response based on successful login
-            
-            toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
-            dd( $userData);
-            return redirect()->route('administration.dashboard.index');
-        } catch (Exception $e) {
 
-            // Handle failed login
-            // For example, return an error message or redirect back to the login page
-            return redirect()->route('login')->with('error', 'Invalid credentials');
+            // Redirect or return a response based on successful login
+            // return redirect()->route('administration.dashboard.index');
+            toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
+            return redirect()->intended();
         }
+
+        // Handle failed login
+        // For example, return an error message or redirect back to the login page
+        return redirect()->route('login')->with('error', 'Invalid credentials');
     }
     
 
