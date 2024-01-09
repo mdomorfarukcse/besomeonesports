@@ -96,7 +96,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'role' => $role // Assuming the role is provided in the request
+            'role' => $role, // Assuming the role is provided in the request
         ]);
 
         // Check if the request was successful
