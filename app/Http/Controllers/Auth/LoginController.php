@@ -96,9 +96,9 @@ class LoginController extends Controller
             auth()->login($user);
 
             // Redirect or return a response based on successful login
-            // return redirect()->route('administration.dashboard.index');
+            
             toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
-            return redirect()->intended();
+            return redirect()->route('administration.dashboard.index');
         } catch (Exception $e) {
 
             // Handle failed login
