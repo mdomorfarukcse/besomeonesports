@@ -94,10 +94,11 @@ class LoginController extends Controller
             // Assuming you have a User model and the authentication logic
             $user = User::where('email', $userData['email'])->first();
             auth()->login($user);
-
+            
             // Redirect or return a response based on successful login
             
             toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
+            dd( $userData);
             return redirect()->route('administration.dashboard.index');
         } catch (Exception $e) {
 
