@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,37 +47,40 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $response = Http::post(config('app.url').'/api/login', [
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+        try{
+            $response = Http::post(config('app.url').'/api/login', [
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
 
-        // Check if the request was successful
-        if ($response->successful()) {
-            $data = $response->json();
+            // Check if the request was successful
+            if ($response->successful()) {
+                $data = $response->json();
 
-            // Extract the token and user data from the response
-            $token = $data['token'];
-            $userData = $data['user'];
+                // Extract the token and user data from the response
+                $token = $data['token'];
+                $userData = $data['user'];
 
-            // Store the token in the session or any other desired storage mechanism
-            // For example, store it in the session:
-            session(['access_token' => $token]);
+                // Store the token in the session or any other desired storage mechanism
+                // For example, store it in the session:
+                session(['access_token' => $token]);
 
-            // Authenticate the user
-            // Assuming you have a User model and the authentication logic
-            $user = User::where('email', $userData['email'])->first();
-            auth()->login($user);
+                // Authenticate the user
+                // Assuming you have a User model and the authentication logic
+                $user = User::where('email', $userData['email'])->first();
+                auth()->login($user);
 
-            // Redirect or return a response based on successful login
-            // return redirect()->route('administration.dashboard.index');
-            toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
-            return redirect()->intended();
+                // Redirect or return a response based on successful login
+                // return redirect()->route('administration.dashboard.index');
+                toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
+                return redirect()->intended();
+            }
+        } catch (Exception $e) {
+
+            // Handle failed login
+            // For example, return an error message or redirect back to the login page
+            return redirect()->route('login')->with('error', 'Invalid credentials');
         }
-
-        // Handle failed login
-        // For example, return an error message or redirect back to the login page
-        return redirect()->route('login')->with('error', 'Invalid credentials');
     }
     
 
