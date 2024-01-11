@@ -65,7 +65,7 @@
             <div class="container">
                 <div class="mindle-heading text-center">
                     <h5>Upcoming Leagues</h5>
-                    <h1>REGISTER FOR EVENTS HERE</h1>
+                    <h1>REGISTER NOW</h1>
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
