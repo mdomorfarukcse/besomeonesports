@@ -153,7 +153,7 @@
             <div class="container">
                 <div class="mindle-heading text-center">
                     <h5>Upcoming Leagues</h5>
-                    <h1>REGISTER FOR EVENTS HERE</h1>
+                    <h1>REGISTER NOW</h1>
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
@@ -198,7 +198,7 @@
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
             </div>
         </div>
-        <div class="our-spocerder d-inline-block w-100">
+        {{-- <div class="our-spocerder d-inline-block w-100">
             <div class="container">
                 <div class="col-lg-7">
                     <h1>Join Our <span> Organization </span></h1>
@@ -208,14 +208,13 @@
                     <div class="d-flex align-items-center">
                         <a href="/register" class="btn subc"> Join Player !</a>
                         <a href="{{ route('frontend.coach.create') }}" class="btn leaguebtn ms-4"> Become a Coach !</a>
-                        {{-- <a href="#" class="btn leaguebtn ms-4"> All Leagues</a> --}}
                     </div>
                 </div>
                 <figure class="m-0 right-imgplya">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="besomeone sport" />
                 </figure>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="shop-apge-div">
@@ -525,7 +524,7 @@
     {{--  External Custom Javascript  --}}
     <script type="text/javascript">
         $(window).on("load", function () {
-            $("#leaguemodal").modal("show");
+           // $("#leaguemodal").modal("show");
         });
     </script>
     

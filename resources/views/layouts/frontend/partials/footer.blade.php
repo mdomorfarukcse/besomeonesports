@@ -39,7 +39,7 @@
                                     </svg>
                                 </figure>
                                 <div class="comnlink ms-3">
-                                    <h6 class="m-0">CONTACT US</h6>
+                                    <h6 class="m-0">CONTACT</h6>
                                     <a href="mailto:Info@besomeonesports.com"> Info@besomeonesports.com </a>
                                 </div>
                             </div>
