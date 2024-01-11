@@ -36,13 +36,55 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-lg-2 g-5">
                     <div class="col">
-                        <div class="faq-section1 text-center">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="logo"  width="100%"/>
-                            <h5 class="mt-3" style="text-align: initial;line-height: 30px;">
-                                Welcome to Be Someone Sports' contact page! If you have any questions, inquiries, or are interested in getting involved with our sports programs, please don't hesitate to reach out. We've made it easy for you to connect with us. Simply fill out the form below with your name, email, and phone number. You can also let us know your specific interests, whether it's becoming a referee, a team mom, a coach, or joining our exciting league. We offer opportunities in both Pearland and Friendswood, so be sure to check the location that suits you best. We'll get back to you promptly with the information you need to get started on your sports journey with Be Someone Sports.
-                            </h5>
-
+                        <div class="contact-use-div">
+                            <h2 class="">Get In Touch</h2>
+                            <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
+                                @csrf
+                                <div class="row mt-4">
+                                    <div class="col-lg-12">
+                                        <div class="from-group">
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Name*" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="from-group">
+                                            <input type="text" name="email" class="form-control" placeholder="Email*"
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="from-group">
+                                            <input type="text" name="phone" class="form-control" placeholder="Phone*"
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="from-group">
+                                            <textarea class="form-control" name="message" placeholder="Message*" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-1">
+                                        <label class="mb-1"><strong>Interested in:</strong></label><br>
+                                        <input type="checkbox" id="Joining_League" name="interested_in[]" value="Joining a League"> Joining a League<br>
+                                        <input type="checkbox" id="Becoming_Sponsor" name="interested_in[]" value="Becoming a Sponsor"> Becoming a Sponsor<br>
+                                        <input type="checkbox" id="Becoming_Volunteer" name="interested_in[]" value="Becoming a Volunteer"> Becoming a Volunteer (Ref or Coach)<br>
+                                        <input type="checkbox" id="General_Inquiry" name="interested_in[]" value="General Inquiry"> General Inquiry<br>
+                                    </div>
+                                    <div class="col-lg-12 mt-1">    
+                                        <label for="location" class="mb-1"><strong>Sport of Interest</strong></label><br>
+                                        <input type="checkbox" id="Basketball" name="location[]" value="Basketball"> Basketball<br>
+                                        <input type="checkbox" id="Volleyball" name="location[]" value="Volleyball"> Volleyball<br>
+                                        <input type="checkbox" id="FlagFootball" name="location[]" value="Flag Football"> Flag Football<br><br>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button type="submit" class="btn comon-btn">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
                         </div>
+                        
                     </div>
                     <div class="col">
                         <div class="contact-use-div">
@@ -61,57 +103,7 @@
                                     <span> <i class="fas fa-phone-alt"></i> 832-421-2895</span>
                                 </li>
                             </ul>
-                            <h2 class="mt-5">Get In Touch</h2>
-                            <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
-                                @csrf
-                                <div class="row mt-4">
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <input type="text" name="first_name" class="form-control"
-                                                placeholder="First Name*" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <input type="text" name="last_name" class="form-control"
-                                                placeholder="Last Name*" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <input type="text" name="email" class="form-control" placeholder="Email*"
-                                                required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <input type="text" name="phone" class="form-control" placeholder="Phone"
-                                                required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="from-group">
-                                            <textarea class="form-control" name="message" placeholder="Message" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label><strong>Interested in:</strong></label><br>
-                                        <input type="checkbox" id="referee" name="interested_in[]" value="Referee"> Referee<br>
-                                        <input type="checkbox" id="team_mom" name="interested_in[]" value="Team Mom"> Team Mom<br>
-                                        <input type="checkbox" id="coach" name="interested_in[]" value="Coach"> Coach<br>
-                                        <input type="checkbox" id="join_league" name="interested_in[]" value="Joining the League"> Joining the League<br>
-                                        <input type="checkbox" id="more_info" name="interested_in[]" value="More Info about Be Someone Sports League"> More Info about Be Someone Sports League<br><br>
-                                    </div>
-                                    <div class="col-lg-12">    
-                                        <label for="location"><strong>Select Location:</strong></label><br>
-                                        <input type="checkbox" id="pearland" name="location[]" value="Pearland"> Pearland<br>
-                                        <input type="checkbox" id="friendswood" name="location[]" value="Friendswood"> Friendswood<br><br>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <button type="submit" class="btn comon-btn">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
