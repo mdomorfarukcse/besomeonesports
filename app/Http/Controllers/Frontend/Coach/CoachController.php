@@ -37,11 +37,14 @@ class CoachController extends Controller
         // dd($request->all());
         try {
             $coach = new CoachRequest();
+
+            $request['sport_of_interests'] = json_encode($request['sport_of_interests']);
+            $request['grade_of_interests'] = json_encode($request['grade_of_interests']);
             
             $coach->fill($request->except('avatar'));
 
-            $avatar = upload_image($request->avatar);
-            $coach->avatar = $avatar;
+            // $avatar = upload_image($request->avatar);
+            // $coach->avatar = $avatar;
 
             $coach->save();
             

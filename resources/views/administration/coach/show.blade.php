@@ -113,7 +113,31 @@
                                                             @endif
                                                         </address>    
                                                     </td>
-                                                </tr>
+                                                </tr>                                                
+                                                @if (!is_null($coach->user->sport_of_interests)) 
+                                                    <tr>
+                                                        <th>Fields of Interest</th>
+                                                        <td>
+                                                            <ul class="list-group">
+                                                                @foreach (json_decode($coach->user->sport_of_interests) as $interest) 
+                                                                    <li class="list-group-item border-1">{{ $interest }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                                @if (!is_null($coach->user->grade_of_interests)) 
+                                                    <tr>
+                                                        <th>Fields of Interest</th>
+                                                        <td>
+                                                            <ul class="list-group">
+                                                                @foreach (json_decode($coach->user->grade_of_interests) as $interest) 
+                                                                    <li class="list-group-item border-1">{{ $interest }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                                 <tr>
                                                     <th>Status</th>
                                                     <td>{!! status($coach->status) !!}</td>

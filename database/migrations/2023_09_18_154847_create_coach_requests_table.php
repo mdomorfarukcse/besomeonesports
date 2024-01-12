@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('city', 50);
             $table->string('state', 50);
             $table->string('postal_code', 10);
-            $table->string('usab_license_no', 20)->unique();
+            $table->json('sport_of_interests');
+            $table->json('grade_of_interests');
             $table->timestamps();
         });
     }

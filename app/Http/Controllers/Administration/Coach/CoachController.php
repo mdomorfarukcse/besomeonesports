@@ -266,6 +266,11 @@ class CoachController extends Controller
                     if ($role) {
                         $user->assignRole($role);
                     }
+                    
+                    $user->sport_of_interests = $coach->sport_of_interests;
+                    $user->grade_of_interests = $coach->grade_of_interests;
+
+                    $user->save();
         
         
                     // Store Information into Coach
@@ -278,7 +283,6 @@ class CoachController extends Controller
                     $coachInfo->last_name = $coach->last_name;
                     $coachInfo->birthdate = $coach->birthdate;
                     $coachInfo->phone_number = $coach->phone_number;
-                    $coachInfo->usab_license_no = $coach->usab_license_no;
                     $coachInfo->city = $coach->city;
                     $coachInfo->state = $coach->state;
                     $coachInfo->postal_code = $coach->postal_code;

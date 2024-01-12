@@ -29,12 +29,12 @@ class CoachStoreRequest extends FormRequest
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['required', 'date', 'date_format:Y-m-d'],
             "phone_number" => ['required', 'string', 'max:20', 'unique:coaches,phone_number'],
-            "usab_license_no" => ['required', 'string', 'max:20', 'unique:coaches,usab_license_no'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
-            "extended_address" => ['string', 'max:100'],
+            "sport_of_interests" => ['required', 'array'],
+            "grade_of_interests" => ['required', 'array'],
         ];
     }
 }

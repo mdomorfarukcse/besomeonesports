@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('state', 50)->nullable();
             $table->string('postal_code', 10)->nullable();
             $table->json('sport_of_interests');
+            $table->json('grade_of_interests');
             
             $table->rememberToken();
             $table->timestamps();
