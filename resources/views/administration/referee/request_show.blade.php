@@ -126,7 +126,7 @@
                                                     <th>Fields of Interest</th>
                                                     <td>
                                                         <ul class="list-group d-inline-block">
-                                                            @foreach (json_decode($referee->interests) as $interest) 
+                                                            @foreach (json_decode($referee->sport_of_interests) as $interest) 
                                                                 <li class="list-group-item d-inline-block border-1">{{ $interest }}</li>
                                                             @endforeach
                                                         </ul>

@@ -241,23 +241,23 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="from-group">
-                                        <label for="interests[]" class="text-capitalize">Fields Of Interest *</label>
+                                        <label for="sport_of_interests[]" class="text-capitalize">Fields Of Interest *</label>
                                         <br>
                                         <ul class="list-group d-inline-block">
                                             <li class="list-group-item d-inline-block border-1">
-                                                <input class="form-check-input me-1" type="checkbox" value="Basketball" name="interests[]" id="checkbox1">
+                                                <input class="form-check-input me-1" type="checkbox" value="Basketball" name="sport_of_interests[]" id="checkbox1">
                                                 <label class="form-check-label" for="checkbox1">Basketball</label>
                                             </li>
                                             <li class="list-group-item d-inline-block border-1">
-                                                <input class="form-check-input me-1" type="checkbox" value="Flag Football" name="interests[]" id="checkbox2">
+                                                <input class="form-check-input me-1" type="checkbox" value="Flag Football" name="sport_of_interests[]" id="checkbox2">
                                                 <label class="form-check-label" for="checkbox2">Flag Football</label>
                                             </li>
                                             <li class="list-group-item d-inline-block border-1">
-                                                <input class="form-check-input me-1" type="checkbox" value="Volleyball" name="interests[]" id="checkbox3">
+                                                <input class="form-check-input me-1" type="checkbox" value="Volleyball" name="sport_of_interests[]" id="checkbox3">
                                                 <label class="form-check-label" for="checkbox3">Volleyball</label>
                                             </li>
                                         </ul>
-                                        @error('interests[]')
+                                        @error('sport_of_interests[]')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>

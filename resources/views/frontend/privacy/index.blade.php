@@ -60,7 +60,7 @@
 
                             <p>We collect personal information such as your name, email address, home or work address,
                             telephone number, and demographic information (e.g., zip code, age, gender, preferences,
-                            interests) when you interact with our website. Additionally, we automatically collect
+                            sport_of_interests) when you interact with our website. Additionally, we automatically collect
                             information about your computer hardware and software, including your IP address, browser type,
                             domain names, access times, and referring website addresses. This data helps us operate our
                             service, maintain its quality, and analyze usage statistics.</p>

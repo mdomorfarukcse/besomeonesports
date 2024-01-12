@@ -106,12 +106,12 @@
                                                         </address>    
                                                     </td>
                                                 </tr>
-                                                @if (!is_null($referee->interests)) 
+                                                @if (!is_null($referee->sport_of_interests)) 
                                                     <tr>
                                                         <th>Fields of Interest</th>
                                                         <td>
                                                             <ul class="list-group">
-                                                                @foreach (json_decode($referee->interests) as $interest) 
+                                                                @foreach (json_decode($referee->sport_of_interests) as $interest) 
                                                                     <li class="list-group-item border-1">{{ $interest }}</li>
                                                                 @endforeach
                                                             </ul>

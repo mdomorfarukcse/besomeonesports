@@ -190,7 +190,7 @@ class RefereeController extends Controller
                     $user->state = $referee->state;
                     $user->postal_code = $referee->postal_code;
                     $user->address = $referee->address;
-                    $user->interests = $referee->interests;
+                    $user->sport_of_interests = $referee->sport_of_interests;
 
                     $user->save();
 
