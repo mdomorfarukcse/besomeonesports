@@ -89,13 +89,13 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
                                             <tbody>
-                                                <tr class="text-center">
+                                                {{-- <tr class="text-center">
                                                     <td colspan="2">
                                                         <div class="user-avatar">
                                                             <img src="{{ show_image($referee->avatar) }}" alt="User Avatar" class="img-thumbnail" width="250">
                                                         </div>    
                                                     </td>
-                                                </tr>
+                                                </tr> --}}
                                                 <tr>
                                                     <th>Name</th>
                                                     <td>{{ $referee->first_name }} {{ $referee->last_name }}</td>
@@ -120,6 +120,16 @@
                                                             <br>
                                                             Address: {{ $referee->address }}
                                                         </address>    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fields of Interest</th>
+                                                    <td>
+                                                        <ul class="list-group d-inline-block">
+                                                            @foreach (json_decode($referee->interests) as $interest) 
+                                                                <li class="list-group-item d-inline-block border-1">{{ $interest }}</li>
+                                                            @endforeach
+                                                        </ul>
                                                     </td>
                                                 </tr>
                                             </tbody>

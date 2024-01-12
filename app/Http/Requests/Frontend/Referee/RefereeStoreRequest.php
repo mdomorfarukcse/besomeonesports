@@ -32,7 +32,8 @@ class RefereeStoreRequest extends FormRequest
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
-            "address" => ['required', 'string', 'max:200']
+            "address" => ['required', 'string', 'max:200'],
+            "interests" => ['required', 'array'],
         ];
     }
 }

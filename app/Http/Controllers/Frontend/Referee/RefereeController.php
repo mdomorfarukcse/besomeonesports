@@ -32,14 +32,16 @@ class RefereeController extends Controller
      */
     public function store(RefereeStoreRequest $request)
     {
-        // dd($request->all());
+        // dd($request['interests']);
         try {
             $referee = new RefereeRequest();
+
+            $request['interests'] = json_encode($request['interests']);
             
             $referee->fill($request->except('avatar'));
 
-            $avatar = upload_image($request->avatar);
-            $referee->avatar = $avatar;
+            // $avatar = upload_image($request->avatar);
+            // $referee->avatar = $avatar;
 
             $referee->save();
             

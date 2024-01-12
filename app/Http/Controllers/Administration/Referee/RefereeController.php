@@ -77,6 +77,7 @@ class RefereeController extends Controller
      */
     public function show(User $referee)
     {
+        // dd($referee);
         return view('administration.referee.show', compact(['referee']));
     }
 
@@ -189,6 +190,7 @@ class RefereeController extends Controller
                     $user->state = $referee->state;
                     $user->postal_code = $referee->postal_code;
                     $user->address = $referee->address;
+                    $user->interests = $referee->interests;
 
                     $user->save();
 

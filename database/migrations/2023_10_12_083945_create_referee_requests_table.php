@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 10);
             $table->string('address', 250);
+            $table->json('interests');
             $table->timestamps();
         });
     }

@@ -106,6 +106,18 @@
                                                         </address>    
                                                     </td>
                                                 </tr>
+                                                @if (!is_null($referee->interests)) 
+                                                    <tr>
+                                                        <th>Fields of Interest</th>
+                                                        <td>
+                                                            <ul class="list-group">
+                                                                @foreach (json_decode($referee->interests) as $interest) 
+                                                                    <li class="list-group-item border-1">{{ $interest }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

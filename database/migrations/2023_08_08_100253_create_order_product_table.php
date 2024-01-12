@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->foreignId('order_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->foreignId('product_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->string('color')->nullable();
             $table->string('size')->nullable();
@@ -28,9 +28,11 @@ return new class extends Migration
             $table->float('price', 8, 2)->comment('Current Product Price / Unit');
             $table->float('total', 8, 2)->comment('Quantity * CurrentPrice');
             
-            $table->primary(['order_id', 'product_id', 'color', 'size'], 'order_product_color_size_unique');
+            // Use a unique constraint instead of primary key
+            $table->unique(['order_id', 'product_id', 'color', 'size'], 'order_product_color_size_unique');
         });
     }
+
 
     /**
      * Reverse the migrations.

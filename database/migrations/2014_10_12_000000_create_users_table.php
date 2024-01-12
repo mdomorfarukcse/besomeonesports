@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('city', 50)->nullable();
             $table->string('state', 50)->nullable();
             $table->string('postal_code', 10)->nullable();
+            $table->json('interests');
             
             $table->rememberToken();
             $table->timestamps();

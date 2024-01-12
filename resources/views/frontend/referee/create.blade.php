@@ -76,6 +76,16 @@
             background-repeat: no-repeat;
             background-position: center;
         }
+
+        .list-group-item:hover {
+            cursor: pointer !important;
+        }
+        .list-group-item label:hover {
+            cursor: pointer !important;
+        }
+        .list-group-item input:hover {
+            cursor: pointer !important;
+        }
     </style>
 @endsection
 
@@ -118,7 +128,7 @@
                         <form action="{{ route('frontend.referee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             <div class="row mt-4">
-                                <div class="col-md-12">
+                                {{-- <div class="col-md-12">
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type="file" id="refereeAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
@@ -128,10 +138,11 @@
                                             <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 
                                 <div class="col-lg-6">
                                     <div class="from-group">
+                                        <label for="email" class="text-capitalize">Email *</label>
                                         <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email *" required />
                                         @error('email')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -140,6 +151,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
+                                        <label for="password" class="text-capitalize">Password *</label>
                                         <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Password *" required />
                                         @error('password')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -148,6 +160,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="first_name" class="text-capitalize">First Name *</label>
                                         <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" placeholder="First Name *" required />
                                         @error('first_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -156,6 +169,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="middle_name" class="text-capitalize">Middle Name *</label>
                                         <input type="text" name="middle_name" value="{{ old('middle_name') }}" class="form-control" placeholder="Middle Name" />
                                         @error('middle_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -164,6 +178,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="last_name" class="text-capitalize">Last Name *</label>
                                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Last Name *" required />
                                         @error('last_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -172,6 +187,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
+                                        <label for="birthday" class="text-capitalize">Birthday *</label>
                                         <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control" placeholder="Birthdate *" required />
                                         @error('birthdate')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -180,14 +196,25 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
+                                        <label for="contact_number" class="text-capitalize">Contact Number *</label>
                                         <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control" placeholder="Contact Number *" required />
                                         @error('contact_number')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="from-group">
+                                        <label for="address" class="text-capitalize">Address *</label>
+                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Address *" required />
+                                        @error('address')
+                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="city" class="text-capitalize">City *</label>
                                         <input type="text" name="city" value="{{ old('city') }}" class="form-control" placeholder="City *" required />
                                         @error('city')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -196,6 +223,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="state" class="text-capitalize">State *</label>
                                         <input type="text" name="state" value="{{ old('state') }}" class="form-control" placeholder="State/Province *" required />
                                         @error('state')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -204,6 +232,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="postal_code" class="text-capitalize">Postal Code *</label>
                                         <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control" placeholder="Postal Code *" required />
                                         @error('postal_code')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -212,8 +241,23 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="from-group">
-                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Address *" required />
-                                        @error('address')
+                                        <label for="interests[]" class="text-capitalize">Fields Of Interest *</label>
+                                        <br>
+                                        <ul class="list-group d-inline-block">
+                                            <li class="list-group-item d-inline-block border-1">
+                                                <input class="form-check-input me-1" type="checkbox" value="Basketball" name="interests[]" id="checkbox1">
+                                                <label class="form-check-label" for="checkbox1">Basketball</label>
+                                            </li>
+                                            <li class="list-group-item d-inline-block border-1">
+                                                <input class="form-check-input me-1" type="checkbox" value="Flag Football" name="interests[]" id="checkbox2">
+                                                <label class="form-check-label" for="checkbox2">Flag Football</label>
+                                            </li>
+                                            <li class="list-group-item d-inline-block border-1">
+                                                <input class="form-check-input me-1" type="checkbox" value="Volleyball" name="interests[]" id="checkbox3">
+                                                <label class="form-check-label" for="checkbox3">Volleyball</label>
+                                            </li>
+                                        </ul>
+                                        @error('interests[]')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
