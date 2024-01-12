@@ -96,7 +96,10 @@ class RefereeController extends Controller
     {
         try {
             DB::transaction(function() use ($request, $referee) {
-                $avatar = upload_image($request->avatar);
+                if ($request->avatar) {
+                    $avatar = upload_image($request->avatar);
+                    $referee->avatar = $avatar;
+                }
 
                 $referee->name = $request->name;
                 $referee->email = $request->email;
@@ -106,7 +109,6 @@ class RefereeController extends Controller
                 $referee->state = $request->state;
                 $referee->postal_code = $request->postal_code;
                 $referee->address = $request->address;
-                $referee->avatar = $avatar;
 
                 $referee->save();
             }, 5);
