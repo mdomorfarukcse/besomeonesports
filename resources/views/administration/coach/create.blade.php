@@ -243,7 +243,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="usab_license_no">USAB License No. <span class="required">*</span></label>
+                                            <label for="usab_license_no">Drivers License No. <span class="required">*</span></label>
                                             <input type="text" name="usab_license_no" value="{{ old('usab_license_no') }}" class="form-control @error('usab_license_no') is-invalid @enderror" placeholder="88941AE1611" required/>
                                             @error('usab_license_no')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
