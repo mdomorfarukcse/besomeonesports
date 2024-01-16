@@ -31,6 +31,12 @@
         #carouselleague img {
             max-height: 470px;
         }
+        .red-bottrom {
+            z-index: 1;
+        }
+        #carouselleague .carousel-caption{
+            z-index: 999999;
+        }
     </style>
 @endsection
 
