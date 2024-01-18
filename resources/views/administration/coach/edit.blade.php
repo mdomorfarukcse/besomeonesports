@@ -216,9 +216,9 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="usab_license_no">Drivers License No. <span class="required">*</span></label>
-                                            <input type="text" name="usab_license_no" value="{{ $coach->usab_license_no }}" class="form-control @error('usab_license_no') is-invalid @enderror" placeholder="88941AE1611" required/>
-                                            @error('usab_license_no')
+                                            <label for="driver_license_no">Drivers License No. <span class="required">*</span></label>
+                                            <input type="text" name="driver_license_no" value="{{ $coach->driver_license_no }}" class="form-control @error('driver_license_no') is-invalid @enderror" placeholder="88941AE1611" required/>
+                                            @error('driver_license_no')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

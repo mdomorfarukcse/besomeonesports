@@ -29,7 +29,7 @@ class CoachUpdateRequest extends FormRequest
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['required', 'date', 'date_format:Y-m-d'],
             "phone_number" => ['required', 'string', 'max:20'],
-            "usab_license_no" => ['required', 'string', 'max:20'],
+            "driver_license_no" => ['required', 'string', 'max:20'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],

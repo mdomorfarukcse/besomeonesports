@@ -97,6 +97,10 @@
                                                     <td>{{ $coach->phone_number }}</td>
                                                 </tr>
                                                 <tr>
+                                                    <th>Driver License No</th>
+                                                    <td>{{ $coach->driver_license_no }}</td>
+                                                </tr>
+                                                <tr>
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">

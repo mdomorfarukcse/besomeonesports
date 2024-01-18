@@ -33,6 +33,7 @@ class CoachStoreRequest extends FormRequest
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
+            "driver_license_no" => ['required', 'string', 'max:20'],
             "sport_of_interests" => ['required', 'array'],
             "grade_of_interests" => ['required', 'array'],
         ];

@@ -171,7 +171,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="from-group">
                                         <label for="birthdate" class="text-capitalize">birthdate *</label>
                                         <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control" placeholder="Birthdate *" required />
@@ -180,11 +180,20 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="from-group">
                                         <label for="phone_number" class="text-capitalize">Phone Number *</label>
                                         <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="Contact Number *" required />
                                         @error('phone_number')
+                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="from-group">
+                                        <label for="driver_license_no" class="text-capitalize">Driver License No *</label>
+                                        <input type="text" name="driver_license_no" value="{{ old('driver_license_no') }}" class="form-control" placeholder="Driver License No *" required />
+                                        @error('driver_license_no')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
