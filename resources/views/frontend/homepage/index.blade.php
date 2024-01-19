@@ -488,10 +488,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="leaguemodalLabel">Upcoming League</h1>
-                    <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
-                        <i class="la la-check"></i>
-                        <b>Register Now</b>
-                    </a>
+                    @if (!is_null($modalLeague)) 
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
+                            <i class="la la-check"></i>
+                            <b>Register Now</b>
+                        </a>
+                    @endif
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 @if (!is_null($modalLeague)) 
