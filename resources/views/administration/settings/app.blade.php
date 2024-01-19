@@ -58,21 +58,21 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="url">Website Link <span class="required">*</span></label>
-                                            <input type="url" name="url" value="{{ $app->url }}" class="form-control @error('url') is-invalid @enderror" placeholder="https://besomeonsports.com" required/>
+                                            <input type="url" name="url" value="{{ $app->url ?? old('url') }}" class="form-control @error('url') is-invalid @enderror" placeholder="https://besomeonsports.com" required/>
                                             @error('url')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="about_website">About Website</label>
-                                            <textarea name="about_website" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Details">{{ $app->about_website }}</textarea>
+                                            <textarea name="about_website" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Details">{{ $app->about_website ?? old('about_website') }}</textarea>
                                             @error('about_website')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="about_us">About Us</label>
-                                            <textarea name="about_us" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Details">{{ $app->about_us }}</textarea>
+                                            <textarea name="about_us" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Details">{{ $app->about_us ?? old('about_us') }}</textarea>
                                             @error('about_us')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

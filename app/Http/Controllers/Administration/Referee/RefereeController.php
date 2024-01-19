@@ -40,8 +40,7 @@ class RefereeController extends Controller
         // dd($request->all());
         try {
             DB::transaction(function() use ($request) {
-                $avatar = upload_image($request->avatar);
-
+                
                 $user = new User();
 
                 $user->name = $request->name;
@@ -53,7 +52,11 @@ class RefereeController extends Controller
                 $user->state = $request->state;
                 $user->postal_code = $request->postal_code;
                 $user->address = $request->address;
-                $user->avatar = $avatar;
+
+                if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
+                    $user->avatar = $avatar;
+                }
 
                 $user->save();
                 
