@@ -133,7 +133,7 @@
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" required/>
+                                    <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg"/>
                                     <label for="coachAvatar"></label>
                                 </div>
                                 <div class="avatar-preview">
