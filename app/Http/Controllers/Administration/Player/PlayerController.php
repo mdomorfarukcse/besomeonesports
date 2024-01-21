@@ -96,14 +96,18 @@ class PlayerController extends Controller
             DB::transaction(function() use ($request, &$player) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request->avatar);
                 // Store Credentials into User
-                $user = User::create([
-                    'name' => $playerName,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'avatar' => $avatar,
-                ]);
+                $user = new User();
+                $user->name = $playerName;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+
+                if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
+                    $user->avatar = $avatar;
+                }
+
+                $user->save();
                 
                 // Assign the provided role to the user
                 $role = Role::where('name', 'player')->firstOrFail();
