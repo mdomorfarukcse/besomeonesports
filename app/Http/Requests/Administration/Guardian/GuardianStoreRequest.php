@@ -24,12 +24,7 @@ class GuardianStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'birthdate' => ['required', 'date'],
             'contact_number' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string'],
-            'city' => ['required', 'string', 'max:50'],
-            'state' => ['required', 'string', 'max:50'],
-            'postal_code' => ['required', 'string', 'max:10'],
         ];
     }
 }
