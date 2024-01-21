@@ -90,7 +90,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Birthdate</th>
-                                                    <td>{{ show_date($guardian->birthdate) }}</td>
+                                                    <td>
+                                                        @if(!empty($guardian->birthdate))
+                                                            {{ show_date($guardian->birthdate) }}
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Address</th>
