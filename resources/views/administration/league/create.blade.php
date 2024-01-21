@@ -117,13 +117,12 @@
                         <div class="col-md-12">
                             <div class="logo-upload">
                                 <div class="logo-edit">
-                                    <input type="file" id="leagueLogo" name="logo" accept=".png, .jpg, .jpeg" required/>
+                                    <input type="file" id="leagueLogo" name="logo" accept=".png, .jpg, .jpeg" />
                                     <label for="leagueLogo"></label>
                                 </div>
                                 <div class="logo-preview">
                                     <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
                                 </div>
-                                <small class="text-dark">[<strong class="text-danger">Note: </strong> Image Must Need to Upload.]</small>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
