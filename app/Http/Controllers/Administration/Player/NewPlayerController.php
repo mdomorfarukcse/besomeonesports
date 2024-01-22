@@ -40,9 +40,11 @@ class NewPlayerController extends Controller
             DB::transaction(function() use ($request, $user) {
                 $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
                 
-                $avatar = upload_image($request->avatar);
                 $user->name = $playerName;
-                $user->avatar = $avatar;
+                if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
+                    $user->avatar = $avatar;
+                }
                 $user->save();                
                 
                 // Store Information into player

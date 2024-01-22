@@ -41,14 +41,16 @@ class NewsController extends Controller
             'avatar'    => 'required'
         ]);
         try {
-            $avatar = upload_image($request->avatar);
-            $data = $request->all();
-            News::create([
-                'name' => $data['name'],
-                'description' => $data['description'],
-                'avatar' => $avatar,
-                'status' => $data['status'],
-            ]);
+            $news = new News();
+            $news->name = $request->name;
+            $news->description = $request->description;
+            $news->status = $request->status;
+
+            if (isset($request->avatar)) {
+                $avatar = upload_image($request->avatar);
+                $news->avatar = $avatar;
+            }
+            $news->save();
             toast('A New news Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {

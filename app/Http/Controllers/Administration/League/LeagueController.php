@@ -152,19 +152,20 @@ class LeagueController extends Controller
         // dd($request->all());
         try{
             DB::transaction(function() use ($request) {
-                $logo = upload_image($request->logo);
-
                 $league = new League();
 
                 $league->season_id = $request->season_id;
                 $league->sport_id = $request->sport_id;
-                $league->logo = $logo;
                 $league->name = $request->name;
                 $league->registration_fee = $request->registration_fee;
                 $league->start = $request->start;
                 $league->end = $request->end;
                 $league->description = $request->description;
                 $league->status = $request->status;
+                if (isset($request->logo)) {
+                    $logo = upload_image($request->logo);
+                    $league->logo = $logo;
+                }
                 $league->save();
 
                 $league->divisions()->attach($request->divisions);
