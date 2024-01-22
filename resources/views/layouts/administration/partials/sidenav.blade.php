@@ -19,44 +19,38 @@
                         </a>
                     </li>
                 @endif
-
-                @if (auth()->user()->can('schedule.index') || auth()->user()->can('schedule.create'))
+                
+                @if (auth()->user()->can('sport.index') || auth()->user()->can('sport.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="sl-icon-pie-chart"></i>
-                            <span>Schedules</span>
+                            <i class="sl-icon-game-controller"></i>
+                            <span>Sports</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->can('schedule.index'))
-                                <li><a href="{{ route('administration.schedule.calender') }}">Schedule Calender</a></li>
+                            @if (auth()->user()->can('sport.index'))
+                                <li><a href="{{ route('administration.sport.index') }}">All Sports</a></li>
                             @endif
-                            @if (auth()->user()->can('schedule.index'))
-                                <li><a href="{{ route('administration.schedule.index') }}">All Schedules</a></li>
-                            @endif
-                            @if (auth()->user()->can('schedule.create'))
-                                <li><a href="{{ route('administration.schedule.create') }}">Assign New Schedule</a></li>
+                            @if (auth()->user()->can('sport.create'))
+                                <li><a href="{{ route('administration.sport.create') }}">Create New Sport</a></li>
                             @endif
                         </ul>
                     </li>
                 @endif
-                
-                @if (auth()->user()->can('team.index') || auth()->user()->can('team.create'))
+
+                @if (auth()->user()->can('season.index') || auth()->user()->can('season.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="sl-icon-people"></i>
-                            <span>Teams</span>
+                            <i class="sl-icon-layers"></i>
+                            <span>Seasons</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
-                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
+                            @if (auth()->user()->can('season.index'))
+                                <li><a href="{{ route('administration.season.index') }}">All Seasons</a></li>
                             @endif
-                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
-                                <li><a href="{{ route('administration.team.my') }}">My Teams</a></li>
-                            @endif
-                            @if (auth()->user()->can('team.create'))
-                                <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
+                            @if (auth()->user()->can('season.create'))
+                                <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
                             @endif
                         </ul>
                     </li>
@@ -83,24 +77,6 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->can('season.index') || auth()->user()->can('season.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-layers"></i>
-                            <span>Seasons</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            @if (auth()->user()->can('season.index'))
-                                <li><a href="{{ route('administration.season.index') }}">All Seasons</a></li>
-                            @endif
-                            @if (auth()->user()->can('season.create'))
-                                <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-                
                 @if (auth()->user()->can('division.index') || auth()->user()->can('division.create'))
                     <li>
                         <a href="javaScript:void();"> 
@@ -118,25 +94,28 @@
                         </ul>
                     </li>
                 @endif
-                
-                @if (auth()->user()->can('guardian.index') || auth()->user()->can('guardian.create'))
+
+                @if (auth()->user()->can('team.index') || auth()->user()->can('team.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="mdi mdi-account-network"></i>
-                            <span>Guardians</span>
+                            <i class="sl-icon-people"></i>
+                            <span>Teams</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
                             @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <li><a href="{{ route('administration.guardian.index') }}">All Guardians</a></li>
+                                <li><a href="{{ route('administration.team.index') }}">All Teams</a></li>
                             @endif
-                            @if (auth()->user()->can('guardian.create'))
-                                <li><a href="{{ route('administration.guardian.create') }}">Add New Guardian</a></li>
+                            @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
+                                <li><a href="{{ route('administration.team.my') }}">My Teams</a></li>
+                            @endif
+                            @if (auth()->user()->can('team.create'))
+                                <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                             @endif
                         </ul>
                     </li>
                 @endif
-                
+
                 @if (auth()->user()->can('player.index') || auth()->user()->can('player.create'))
                     <li>
                         <a href="javaScript:void();"> 
@@ -153,6 +132,45 @@
                             @endif
                             @if (auth()->user()->can('player.create'))
                                 <li><a href="{{ route('administration.player.create') }}">Add New Player</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if (auth()->user()->can('schedule.index') || auth()->user()->can('schedule.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-pie-chart"></i>
+                            <span>Schedules</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->can('schedule.index'))
+                                <li><a href="{{ route('administration.schedule.calender') }}">Schedule Calender</a></li>
+                            @endif
+                            @if (auth()->user()->can('schedule.index'))
+                                <li><a href="{{ route('administration.schedule.index') }}">All Schedules</a></li>
+                            @endif
+                            @if (auth()->user()->can('schedule.create'))
+                                <li><a href="{{ route('administration.schedule.create') }}">Assign New Schedule</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+                
+                @if (auth()->user()->can('venue.index') || auth()->user()->can('venue.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-grid"></i>
+                            <span>Venues</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->can('venue.index'))
+                                <li><a href="{{ route('administration.venue.index') }}">All Venues</a></li>
+                            @endif
+                            @if (auth()->user()->can('venue.create'))
+                                <li><a href="{{ route('administration.venue.create') }}">Add New Venue</a></li>
                             @endif
                         </ul>
                     </li>
@@ -181,6 +199,24 @@
                     </li>
                 @endif
 
+                @if (auth()->user()->can('guardian.index') || auth()->user()->can('guardian.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="mdi mdi-account-network"></i>
+                            <span>Guardians</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.guardian.index') }}">All Guardians</a></li>
+                            @endif
+                            @if (auth()->user()->can('guardian.create'))
+                                <li><a href="{{ route('administration.guardian.create') }}">Add New Guardian</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
                 @if (auth()->user()->can('referee.index') || auth()->user()->can('referee.create'))
                     <li>
                         <a href="javaScript:void();"> 
@@ -195,42 +231,6 @@
                                 @if (auth()->user()->can('referee.create'))
                                     <li><a href="{{ route('administration.referee.create') }}">Create New Referee</a></li>
                                 @endif
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-
-                @if (auth()->user()->can('venue.index') || auth()->user()->can('venue.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-grid"></i>
-                            <span>Venues</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            @if (auth()->user()->can('venue.index'))
-                                <li><a href="{{ route('administration.venue.index') }}">All Venues</a></li>
-                            @endif
-                            @if (auth()->user()->can('venue.create'))
-                                <li><a href="{{ route('administration.venue.create') }}">Add New Venue</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-
-                @if (auth()->user()->can('sport.index') || auth()->user()->can('sport.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-game-controller"></i>
-                            <span>Sports</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            @if (auth()->user()->can('sport.index'))
-                                <li><a href="{{ route('administration.sport.index') }}">All Sports</a></li>
-                            @endif
-                            @if (auth()->user()->can('sport.create'))
-                                <li><a href="{{ route('administration.sport.create') }}">Create New Sport</a></li>
                             @endif
                         </ul>
                     </li>
