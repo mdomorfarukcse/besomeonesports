@@ -185,7 +185,7 @@
                         <div class="col-md-12">
                             <div class="logo-upload">
                                 <div class="logo-edit">
-                                    <input type="file" id="teamLogo" name="logo" accept=".png, .jpg, .jpeg" required/>
+                                    <input type="file" id="teamLogo" name="logo" accept=".png, .jpg, .jpeg"/>
                                     <label for="teamLogo"></label>
                                 </div>
                                 <div class="logo-preview">
