@@ -55,7 +55,7 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label for="name">Youtube URL <span class="required">*</span></label>
-                                            <input type="text" name="youtubeurl" value="{{ old('youtubeurl') }}" class="form-control @error('youtubeurl') is-invalid @enderror" placeholder="Enter Youtube URL Here " required/>
+                                            <input type="text" name="youtubeurl" value="{{ old('youtubeurl') }}" class="form-control @error('youtubeurl') is-invalid @enderror" placeholder="https://www.youtube.com/embed/-H2GTIv9ZK8" required/>
                                             @error('name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
