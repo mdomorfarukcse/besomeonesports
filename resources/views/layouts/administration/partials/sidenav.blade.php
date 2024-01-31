@@ -94,6 +94,54 @@
                         </ul>
                     </li>
                 @endif
+                
+                @if (auth()->user()->can('guardian.index') || auth()->user()->can('guardian.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="mdi mdi-account-network"></i>
+                            <span>Guardians</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.guardian.index') }}">All Guardians</a></li>
+                            @endif
+                            @if (auth()->user()->can('guardian.create'))
+                                <li><a href="{{ route('administration.guardian.create') }}">Add New Guardian</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+                
+                @if (auth()->user()->can('player.index') || auth()->user()->can('player.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-user"></i>
+                            <span>Players</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
+                            @endif
+                            @if (auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
+                                <li><a href="{{ route('administration.player.my') }}">My Players</a></li>
+                            @endif
+                            @if (auth()->user()->can('player.create'))
+                                <li><a href="{{ route('administration.player.create') }}">Add New Player</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @role ('developer|admin|coach|player') 
+                    <li>
+                        <a href="{{ route('administration.chat.index') }}"> 
+                            <i class="sl-icon-bubbles"></i>
+                            <span>Messaging</span> 
+                        </a>
+                    </li>
+                @endrole
 
                 @if (auth()->user()->can('team.index') || auth()->user()->can('team.create'))
                     <li>
@@ -115,23 +163,25 @@
                         </ul>
                     </li>
                 @endif
-
-                @if (auth()->user()->can('player.index') || auth()->user()->can('player.create'))
+                
+                @if (auth()->user()->can('coach.index') || auth()->user()->can('coach.create'))
                     <li>
                         <a href="javaScript:void();"> 
-                            <i class="sl-icon-user"></i>
-                            <span>Players</span>
+                            <i class="sl-icon-user-following"></i>
+                            <span>Coaches</span>
                             <i class="feather icon-chevron-right pull-right"></i> 
                         </a>
                         <ul class="vertical-submenu">
+                            @if (auth()->user()->hasRole('player'))
+                                <li><a href="{{ route('administration.coach.my') }}">My Coaches</a></li>
+                            @endif
                             @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <li><a href="{{ route('administration.player.index') }}">All Players</a></li>
-                            @endif
-                            @if (auth()->user()->hasRole('coach') || auth()->user()->hasRole('guardian'))
-                                <li><a href="{{ route('administration.player.my') }}">My Players</a></li>
-                            @endif
-                            @if (auth()->user()->can('player.create'))
-                                <li><a href="{{ route('administration.player.create') }}">Add New Player</a></li>
+                                <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
+                                
+                                <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
+                                @if (auth()->user()->can('coach.create'))
+                                    <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
+                                @endif
                             @endif
                         </ul>
                     </li>
@@ -171,47 +221,6 @@
                             @endif
                             @if (auth()->user()->can('venue.create'))
                                 <li><a href="{{ route('administration.venue.create') }}">Add New Venue</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-
-                @if (auth()->user()->can('coach.index') || auth()->user()->can('coach.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-user-following"></i>
-                            <span>Coaches</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            @if (auth()->user()->hasRole('player'))
-                                <li><a href="{{ route('administration.coach.my') }}">My Coaches</a></li>
-                            @endif
-                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <li><a href="{{ route('administration.coach.index') }}">All Coaches</a></li>
-                                
-                                <li><a href="{{ route('administration.coach.request') }}">Coach Requests</a></li>
-                                @if (auth()->user()->can('coach.create'))
-                                    <li><a href="{{ route('administration.coach.create') }}">Create New Coach</a></li>
-                                @endif
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-
-                @if (auth()->user()->can('guardian.index') || auth()->user()->can('guardian.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="mdi mdi-account-network"></i>
-                            <span>Guardians</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <li><a href="{{ route('administration.guardian.index') }}">All Guardians</a></li>
-                            @endif
-                            @if (auth()->user()->can('guardian.create'))
-                                <li><a href="{{ route('administration.guardian.create') }}">Add New Guardian</a></li>
                             @endif
                         </ul>
                     </li>
@@ -331,16 +340,6 @@
                     </li>
                 @endif
 
-                @role ('developer|admin|coach|player') 
-                    <li>
-                        <a href="{{ route('administration.chat.index') }}"> 
-                            <i class="sl-icon-bubbles"></i>
-                            <span>Messaging</span> 
-                        </a>
-                    </li>
-                @endrole
-                
-
                 @role ('developer|admin') 
                     <li>
                         <a href="javaScript:void();"> 
@@ -360,23 +359,6 @@
                         </ul>
                     </li>
                 @endrole
-                
-
-                @if (auth()->user()->can('role.index') || auth()->user()->can('role.create') || auth()->user()->can('permission.index') || auth()->user()->can('permission.create'))
-                    <li>
-                        <a href="javaScript:void();"> 
-                            <i class="sl-icon-layers"></i>
-                            <span>Role & Permission</span>
-                            <i class="feather icon-chevron-right pull-right"></i> 
-                        </a>
-                        <ul class="vertical-submenu">
-                            <li><a href="{{ route('administration.permission.index') }}">All Permission</a></li>
-                            <li><a href="{{ route('administration.role.index') }}">Roles</a></li>
-                            <li><a href="{{ route('administration.role.add.rolepermission') }}">Role in Permission</a></li>
-                            <li><a href="{{ route('administration.role.all.rolepermission') }}">All Roles in Permission</a></li>
-                        </ul>
-                    </li>
-                @endif
 
                 @role ('developer|admin') 
                     <li>
@@ -422,6 +404,22 @@
                         </ul>
                     </li>
                 @endrole
+
+                @if (auth()->user()->can('role.index') || auth()->user()->can('role.create') || auth()->user()->can('permission.index') || auth()->user()->can('permission.create'))
+                    <li>
+                        <a href="javaScript:void();"> 
+                            <i class="sl-icon-layers"></i>
+                            <span>Role & Permission</span>
+                            <i class="feather icon-chevron-right pull-right"></i> 
+                        </a>
+                        <ul class="vertical-submenu">
+                            <li><a href="{{ route('administration.permission.index') }}">All Permission</a></li>
+                            <li><a href="{{ route('administration.role.index') }}">Roles</a></li>
+                            <li><a href="{{ route('administration.role.add.rolepermission') }}">Role in Permission</a></li>
+                            <li><a href="{{ route('administration.role.all.rolepermission') }}">All Roles in Permission</a></li>
+                        </ul>
+                    </li>
+                @endif
                 
                 <li>
                     <a href="/" target="_blank"> 
