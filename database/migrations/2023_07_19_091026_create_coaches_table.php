@@ -27,14 +27,14 @@ return new class extends Migration
             $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
             $table->string('position', 50)->default('Assistant Coach');
-            $table->date('birthdate');
             $table->string('phone_number', 20)->unique();
+            $table->date('birthdate')->nullable();
+            $table->string('driver_license_no', 20)->unique()->nullable();
             $table->string('street_address', 100);
+            $table->string('city', 50)->nullable();
+            $table->string('state', 50)->nullable();
+            $table->string('postal_code', 10)->nullable();
             $table->string('extended_address', 100)->nullable();
-            $table->string('city', 50);
-            $table->string('state', 50);
-            $table->string('postal_code', 10);
-            $table->string('driver_license_no', 20)->unique();
             $table->longText('note', 255)->nullable();
 
             $table->enum('status', [
