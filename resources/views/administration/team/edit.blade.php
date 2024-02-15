@@ -246,13 +246,13 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-5">
-                            <label for="name">Name <span class="required">*</span></label>
+                            <label for="name">Team Name <span class="required">*</span></label>
                             <input type="text" name="name" value="{{ $team->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Chennai Super Kings" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label for="gender">Gender <span class="required">*</span></label>
                             <select class="select2-single form-control @error('gender') is-invalid @enderror" name="gender" required>
                                 <option value="" disabled>Select Gender</option>
@@ -265,14 +265,7 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="maximum_players">Max Players <span class="required">*</span></label>
-                            <input type="number" min="1" step="1" name="maximum_players" value="{{ $team->maximum_players }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
-                            @error('maximum_players')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="" disabled>Select Status</option>
@@ -280,6 +273,13 @@
                                 <option value="Inactive" @if ($team->status === 'Inactive') selected @endif>Inactive</option>
                             </select>
                             @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-2 d-none">
+                            <label for="maximum_players">Max Players <span class="required">*</span></label>
+                            <input type="number" min="1" step="1" name="maximum_players" value="{{ $team->maximum_players ?? 100 }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
+                            @error('maximum_players')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>

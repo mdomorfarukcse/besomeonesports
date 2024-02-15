@@ -64,10 +64,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Team Name</th>
                                 <th>League</th>
-                                <th>Players</th>
-                                <th>Status</th>
+                                <th class="text-center">Players</th>
+                                <th class="text-center">Status</th>
                                 @if (auth()->user()->can('team.show') || auth()->user()->can('team.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -80,23 +80,32 @@
                                     <td>
                                         <span class="text-dark text-capitalize">{{ $team->name }}</span>
                                         <br>
-                                        <small class="text-muted">{{ $team->division->name }}</small>
+                                        <small class="text-muted">
+                                            <b>Division:</b>
+                                            <a href="{{ route('administration.division.show', ['division' => $team->division]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->division->name.'\'s Details') }}">
+                                                {{ $team->division->name }}
+                                            </a>
+                                        </small>
                                     </td>
                                     <td>
                                         <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
                                             {{ $team->league->name }}
                                         </a>
+                                        <br>
+                                        <small class="text-muted">
+                                            <b>Total Teams:</b>
+                                            {{ count($team->league->teams) }}
+                                        </small>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <span class="text-success text-bold">
                                             {{ count($team->players) }}
                                         </span>
-                                        / 
-                                        <span class="text-dark text-bold">
+                                        {{-- /<span class="text-dark text-bold">
                                             {{ $team->maximum_players }}
-                                        </span>
+                                        </span> --}}
                                     </td>
-                                    <td>{!! status($team->status) !!}</td>
+                                    <td class="text-center">{!! status($team->status) !!}</td>
                                     @if (auth()->user()->can('team.show') || auth()->user()->can('team.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">

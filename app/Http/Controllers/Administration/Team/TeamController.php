@@ -26,7 +26,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with(['league', 'players'])->orderBy('created_at', 'desc')->get();
+        $teams = Team::with(['league', 'players', 'division'])->orderBy('created_at', 'desc')->get();
         // dd($teams);
         return view('administration.team.index', compact(['teams']));
     }

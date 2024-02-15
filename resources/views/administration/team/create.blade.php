@@ -242,13 +242,13 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-5">
-                            <label for="name">Name <span class="required">*</span></label>
+                            <label for="name">Team Name <span class="required">*</span></label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Chennai Super Kings" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label for="gender">Gender <span class="required">*</span></label>
                             <select class="select2-single form-control @error('gender') is-invalid @enderror" name="gender" required>
                                 <option value="">Select Gender</option>
@@ -261,14 +261,7 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="maximum_players">Max Players <span class="required">*</span></label>
-                            <input type="number" min="1" step="1" name="maximum_players" value="{{ old('maximum_players') }}" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
-                            @error('maximum_players')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>
@@ -276,6 +269,20 @@
                                 <option value="Inactive">Inactive</option>
                             </select>
                             @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-2 d-none">
+                            <label for="maximum_players" class="d-block">
+                                <span class="float-left">
+                                    Max Players <span class="required">*</span>
+                                </span>
+                                <a href="javascript:void(0);" class="float-right mb-2" data-container="body" data-toggle="popover" data-placement="top" title="Why to set Max-Player Limit?" data-content="Assigning a maximum player limit when creating a team ensures efficiency, optimal resource allocation, effective task distribution, quality work, streamlined communication, and faster decision-making. It prevents team overload, enhancing cohesion and productivity by maintaining a manageable group size.">
+                                    <i class="feather icon-alert-circle"></i>
+                                </a>
+                            </label>
+                            <input type="hidden" min="1" step="1" name="maximum_players" value="100" class="form-control @error('maximum_players') is-invalid @enderror" placeholder="Ex: 12" required/>
+                            @error('maximum_players')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>

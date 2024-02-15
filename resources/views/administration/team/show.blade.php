@@ -123,10 +123,10 @@
                                                     <th>Gender</th>
                                                     <td>{{ $team->gender }}</td>
                                                 </tr>
-                                                <tr>
+                                                {{-- <tr>
                                                     <th>Maximum Players</th>
                                                     <td>{{ $team->maximum_players }}</td>
-                                                </tr>
+                                                </tr> --}}
                                                 <tr>
                                                     <th>Assigned Players</th>
                                                     <td>{{ count($team->players) }}</td>
