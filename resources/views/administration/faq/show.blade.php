@@ -68,7 +68,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Description</th>
-                                                        <td>{{ $faq->description }}</td>
+                                                        <td>{!! $faq->description !!}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

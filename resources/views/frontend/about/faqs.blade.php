@@ -15,6 +15,15 @@
     {{--  External CSS  --}}
     <style>
         /* Custom CSS Here */
+        .contact-page ul {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important;
+            list-style: disc !important;
+            padding-inline-start: 40px  !important;
+        }
+        .contact-page ul li{
+            list-style: disc !important;
+        }
     </style>
 @endsection
 
@@ -52,7 +61,7 @@
                                         </h2>
                                         <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse {{ $key === 0 ? 'show' : '' }}" aria-labelledby="heading{{ $faq->id }}" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                {{ $faq->description }}
+                                                {!! $faq->description !!}
                                             </div>
                                         </div>
                                     </div>

@@ -15,6 +15,62 @@
     {{--  External CSS  --}}
     <style>
         /* Custom CSS Here */
+        .img-container {
+            height: 450px;
+            /* Fixed height for image containers */
+            overflow: hidden;
+            /* Ensure images don't overflow their container */
+        }
+
+        .img-container img {
+            width: 100%;
+            /* Make images fill their container */
+            height: 100%;
+            /* Make images fill the height of their container */
+            object-fit: cover;
+            /* Maintain aspect ratio while covering the container */
+        }
+
+        .about-club-top .row>* {
+            padding-right: 0px !important;
+        }
+        blockquote {
+            font-weight: 100;
+            font-size: 2rem;
+            max-width: 100%;
+            line-height: 1.4;
+            position: relative;
+            margin: 0;
+            padding: .5rem;
+        }
+
+        blockquote:before,
+        blockquote:after {
+            position: absolute;
+            color: #00aaf087;
+            font-size: 8rem;
+            width: 4rem;
+            height: 4rem;
+        }
+
+        blockquote:before {
+            content: '“';
+            left: -3rem;
+            top: -2rem;
+        }
+
+        blockquote:after {
+            content: '”';
+            right: -4rem;
+            bottom: 1rem;
+        }
+
+        cite {
+            line-height: 3;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+        }
     </style>
 @endsection
 
@@ -35,28 +91,56 @@
         <div class="about-page-main comon-sub-page-main d-inline-block w-100">
             <div class="about-club-top">
                 <div class="container">
-                    <div class="mindle-heading text-center">
-                        <h5>CEO</h5>
-                        <h1>Our <span> CEO </span></h1>
-                    </div>
-                    <div class="row row-cols-1 row-cols-lg-2 g-lg-5 mt-0 mt-lg-4">
-                        <div class="col position-relative">
-                            <figure class="big-img">
-                                <img src="{{ asset('frontend/images/owner.png') }}" alt="pic" />
-                            </figure>
-                        </div>
-                        <div class="col">
-                            <h5 class="samll-sub mb-1 mt-0">CEO</h5>
-                            <h2 class="comon-heading m-0">Steven Passons</h2>
-                            <p class="mt-3">
-                                At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
-                                full potential through sports. We Strive to create a positive and inclusive environment
-                                where everyone can develop their skills, build confidence, and experience the joys of
-                                athletic achievement. Through our programs and activities, we aim to promote physical
-                                fitness, teamwork, and sportsmanship, while instilling values as determination,
-                                perseverance, and respect. Our ultimate goal is to help individuals become their best
-                                selves, both on and off the courts.
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="samll-sub mb-1 mt-0">Founder</h5>
+                            <h2 class="comon-heading m-0">About Our Founder</h2>
+                            <p class="mt-3 mb-3">
+                                Be Someone Sports was founded in 2020 by Steve Passons, a military veteran and dedicated
+                                husband and father with a background in project management and operations. After making his
+                                new home in Friendswood, TX, Steve realized something was missing in the local sports
+                                landscape, and he was inspired to offer something truly special for children in the area. He
+                                saw the need for a youth sports league that didn’t award every player a trophy but instead
+                                offered opportunities to grow, learn, and thrive as athletes and as individuals.
                             </p>
+                        </div>
+                        <div class="col-md-5 img-container mb-1">
+                            <a data-fancybox="wk"
+                                href="{{ asset('frontend/images/399574686_831379125658489_3281076801928611589_n-min.jpg') }}">
+                                <img src="{{ asset('frontend/images/399574686_831379125658489_3281076801928611589_n-min.jpg') }}"
+                                    alt="pic2" />
+                            </a>
+                        </div>
+                        <div class="col-md-3 img-container mb-1">
+                            <a data-fancybox="wk"
+                                href="{{ asset('frontend/images/399907775_828842799245455_5408226389578645788_n-min.jpg') }}">
+                                <img src="{{ asset('frontend/images/399907775_828842799245455_5408226389578645788_n-min.jpg') }}"
+                                    alt="pic2" />
+                            </a>
+                        </div>
+                        <div class="col-md-4 img-container mb-1">
+                            <a data-fancybox="wk"
+                                href="{{ asset('frontend/images/402866285_838494524946949_2171351561660342628_n-min.jpg') }}">
+                                <img src="{{ asset('frontend/images/402866285_838494524946949_2171351561660342628_n-min.jpg') }}"
+                                    alt="pic2" />
+                            </a>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-3">
+                            <p>
+                                What started as a grassroots basketball league, spearheaded by Steve, quickly grew into a
+                                new league of its own, attracting hundreds of children eager to participate. The
+                                overwhelming response from the community led Steve to develop a one-of-a-kind youth sports
+                                experience for school-aged kids in the Friendswood, Pearland, Alvin, League City, and
+                                surrounding areas. The league encourages “city pride” and friendly competition among friends
+                                within the same city and across city lines. With each season, Be Someone Sports continues to
+                                expand its reach and impact, guided by Steve's dedication and commitment to creating an
+                                environment where every child has the chance to Be Someone remarkable, both in sports and in
+                                life.
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <blockquote>We want to create something special for the kids, an opportunity for them to Be Someone in sports and life.</blockquote>
+                            <cite>Steve Passons, Owner of Be Someone Sports</cite>
                         </div>
                     </div>
                 </div>

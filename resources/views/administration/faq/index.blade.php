@@ -61,6 +61,7 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Name</th>
+                                <th>Status</th>
                                 <th class="text-right">Actions</th>
                             </tr>
                         </thead>
