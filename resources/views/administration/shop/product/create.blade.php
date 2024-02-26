@@ -161,11 +161,17 @@
                             <label for="sizes[]">Sizes <span class="required">*</span></label>
                             <select class="select2-multi-select form-control @error('sizes[]') is-invalid @enderror" name="sizes[]" multiple="multiple" required>
                                 <option value="" disabled>Select Sizes</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
+                                <option value="Youth Xsmall">Youth Xsmall</option>
+                                <option value="Youth Small">Youth Small</option>
+                                <option value="Youth Medium">Youth Medium</option>
+                                <option value="Youth Large">Youth Large</option>
+                                <option value="Youth XL">Youth XL</option>
+                                <option value="Adult Small">Adult Small</option>
+                                <option value="Adult Medium">Adult Medium</option>
+                                <option value="Adult Large">Adult Large</option>
+                                <option value="Adult XL">Adult XL</option>
+                                <option value="Adult 2XL">Adult 2XL</option>
+                                <option value="Adult 3XL">Adult 3XL</option>
                             </select>
                             @error('sizes[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -177,8 +183,10 @@
                             <select class="select2-multi-select form-control @error('colors[]') is-invalid @enderror" name="colors[]" multiple="multiple" required>
                                 <option value="" disabled>Select Colors</option>
                                 <option value="RED">RED</option>
-                                <option value="BLACK">BLACK</option>
+                                <option value="ORANGE">ORANGE</option>
+                                <option value="BLUE">BLUE</option>
                                 <option value="YELLOW">YELLOW</option>
+                                <option value="MULTICOLOR">MULTICOLOR</option>
                             </select>
                             @error('colors[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

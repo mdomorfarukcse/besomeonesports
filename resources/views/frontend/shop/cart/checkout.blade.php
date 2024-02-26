@@ -97,11 +97,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12 d-none">
                                                     <div class="form-group">
                                                         <label>Full Address <span class="text-danger">*</span></label>
                                                         <small>(Country, City, Road No, House No, Flat No etc.)</small>
-                                                        <textarea name="address" name="address" rows="4" class="form-control" required placeholder="Write your full shipping address">{{ old('address') }}</textarea>
+                                                        <textarea name="address" name="address" rows="4" class="form-control" required placeholder="Write your full shipping address">{{ old('address') ?? 'NA' }}</textarea>
                                                         @error('address')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                         @enderror
