@@ -156,25 +156,31 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
+                        
                         <div class="form-group col-md-6">
-                            <label for="colors">Colors <span class="required">*</span></label>
-                            <select name="colors[]" id="colors" class="form-control @error('colors') is-invalid @enderror" multiple="multiple" required>
-                                @foreach (old('colors', []) as $selectedColor)
-                                    <option value="{{ $selectedColor }}" selected>{{ $selectedColor }}</option>
-                                @endforeach
+                            <label for="sizes[]">Sizes <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('sizes[]') is-invalid @enderror" name="sizes[]" multiple="multiple" required>
+                                <option value="" disabled>Select Sizes</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
                             </select>
-                            @error('colors')
+                            @error('sizes[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
+                        
                         <div class="form-group col-md-6">
-                            <label for="sizes">Sizes <span class="required">*</span></label>
-                            <select name="sizes[]" id="sizes" class="form-control @error('sizes') is-invalid @enderror" multiple="multiple" required>
-                                @foreach (old('sizes', []) as $selectedSize)
-                                    <option value="{{ $selectedSize }}" selected>{{ $selectedSize }}</option>
-                                @endforeach
+                            <label for="colors[]">Colors <span class="required">*</span></label>
+                            <select class="select2-multi-select form-control @error('colors[]') is-invalid @enderror" name="colors[]" multiple="multiple" required>
+                                <option value="" disabled>Select Colors</option>
+                                <option value="RED">RED</option>
+                                <option value="BLACK">BLACK</option>
+                                <option value="YELLOW">YELLOW</option>
                             </select>
-                            @error('sizes')
+                            @error('colors[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
