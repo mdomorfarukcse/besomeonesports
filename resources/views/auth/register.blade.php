@@ -39,7 +39,7 @@
                 <!-- Start row -->
                 <div class="row no-gutters align-items-center justify-content-center">
                     <!-- Start col -->
-                    <div class="col-md-6 col-lg-5">
+                    <div class="col-md-8 col-lg-7">
                         <!-- Start Auth Box -->
                         <div class="auth-box-right">
                             <div class="card">
@@ -52,8 +52,9 @@
                                                     alt="logo" />
                                             </a>
                                         </div>
-
-                                        <h4 class="text-primary my-4"><b>{{ __('REGISTER') }}</b></h4>
+                                        <p class="mt-3">Welcome to <b>Be Someone Sports</b>. We are excited to have you register your player and join our youth sports family.</p>
+                                        <p>To get started, please create an account below and proceed to the registration process.</p>
+                                        {{-- <h4 class="text-primary my-4"><b>{{ __('REGISTER') }}</b></h4> --}}
 
                                         <div class="form-group">
                                             <select name="role"
@@ -101,7 +102,7 @@
                                             <input type="password" value="{{ old('password') }}" name="password"
                                                 required autocomplete="off" tabindex="0"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                placeholder="{{ __('Password') }}">
+                                                placeholder="{{ __('Password*') }}">
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -114,7 +115,7 @@
                                             <input type="password" value="{{ old('password_confirmation') }}"
                                                 name="password_confirmation" required autocomplete="off" tabindex="0"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                placeholder="{{ __('Re-Type Password') }}">
+                                                placeholder="{{ __('Re-Type Password*') }}">
 
                                             @error('password_confirmation')
                                                 <span class="invalid-feedback" role="alert">
@@ -141,7 +142,7 @@
                                                             <p> I agree to <a href="javascript:void(0);"
                                                                     data-toggle="modal"
                                                                     data-target="#termsAndConditionModal"
-                                                                    class="ml-1 text-bold">Sports Etiquette!</a></p>
+                                                                    class="ml-1 text-bold">Sportsmanship Promise</a></p>
                                                         </label>
                                                     </div>
                                                 </div>

@@ -22,20 +22,45 @@
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
-        #carouselleague .carousel-caption{
+
+        #carouselleague .carousel-caption {
             background: #000000ad;
         }
+
         #carouselleague .carousel-item {
             height: 480px;
         }
+
         #carouselleague img {
             max-height: 470px;
         }
+
         .red-bottrom {
             z-index: 1;
         }
-        #carouselleague .carousel-caption{
+
+        #carouselleague .carousel-caption {
             z-index: 999999;
+        }
+
+        .img-container {
+            height: 450px;
+            /* Fixed height for image containers */
+            overflow: hidden;
+            /* Ensure images don't overflow their container */
+        }
+
+        .img-container img {
+            width: 100%;
+            /* Make images fill their container */
+            height: 100%;
+            /* Make images fill the height of their container */
+            object-fit: cover;
+            /* Maintain aspect ratio while covering the container */
+        }
+
+        .about-sec-home .row>* {
+            padding-right: 0px !important;
         }
     </style>
 @endsection
@@ -98,7 +123,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($top_ad)) 
+                        @if (!is_null($top_ad))
                             <a href="{{ $top_ad->url }}">
                                 <span>Ad</span>
                                 <img src="{{ show_image($top_ad->avatar) }}" height="100" alt="" />
@@ -117,42 +142,99 @@
     <section class="float-start w-100 ">
         <div class="about-sec-home">
             <div class="container">
-                <div class="row row-cols-1 row-cols-lg-2 align-items-center">
-                    <div class="col-md-6">
+                <div class="row ">
+                    <div class="col-md-12">
                         <h5>Our Club</h5>
-                        <h1>About the <span> Be Someone Sports </span></h1>
-                        <p class="my-3">
-                            At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
-                            full potential through sports. We Strive to create a positive and inclusive environment
-                            where everyone can develop their skills, build confidence, and experience the joys of
-                            athletic achievement. Through our programs and activities, we aim to promote physical
-                            fitness, teamwork, and sportsmanship, while instilling values as determination,
-                            perseverance, and respect. Our ultimate goal is to help individuals become their best
-                            selves, both on and off the courts.
+                        <h1 class="mb-3">About the <span> Be Someone Sports </span></h1>
+                        <h4 class="mb-3">Offering a new recreational youth sports experience for basketball, flag
+                            football, and volleyball.</h4>
+                        <h5 class="mb-3">Welcome to Be Someone Sports, a recreational youth sports league unlike any other
+                            around. </h5>
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/ZzZ_jIQM-min.jpeg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/010_bso_mvp_vball_2023-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-12 mt-3 mb-3">
+                        <p>Be Someone Sports was created to upgrade every aspect of youth sports. Our unique league provides
+                            an exciting, engaging, family-friendly atmosphere for everyone involved. We offer competitive
+                            recreational basketball, volleyball, and flag football leagues for kids of all school ages in
+                            Friendswood, Pearland, Alvin, League City, and surrounding areas. We also host Select
+                            tournaments and sports camps throughout the year.
                         </p>
-
-                        <h6>Winning and losing are a part of <span>everyday life.</span> This is not the everyone wins
-                            league.</h6>
-
-                        <a href="{{ route('frontend.about.index') }}" class="btn btn-about">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-up-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z">
-                                    </path>
-                                </svg>
-                            </span>
-                            About More
-                        </a>
                     </div>
-                    <div class="col-md-6">
-                        <figure class="m-0 right-ab0">
-                            <img src="{{ asset('frontend/images/besomeonesport_about.jpg') }}" alt="pbm" />
-                        </figure>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/BeSomone Sports Basketball  Summer 2023 All Star Game 08-19-23 (298) (1)-min.jpg') }}"
+                            alt="pic2" />
                     </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/027_bso_mvp_vball_2023 (1)-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 5 00 03 PM (1)-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-12 mt-3 mb-3">
+                        <p>
+                            At Be Someone Sports, we strive to create a positive and inclusive environment where every child
+                            can develop their skills, build confidence, and experience the joys of athletic achievement. But
+                            we're not just about winning trophies here. Winning and losing are a part of everyday life, and
+                            not everyone wins in this league. No matter the final score, our programs are designed to help
+                            our athletes learn the importance of teamwork, communication, and sportsmanship that extends far
+                            beyond the game. We equip our players with opportunities to learn, adapt, and thrive in all
+                            aspects of life.
+                        </p>
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 56 33 PM-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/wajI0n-d-min.jpeg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-12 mt-3 mb-3 text-center">
+                        <h1>Be Someone who makes you proud. Be Someone Sports.</h1>
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/387092992_811197287676673_4090457766972298297_n-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/003_BSS_All-Stars-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    <div class="col-md-4 img-container">
+                        <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}"
+                            alt="pic2" />
+                    </div>
+                    {{-- <a href="{{ route('frontend.about.index') }}" class="btn btn-about">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z">
+                                </path>
+                            </svg>
+                        </span>
+                        About More
+                    </a> --}}
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="match-result-div">
@@ -166,29 +248,37 @@
                     <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             @foreach ($upcomingLeagues as $key => $league)
-                                <button type="button" data-bs-target="#carouselleague" data-bs-slide-to="{{ $key }}" class="@if($key == 1) active @endif" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselleague"
+                                    data-bs-slide-to="{{ $key }}"
+                                    class="@if ($key == 1) active @endif" aria-current="true"
+                                    aria-label="Slide 1"></button>
                             @endforeach
                         </div>
                         <div class="carousel-inner">
                             @foreach ($upcomingLeagues as $key => $league)
-                                <div class="carousel-item @if($key == 1) active @endif">
+                                <div class="carousel-item @if ($key == 1) active @endif">
                                     <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
                                     <div class="carousel-caption d-none d-md-block">
                                         <h6>{{ $league->name }}</h6>
-                                        <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
+                                        <p>Winning and losing are a part of everyday life. This is not the everyone wins
+                                            league.</p>
                                         <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
-                                            class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
+                                            class="btn btn-warning btn-outline-custom fw-bolder"> <i
+                                                class="fas fa-tags"></i> Register</a>
                                         <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
-                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
+                                            class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i>
+                                            Details</a>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselleague" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselleague"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -365,7 +455,7 @@
                 <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
             </div> --}}
         </div>
-        
+
         <div class="mediasection d-inline-block w-100">
             <div class="container">
                 <div class="mindle-heading text-center">
@@ -381,7 +471,7 @@
                                     <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
-                                        @if (!is_null($gallery->league)) 
+                                        @if (!is_null($gallery->league))
                                             {{ $gallery->league->name }}
                                         @endif
                                     </figcaption>
@@ -465,7 +555,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($bottom_ad)) 
+                        @if (!is_null($bottom_ad))
                             <a href="{{ $bottom_ad->url }}">
                                 <span>Ad</span>
                                 <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
@@ -488,29 +578,34 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="leaguemodalLabel">Upcoming League</h1>
-                    @if (!is_null($modalLeague)) 
-                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
+                    @if (!is_null($modalLeague))
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}"
+                            class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
                             <i class="la la-check"></i>
                             <b>Register Now</b>
                         </a>
                     @endif
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if (!is_null($modalLeague)) 
+                @if (!is_null($modalLeague))
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
                                 @if (!empty($modalLeague->logo))
-                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height="" width="100%" alt="modalLeague">
+                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height=""
+                                        width="100%" alt="modalLeague">
                                 @endif
-                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the everyone wins league.
+                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the
+                                    everyone wins league.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-success btn-outline-custom fw-bolder" style="
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}"
+                            class="btn btn-success btn-outline-custom fw-bolder"
+                            style="
                             float: right;">
                             <i class="la la-check"></i>
                             <b>Register Now</b>
@@ -531,9 +626,9 @@
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script type="text/javascript">
-        $(window).on("load", function () {
-           // $("#leaguemodal").modal("show");
+        $(window).on("load", function() {
+            // $("#leaguemodal").modal("show");
         });
     </script>
-    
+
 @endsection
