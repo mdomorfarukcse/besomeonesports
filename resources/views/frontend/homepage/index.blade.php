@@ -213,11 +213,11 @@
                         <img src="{{ asset('frontend/images/387092992_811197287676673_4090457766972298297_n-min.jpg') }}"
                             alt="pic2" />
                     </div>
-                    <div class="col-md-4 img-container">
+                    <div class="col-md-3 img-container">
                         <img src="{{ asset('frontend/images/003_BSS_All-Stars-min.jpg') }}"
                             alt="pic2" />
                     </div>
-                    <div class="col-md-4 img-container">
+                    <div class="col-md-5 img-container">
                         <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}"
                             alt="pic2" />
                     </div>
