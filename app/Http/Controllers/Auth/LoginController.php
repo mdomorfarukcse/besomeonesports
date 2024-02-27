@@ -72,7 +72,7 @@ class LoginController extends Controller
         
                 if ($user->hasRole(['player', 'guardian'])) {
                     // return redirect('/administration/league');
-                    return redirect()->route()
+                    return redirect()->route('administration.league.index');
                 }
             }
 
