@@ -21,6 +21,15 @@
         {{-- custom css --}}
         <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
         <!-- End css -->
+        <style>
+        p{
+            color: #fff;
+        }
+        .card {
+            background-color: #000000 !important;
+            opacity: 0.9 !important;
+        }
+        </style>
     </head>
     <body class="vertical-layout">
         <!-- Start Containerbar -->
