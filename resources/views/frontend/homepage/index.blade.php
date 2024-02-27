@@ -456,7 +456,7 @@
             </div> --}}
         </div>
 
-        <div class="mediasection d-inline-block w-100">
+        {{-- <div class="mediasection d-inline-block w-100">
             <div class="container">
                 <div class="mindle-heading text-center">
                     <h5>Gallery</h5>
@@ -481,7 +481,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <section class="float-start w-100">
         <div class="mediasection d-inline-block w-100">
