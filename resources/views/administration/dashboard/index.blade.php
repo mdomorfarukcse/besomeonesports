@@ -39,6 +39,12 @@
 @endsection
 
 
+@section('breadcrumb_buttons')
+    <a href="{{ route('administration.league.index') }}" class="btn btn-outline-success btn-outline-custom fw-bolder">
+        <i class="feather icon-plus"></i>
+        <b>Register League</b>
+    </a>
+@endsection
 
 @section('content')
     @php
