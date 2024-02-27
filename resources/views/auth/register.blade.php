@@ -26,8 +26,12 @@
         label.custom-control-label {
             text-align: initial;
         }
-        p {
+        p{
             color: #fff;
+        }
+        .card {
+            background-color: #000000 !important;
+            opacity: 0.9 !important;
         }
     </style>
     <!-- End css -->
