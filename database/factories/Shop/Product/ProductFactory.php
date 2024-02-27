@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'colors' => json_encode([fake()->safeColorName(), fake()->safeColorName(), fake()->safeColorName(), fake()->safeColorName()]),
             'sizes' => json_encode(['S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'FREE SIZE']),
             'description' => fake()->realText(200),
+            'need_note' => fake()->randomElement([true, false]),
             'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }

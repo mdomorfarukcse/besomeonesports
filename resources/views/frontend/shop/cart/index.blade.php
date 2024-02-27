@@ -111,6 +111,16 @@
                                                             {{ $item['quantity'] }}
                                                         </span>
                                                     </li>
+                                                    @if ($item['note']) 
+                                                        <li class="d-flex">
+                                                            <span>
+                                                                Note
+                                                            </span>
+                                                            <span>
+                                                                {!! $item['note'] !!}
+                                                            </span>
+                                                        </li>
+                                                    @endif
                                                 </ul>
 
                                                 <a href="{{ route('frontend.shop.cart.clear.item', ['itemKey' => $itemKey]) }}" onclick="return confirm('Are you sure want to remove the item from cart?');" class="btn remove-btn p-0 mt-2 text-danger">

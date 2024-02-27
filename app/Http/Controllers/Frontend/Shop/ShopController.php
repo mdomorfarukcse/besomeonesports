@@ -86,6 +86,7 @@ class ShopController extends Controller
         $size = $request->product_size ?? NULL;
         $color = $request->product_color ?? NULL;
         $quantity = $request->porduct_quantity ?? 1;
+        $note = $request->note ?? NULL;
 
         // Calculate the total price for this item
         $price = $product->price;
@@ -109,6 +110,7 @@ class ShopController extends Controller
                 'color' => $color,
                 'size' => $size,
                 'quantity' => $quantity,
+                'note' => $note,
                 'price' => $price,
                 'total' => $total,
             ];
@@ -245,6 +247,7 @@ class ShopController extends Controller
                                         'quantity' => $cartItem['quantity'],
                                         'price' => $cartItem['price'],
                                         'total' => $cartItem['total'],
+                                        'note' => $cartItem['note'],
                                     ]);
                                 } else {
                                     // Handle the case where the product quantity is insufficient

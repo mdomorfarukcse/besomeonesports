@@ -153,22 +153,40 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
+                            @php
+                                $selectedColors = json_decode($product->colors, true);
+                            @endphp
                             <label for="colors">Colors <span class="required">*</span></label>
                             <select name="colors[]" id="colors" class="form-control @error('colors') is-invalid @enderror" multiple="multiple">
-                                @foreach (json_decode($product->colors) as $selectedColor)
-                                    <option value="{{ $selectedColor }}" selected>{{ $selectedColor }}</option>
-                                @endforeach
+                                <option value="" disabled>Select Colors</option>
+                                <option value="RED" @selected(in_array('RED', $selectedColors))>RED</option>
+                                <option value="ORANGE" @selected(in_array('ORANGE', $selectedColors))>ORANGE</option>
+                                <option value="BLUE" @selected(in_array('BLUE', $selectedColors))>BLUE</option>
+                                <option value="YELLOW" @selected(in_array('YELLOW', $selectedColors))>YELLOW</option>
+                                <option value="MULTICOLOR" @selected(in_array('MULTICOLOR', $selectedColors))>MULTICOLOR</option>
                             </select>
                             @error('colors')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
+                            @php
+                                $selectedSizes = json_decode($product->sizes, true);
+                            @endphp
                             <label for="sizes">Sizes <span class="required">*</span></label>
                             <select name="sizes[]" id="sizes" class="form-control @error('sizes') is-invalid @enderror" multiple="multiple">
-                                @foreach (json_decode($product->sizes) as $selectedSize)
-                                    <option value="{{ $selectedSize }}" selected>{{ $selectedSize }}</option>
-                                @endforeach
+                                <option value="" disabled>Select Sizes</option>
+                                <option value="Youth Xsmall" @selected(in_array('Youth Xsmall', $selectedSizes))>Youth Xsmall</option>
+                                <option value="Youth Small" @selected(in_array('Youth Small', $selectedSizes))>Youth Small</option>
+                                <option value="Youth Medium" @selected(in_array('Youth Medium', $selectedSizes))>Youth Medium</option>
+                                <option value="Youth Large" @selected(in_array('Youth Large', $selectedSizes))>Youth Large</option>
+                                <option value="Youth XL" @selected(in_array('Youth XL', $selectedSizes))>Youth XL</option>
+                                <option value="Adult Small" @selected(in_array('Adult Small', $selectedSizes))>Adult Small</option>
+                                <option value="Adult Medium" @selected(in_array('Adult Medium', $selectedSizes))>Adult Medium</option>
+                                <option value="Adult Large" @selected(in_array('Adult Large', $selectedSizes))>Adult Large</option>
+                                <option value="Adult XL" @selected(in_array('Adult XL', $selectedSizes))>Adult XL</option>
+                                <option value="Adult 2XL" @selected(in_array('Adult 2XL', $selectedSizes))>Adult 2XL</option>
+                                <option value="Adult 3XL" @selected(in_array('Adult 3XL', $selectedSizes))>Adult 3XL</option>
                             </select>
                             @error('sizes')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -223,7 +241,12 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        
+                        <div class="col-md-12 form-group">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" id="need_note" name="need_note" class="custom-control-input" @checked($product->need_note)>
+                                <label class="custom-control-label" for="need_note">Take Note From Player?</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

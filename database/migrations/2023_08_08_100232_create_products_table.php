@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('colors')->nullable();
             $table->json('sizes')->nullable();
             $table->longText('description');
+            $table->boolean('need_note')->default(false);
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();

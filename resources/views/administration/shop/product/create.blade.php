@@ -241,7 +241,12 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        
+                        <div class="col-md-12 form-group">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" id="need_note" name="need_note" class="custom-control-input">
+                                <label class="custom-control-label" for="need_note">Take Note From Player?</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

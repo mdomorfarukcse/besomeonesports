@@ -159,6 +159,11 @@
                                                                             <b>Total: </b> {{ $product->pivot->total }}
                                                                         </span>
                                                                     </p>
+                                                                    @if ($product->pivot->note) 
+                                                                        <p>
+                                                                            <b>Note:</b> <span>{!!  $product->pivot->note !!}</span>
+                                                                        </p>
+                                                                    @endif
                                                                 </li>
                                                             @endforeach
                                                         </ol>

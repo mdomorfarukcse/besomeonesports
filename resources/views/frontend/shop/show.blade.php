@@ -122,14 +122,22 @@
                                     </button>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="from-group">
-                                            <h5>Note</h5>
-                                            <textarea rows="4" class="form-control border" name="note" placeholder="Ex: Player Name, Number or any instruction"></textarea>
+                                @if ($product->need_note == true) 
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="from-group">
+                                                <h5>Note <sup class="text-danger">*</sup></h5>
+                                                @php
+                                                    $note = 'Player Name: ' . "\n" .
+                                                            '| Jersey Numbers: ' . "\n" .
+                                                            '| Division: ';
+                                                @endphp
+                                                
+                                                <textarea rows="4" class="form-control border" name="note" placeholder="Ex: Player Name, Number or any instruction" required>{!! $note !!}</textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
     
                                 <button class="btn btn-info btn-lg mt-4" type="submit">
                                     <span>

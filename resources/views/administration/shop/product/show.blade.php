@@ -123,6 +123,20 @@
                                                         <td>{!! $product->description !!}</td>
                                                     </tr>
                                                 @endif
+                                                <tr>
+                                                    <th>Need Note: </th>
+                                                    <td>
+                                                        @if ($product->need_note == true)
+                                                            <span class="badge badge-success-inverse text-bold py-1 px-2">
+                                                                {{ __('Yes') }}
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-dark-inverse text-bold py-1 px-2">
+                                                                {{ __('No') }}
+                                                            </span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

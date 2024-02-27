@@ -83,7 +83,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Product</th>
-                                                    <td class="text-dark text-bold">
+                                                    <td class="text-dark">
                                                         <ol>
                                                             @foreach ($order->products as $product)
                                                                 <li>
@@ -111,6 +111,11 @@
                                                                             <span class="text-bold">Total: </span> {{ $product->pivot->total }}
                                                                         </small>
                                                                     </p>
+                                                                    @if ($product->pivot->note) 
+                                                                        <p>
+                                                                            <b>Note:</b> <span>{!!  $product->pivot->note !!}</span>
+                                                                        </p>
+                                                                    @endif
                                                                 </li>
                                                             @endforeach
                                                         </ol>

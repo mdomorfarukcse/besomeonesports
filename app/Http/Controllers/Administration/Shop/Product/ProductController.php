@@ -55,6 +55,7 @@ class ProductController extends Controller
                 $product->sizes = json_encode($request->sizes);
                 $product->status = $request->status;
                 $product->description = $request->description;
+                $product->need_note = $request->need_note ? true : false;
                 $product->save();
 
                 $product->categories()->attach($request->categories);
@@ -127,6 +128,7 @@ class ProductController extends Controller
                 $product->sizes = json_encode($request->sizes);
                 $product->status = $request->status;
                 $product->description = $request->description;
+                $product->need_note = $request->need_note ? true : false;
                 $product->save();
                 
                 $product->categories()->sync($request->categories);

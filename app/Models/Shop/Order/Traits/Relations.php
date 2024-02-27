@@ -23,6 +23,6 @@ trait Relations
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withPivot(['color', 'size', 'quantity', 'price', 'total']);
+        return $this->belongsToMany(Product::class)->withPivot(['color', 'size', 'quantity', 'price', 'total', 'note']);
     }
 }
