@@ -26,6 +26,9 @@
         label.custom-control-label {
             text-align: initial;
         }
+        p {
+            color: #fff;
+        }
     </style>
     <!-- End css -->
 </head>

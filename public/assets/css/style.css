@@ -33243,7 +33243,7 @@ input[type=range]:focus {
 ---------------------------------------
 */
 .authenticate-bg {
-  background: url(../images/authentication/authentication-bg.svg);
+  background: url(../images/authentication/bg.jpg);
   background-size: cover;
   background-position: center;
   min-height: 100vh;
