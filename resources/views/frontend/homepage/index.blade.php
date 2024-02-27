@@ -251,39 +251,38 @@
                                 @foreach ($upcomingLeagues as $key => $league)
                                     <button type="button" data-bs-target="#carouselleague"
                                         data-bs-slide-to="{{ $key }}"
-                                        class="@if ($key == 1) active @endif" aria-current="true"
-                                        aria-label="Slide 1"></button>
+                                        class="@if ($key == 0) active @endif" aria-current="true"
+                                        aria-label="Slide {{ $key + 1 }}"></button>
                                 @endforeach
                             </div>
                             <div class="carousel-inner">
                                 @foreach ($upcomingLeagues as $key => $league)
-                                    <div class="carousel-item @if ($key == 1) active @endif">
+                                    <div class="carousel-item @if ($key == 0) active @endif">
                                         <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption d-none d-md-block">
                                             <h6>{{ $league->name }}</h6>
-                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins
-                                                league.</p>
+                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
                                             <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
-                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i
-                                                    class="fas fa-tags"></i> Register</a>
+                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
                                             <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
-                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i>
-                                                Details</a>
+                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselleague"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                            @if(count($upcomingLeagues) > 1)
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselleague"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            @endif
+                        </div>  
                     @else
                         <h5 class="alert alert-info">No Data</h5>
                     @endif
