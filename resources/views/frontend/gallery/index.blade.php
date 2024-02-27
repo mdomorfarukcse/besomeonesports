@@ -44,12 +44,12 @@
                             <a data-fancybox="wk" href="{{ show_image($gallery->path) }}" class="comon-links-divb05">
                                 <figure>
                                     <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
-                                    <figcaption>
+                                    {{-- <figcaption>
                                         {{ $gallery->name }}
                                         @if (!is_null($gallery->league)) 
                                             {{ $gallery->league->name }}
                                         @endif
-                                    </figcaption>
+                                    </figcaption> --}}
                                 </figure>
                             </a>
                         </div>
