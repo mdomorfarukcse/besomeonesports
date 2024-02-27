@@ -67,6 +67,15 @@ class LoginController extends Controller
             $user = User::where('email', $userData['email'])->first();
             auth()->login($user);
 
+            if (Auth::check()) {
+                $user = Auth::user();
+        
+                if ($user->hasRole(['player', 'guardian'])) {
+                    // return redirect('/administration/league');
+                    return redirect()->route()
+                }
+            }
+
             // Redirect or return a response based on successful login
             // return redirect()->route('administration.dashboard.index');
             toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
