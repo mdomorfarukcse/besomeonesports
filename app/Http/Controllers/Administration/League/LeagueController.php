@@ -170,7 +170,8 @@ class LeagueController extends Controller
 
                 $league->divisions()->attach($request->divisions);
                 $league->venues()->attach($request->venues);
-                $league->referees()->attach($request->referees);
+
+                // $league->referees()->attach($request->referees);
 
                 foreach ($request->rounds as $roundName) {
                     $round = new Round(['name' => $roundName]);
@@ -283,7 +284,8 @@ class LeagueController extends Controller
                 // Sync the divisions and venues in the pivot tables
                 $league->divisions()->sync($request->divisions);
                 $league->venues()->sync($request->venues);
-                $league->referees()->sync($request->referees);
+
+                // $league->referees()->sync($request->referees);
 
                 // Get the current rounds associated with the league
                 $currentRounds = $league->rounds->pluck('name')->toArray();

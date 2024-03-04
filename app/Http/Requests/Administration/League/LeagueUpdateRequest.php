@@ -38,7 +38,7 @@ class LeagueUpdateRequest extends FormRequest
             'registration_fee'  => ['required', 'numeric', 'between:0,999999.99'],
             'start' => ['required', 'date'],
             'end' => ['required', 'date', 'after_or_equal:start'],
-            'description' => ['nullable', 'string'],
+            'description' => ['required', 'string'],
             'status' => ['required', 'in:Active,Inactive'],
 
             // Add validation for the pivot table (division_league)
@@ -50,8 +50,8 @@ class LeagueUpdateRequest extends FormRequest
             'venues.*' => ['exists:venues,id'],
 
             // Add validation for the pivot table (league_referee)
-            'referees' => ['required', 'array'],
-            'referees.*' => ['exists:users,id'],
+            // 'referees' => ['required', 'array'],
+            // 'referees.*' => ['exists:users,id'],
         ];
     }
 
@@ -70,9 +70,9 @@ class LeagueUpdateRequest extends FormRequest
             'venues.required' => 'At least one venue must be selected.',
             'venues.array' => 'Invalid format for venues.',
             'venues.*.exists' => 'Selected venue(s) do not exist.',
-            'referees.required' => 'At least one referee must be selected.',
-            'referees.array' => 'Invalid format for referees.',
-            'referees.*.exists' => 'Selected referee(s) do not exist.',
+            // 'referees.required' => 'At least one referee must be selected.',
+            // 'referees.array' => 'Invalid format for referees.',
+            // 'referees.*.exists' => 'Selected referee(s) do not exist.',
         ];
     }
 }

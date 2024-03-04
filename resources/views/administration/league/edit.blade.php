@@ -239,7 +239,7 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-12">
+                        {{-- <div class="form-group col-md-12">
                             <label for="referees[]">League Referees <span class="required">*</span></label>
                             <select class="select2-multi-select form-control @error('referees[]') is-invalid @enderror" name="referees[]" multiple="multiple" required>
                                 <option value="">Select Referees</option>
@@ -252,7 +252,7 @@
                             @error('referees[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-12">
                             <label for="rounds">League Rounds <span class="required">*</span></label>
                             <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple">
@@ -265,7 +265,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description <span class="required">*</span></label>
                             <textarea name="description" rows="5" id="textarea_editor" class="form-control @error('note') is-invalid @enderror" 
                             placeholder="League Description">{{ $league->description }}</textarea>
                             @error('description')
