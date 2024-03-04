@@ -36,7 +36,7 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $leagues = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'status'])
+        $leagues = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'start', 'end', 'status'])
                         ->with([
                             'season' => function($season) {
                                 $season->select(['id', 'name']);

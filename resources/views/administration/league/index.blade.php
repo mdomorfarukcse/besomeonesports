@@ -84,6 +84,8 @@
                                         {{ $league->name }}
                                         <br>
                                         <small class="text-muted">{{ $league->season->name }} ({{ $league->sport->name }})</small>
+                                        <br>
+                                        <small class="text-muted text-bold">{{ show_date_only($league->start) }} - {{ show_date_only($league->end) }}</small>
                                     </td>
                                     <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
                                     <td>{{ count($league->divisions) }}</td>

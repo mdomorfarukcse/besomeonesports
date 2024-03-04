@@ -19,6 +19,23 @@ if (!function_exists('show_date')) {
 }
 
 
+if (!function_exists('show_date_only')) {
+
+    /**
+     * Format a timestamp or date to a custom formatted date.
+     *
+     * @param  string  $datetime
+     * @param  string  $format
+     * @return string
+     */
+    function show_date_only($datetime, $format = 'jS F, Y')
+    {
+        $carbon = Carbon::parse($datetime);
+        return $carbon->format($format);
+    }
+}
+
+
 if (!function_exists('show_time')) {
 
     /**
