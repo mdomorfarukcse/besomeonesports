@@ -44,7 +44,7 @@ class LeagueStoreRequest extends FormRequest
             'divisions.*'       => ['exists:divisions,id'],
 
             // Add validation for the pivot table (league_venue)
-            'venues'            => ['required', 'array'],
+            'venues'            => ['nullable', 'array'],
             'venues.*'          => ['exists:venues,id'],
 
             // Add validation for the pivot table (league_referee)
@@ -65,7 +65,7 @@ class LeagueStoreRequest extends FormRequest
             'divisions.required'    => 'At least one division must be selected.',
             'divisions.array'       => 'Invalid format for divisions.',
             'divisions.*.exists'    => 'Selected division(s) do not exist.',
-            'venues.required'       => 'At least one venue must be selected.',
+            // 'venues.required'       => 'At least one venue must be selected.',
             'venues.array'          => 'Invalid format for venues.',
             'venues.*.exists'       => 'Selected venue(s) do not exist.',
             // 'referees.required'       => 'At least one referee must be selected.',

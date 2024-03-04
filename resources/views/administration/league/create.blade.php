@@ -209,8 +209,9 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="venues[]">Venues <span class="required">*</span></label>
-                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple" required>
+                            {{-- <label for="venues[]">Venues <span class="required">*</span></label> --}}
+                            <label for="venues[]">Venues</label>
+                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple">
                                 <option value="">Select Venues</option>
                                 @foreach ($venues as $venue)
                                     <option value="{{ $venue->id }}">{{ $venue->name }}</option>
