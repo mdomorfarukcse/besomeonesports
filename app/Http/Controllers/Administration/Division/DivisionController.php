@@ -16,7 +16,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        $divisions = Division::select(['id','name','status'])->orderBy('created_at', 'desc')->get();
+        $divisions = Division::select(['id','name','gender','status'])->orderBy('created_at', 'desc')->get();
         return view('administration.division.index', compact('divisions'));
     }
 
@@ -37,6 +37,7 @@ class DivisionController extends Controller
            
             $division = new Division();
             $division->name = $request->name;
+            $division->gender = $request->gender;
             $division->description = $request->description;
             $division->status = $request->status;
             $division->save();
@@ -74,6 +75,7 @@ class DivisionController extends Controller
     {
         try{
             $division->name = $request->name;
+            $division->gender = $request->gender;
             $division->description = $request->description;
             $division->status = $request->status;
             $division->save();

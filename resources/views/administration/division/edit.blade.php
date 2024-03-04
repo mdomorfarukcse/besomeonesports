@@ -68,7 +68,19 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
+                            <label for="gender">Gender <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('gender') is-invalid @enderror" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male" @selected($division->gender === 'Male')>Male</option>
+                                <option value="Female" @selected($division->gender === 'Female')>Female</option>
+                                <option value="Co-Ed" @selected($division->gender === 'Co-Ed')>Co-Ed</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-3">
                             <label for="status">Status <span class="required">*</span></label>
                             <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">Select Status</option>

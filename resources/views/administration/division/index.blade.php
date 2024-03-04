@@ -62,7 +62,8 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Sport</th>
+                                <th>Name</th>
+                                <th>Gender</th>
                                 <th>Status</th>
                                 @if (auth()->user()->can('division.show') || auth()->user()->can('division.destroy')) 
                                     <th class="text-right">Actions</th>
@@ -72,8 +73,9 @@
                         <tbody>
                             @foreach ($divisions as $sl => $division)
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
+                                    <th class="fw-bold"><b>#{{ serial($divisions, $sl) }}</b></th>
                                     <td>{{ $division->name }}</td>
+                                    <td>{{ $division->gender }}</td>
                                     <td>{!! status($division->status) !!}</td>
                                     @if (auth()->user()->can('division.show') || auth()->user()->can('division.destroy')) 
                                         <td class="text-right">

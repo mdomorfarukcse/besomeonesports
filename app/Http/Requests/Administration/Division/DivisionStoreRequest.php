@@ -23,6 +23,7 @@ class DivisionStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'unique:divisions,name'],
+            "gender" => ['required','in:Male,Female,Co-Ed'],
             "status" => ['required','in:Active,Inactive'],
         ];
     }
@@ -36,6 +37,7 @@ class DivisionStoreRequest extends FormRequest
     {
         return [
             'name.unique' => 'The Division Name should be Unique.',
+            'gender.in' => 'The Gender should be Male, Female or Co-Ed only.',
             'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }
