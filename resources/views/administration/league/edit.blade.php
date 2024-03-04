@@ -217,7 +217,7 @@
                                 <option value="">Select Divisions</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division->id }}" @if($league->divisions->contains('id', $division->id)) selected @endif>
-                                        {{ $division->name }}
+                                        {{ $division->name }} ({{ $division->gender }})
                                     </option>
                                 @endforeach
                             </select>

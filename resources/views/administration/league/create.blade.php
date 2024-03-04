@@ -201,7 +201,7 @@
                             <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
                                 <option value="">Select Divisions</option>
                                 @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
                                 @endforeach
                             </select>
                             @error('divisions[]')
