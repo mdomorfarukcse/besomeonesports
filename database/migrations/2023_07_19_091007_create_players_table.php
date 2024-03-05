@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('first_name', 50);
             $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('contact_number', 20);
             $table->string('street_address', 100);
             $table->string('extended_address', 100)->nullable();

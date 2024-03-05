@@ -187,7 +187,7 @@
                                             <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
                                                 <option value="" selected disabled>Select Division</option>
                                                 @foreach ($divisions as $division) 
-                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
                                                 @endforeach
                                             </select>
                                             @error('division_id')
@@ -243,6 +243,7 @@
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
                                                 <option value="Aunty">Aunty</option>
+                                                <option value="Legal Guardian">Legal Guardian</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -255,7 +256,7 @@
                         <div class="col-md-12">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Personal Infomation</h5>
+                                    <h5 class="card-title mb-0">Player's Personal Infomation</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -281,13 +282,6 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="birthdate">Birthdate <span class="required">*</span></label>
-                                            <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" required/>
-                                            @error('birthdate')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
                                             <label for="contact_number">Contact Number <span class="required">*</span></label>
                                             <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
                                             @error('contact_number')
@@ -295,13 +289,41 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
+                                            <label for="birthdate">Birthdate</label>
+                                            <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
+                                            @error('birthdate')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-2 form-group">
+                                            <label for="height">Height</label>
+                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="5.6"/>
+                                            @error('height')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-2 form-group">
+                                            <label for="weight">Weight</label>
+                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="56"/>
+                                            @error('weight')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-7 form-group">
+                                            <label for="street_address">Street Address <span class="required">*</span></label>
+                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
+                                            @error('street_address')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-5 form-group">
                                             <label for="city">City <span class="required">*</span></label>
                                             <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="state">State/Province <span class="required">*</span></label>
                                             <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
                                             @error('state')
@@ -315,28 +337,7 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="height">Height</label>
-                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="5.6"/>
-                                            @error('height')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="weight">Weight</label>
-                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="56"/>
-                                            @error('weight')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="street_address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
-                                            @error('street_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-5 form-group">
                                             <label for="extended_address">Extended Address</label>
                                             <input type="text" name="extended_address" value="{{ old('extended_address') }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
                                             @error('extended_address')
@@ -408,12 +409,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-outline-primary btn-outline-custom float-right">
-                        <i class="feather icon-plus mr-1"></i>
-                        <span class="text-bold">Create New Player</span>
-                    </button>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-dark btn-outline-custom float-right">
+                                <i class="feather icon-plus mr-1"></i>
+                                <span class="text-bold">Create New Player</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

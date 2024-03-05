@@ -26,7 +26,7 @@ class NewPlayerUpdateRequest extends FormRequest
             "first_name" => ['required', 'max:50'],
             "middle_name" => ['nullable', 'string', 'max:50'],
             "last_name" => ['required', 'max:50'],
-            "birthdate" => ['required', 'date', 'date_format:Y-m-d'],
+            "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
             "contact_number" => ['required', 'string', 'max:20'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],

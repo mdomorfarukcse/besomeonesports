@@ -77,7 +77,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
         $player_id = unique_id(11, 11);
 
         $guardianRole = Role::where('name', 'guardian')->first();
