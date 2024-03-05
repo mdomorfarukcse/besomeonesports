@@ -77,7 +77,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
         $player_id = unique_id(11, 11);
 
         $guardianRole = Role::where('name', 'guardian')->first();
@@ -133,8 +133,9 @@ class PlayerController extends Controller
                 $player->street_address = $request->street_address;
                 $player->extended_address = $request->extended_address;
                 $player->position = $request->position;
-                $player->height = $request->height;
-                $player->weight = $request->weight;
+                $player->grade = $request->grade;
+                $player->shirt_size = $request->shirt_size;
+                $player->short_size = $request->short_size;
                 $player->note = $request->note;
                 $player->status = $request->status;
                 
@@ -222,8 +223,9 @@ class PlayerController extends Controller
                 $player->street_address = $request->street_address;
                 $player->extended_address = $request->extended_address;
                 $player->position = $request->position;
-                $player->height = $request->height;
-                $player->weight = $request->weight;
+                $player->grade = $request->grade;
+                $player->shirt_size = $request->shirt_size;
+                $player->short_size = $request->short_size;
                 $player->note = $request->note;
                 $player->status = $request->status;
                 

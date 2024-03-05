@@ -31,6 +31,7 @@ class DivisionUpdateRequest extends FormRequest
                 'max:100',
                 Rule::unique('divisions')->ignore($divisionId),
             ],
+            "gender" => ['required','in:Male,Female,Co-Ed'],
             "status" => ['required','in:Active,Inactive'],
         ];
     }
@@ -44,6 +45,7 @@ class DivisionUpdateRequest extends FormRequest
     {
         return [
             'name.unique' => 'The Division Name should be Unique.',
+            'gender.in' => 'The Gender should be Male, Female or Co-Ed only.',
             'status.in' => 'The Status should be Active or Inactive only.',
         ];
     }

@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('first_name', 50);
             $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('contact_number', 20);
             $table->string('street_address', 100);
             $table->string('extended_address', 100)->nullable();
@@ -45,8 +45,9 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 10);
             $table->string('position', 50)->nullable();
-            $table->float('height', 4)->nullable()->comment('Example: 5.7 (5 Foot 7 Inch)');
-            $table->float('weight', 6)->nullable()->comment('Example: 50.00 (50 KG 0 Gram)');
+            $table->string('grade', 50)->default('N/A');
+            $table->string('shirt_size', 50)->default('N/A');
+            $table->string('short_size', 50)->default('N/A');
             $table->longText('note', 255)->nullable();
 
             // Parrent Info

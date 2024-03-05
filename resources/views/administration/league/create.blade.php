@@ -201,7 +201,7 @@
                             <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
                                 <option value="">Select Divisions</option>
                                 @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
                                 @endforeach
                             </select>
                             @error('divisions[]')
@@ -209,8 +209,9 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="venues[]">Venues <span class="required">*</span></label>
-                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple" required>
+                            {{-- <label for="venues[]">Venues <span class="required">*</span></label> --}}
+                            <label for="venues[]">Venues</label>
+                            <select class="select2-multi-select form-control @error('venues[]') is-invalid @enderror" name="venues[]" multiple="multiple">
                                 <option value="">Select Venues</option>
                                 @foreach ($venues as $venue)
                                     <option value="{{ $venue->id }}">{{ $venue->name }}</option>
@@ -220,7 +221,7 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-12">
+                        {{-- <div class="form-group col-md-12">
                             <label for="referees[]">League Referees <span class="required">*</span></label>
                             <select class="select2-multi-select form-control @error('referees[]') is-invalid @enderror" name="referees[]" multiple="multiple" required>
                                 <option value="">Select Referees</option>
@@ -231,7 +232,7 @@
                             @error('referees[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group col-md-12">
                             <label for="rounds">League Rounds <span class="required">*</span></label>
                             <select name="rounds[]" id="rounds" class="form-control @error('rounds') is-invalid @enderror" multiple="multiple" required>
@@ -244,7 +245,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description <span class="required">*</span></label>
                             <textarea name="description" rows="5" id="textarea_editor"  class="form-control  @error('note') is-invalid @enderror" placeholder="League Description">{{ old('description') }}</textarea>
                             @error('description')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

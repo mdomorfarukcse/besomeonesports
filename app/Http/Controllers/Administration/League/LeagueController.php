@@ -36,7 +36,7 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $leagues = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'status'])
+        $leagues = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'start', 'end', 'status'])
                         ->with([
                             'season' => function($season) {
                                 $season->select(['id', 'name']);
@@ -137,7 +137,7 @@ class LeagueController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $referees = User::role('referee')->get();
 
@@ -170,7 +170,8 @@ class LeagueController extends Controller
 
                 $league->divisions()->attach($request->divisions);
                 $league->venues()->attach($request->venues);
-                $league->referees()->attach($request->referees);
+
+                // $league->referees()->attach($request->referees);
 
                 foreach ($request->rounds as $roundName) {
                     $round = new Round(['name' => $roundName]);
@@ -236,7 +237,7 @@ class LeagueController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $referees = User::role('referee')->get();
 
@@ -283,7 +284,8 @@ class LeagueController extends Controller
                 // Sync the divisions and venues in the pivot tables
                 $league->divisions()->sync($request->divisions);
                 $league->venues()->sync($request->venues);
-                $league->referees()->sync($request->referees);
+
+                // $league->referees()->sync($request->referees);
 
                 // Get the current rounds associated with the league
                 $currentRounds = $league->rounds->pluck('name')->toArray();

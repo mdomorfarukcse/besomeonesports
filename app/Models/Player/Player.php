@@ -14,6 +14,8 @@ class Player extends Model
 
     protected $cascadeDeletes = ['user'];
 
+    protected $guarded = ['id'];
+
     protected static function boot()
     {
         parent::boot();

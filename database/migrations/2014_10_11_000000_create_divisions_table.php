@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->longText('description')->nullable();
+            $table->enum('gender', ['Male', 'Female', 'Co-Ed']);
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();

@@ -19,6 +19,7 @@ class DivisionFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->realText(100),
+            'gender' => fake()->randomElement(['Male', 'Female', 'Co-Ed']),
             'status' => fake()->randomElement(['Active', 'Inactive'])
         ];
     }
