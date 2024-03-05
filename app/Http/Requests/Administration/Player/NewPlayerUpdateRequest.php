@@ -28,14 +28,15 @@ class NewPlayerUpdateRequest extends FormRequest
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
             "contact_number" => ['required', 'string', 'max:20'],
+            "grade" => ['required', 'string', 'max:50'],
+            "shirt_size" => ['required', 'string', 'max:50'],
+            "short_size" => ['required', 'string', 'max:50'],
             "city" => ['required', 'string', 'max:50'],
             "state" => ['required', 'string', 'max:50'],
             "postal_code" => ['required', 'string', 'max:10'],
             "street_address" => ['required', 'string', 'max:100'],
             "extended_address" => ['string', 'max:100'],
             "position" => ['nullable', 'string'],
-            "height" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-            "weight" => ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             "note" => ['nullable', 'string'],
 
             // Parents Info

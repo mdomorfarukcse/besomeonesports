@@ -45,8 +45,9 @@ return new class extends Migration
             $table->string('state', 50);
             $table->string('postal_code', 10);
             $table->string('position', 50)->nullable();
-            $table->float('height', 4)->nullable()->comment('Example: 5.7 (5 Foot 7 Inch)');
-            $table->float('weight', 6)->nullable()->comment('Example: 50.00 (50 KG 0 Gram)');
+            $table->string('grade', 50)->default('N/A');
+            $table->string('shirt_size', 50)->default('N/A');
+            $table->string('short_size', 50)->default('N/A');
             $table->longText('note', 255)->nullable();
 
             // Parrent Info

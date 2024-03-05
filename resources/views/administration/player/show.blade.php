@@ -106,18 +106,18 @@
                                                     <th>Contact</th>
                                                     <td>{{ $player->contact_number }}</td>
                                                 </tr>
-                                                @if (!empty($player->height))
-                                                    <tr>
-                                                        <th>Height</th>
-                                                        <td>{!! show_height($player->height) !!}</td>
-                                                    </tr>
-                                                @endif
-                                                @if (!empty($player->weight))
-                                                    <tr>
-                                                        <th>Weight</th>
-                                                        <td>{!! show_weight($player->weight) !!}</td>
-                                                    </tr>
-                                                @endif                                                    
+                                                <tr>
+                                                    <th>Grade</th>
+                                                    <td>{{ $player->grade }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shirt Size</th>
+                                                    <td>{{ $player->shirt_size }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Short Size</th>
+                                                    <td>{{ $player->short_size }}</td>
+                                                </tr>                                               
                                                 <tr>
                                                     <th>Address</th>
                                                     <td>

@@ -281,14 +281,14 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-3 form-group">
                                             <label for="contact_number">Contact Number <span class="required">*</span></label>
-                                            <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
+                                            <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1333" required/>
                                             @error('contact_number')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-3 form-group">
                                             <label for="birthdate">Birthdate</label>
                                             <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
                                             @error('birthdate')
@@ -296,16 +296,23 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-2 form-group">
-                                            <label for="height">Height</label>
-                                            <input type="number" min="0" step="0.01" name="height" value="{{ old('height') }}" class="form-control @error('height') is-invalid @enderror" placeholder="5.6"/>
-                                            @error('height')
+                                            <label for="grade">Grade <span class="required">*</span></label>
+                                            <input type="text" name="grade" value="{{ old('grade') }}" class="form-control @error('grade') is-invalid @enderror" placeholder="Grade" required/>
+                                            @error('grade')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-2 form-group">
-                                            <label for="weight">Weight</label>
-                                            <input type="number" min="0" step="0.01" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror" placeholder="56"/>
-                                            @error('weight')
+                                            <label for="shirt_size">Shirt Size <span class="required">*</span></label>
+                                            <input type="text" name="shirt_size" value="{{ old('shirt_size') }}" class="form-control @error('shirt_size') is-invalid @enderror" placeholder="Shirt Size" required/>
+                                            @error('shirt_size')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-2 form-group">
+                                            <label for="short_size">Short Size <span class="required">*</span></label>
+                                            <input type="text" name="short_size" value="{{ old('short_size') }}" class="form-control @error('short_size') is-invalid @enderror" placeholder="Short Size" required/>
+                                            @error('short_size')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
