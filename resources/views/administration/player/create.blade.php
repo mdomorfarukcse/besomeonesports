@@ -370,42 +370,42 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 form-group">
-                                            <label for="father_name">Father Name <span class="required">*</span></label>
+                                            <label for="father_name">Guardian #1 Name <span class="required">*</span></label>
                                             <input type="text" name="father_name" value="{{ old('father_name') }}" class="form-control @error('father_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
                                             @error('father_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="father_contact">Father Contact No.</label>
+                                            <label for="father_contact">Guardian #1 Contact No.</label>
                                             <input type="tel" name="father_contact" value="{{ old('father_contact') }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('father_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="father_email">Father Email.</label>
+                                            <label for="father_email">Guardian #1 Email.</label>
                                             <input type="email" name="father_email" value="{{ old('father_email') }}" class="form-control @error('father_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
                                             @error('father_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="mother_name">Mother Name <span class="required">*</span></label>
+                                            <label for="mother_name">Guardian #2 Name <span class="required">*</span></label>
                                             <input type="text" name="mother_name" value="{{ old('mother_name') }}" class="form-control @error('mother_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
                                             @error('mother_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="mother_contact">Mother Contact No.</label>
+                                            <label for="mother_contact">Guardian #2 Contact No.</label>
                                             <input type="tel" name="mother_contact" value="{{ old('mother_contact') }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
                                             @error('mother_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="mother_email">Mother Email.</label>
+                                            <label for="mother_email">Guardian #2 Email.</label>
                                             <input type="email" name="mother_email" value="{{ old('mother_email') }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
                                             @error('mother_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
