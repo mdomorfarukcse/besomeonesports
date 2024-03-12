@@ -166,27 +166,27 @@
                                                 <table class="table table-bordered mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Father Name</th>
+                                                            <th>Guardian #1 Name</th>
                                                             <td>{{ $player->father_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Father Email</th>
+                                                            <th>Guardian #1 Email</th>
                                                             <td>{{ $player->father_email }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Father Contact</th>
+                                                            <th>Guardian #1 Contact</th>
                                                             <td>{{ $player->father_contact }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Mother Name</th>
+                                                            <th>Guardian #2 Name</th>
                                                             <td>{{ $player->mother_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Mother Email</th>
+                                                            <th>Guardian #2 Email</th>
                                                             <td>{{ $player->mother_email }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Mother Contact</th>
+                                                            <th>Guardian #2 Contact</th>
                                                             <td>{{ $player->mother_contact }}</td>
                                                         </tr>
                                                     </tbody>
