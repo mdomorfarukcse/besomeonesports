@@ -41,10 +41,12 @@
             <i class="feather icon-plus"></i>
             <b>Create New Player</b>
         </a>
+        <a href="{{ route('administration.league.index') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
+            <i class="feather icon-plus"></i>
+            <b>Register League</b>
+        </a>
     @endsection
 @endif
-
-
 
 @section('content')
 
@@ -83,20 +85,21 @@
                                     <td>{{ $player->player_id }}</td>
                                     <td>
                                         {{ $player->user->name }}
+                                        <a href = "{{ route('administration.league.index') }}" class="badge badge-info">Available League</a>
                                     </td>
                                     <td>{{ $player->user->email }}</td>
                                     <td>{{ $player->contact_number }}</td>
-                                    <td>{!! status($player->status) !!}</td>
+                                    <td>{!! status($player->status) !!}</td>active_tool_tip
                                     @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
                                                 @if (auth()->user()->can('player.destroy')) 
-                                                    <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
+                                                    <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm mb-1" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                         <i class="feather icon-trash-2"></i>
                                                     </a>
                                                 @endif
                                                 @if (auth()->user()->can('player.show')) 
-                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm mb-1" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                         <i class="feather icon-info"></i>
                                                     </a>
                                                 @endif
@@ -142,5 +145,12 @@
         // Custom Script Here
         /* -- Bootstrap Tooltip -- */
         $('[data-toggle="tooltip"]').tooltip();
+        $('.active_tool_tip')
+            .attr('data-toggle', 'tooltip')
+            .attr('data-placement', 'right')
+            .tooltip({
+                trigger: 'manual'
+            })
+            .tooltip('show');
     </script>
 @endsection
