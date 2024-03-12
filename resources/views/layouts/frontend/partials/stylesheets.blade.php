@@ -19,9 +19,21 @@
         background: #E62DBE;
         padding: 5px 17px !important;
         color: #fff !important;
-        margin: 0 15px !important;
         transition: all 0.5s;
-        border: solid 2px #E62DBE !important;
+        border: 2px solid #E62DBE !important;
+    }
+    .login-btn {
+        background: #01aeed;
+        padding: 5px 17px !important;
+        color: #fff !important;
+        transition: all 0.5s;
+        border: 2px solid #01aeed !important;
+    }
+    .join-btn:hover {
+        background: #c531a5;
+    }
+    .login-btn:hover {
+        background: #1d9ac7;
     }
     .navbar-nav li:hover > ul.dropdown-menu {
         display: block;

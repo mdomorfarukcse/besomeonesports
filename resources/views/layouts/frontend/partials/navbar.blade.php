@@ -38,7 +38,7 @@
                         <a class="nav-link  {{ Request::is('league*') ? 'active' : '' }}" href="{{ route('frontend.league.index') }}">Leagues</a>
                     </li> --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
+                        <a href="{{ route('frontend.league.index') }}" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('frontend.schedule.index') }}">Schedule</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.coach.create') }}">Become a Coach</a></li>
@@ -49,7 +49,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('sponsors') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> OUR SPONSORS  </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Become a Sponsor</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Our Sponsors</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.advertise.index') }}">Our Partners</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -73,9 +74,13 @@
                             <a class="nav-link dashboardlink btn" href="{{ route('administration.dashboard.index') }}">Dashboard</a>
                         </li>
                     @else
-                        <li class="nav-item">
+                        <li class="nav-item button">
                             {{-- <a class="nav-link btn join-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Register Now</a> --}}
-                            <a href="/register" class="nav-link btn join-btn">Register Now</a>
+                            <a href="/login" class="nav-link btn login-btn">Login</a>
+                        </li>
+                        <li class="nav-item button">
+                            {{-- <a class="nav-link btn join-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Register Now</a> --}}
+                            <a href="/register" class="nav-link btn join-btn">Register</a>
                         </li>
                         
                     @endauth

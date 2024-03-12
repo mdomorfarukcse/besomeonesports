@@ -114,11 +114,11 @@
             </div>
         </div>
 
-        <div class="gb-roguch">
+        {{-- <div class="gb-roguch">
             <img src="{{ asset('frontend/images/h1-bottom-background-image.png') }}" alt="pnm" />
-        </div>
+        </div> --}}
     </section>
-    <section class="ads">
+    {{-- <section class="ads">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="float-start w-100 ">
         <div class="about-sec-home">
             <div class="container">
@@ -395,69 +395,21 @@
             </div>
         </div>
 
-        <div class="our-small-details">
-            <div class="container">
-                <div class="row row-cols-2 row-cols-lg-4 g-4 g-lg-0">
-                    <div class="col">
-                        <div class="comon-divbn d-md-flex align-items-center">
-                            <figure>
-                                <img src="{{ asset('frontend/images/819590.png') }}" alt="pnbm" />
-                            </figure>
-                            <div class="right-dibvb">
-                                <h2>{{ $total['leagues'] }} +</h2>
-                                <h6>Total Leagues</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-lg-grid justify-content-lg-center">
-                        <div class="comon-divbn d-md-flex align-items-center">
-                            <figure>
-                                <img src="{{ asset('frontend/images/8964688.png') }}" alt="pnbm" />
-                            </figure>
-                            <div class="right-dibvb">
-                                <h2>{{ $total['players'] }} +</h2>
-                                <h6>Players</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col d-lg-grid justify-content-lg-end">
-                        <div class="comon-divbn d-md-flex align-items-center">
-                            <figure>
-                                <img src="{{ asset('frontend/images/33838.png') }}" alt="pnbm" />
-                            </figure>
-                            <div class="right-dibvb">
-                                <h2>{{ $total['coaches'] }} +</h2>
-                                <h6>Trained Coaches</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col d-lg-grid justify-content-lg-end">
-                        <div class="comon-divbn d-md-flex align-items-center">
-                            <figure>
-                                <img src="{{ asset('frontend/images/1851036.png') }}" alt="pnbm" />
-                            </figure>
-                            <div class="right-dibvb">
-                                <h2>{{ $total['teams'] }} +</h2>
-                                <h6>Teams</h6>
-                            </div>
+        <!-- Start row -->
+    <section class="float-start w-100 sub-headh-bask body-part pt-0 mb-50">
+        <div class="about-page-main comon-sub-page-main d-inline-block w-100">
+            <div class="about-club-top">
+                <div class="container">
+                    <div class="row ">
+                        <div class="text-center mb-50">
+                            <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
+                            <h2 class="comon-heading m-0">Reviews</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-small-back02">
-                <img src="{{ asset('frontend/images/105418368_1510579202457512_85905419722283172_n.jpg') }}"
-                    alt="sportsfbn" />
-            </div>
-
-            {{-- <div class="top-imgn">
-                <img src="{{ asset('frontend/images/white-bg-01.png') }}" alt="bnm" />
-            </div>
-            <div class="bootom-imgn">
-                <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
-            </div> --}}
         </div>
+    </section>
 
         {{-- <div class="mediasection d-inline-block w-100">
             <div class="container">

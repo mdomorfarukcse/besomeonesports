@@ -9,6 +9,7 @@ use App\Models\League\League;
 use App\Models\Gallery\Gallery;
 use App\Models\Player\Player;
 use App\Models\Shop\Product\Product;
+use App\Models\Sponsor\Sponsor;
 use App\Models\Sport\Sport;
 use App\Models\Team\Team;
 use App\Models\Video\Video;
@@ -25,7 +26,7 @@ class HomePageController extends Controller
         $modalLeague = League::whereStatus('Active')
                                 ->inRandomOrder()
                                 ->first();
-        $products = Product::with(['images', 'categories'])->whereStatus('Active')->limit(8)->get();
+        $products = Product::with(['images', 'categories'])->whereStatus('Active')->limit(4)->get();
         
         $galleries = Gallery::limit(8)->get();
         $videos = Video::whereStatus('Active')->limit(8)->get();
