@@ -63,6 +63,9 @@ class LeagueController extends Controller
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
+        if ($request->filled('status')) {
+            $query->whereStatus($request->status);
+        }
 
         $leagues = $query->get();
 
