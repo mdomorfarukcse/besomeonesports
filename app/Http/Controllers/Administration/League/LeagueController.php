@@ -34,9 +34,12 @@ class LeagueController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $leagues = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'start', 'end', 'status'])
+        $sports = Sport::select(['id', 'name'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender'])->whereStatus('Active')->get();
+
+        $query = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'start', 'end', 'status'])
                         ->with([
                             'season' => function($season) {
                                 $season->select(['id', 'name']);
@@ -47,11 +50,25 @@ class LeagueController extends Controller
                             'divisions',
                             'venues'
                         ])
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-        // dd($leagues);
-        return view('administration.league.index', compact(['leagues']));
+                        ->orderBy('created_at', 'desc');
+
+        if ($request->filled('sport_id')) {
+            $query->where('sport_id', $request->sport_id);
+        }
+        if ($request->filled('division')) {
+            $query->whereHas('divisions', function($q) use ($request) {
+                $q->where('id', $request->division);
+            });
+        }
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        $leagues = $query->get();
+
+        return view('administration.league.index', compact(['sports', 'divisions', 'leagues', 'request']));
     }
+
     
     /**
      * Display a listing of the resource.

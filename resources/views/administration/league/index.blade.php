@@ -9,6 +9,8 @@
 
 @section('css_links')
     {{--  External CSS  --}}
+    <!-- Select2 css -->
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
     <!-- DataTables css -->
     <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
@@ -50,6 +52,60 @@
 
 <!-- Start row -->
 <div class="row">
+    <div class="col-md-12 m-b-20">
+        <div class="card">
+            <form action="{{ route('administration.league.index') }}" method="get">
+                <div class="card-body">
+                    <input type="hidden" name="filter" value="true">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="sport_id">Sport</label>
+                            <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id">
+                                <option value="">Select Sport</option>
+                                @foreach ($sports as $sport)
+                                    <option value="{{ $sport->id }}" {{ $request->sport_id == $sport->id ? 'selected' : '' }}>{{ $sport->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('sport_id')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="division">Divisions</label>
+                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="division">
+                                <option value="">Select Divisions</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}" {{ $request->division == $division->id ? 'selected' : '' }}>{{ $division->name }} ({{ $division->gender }})</option>
+                                @endforeach
+                            </select>
+                            @error('division')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="name">League Name</label>
+                            <input type="text" name="name" value="{{ $request->name ? $request->name : old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023"/>
+                            @error('name')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-dark btn-custom btn-block m-t-30">
+                                <i class="feather icon-filter mr-1"></i>
+                                <span class="text-bold">Filter</span>
+                            </button>
+                            @if ($request->filter == true) 
+                                <a href="{{ route('administration.league.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
+                                    <i class="icon feather icon-x m-r-1"></i>
+                                    Clear Filter
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Start col -->
     <div class="col-lg-12">
         <div class="card m-b-30">
@@ -124,6 +180,9 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
     <!-- Datatable js -->
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
