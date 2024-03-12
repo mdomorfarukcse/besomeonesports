@@ -89,7 +89,7 @@
                                     </td>
                                     <td>{{ $player->user->email }}</td>
                                     <td>{{ $player->contact_number }}</td>
-                                    <td>{!! status($player->status) !!}</td>active_tool_tip
+                                    <td>{!! status($player->status) !!}</td>
                                     @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
@@ -145,12 +145,6 @@
         // Custom Script Here
         /* -- Bootstrap Tooltip -- */
         $('[data-toggle="tooltip"]').tooltip();
-        $('.active_tool_tip')
-            .attr('data-toggle', 'tooltip')
-            .attr('data-placement', 'right')
-            .tooltip({
-                trigger: 'manual'
-            })
-            .tooltip('show');
+        
     </script>
 @endsection

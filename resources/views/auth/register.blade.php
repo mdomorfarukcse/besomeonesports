@@ -64,7 +64,7 @@
                                         {{-- <h4 class="text-primary my-4"><b>{{ __('REGISTER') }}</b></h4> --}}
 
                                         <div class="form-group">
-                                            <select name="role"
+                                            {{-- <select name="role"
                                                 class="form-control @error('role') is-invalid @enderror" required>
                                                 <option value="" selected disabled>Select Role</option>
                                                 <option value="user">User</option>
@@ -76,22 +76,38 @@
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
+                                            <h5 class="text-white border border-light p-1">Guardian Account Information</h5>
+                                            <input type="hidden" name="role" value="guardian">
                                         </div>
-
                                         <div class="form-group">
-                                            <input type="text" value="{{ old('name') }}" name="name"
-                                                autocomplete="off" autofocus
-                                                class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="{{ __('Full Name*') }}" tabindex="0" required>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" value="{{ old('first_name') }}" name="first_name"
+                                                        autocomplete="off" autofocus
+                                                        class="form-control @error('first_name') is-invalid @enderror"
+                                                        placeholder="{{ __('First Name*') }}" tabindex="0" required>
 
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                                    @error('first_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" value="{{ old('last_name') }}" name="last_name"
+                                                        autocomplete="off" autofocus
+                                                        class="form-control @error('last_name') is-invalid @enderror"
+                                                        placeholder="{{ __('Last Name*') }}" tabindex="0" required>
+
+                                                    @error('last_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
-
                                         <div class="form-group">
                                             <input type="email" value="{{ old('email') }}" name="email" required
                                                 autocomplete="off" autofocus tabindex="0"
