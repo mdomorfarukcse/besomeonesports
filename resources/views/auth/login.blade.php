@@ -92,7 +92,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success btn-lg btn-block font-18"><b>{{ __('LOGIN') }}</b></button>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <a href="/" class="btn btn-dark btn-lg btn-block font-18"><b>Back Home</b></a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18"><b>{{ __('LOGIN') }}</b></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </form>
                                         <p class="mb-0 mt-3">{{ __('Don\'t have a account?') }}
                                             <a href="{{ route('register') }}">
