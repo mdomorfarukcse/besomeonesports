@@ -157,7 +157,7 @@
                         <div class="col-md-12">
                             <div class="card border m-b-30">
                                 <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Personal Infomation</h5>
+                                    <h5 class="card-title mb-0">Guardian Infomation</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

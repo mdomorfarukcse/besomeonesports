@@ -194,13 +194,15 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="form-group col-md-12">
+                                        {{-- <div class="form-group col-md-12">
                                             <label for="position">Player Position</label>
                                             <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
                                             @error('position')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
-                                        </div>
+                                        </div> --}}
+                                        <input type="hidden" name="position" value="" class="form-control" />
+
                                         <input type="hidden" name="status" value="Active" required>
                                     </div>
                                 </div>
@@ -221,8 +223,8 @@
                                     <div class="row">
                                         @role ('developer|admin') 
                                             <div class="form-group col-md-12">
-                                                <label for="guardian_id">Guardian</label>
-                                                <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id">
+                                                <label for="guardian_id">Guardian <span class="required">*</span></label>
+                                                <select class="select2-single form-control @error('guardian_id') is-invalid @enderror" name="guardian_id" required>
                                                     <option value="" selected disabled>Select Guardian</option>
                                                     @foreach ($guardians as $guardian) 
                                                         <option value="{{ $guardian->id }}">{{ $guardian->name }}</option>
@@ -237,13 +239,13 @@
                                             <label for="guardian_relation">Relation With Guardian @role('guardian') <span class="required">*</span> @endrole</label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" @role('guardian') required @endrole>
                                                 <option value="" selected disabled>Select Relation</option>
+                                                <option value="Legal Guardian">Legal Guardian</option>
                                                 <option value="Father">Father</option>
                                                 <option value="Mother">Mother</option>
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
                                                 <option value="Aunty">Aunty</option>
-                                                <option value="Legal Guardian">Legal Guardian</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -408,6 +410,13 @@
                                             <label for="mother_email">Guardian #2 Email.</label>
                                             <input type="email" name="mother_email" value="{{ old('mother_email') }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
                                             @error('mother_email')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label for="father_name">Guardian Relationship <span class="required">*</span></label>
+                                            <input type="text" name="father_name" value="{{ old('father_name') }}" class="form-control @error('father_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
+                                            @error('father_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
