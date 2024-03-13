@@ -151,12 +151,11 @@ class UserSeeder extends Seeder
             'state' => fake()->words(2, true),
             'postal_code' => fake()->postcode(),
             'extended_address' => fake()->address(),
-            'father_name' => fake()->name(),
-            'father_email' => fake()->safeEmail(),
-            'father_contact' => fake()->phoneNumber(),
-            'mother_name' => fake()->name(),
-            'mother_email' => fake()->safeEmail(),
-            'mother_contact' => fake()->phoneNumber(),
+            'guardian1_name' => fake()->name(),
+            'guardian1_email' => fake()->safeEmail(),
+            'guardian1_contact' => fake()->phoneNumber(),
+            'guardian1_relationship' => fake()->name(),
+            
             'status' => 'Active',
         ]);
         

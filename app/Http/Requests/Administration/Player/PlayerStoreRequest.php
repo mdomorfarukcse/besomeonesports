@@ -43,13 +43,19 @@ class PlayerStoreRequest extends FormRequest
             "status" => ['required','in:Active,Inactive,Banned'],
 
             // Parents Info
-            "father_name" => ['required', 'string'],
-            "father_email" => ['nullable', 'email'],
-            "father_contact" => ['nullable', 'string', 'max:20'],
-            "mother_name" => ['required', 'string'],
-            "mother_email" => ['nullable', 'email'],
-            "mother_contact" => ['nullable', 'string', 'max:20'],
-
+            "guardian1_name" => ['required', 'string'],
+            "guardian1_email" => ['nullable', 'email'],
+            "guardian1_contact" => ['nullable', 'string', 'max:20'],
+            "guardian1_relationship" => ['nullable', 'string', 'max:20'],
+            "guardian2_name" => ['nullable', 'string'],
+            "guardian2_email" => ['nullable', 'email'],
+            "guardian2_contact" => ['nullable', 'string', 'max:20'],
+            "guardian2_relationship" => ['nullable', 'string', 'max:20'],
+            "guardian3_name" => ['nullable', 'string'],
+            "guardian3_email" => ['nullable', 'email'],
+            "guardian3_contact" => ['nullable', 'string', 'max:20'],
+            "guardian3_relationship" => ['nullable', 'string', 'max:20'],
+            
             // Guardian Info
             "guardian_id" => ['nullable', 'integer', 'exists:users,id'],
             "guardian_relation" => ['nullable', 'string'],

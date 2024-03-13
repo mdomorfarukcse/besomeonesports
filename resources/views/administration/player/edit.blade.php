@@ -339,45 +339,87 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4 form-group">
-                                            <label for="father_name">Guardian #1 Name <span class="required">*</span></label>
-                                            <input type="text" name="father_name" value="{{ $player->father_name }}" class="form-control @error('father_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
-                                            @error('father_name')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian1_name">Guardian #1 Name <span class="required">*</span></label>
+                                            <input type="text" name="guardian1_name" value="{{ $player->guardian1_name }}" class="form-control @error('guardian1_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
+                                            @error('guardian1_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="father_contact">Guardian #1 Contact No.</label>
-                                            <input type="text" name="father_contact" value="{{ $player->father_contact }}" class="form-control @error('father_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
-                                            @error('father_contact')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian1_contact">Guardian #1 Contact No.</label>
+                                            <input type="text" name="guardian1_contact" value="{{ $player->guardian1_contact }}" class="form-control @error('guardian1_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            @error('guardian1_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="father_email">Guardian #1 Email.</label>
-                                            <input type="text" name="father_email" value="{{ $player->father_email }}" class="form-control @error('father_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
-                                            @error('father_email')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian1_email">Guardian #1 Email.</label>
+                                            <input type="text" name="guardian1_email" value="{{ $player->guardian1_email }}" class="form-control @error('guardian1_email') is-invalid @enderror" placeholder=""/>
+                                            @error('guardian1_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="mother_name">Guardian #2 Name <span class="required">*</span></label>
-                                            <input type="text" name="mother_name" value="{{ $player->mother_name }}" class="form-control @error('mother_name') is-invalid @enderror" placeholder="Ex: John Doe" required/>
-                                            @error('mother_name')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian1_name">Guardian #1 Relationship</label>
+                                            <input type="text" name="guardian1_relationship" value="{{ old('guardian1_relationship') }}" class="form-control @error('guardian1_relationship') is-invalid @enderror" placeholder="" />
+                                            @error('guardian1_relationship')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="mother_contact">Guardian #2 Contact No.</label>
-                                            <input type="text" name="mother_contact" value="{{ $player->mother_contact }}" class="form-control @error('mother_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
-                                            @error('mother_contact')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian2_name">Guardian #2 Name </label>
+                                            <input type="text" name="guardian2_name" value="{{ $player->guardian2_name }}" class="form-control @error('guardian2_name') is-invalid @enderror" placeholder="Ex: John Doe" />
+                                            @error('guardian2_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="mother_email">Guardian #2 Email.</label>
-                                            <input type="text" name="mother_email" value="{{ $player->mother_email }}" class="form-control @error('mother_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
-                                            @error('mother_email')
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian2_contact">Guardian #2 Contact No.</label>
+                                            <input type="text" name="guardian2_contact" value="{{ $player->guardian2_contact }}" class="form-control @error('guardian2_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            @error('guardian2_contact')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian2_email">Guardian #2 Email.</label>
+                                            <input type="text" name="guardian2_email" value="{{ $player->guardian2_email }}" class="form-control @error('guardian2_email') is-invalid @enderror" placeholder="Ex: mother@mail.com"/>
+                                            @error('guardian2_email')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian2_name">Guardian #2 Relationship</label>
+                                            <input type="text" name="guardian2_relationship" value="{{ old('guardian2_relationship') }}" class="form-control @error('guardian2_relationship') is-invalid @enderror" placeholder="" />
+                                            @error('guardian2_relationship')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian3_name">Guardian #3 Name </label>
+                                            <input type="text" name="guardian3_name" value="{{ $player->guardian3_name }}" class="form-control @error('guardian3_name') is-invalid @enderror" placeholder="Ex: John Doe" />
+                                            @error('guardian3_name')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian3_contact">Guardian #3 Contact No.</label>
+                                            <input type="text" name="guardian3_contact" value="{{ $player->guardian3_contact }}" class="form-control @error('guardian3_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            @error('guardian3_contact')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian3_email">Guardian #3 Email.</label>
+                                            <input type="text" name="guardian3_email" value="{{ $player->guardian3_email }}" class="form-control @error('guardian3_email') is-invalid @enderror" placeholder=""/>
+                                            @error('guardian3_email')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="guardian3_name">Guardian #3 Relationship</label>
+                                            <input type="text" name="guardian3_relationship" value="{{ old('guardian3_relationship') }}" class="form-control @error('guardian3_relationship') is-invalid @enderror" placeholder="" />
+                                            @error('guardian3_relationship')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

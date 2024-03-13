@@ -51,12 +51,18 @@ return new class extends Migration
             $table->longText('note', 255)->nullable();
 
             // Parrent Info
-            $table->string('father_name', 100);
-            $table->string('father_email', 100)->nullable();
-            $table->string('father_contact', 20)->nullable();
-            $table->string('mother_name', 100);
-            $table->string('mother_email', 100)->nullable();
-            $table->string('mother_contact', 20)->nullable();
+            $table->string('guardian1_name', 100);
+            $table->string('guardian1_email', 100)->nullable();
+            $table->string('guardian1_contact', 20)->nullable();
+            $table->string('guardian1_relationship', 100)->nullable();
+            $table->string('guardian2_name', 100)->nullable();
+            $table->string('guardian2_email', 100)->nullable();
+            $table->string('guardian2_contact', 20)->nullable();
+            $table->string('guardian2_relationship', 100)->nullable();
+            $table->string('guardian3_name', 100)->nullable();
+            $table->string('guardian3_email', 100)->nullable();
+            $table->string('guardian3_contact', 20)->nullable();
+            $table->string('guardian3_relationship', 100)->nullable();
 
             $table->enum('status', [
                 'Active', 

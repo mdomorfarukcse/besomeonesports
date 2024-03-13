@@ -69,12 +69,18 @@ class NewPlayerController extends Controller
                 $player->note = $request->note;
                 
                 // Parents Info
-                $player->father_name = $request->father_name;
-                $player->father_email = $request->father_email;
-                $player->father_contact = $request->father_contact;
-                $player->mother_name = $request->mother_name;
-                $player->mother_email = $request->mother_email;
-                $player->mother_contact = $request->mother_contact;
+                $player->guardian1_name = $request->guardian1_name;
+                $player->guardian1_email = $request->guardian1_email;
+                $player->guardian1_contact = $request->guardian1_contact;
+                $player->guardian1_relationship = $request->guardian1_relationship;
+                $player->guardian2_name = $request->guardian2_name;
+                $player->guardian2_email = $request->guardian2_email;
+                $player->guardian2_contact = $request->guardian2_contact;
+                $player->guardian2_relationship = $request->guardian2_relationship;
+                $player->guardian3_name = $request->guardian3_name;
+                $player->guardian3_email = $request->guardian3_email;
+                $player->guardian3_contact = $request->guardian3_contact;
+                $player->guardian3_relationship = $request->guardian3_relationship;
                 
                 // Guardian Info
                 $player->guardian_relation = $request->guardian_relation;
