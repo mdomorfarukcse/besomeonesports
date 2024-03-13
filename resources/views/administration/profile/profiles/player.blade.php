@@ -97,7 +97,7 @@
                         <div class="col-md-12">
                             <div class="card border m-b-30">
                                 <div class="card-header bg-primary-rgba border-bottom">
-                                    <h5 class="card-title text-primary mb-0">Parents Information</h5>
+                                    <h5 class="card-title text-primary mb-0">Guardian's Information</h5>
                                 </div>
                                 <div class="card-body py-2">
                                     <div class="row">
@@ -105,28 +105,52 @@
                                             <table class="table table-bordered mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Father Name</th>
-                                                        <td>{{ $profile->player->father_name }}</td>
+                                                        <th>Guardian #1 Name</th>
+                                                        <td>{{ $player->guardian1_name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Father Email</th>
-                                                        <td>{{ $profile->player->father_email }}</td>
+                                                        <th>Guardian #1 Email</th>
+                                                        <td>{{ $player->guardian1_email }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Father Contact</th>
-                                                        <td>{{ $profile->player->father_contact }}</td>
+                                                        <th>Guardian #1 Contact</th>
+                                                        <td>{{ $player->guardian1_contact }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mother Name</th>
-                                                        <td>{{ $profile->player->mother_name }}</td>
+                                                        <th>Guardian #1 Relationship</th>
+                                                        <td>{{ $player->guardian1_relationship }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mother Email</th>
-                                                        <td>{{ $profile->player->mother_email }}</td>
+                                                        <th>Guardian #2 Name</th>
+                                                        <td>{{ $player->guardian2_name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mother Contact</th>
-                                                        <td>{{ $profile->player->mother_contact }}</td>
+                                                        <th>Guardian #2 Email</th>
+                                                        <td>{{ $player->guardian2_email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #2 Contact</th>
+                                                        <td>{{ $player->guardian2_contact }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #2 Relationship</th>
+                                                        <td>{{ $player->guardian2_relationship }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #3 Name</th>
+                                                        <td>{{ $player->guardian3_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #3 Email</th>
+                                                        <td>{{ $player->guardian3_email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #3 Contact</th>
+                                                        <td>{{ $player->guardian3_contact }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Guardian #3 Relationship</th>
+                                                        <td>{{ $player->guardian3_relationship }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

@@ -137,7 +137,7 @@
                                 <th>Name</th>
                                 <th>Reg. Fee</th>
                                 <th>Divisions</th>
-                                <th>Venues</th>
+                                <th>Time</th>
                                 <th>Status</th>
                                 @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                     <th class="text-right">Actions</th>
@@ -160,7 +160,7 @@
                                     </td>
                                     <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
                                     <td>{{ count($league->divisions) }}</td>
-                                    <td>{{ count($league->venues) }}</td>
+                                    <td><span class="badge badge-info badge-sm">{{ $league->start }}</span> To <span class="badge badge-info badge-sm">{{ $league->start }}</span></td>
                                     <td>{!! status($league->status) !!}</td>
                                     @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                         <td class="text-right">

@@ -34,8 +34,10 @@ Route::name('frontend.')->group(function () {
     include_once 'faqs/faqs.php';
     // App Info
     include_once 'appinfo/appinfo.php';
-    // App Info
+    // sponsors 
     include_once 'sponsors/sponsors.php';
+    // partners
+    include_once 'partners/partners.php';
     // Media Relations
     include_once 'press/press.php';
     // Blog
