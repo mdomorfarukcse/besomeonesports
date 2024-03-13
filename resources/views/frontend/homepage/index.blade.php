@@ -571,19 +571,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($bottom_ad))
-                            <a href="{{ $bottom_ad->url }}">
-                                <span>Ad</span>
-                                <img src="{{ show_image($bottom_ad->avatar) }}" height="100" alt="" />
-                            </a>
-                        @else
-                            <a href="/contact">
-                                <span>Ad</span>
-                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
-                            </a>
-                        @endif
-                    </div>
+                    <div id="carouselads" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <div class="ban-ati-com ads-all-list">
+                                    <a href="/contact">
+                                        <span>Ad</span>
+                                        <img src="{{ asset('frontend/images/register.png') }}" height="100" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item  ">
+                                <div class="ban-ati-com ads-all-list">
+                                    <a href="">
+                                        <span>Ad</span>
+                                        <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -646,6 +653,7 @@
         $(window).on("load", function() {
             // $("#leaguemodal").modal("show");
         });
+        
         let items = document.querySelectorAll("#sliderCarousel .carousel-item");
 
         items.forEach((el) => {
