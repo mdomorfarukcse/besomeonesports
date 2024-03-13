@@ -78,7 +78,8 @@ class RegisterController extends Controller
     {
         // Validate the request
         $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:guardian,player,user',
@@ -93,7 +94,9 @@ class RegisterController extends Controller
         $role = isset($request->role) ? $request->role : 'player';
         
         $response = Http::post(config('app.url').'/api/register', [
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'name' => $request->first_name.' '.$request->last_name,
             'email' => $request->email,
             'password' => $request->password,
             'role' => $role, // Assuming the role is provided in the request
@@ -113,8 +116,8 @@ class RegisterController extends Controller
             // Redirect or return a response based on successful registration
             // return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
             toast('Hello '. auth()->user()->name . '. You\'ve Registered Successfully. Update Your Profile.','success');
-            // return redirect()->intended();
-            return redirect()->route('administration.player.index');
+            return redirect()->intended();
+            // return redirect()->route('administration.player.index');
         }
 
         // Handle failed registration
