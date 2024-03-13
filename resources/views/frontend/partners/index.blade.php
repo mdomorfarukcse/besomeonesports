@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Sponsors'))
+@section('page_title', __('Partners'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -40,12 +40,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Sponsors') }}</b>
+    <b class="text-uppercase">{{ __('Partners') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">{{ __('Sponsors') }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Partners') }}</li>
 @endsection
 
 @section('content')
@@ -57,18 +57,17 @@
                 <div class="container">
                     <div class="row ">
                         <div class="text-center mb-50">
-                            <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
-                            <h2 class="comon-heading m-0">Sponsors</h2>
+                            <h5 class="samll-sub mb-1 mt-0">BE SOMEONE SPORTS</h5>
+                            <h2 class="comon-heading m-0">Partners</h2>
                         </div>
-                        @foreach ($sponsors as $key => $sponsor)
-                            <div class="col-md-2">
-                                <a href="{{ $sponsor->url }}">
-                                    <div class="single_sponsor">
-                                        <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
+                        
+                        <div class="col-md-2">
+                            {{-- <a href="">
+                                <div class="single_sponsor">
+                                    <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
+                                </div>
+                            </a> --}}
+                        </div>
                     </div>
                 </div>
             </div>
