@@ -281,7 +281,8 @@ class ProfileController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => [
                 'required',
                 'email',
@@ -302,7 +303,9 @@ class ProfileController extends Controller
                 $user->avatar = $avatar;
             }
 
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->name = $request->first_name.' '.$request->last_name;
             $user->email = $request->email;
             $user->contact_number = $request->contact_number;
             $user->birthdate = $request->birthdate;

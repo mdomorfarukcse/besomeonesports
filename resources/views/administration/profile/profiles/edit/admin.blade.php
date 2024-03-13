@@ -44,10 +44,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
-                                        <label for="name">Full Name <span class="required">*</span></label>
-                                        <input type="text" name="name" value="{{ $profile->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Joseph Sudan" required/>
-                                        @error('name')
+                                    <div class="col-md-6 form-group">
+                                        <label for="first_name">First Name <span class="required">*</span></label>
+                                        <input type="text" name="first_name" value="{{ $profile->first_name }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
+                                        @error('first_name')
+                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="last_name">Last Name <span class="required">*</span></label>
+                                        <input type="text" name="last_name" value="{{ $profile->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Sudan" required/>
+                                        @error('last_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
@@ -72,6 +79,13 @@
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
+                                    <div class="col-md-12 form-group">
+                                        <label for="address">Street Address <span class="required">*</span></label>
+                                        <input type="text" name="address" value="{{ $profile->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
+                                        @error('address')
+                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                        @enderror
+                                    </div>
                                     <div class="col-md-4 form-group">
                                         <label for="city">City <span class="required">*</span></label>
                                         <input type="text" name="city" value="{{ $profile->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
@@ -90,13 +104,6 @@
                                         <label for="postal_code">Postal Code <span class="required">*</span></label>
                                         <input type="text" name="postal_code" value="{{ $profile->postal_code }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                         @error('postal_code')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-8 form-group">
-                                        <label for="address">Street Address <span class="required">*</span></label>
-                                        <input type="text" name="address" value="{{ $profile->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
-                                        @error('address')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
