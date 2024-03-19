@@ -78,7 +78,7 @@
                                         <input type="checkbox" id="FlagFootball" name="location[]" value="Flag Football"> Flag Football<br><br>
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="submit" class="btn comon-btn">Send Message</button>
+                                        <button type="button" class="btn comon-btn" disabled>Send Message</button>
                                     </div>
                                 </div>
                             </form>

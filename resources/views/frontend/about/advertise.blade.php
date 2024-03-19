@@ -222,7 +222,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <input type="submit" name="submit" class="btn btn-info" value="Submit" />
+                                <input type="button" name="submit" class="btn btn-info" value="Submit" disabled/>
                             </div>
                         </div>
                     </form>
