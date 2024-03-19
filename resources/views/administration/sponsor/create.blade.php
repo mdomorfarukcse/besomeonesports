@@ -127,8 +127,8 @@
                             @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="url">URL <span class="required">*</span></label>
-                            <input type="text" name="url" value="{{ old('url') }}" class="form-control @error('url') is-invalid @enderror" placeholder="Sponsor Website URL" required/>
+                            <label for="url">URL</label>
+                            <input type="text" name="url" value="{{ old('url') }}" class="form-control @error('url') is-invalid @enderror" placeholder="Sponsor Website URL"/>
                             @error('url')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror

@@ -33,7 +33,6 @@ class SponsorController extends Controller
     {
         $this->validate($request, [
             'name'      => 'required|string',
-            'url' => 'required',
             'avatar'    => 'required'
         ]);
 
