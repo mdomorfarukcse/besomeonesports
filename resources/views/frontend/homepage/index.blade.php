@@ -516,10 +516,8 @@
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
                     @foreach ($videos as $key => $video)
                         <div class="col-md-6">
-                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}" frameborder="0"
-                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                                <iframe width="1241" height="698" src="https://www.youtube.com/embed/TyYBEx1j53Y" title="Be Someone Volleyball Recap" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>    
+                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}" allowfullscreen></iframe>
+
                         </div>
                     @endforeach
                 </div>
