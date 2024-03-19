@@ -43,8 +43,7 @@
             z-index: 999999;
         }
 
-        .img-container,
-        .card-img {
+        .img-container,.card-img {
             height: 450px;
             /* Fixed height for image containers */
             overflow: hidden;
@@ -63,41 +62,39 @@
         .about-sec-home .row>* {
             padding-right: 0px !important;
         }
-
         @media (max-width: 767px) {
-            .carousel-inner .carousel-item>div {
-                display: none;
-            }
+		.carousel-inner .carousel-item > div {
+			display: none;
+		}
+		.carousel-inner .carousel-item > div:first-child {
+			display: block;
+		}
+	}
 
-            .carousel-inner .carousel-item>div:first-child {
-                display: block;
-            }
-        }
+	.carousel-inner .carousel-item.active,
+	.carousel-inner .carousel-item-next,
+	.carousel-inner .carousel-item-prev {
+		display: flex;
+	}
 
-        .carousel-inner .carousel-item.active,
-        .carousel-inner .carousel-item-next,
-        .carousel-inner .carousel-item-prev {
-            display: flex;
-        }
+	/* medium and up screens */
+	@media (min-width: 768px) {
 
-        /* medium and up screens */
-        @media (min-width: 768px) {
+		.carousel-inner .carousel-item-end.active,
+		.carousel-inner .carousel-item-next {
+			transform: translateX(25%);
+		}
 
-            .carousel-inner .carousel-item-end.active,
-            .carousel-inner .carousel-item-next {
-                transform: translateX(25%);
-            }
+		.carousel-inner .carousel-item-start.active, 
+		.carousel-inner .carousel-item-prev {
+			transform: translateX(-25%);
+		}
+	}
 
-            .carousel-inner .carousel-item-start.active,
-            .carousel-inner .carousel-item-prev {
-                transform: translateX(-25%);
-            }
-        }
-
-        .carousel-inner .carousel-item-end,
-        .carousel-inner .carousel-item-start {
-            transform: translateX(0);
-        }
+	.carousel-inner .carousel-item-end,
+	.carousel-inner .carousel-item-start { 
+		transform: translateX(0);
+	}
     </style>
 @endsection
 
@@ -114,8 +111,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}"
-                                            alt="pic2" />
+                                        <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}" alt="pic2" />
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +120,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/about1.jpg') }}" alt="pic2" />
+                                        <img src="{{ asset('frontend/images/about1.jpg') }}" alt="pic2" />                                   
                                     </div>
                                 </div>
                             </div>
@@ -133,8 +129,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/BeSomone Sports Basketball  Summer 2023 All Star Game 08-19-23 (298) (1)-min.jpg') }}"
-                                            alt="pic2" />
+                                        <img src="{{ asset('frontend/images/BeSomone Sports Basketball  Summer 2023 All Star Game 08-19-23 (298) (1)-min.jpg') }}" alt="pic2" />                                    
                                     </div>
                                 </div>
                             </div>
@@ -143,8 +138,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}"
-                                            alt="pic2" />
+                                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}" alt="pic2" />   
                                     </div>
                                 </div>
                             </div>
@@ -153,8 +147,7 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}"
-                                            alt="pic2" />
+                                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}" alt="pic2" />                                    
                                     </div>
                                 </div>
                             </div>
@@ -163,22 +156,20 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{ asset('frontend/images/besomeonesport_about.jpg') }}" alt="pic2" />
+                                        <img src="{{ asset('frontend/images/besomeonesport_about.jpg') }}" alt="pic2" /> 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button"
-                        data-bs-slide="prev">
+                    <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     </a>
-                    <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button"
-                        data-bs-slide="next">
+                    <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </a>
                 </div>
-            </div>
+            </div>		
         </div>
 
         {{-- <div class="gb-roguch">
@@ -219,13 +210,16 @@
                             around. </h5>
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/ZzZ_jIQM-min.jpeg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/ZzZ_jIQM-min.jpeg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/010_bso_mvp_vball_2023-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/010_bso_mvp_vball_2023-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-12 mt-3 mb-3">
                         <p>Be Someone Sports was created to upgrade every aspect of youth sports. Our unique league provides
@@ -240,7 +234,8 @@
                             alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/027_bso_mvp_vball_2023 (1)-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/027_bso_mvp_vball_2023 (1)-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
                         <img src="{{ asset('frontend/images/Photo Jan 04 2024, 5 00 03 PM (1)-min.jpg') }}"
@@ -258,13 +253,16 @@
                         </p>
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 56 33 PM-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 56 33 PM-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-4 img-container">
-                        <img src="{{ asset('frontend/images/wajI0n-d-min.jpeg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/wajI0n-d-min.jpeg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-12 mt-3 mb-3 text-center">
                         <h1>Be Someone who makes you proud. Be Someone Sports.</h1>
@@ -274,7 +272,8 @@
                             alt="pic2" />
                     </div>
                     <div class="col-md-3 img-container">
-                        <img src="{{ asset('frontend/images/003_BSS_All-Stars-min.jpg') }}" alt="pic2" />
+                        <img src="{{ asset('frontend/images/003_BSS_All-Stars-min.jpg') }}"
+                            alt="pic2" />
                     </div>
                     <div class="col-md-5 img-container">
                         <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}"
@@ -317,23 +316,19 @@
                             <div class="carousel-inner">
                                 @foreach ($upcomingLeagues as $key => $league)
                                     <div class="carousel-item @if ($key == 0) active @endif">
-                                        <img src="{{ show_image($league->logo) }}" class="d-block w-100"
-                                            alt="..." />
+                                        <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption d-none d-md-block">
                                             <h6>{{ $league->name }}</h6>
-                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins
-                                                league.</p>
+                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
                                             <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
-                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i
-                                                    class="fas fa-tags"></i> Register</a>
+                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
                                             <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
-                                                class="btn btn-info btn-outline-custom fw-bolder"> <i
-                                                    class="fas fa-tags"></i> Details</a>
+                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            @if (count($upcomingLeagues) > 1)
+                            @if(count($upcomingLeagues) > 1)
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
                                     data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -345,7 +340,7 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             @endif
-                        </div>
+                        </div>  
                     @else
                         <h5 class="alert alert-info">No Data</h5>
                     @endif
@@ -459,25 +454,24 @@
         </div>
 
         <!-- Start row -->
-        <section class="float-start w-100 sub-headh-bask body-part pt-0 mb-50">
-            <div class="about-page-main comon-sub-page-main d-inline-block w-100">
-                <div class="about-club-top">
-                    <div class="container">
-                        <div class="row ">
-                            <div class="text-center mb-50">
-                                <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
-                                <h2 class="comon-heading m-0">Reviews</h2>
-                            </div>
-                            <div class="col-md-12">
-                                <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                                <div class="elfsight-app-4d1d8a6a-9211-40dd-90d4-01d3e4f24ef5" data-elfsight-app-lazy>
-                                </div>
-                            </div>
+    <section class="float-start w-100 sub-headh-bask body-part pt-0 mb-50">
+        <div class="about-page-main comon-sub-page-main d-inline-block w-100">
+            <div class="about-club-top">
+                <div class="container">
+                    <div class="row ">
+                        <div class="text-center mb-50">
+                            <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
+                            <h2 class="comon-heading m-0">Reviews</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                            <div class="elfsight-app-4d1d8a6a-9211-40dd-90d4-01d3e4f24ef5" data-elfsight-app-lazy></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         {{-- <div class="mediasection d-inline-block w-100">
             <div class="container">
@@ -516,14 +510,8 @@
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
                     @foreach ($videos as $key => $video)
                         <div class="col-md-6">
-                            {{ $video->youtubeurl }}
                             <iframe width="100%" height="345" src="{{ $video->youtubeurl }}">
                             </iframe>
-                            <iframe width="1241" height="698" src="{{ $video->youtubeurl }}"
-                                title="Willow Grove Bears Off Season Workout March 2024" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-
                         </div>
                     @endforeach
                 </div>
@@ -589,8 +577,7 @@
                                 <div class="ban-ati-com ads-all-list">
                                     <a href="/contact">
                                         <span>Ad</span>
-                                        <img src="{{ asset('frontend/images/register.png') }}" height="100"
-                                            alt="" />
+                                        <img src="{{ asset('frontend/images/register.png') }}" height="100" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -598,13 +585,12 @@
                                 <div class="ban-ati-com ads-all-list">
                                     <a href="">
                                         <span>Ad</span>
-                                        <img src="{{ asset('frontend/images/ad.png') }}" height="100"
-                                            alt="" />
+                                        <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -667,22 +653,23 @@
         $(window).on("load", function() {
             // $("#leaguemodal").modal("show");
         });
-
+        
         let items = document.querySelectorAll("#sliderCarousel .carousel-item");
 
         items.forEach((el) => {
-            const minPerSlide = 3;
-            let next = el.nextElementSibling;
-            for (var i = 1; i < minPerSlide; i++) {
-                if (!next) {
-                    // wrap carousel by using first child
-                    next = items[0];
-                }
-                let cloneChild = next.cloneNode(true);
-                el.appendChild(cloneChild.children[0]);
-                next = next.nextElementSibling;
+        const minPerSlide = 3;
+        let next = el.nextElementSibling;
+        for (var i = 1; i < minPerSlide; i++) {
+            if (!next) {
+            // wrap carousel by using first child
+            next = items[0];
             }
+            let cloneChild = next.cloneNode(true);
+            el.appendChild(cloneChild.children[0]);
+            next = next.nextElementSibling;
+        }
         });
+
     </script>
 
 @endsection
