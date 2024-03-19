@@ -56,6 +56,7 @@
                                         <div class="col-md-6 form-group">
                                             <label for="name">Youtube URL <span class="required">*</span></label>
                                             <input type="text" name="youtubeurl" value="https://www.youtube.com/embed/" class="form-control @error('youtubeurl') is-invalid @enderror" placeholder="https://www.youtube.com/embed/-H2GTIv9ZK8" required/>
+                                            <p class="badge badge-info"> Please add youtube id end of the url.</p>
                                             @error('name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
