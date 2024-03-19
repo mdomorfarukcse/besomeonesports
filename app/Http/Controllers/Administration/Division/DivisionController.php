@@ -14,10 +14,18 @@ class DivisionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $divisions = Division::select(['id','name','gender','status'])->orderBy('created_at', 'desc')->get();
-        return view('administration.division.index', compact('divisions'));
+        $query = Division::select(['id','name','gender','status'])->orderBy('created_at', 'desc');
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->gender);
+        }
+        if ($request->filled('status')) {
+            $query->whereStatus($request->status);
+        }
+
+        $divisions = $query->get();
+        return view('administration.division.index', compact('divisions', 'request'));
     }
 
     /**

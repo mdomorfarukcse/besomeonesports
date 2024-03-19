@@ -50,6 +50,56 @@
 
 <!-- Start row -->
 <div class="row">
+
+    <div class="col-md-12 m-b-20">
+        <div class="card">
+            <form action="{{ route('administration.division.index') }}" method="get">
+                <div class="card-body">
+                    <input type="hidden" name="filter" value="true">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="division">Gender</label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male" {{ $request->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ $request->gender === 'Female' ? 'selected' : '' }}>Female</option>
+                                <option value="Co-Ed" {{ $request->gender === 'Co-Ed' ? 'selected' : '' }}>Co-Ed</option>
+                            </select>
+                            @error('division')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="form-group col-md-7">
+                                    <label for="status">Status</label>
+                                    <select class="select2-single form-control @error('status') is-invalid @enderror" name="status">
+                                        <option value="Active" {{ $request->status === 'Active' ? 'selected' : '' }}>Active</option>
+                                        <option value="Inactive" {{ $request->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                    </select>
+                                    @error('status')
+                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                    @enderror
+                                </div>
+                                <div class="col-md-5">
+                                    <button type="submit" class="btn btn-dark btn-custom btn-block m-t-30">
+                                        <i class="feather icon-filter mr-1"></i>
+                                        <span class="text-bold">Filter</span>
+                                    </button>
+                                    @if ($request->filter == true) 
+                                        <a href="{{ route('administration.division.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
+                                            <i class="icon feather icon-x m-r-1"></i>
+                                            Clear
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Start col -->
     <div class="col-lg-12">
         <div class="card m-b-30">
