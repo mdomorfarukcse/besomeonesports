@@ -42,7 +42,9 @@ class GuardianController extends Controller
 
                 $user = new User();
 
-                $user->name = $request->name;
+                $user->name = $request->first_name . ' ' . $request->last_name;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
                 $user->email = $request->email;
                 $user->password = Hash::make(generate_password());
                 $user->birthdate = $request->birthdate;
@@ -97,9 +99,14 @@ class GuardianController extends Controller
         // dd($request->all(), $guardian);
         try {
             DB::transaction(function() use ($request, $guardian) {
-                $avatar = upload_image($request->avatar);
+                if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
+                    $guardian->avatar = $avatar;
+                }
 
-                $guardian->name = $request->name;
+                $guardian->name = $request->first_name . ' ' . $request->last_name;
+                $guardian->first_name = $request->first_name;
+                $guardian->last_name = $request->last_name;
                 $guardian->email = $request->email;
                 $guardian->birthdate = $request->birthdate;
                 $guardian->contact_number = $request->contact_number;
@@ -107,7 +114,6 @@ class GuardianController extends Controller
                 $guardian->state = $request->state;
                 $guardian->postal_code = $request->postal_code;
                 $guardian->address = $request->address;
-                $guardian->avatar = $avatar;
 
                 $guardian->save();
             }, 5);
