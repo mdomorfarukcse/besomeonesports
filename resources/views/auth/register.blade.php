@@ -83,6 +83,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    <label for="first_name" class="float-left text-white text-bold">
+                                                        First Name
+                                                        <span class="required">*</span>
+                                                    </label>
                                                     <input type="text" value="{{ old('first_name') }}" name="first_name"
                                                         autocomplete="off" autofocus
                                                         class="form-control @error('first_name') is-invalid @enderror"
@@ -95,6 +99,10 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <label for="last_name" class="float-left text-white text-bold text-capitalize">
+                                                        last Name
+                                                        <span class="required">*</span>
+                                                    </label>
                                                     <input type="text" value="{{ old('last_name') }}" name="last_name"
                                                         autocomplete="off" autofocus
                                                         class="form-control @error('last_name') is-invalid @enderror"
@@ -109,6 +117,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="email" class="float-left text-white text-bold text-capitalize">
+                                                email
+                                                <span class="required">*</span>
+                                            </label>
                                             <input type="email" value="{{ old('email') }}" name="email" required
                                                 autocomplete="off" autofocus tabindex="0"
                                                 class="form-control @error('email') is-invalid @enderror"
@@ -122,29 +134,41 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="password" value="{{ old('password') }}" name="password"
-                                                required autocomplete="off" tabindex="0"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                placeholder="{{ __('Password*') }}">
-
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="password" value="{{ old('password_confirmation') }}"
-                                                name="password_confirmation" required autocomplete="off" tabindex="0"
-                                                class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                placeholder="{{ __('Re-Type Password*') }}">
-
-                                            @error('password_confirmation')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="password" class="float-left text-white text-bold text-capitalize">
+                                                        password
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                    <input type="password" value="{{ old('password') }}" name="password"
+                                                        required autocomplete="off" tabindex="0"
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        placeholder="{{ __('Password*') }}">
+        
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+        
+                                                <div class="col-md-6">
+                                                    <label for="password_confirmation" class="float-left text-white text-bold text-capitalize">
+                                                        Confirm Password
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                    <input type="password" value="{{ old('password_confirmation') }}"
+                                                        name="password_confirmation" required autocomplete="off" tabindex="0"
+                                                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                        placeholder="{{ __('Re-Type Password*') }}">
+        
+                                                    @error('password_confirmation')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">

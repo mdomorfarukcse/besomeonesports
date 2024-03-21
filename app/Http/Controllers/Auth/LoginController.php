@@ -77,14 +77,14 @@ class LoginController extends Controller
             }
 
             // Redirect or return a response based on successful login
-            // return redirect()->route('administration.dashboard.index');
             toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
-            return redirect()->intended();
+            // return redirect()->intended();
+            return redirect()->route('administration.dashboard.index');
         }
 
         // Handle failed login
         // For example, return an error message or redirect back to the login page
-        return redirect()->route('login')->with('error', 'Invalid credentials');
+        return redirect()->route('login')->with('error', 'Invalid credentials! Please check your email and password and try again.');
     }
     
 

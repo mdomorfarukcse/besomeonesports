@@ -42,9 +42,14 @@
                         <!-- Start col -->
                         <div class="col-md-6 col-lg-5">
                             <!-- Start Auth Box -->
-                            <div class="auth-box-right">
+                            <div class="auth-box-right bg-dark">
                                 <div class="card">
                                     <div class="card-body">
+                                        @if(session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="form-head">
@@ -56,22 +61,20 @@
                                             <h4 class="text-primary my-4"><b>{{ __('LOGIN') }}</b></h4>
 
                                             <div class="form-group">
+                                                <label for="email" class="float-left text-white text-bold">Email <span class="required">*</span></label>
                                                 <input type="email" value="{{ old('email') }}" name="email" required autocomplete="off" autofocus tabindex="0" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Login Email*') }}">
 
                                                 @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                 @enderror
                                             </div>
                                                 
                                             <div class="form-group">
+                                                <label for="password" class="float-left text-white text-bold">Password <span class="required">*</span></label>
                                                 <input type="password" value="{{ old('password') }}" name="password" required autocomplete="off"  tabindex="0" class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}">
 
                                                 @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                    <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                 @enderror
                                             </div>
 
