@@ -212,7 +212,7 @@
                 <div class="row ">
                     <div class="col-md-12">
                         <h5>Our Club</h5>
-                        <h1 class="mb-3">About the <span> Be Someone Sports </span></h1>
+                        <h1 class="mb-3">About <span> Be Someone Sports </span></h1>
                         <h4 class="mb-3">Offering a new recreational youth sports experience for basketball, flag
                             football, and volleyball.</h4>
                         <h5 class="mb-3">Welcome to Be Someone Sports, a recreational youth sports league unlike any other
