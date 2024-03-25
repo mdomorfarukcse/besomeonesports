@@ -40,7 +40,7 @@
 
 
 @section('breadcrumb_buttons')
-    <a href="{{ route('administration.league.index') }}" class="btn btn-outline-success btn-outline-custom fw-bolder">
+    <a href="{{ route('administration.league.index') }}" class="btn btn-theme btn-outline-custom fw-bolder">
         <i class="feather icon-plus"></i>
         <b>Register League</b>
     </a>
@@ -151,7 +151,43 @@
     @endrole
     
     <div class="row">
-        <div class="col-lg-12 col-xl-12">
+        <!-- Start col -->
+        <div class="col-md-6">
+            <div class="card m-b-30">
+                <div class="card-header">                                
+                    <div class="row align-items-center">
+                        <div class="col-7">
+                            <h5 class="card-title mb-0">Guideline</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="mb-4">Welcome to <span class ="text-theme bold">Be Someone Sports.</span> Please follow below guideline for register your children. </h5>
+                    <div class="activities-history">
+                        <div class="activities-history-list">
+                            <div class="activities-history-item">                                            
+                                <h6>First create player account for your children </h6>
+                                <a href = "{{ route('administration.player.create') }}" class="btn btn-theme  text-white btn-sm">Add Payer</a>
+                            </div>
+                        </div>
+                        <div class="activities-history-list">
+                            <div class="activities-history-item">
+                                <h6>Check out our active League. Then Register and Pay League for your children</h6>
+                                <a href = "{{ route('administration.league.index') }}" class="btn btn-theme  text-white btn-sm">Register League</a>
+                            </div>
+                        </div>
+                        <div class="activities-history-list">
+                            <div class="activities-history-item">
+                                <h6>Check out our store and order your children Juersy, Shirt, Shorts etc.</h6>
+                                <a href = "{{ route('frontend.shop.index') }}" class="btn btn-theme  text-white btn-sm">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End col -->
+        <div class="col-md-6">
             <div class="card m-b-30">
                 <div class="card-header">
                     <div class="row align-items-center">
