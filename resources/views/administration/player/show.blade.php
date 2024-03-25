@@ -74,10 +74,10 @@
                                                         </div>    
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                {{-- <tr>
                                                     <th>Player ID (PID)</th>
                                                     <td class="text-primary text-bold">{{ $player->player_id }}</td>
-                                                </tr>
+                                                </tr> --}}
                                                 @if (!empty($player->position))
                                                     <tr>
                                                         <th>Position</th>
@@ -87,11 +87,7 @@
                                                 <tr>
                                                     <th>Division</th>
                                                     <td>
-                                                        <a href="{{ route('administration.division.show', ['division' => $player->division]) }}" target="_blank">
-                                                            <strong class="text-dark">
-                                                                {{ $player->division->name }}
-                                                            </strong>
-                                                        </a>
+                                                        {{ $player->division->name }}
                                                     </td>
                                                 </tr>
                                                 <tr>

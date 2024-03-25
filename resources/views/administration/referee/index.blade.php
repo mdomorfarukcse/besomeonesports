@@ -60,7 +60,6 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th>Avatar</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
@@ -71,9 +70,6 @@
                             @foreach ($referees as $sl => $referee)
                                 <tr>
                                     <th class="fw-bold"><b>#{{ serial($referees, $sl) }}</b></th>
-                                    <td>
-                                        <img src="{{ show_image($referee->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="player">
-                                    </td>
                                     <td>
                                         {{ $referee->name }}
                                     </td>

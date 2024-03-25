@@ -127,7 +127,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        {{-- <div class="col-md-12 form-group">
                             <label for="player_id">Player ID (CID) <span class="required">*</span></label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -138,7 +138,9 @@
                             @error('player_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
+                        </div> --}}
+                        <input type="hidden" name="player_id" value="{{ $player_id }}" readonly class="form-control text-bold @error('player_id') is-invalid @enderror" placeholder="BSPLAYER202302011235" required/>
+
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">

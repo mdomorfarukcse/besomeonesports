@@ -65,7 +65,6 @@
                             <tr>
                                 <th>Sl.</th>
                                 <th>Avatar</th>
-                                <th>Player ID (CID)</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
@@ -82,7 +81,6 @@
                                     <td>
                                         <img src="{{ show_image($player->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="player">
                                     </td>
-                                    <td>{{ $player->player_id }}</td>
                                     <td>
                                         {{ $player->user->name }}
                                         <a href = "{{ route('administration.league.index') }}" class="badge badge-info">Available League</a>
