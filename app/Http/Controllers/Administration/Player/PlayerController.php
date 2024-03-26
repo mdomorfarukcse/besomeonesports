@@ -31,8 +31,6 @@ class PlayerController extends Controller
                                     $user->select(['id', 'name', 'email', 'avatar']);
                                 }
                             ])->orderBy('created_at', 'desc')->get();
-        
-                            Session::flash('playeradd', 'This is a message!');                         
         return view('administration.player.index', compact(['players']));
     }
     
