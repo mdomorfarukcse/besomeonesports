@@ -103,16 +103,23 @@
                                     @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('player.show')) 
+                                                    <a href="{{ route('administration.league.index') }}"
+                                                        class="btn btn-success btn-outline-custom btn-sm mb-1"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="{{ __('Register League?') }}">
+                                                        Register League
+                                                    </a>
+                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-eye"></i>
+                                                    </a>
+                                                @endif
                                                 @if (auth()->user()->can('player.destroy')) 
                                                     <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                         <i class="feather icon-trash-2"></i>
                                                     </a>
                                                 @endif
-                                                @if (auth()->user()->can('player.show')) 
-                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-eye"></i>
-                                                    </a>
-                                                @endif
+                                                
                                             </div>
                                         </td>
                                     @endif
