@@ -114,9 +114,10 @@ class RegisterController extends Controller
             auth()->loginUsingId($user['id']);
 
             // Redirect or return a response based on successful registration
-            // return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
+            
             toast('Hello '. auth()->user()->name . '. You\'ve Registered Successfully. Update Your Profile.','success');
-            return redirect()->intended();
+            return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
+            // return redirect()->intended();
             // return redirect()->route('administration.player.index');
         }
 
