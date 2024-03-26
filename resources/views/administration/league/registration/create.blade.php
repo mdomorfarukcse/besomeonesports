@@ -164,21 +164,21 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="cardnumber">Card Number</label>
-                                    <input type="text" class="form-control" value="{{ old('card_number') }}" name="card_number" id="cardnumber">
+                                    <input type="text" class="form-control" value="{{ old('card_number') }}" name="card_number" id="cardnumber" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="cardfullname">Full Name</label>
-                                    <input type="text" class="form-control" value="{{ old('card_holder_name') }}" name="card_holder_name" id="cardfullname">
+                                    <input type="text" class="form-control" value="{{ old('card_holder_name') }}" name="card_holder_name" id="cardfullname" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="cardexpiry">Expiry Date</label>
-                                    <input type="text" class="form-control" value="{{ old('card_expiry') }}" name="card_expiry" id="cardexpiry">
+                                    <input type="text" class="form-control" value="{{ old('card_expiry') }}" name="card_expiry" id="cardexpiry" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="cardcvc">CVC</label>
-                                    <input type="text" class="form-control" value="{{ old('card_cvc') }}" name="card_cvc" id="cardcvc">
+                                    <input type="text" class="form-control" value="{{ old('card_cvc') }}" name="card_cvc" id="cardcvc" required>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,7 @@
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
-    /* Custom CSS Here */
+        /* Custom CSS Here */
     </style>
 @endsection
 
@@ -35,7 +35,7 @@
 @endsection
 
 
-@if (auth()->user()->can('player.create')) 
+@if (auth()->user()->can('player.create'))
     @section('breadcrumb_buttons')
         <a href="{{ route('administration.player.create') }}" class="btn btn-outline-dark btn-outline-custom fw-bolder">
             <i class="feather icon-plus"></i>
@@ -50,67 +50,99 @@
 
 @section('content')
 
-<!-- Start row -->
-<div class="row">
-    <!-- Start col -->
-    <div class="col-lg-12">
-        <div class="card m-b-30">
-            <div class="card-header">
-                <h5 class="card-title">{{ __('All Players') }}</h5>
+    <!-- Start row -->
+    <div class="row">
+
+        @if (Session::has('playeradd'))
+            <!-- Start col -->
+            <div class="col-md-12">
+                <div class="alert-list">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Well done!</h4>
+                        <p>Thank you for add your children.</p>
+                        <hr>
+                        <p class="mb-1">Check out our active League. Then Register and Pay League for your children. <a
+                                href="{{ route('administration.league.index') }}" class="btn btn-theme btn-sm"> Register
+                                League</a></p>
+                        <p class="mt-1">Check out our store and order your children Juersy, Shirt, Shorts etc. <a
+                            href="{{ route('frontend.shop.index') }}" class="btn btn-theme btn-sm"> Shop
+                            Now</a></p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="default-datatable" class="display table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Sl.</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Contact No</th>
-                                <th>Status</th>
-                                @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
-                                    <th class="text-right">Actions</th>
-                                @endif
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($players as $sl => $player)
+            <!-- End col -->
+        @endif
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title">{{ __('All Players') }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="default-datatable" class="display table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
-                                    <td>
-                                        {{ $player->user->name }}
-                                        <a href = "{{ route('administration.league.index') }}" class="badge badge-info">Register League</a>
-                                    </td>
-                                    <td>{{ $player->user->email }}</td>
-                                    <td>{{ $player->contact_number }}</td>
-                                    <td>{!! status($player->status) !!}</td>
-                                    @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy')) 
-                                        <td class="text-right">
-                                            <div class="action-btn-group mr-3">
-                                                @if (auth()->user()->can('player.destroy')) 
-                                                    <a href="{{ route('administration.player.destroy', ['player' => $player]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm mb-1" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
-                                                        <i class="feather icon-trash-2"></i>
-                                                    </a>
-                                                @endif
-                                                @if (auth()->user()->can('player.show')) 
-                                                    <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm mb-1" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
-                                                    </a>
-                                                @endif
-                                            </div>
-                                        </td>
+                                    <th>Sl.</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact No</th>
+                                    <th>Status</th>
+                                    @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy'))
+                                        <th class="text-right">Actions</th>
                                     @endif
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($players as $sl => $player)
+                                    <tr>
+                                        <th class="fw-bold"><b>#{{ $sl + 1 }}</b></th>
+                                        <td>
+                                            {{ $player->user->name }}
+                                        </td>
+                                        <td>{{ $player->user->email }}</td>
+                                        <td>{{ $player->contact_number }}</td>
+                                        <td>{!! status($player->status) !!}</td>
+                                        @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy'))
+                                            <td class="text-right">
+                                                <div class="action-btn-group mr-3">
+                                                    @if (auth()->user()->can('player.show'))
+                                                        <a href="{{ route('administration.league.index') }}"
+                                                            class="btn btn-success btn-outline-custom btn-sm mb-1"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="{{ __('Register League?') }}">
+                                                            Register League
+                                                        </a>
+                                                        <a href="{{ route('administration.player.show', ['player' => $player]) }}"
+                                                            class="btn btn-outline-info btn-outline-custom btn-sm mb-1"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="{{ __('View?') }}">
+                                                            <i class="feather icon-eye"></i>
+                                                        </a>
+                                                    @endif
+                                                    @if (auth()->user()->can('player.destroy'))
+                                                        <a href="{{ route('administration.player.destroy', ['player' => $player]) }}"
+                                                            class="btn btn-outline-danger btn-outline-custom btn-sm mb-1"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="{{ __('Delete?') }}"
+                                                            onclick="return confirm('Are You Sure Want To Delete?');">
+                                                            <i class="feather icon-trash-2"></i>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- End col -->
     </div>
-    <!-- End col -->
-</div>
-<!-- End row -->
+    <!-- End row -->
 
 @endsection
 
@@ -139,6 +171,5 @@
         // Custom Script Here
         /* -- Bootstrap Tooltip -- */
         $('[data-toggle="tooltip"]').tooltip();
-        
     </script>
 @endsection

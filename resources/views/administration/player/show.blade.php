@@ -57,6 +57,25 @@
         <div class="card m-b-30">
             <div class="card-body">
                 <div class="row justify-content-center">
+                    @if (Session::has('playeradd'))
+                        <!-- Start col -->
+                        <div class="col-md-12">
+                            <div class="alert-list">
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Well done!</h4>
+                                    <p>Thank you for add your children.</p>
+                                    <hr>
+                                    <p class="mb-1">Check out our active League. Then Register and Pay League for your children. <a
+                                            href="{{ route('administration.league.index') }}" class="btn btn-theme btn-sm"> Register
+                                            League</a></p>
+                                    <p class="mt-1">Check out our store and order your children Juersy, Shirt, Shorts etc. <a
+                                        href="{{ route('frontend.shop.index') }}" class="btn btn-theme btn-sm"> Shop
+                                        Now</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End col -->
+                    @endif
                     <div class="col-md-6">
                         <div class="card border">
                             <div class="card-header bg-primary-rgba border-bottom">

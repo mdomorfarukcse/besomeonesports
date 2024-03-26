@@ -133,7 +133,6 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th>Logo</th>
                                 <th>Name</th>
                                 <th>Reg. Fee</th>
                                 <th>Divisions</th>
@@ -148,9 +147,9 @@
                             @foreach ($leagues as $key => $league)
                                 <tr>
                                     <td class="fw-bold text-dark"><b>#{{ serial($leagues, $key) }}</b></th>
-                                    <td>
+                                    {{-- <td>
                                         <img src="{{ show_image($league->logo) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="league">
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         {{ $league->name }}
                                         <br>
@@ -165,14 +164,17 @@
                                     @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('league.show')) 
+                                                    <a href="{{ route('administration.league.registration', ['league' => $league]) }}" class="btn btn-success btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Register Now') }}">
+                                                        Register Now
+                                                    </a>
+                                                    <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-eye"></i>
+                                                    </a>
+                                                @endif
                                                 @if (auth()->user()->can('league.destroy')) 
                                                     <a href="{{ route('administration.league.destroy', ['league' => $league]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                         <i class="feather icon-trash-2"></i>
-                                                    </a>
-                                                @endif
-                                                @if (auth()->user()->can('league.show')) 
-                                                    <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
                                                     </a>
                                                 @endif
                                             </div>

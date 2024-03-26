@@ -169,6 +169,7 @@
                                         <div class="col-md-12 form-group">
                                             <label for="password">Password <span class="required">*</span></label>
                                             <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="Co@cH2023#" required/>
+                                            <div class="text-danger font-12">The password must be atleast 8 character long. </div>
                                             @error('password')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -395,9 +396,18 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian1_name">Guardian #1 Relationship</label>
-                                            <input type="text" name="guardian1_relationship" value="{{ old('guardian1_relationship') }}" class="form-control @error('guardian1_relationship') is-invalid @enderror" placeholder="" />
-                                            @error('guardian1_relationship')
+                                            <label for="guardian1_relationship">Guardian #3 Relationship </label>
+                                            <select class="select2-single form-control @error('guardian1_relationship') is-invalid @enderror" name="guardian1_relationship">
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Legal Guardian">Legal Guardian</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Uncle">Uncle</option>
+                                                <option value="Aunty">Aunty</option>
+                                            </select>
+                                            @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
@@ -423,9 +433,18 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian2_relationship">Guardian #2 Relationship</label>
-                                            <input type="text" name="guardian2_relationship" value="{{ old('guardian2_relationship') }}" class="form-control @error('guardian2_relationship') is-invalid @enderror" placeholder="" />
-                                            @error('guardian2_relationship')
+                                            <label for="guardian2_relationship">Guardian #3 Relationship </label>
+                                            <select class="select2-single form-control @error('guardian2_relationship') is-invalid @enderror" name="guardian2_relationship">
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Legal Guardian">Legal Guardian</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Uncle">Uncle</option>
+                                                <option value="Aunty">Aunty</option>
+                                            </select>
+                                            @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
@@ -451,9 +470,18 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian3_relationship">Guardian #3 Relationship</label>
-                                            <input type="text" name="guardian3_relationship" value="{{ old('guardian3_relationship') }}" class="form-control @error('guardian3_relationship') is-invalid @enderror" placeholder="" />
-                                            @error('guardian3_relationship')
+                                            <label for="guardian3_relationship">Guardian #3 Relationship </label>
+                                            <select class="select2-single form-control @error('guardian3_relationship') is-invalid @enderror" name="guardian3_relationship">
+                                                <option value="" selected disabled>Select Relation</option>
+                                                <option value="Legal Guardian">Legal Guardian</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Uncle">Uncle</option>
+                                                <option value="Aunty">Aunty</option>
+                                            </select>
+                                            @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

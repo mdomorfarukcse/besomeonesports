@@ -6,16 +6,17 @@ use Exception;
 use App\Models\User;
 use App\Models\Player\Player;
 use Illuminate\Support\Carbon;
+use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use App\Mail\Administration\Player\PlayerLoginCredentialMail;
 use App\Http\Requests\Administration\Player\PlayerStoreRequest;
 use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
-use App\Models\Division\Division;
 
 class PlayerController extends Controller
 {
@@ -30,7 +31,8 @@ class PlayerController extends Controller
                                     $user->select(['id', 'name', 'email', 'avatar']);
                                 }
                             ])->orderBy('created_at', 'desc')->get();
-
+        
+                            Session::flash('playeradd', 'This is a message!');                         
         return view('administration.player.index', compact(['players']));
     }
     
@@ -170,7 +172,8 @@ class PlayerController extends Controller
             }, 5);
 
             toast('A New Player Has Been Created.','success');
-            return redirect()->route('administration.player.show', ['player' => $player->id]);
+            Session::flash('playeradd', 'A New Player Has Been Created.'); 
+            return redirect()->route('administration.player.index');
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             dd($e);
