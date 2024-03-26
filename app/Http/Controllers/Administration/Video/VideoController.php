@@ -39,7 +39,7 @@ class VideoController extends Controller
             toast('A New Video Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Video Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -74,7 +74,7 @@ class VideoController extends Controller
             return redirect()->route('administration.video.show', ['video' => $video]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Video Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -92,7 +92,7 @@ class VideoController extends Controller
             toast('Video Has Been Deleted.','success');
             return redirect()->route('administration.video.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Video Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

@@ -44,7 +44,7 @@ class FaqController extends Controller
             toast('A New Faqs Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Faq Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -80,7 +80,7 @@ class FaqController extends Controller
             toast('Faq Has Been Updated.', 'success');
             return redirect()->route('administration.faq.show', ['faq' => $faq]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Faq update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -97,7 +97,7 @@ class FaqController extends Controller
             toast('Faq Has Been Deleted.','success');
             return redirect()->route('administration.faq.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Faq Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

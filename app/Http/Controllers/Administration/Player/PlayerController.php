@@ -176,7 +176,7 @@ class PlayerController extends Controller
             return redirect()->route('administration.player.index');
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            dd($e);
+            //dd($e);
             alert('Player Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -268,7 +268,7 @@ class PlayerController extends Controller
             return redirect()->route('administration.player.show', ['player' => $player->id]);
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            dd($e);
+            //dd($e);
             alert('Player Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -286,7 +286,7 @@ class PlayerController extends Controller
             toast('Player Has Been Deleted.','success');
             return redirect()->route('administration.player.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Player Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

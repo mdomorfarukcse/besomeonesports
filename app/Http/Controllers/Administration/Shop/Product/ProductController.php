@@ -79,7 +79,7 @@ class ProductController extends Controller
             return redirect()->route('administration.shop.product.index');
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Product Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -152,7 +152,7 @@ class ProductController extends Controller
             return redirect()->route('administration.shop.product.show', ['product' => $product]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Product Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -178,7 +178,7 @@ class ProductController extends Controller
             toast('Image Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Image Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

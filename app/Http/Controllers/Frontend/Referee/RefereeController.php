@@ -54,7 +54,7 @@ class RefereeController extends Controller
             toast('Referee Request Has Been Send.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('referee Request Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

@@ -45,7 +45,7 @@ class BlogController extends Controller
             toast('A New Blog Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Blog Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -85,7 +85,7 @@ class BlogController extends Controller
             return redirect()->route('administration.blog.show', ['blog' => $blog]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Blog Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -103,7 +103,7 @@ class BlogController extends Controller
             toast('Blog Has Been Deleted.','success');
             return redirect()->route('administration.blog.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Blog Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

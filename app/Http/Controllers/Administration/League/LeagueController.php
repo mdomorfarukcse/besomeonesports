@@ -202,7 +202,7 @@ class LeagueController extends Controller
             toast('A New League Has Been Created.', 'success');
             return redirect()->route('administration.league.index');
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('League Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -331,7 +331,7 @@ class LeagueController extends Controller
             return redirect()->route('administration.league.show', ['league' => $league]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('DIvision Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -348,7 +348,7 @@ class LeagueController extends Controller
             toast('League Has Been Deleted.','success');
             return redirect()->route('administration.league.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('League Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -479,7 +479,7 @@ class LeagueController extends Controller
                 return "Payment failed: " . $response->getMessages()->getMessage()[0]->getText();
             }
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Registration Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

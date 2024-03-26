@@ -54,7 +54,7 @@ class AdsController extends Controller
             toast('A New Ads Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Ads Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -104,7 +104,7 @@ class AdsController extends Controller
             toast('Ads Has Been Updated.', 'success');
             return redirect()->route('administration.ads.show', ['ads' => $ads]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Ads update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -121,7 +121,7 @@ class AdsController extends Controller
             toast('Ads Has Been Deleted.','success');
             return redirect()->route('administration.ads.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Ads Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

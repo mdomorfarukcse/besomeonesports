@@ -44,7 +44,7 @@ class CategoryController extends Controller
             toast('A New Category Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Category Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -82,7 +82,7 @@ class CategoryController extends Controller
             toast('Category updated successfully.', 'success');
             return redirect()->route('administration.shop.category.show', ['category' => $category]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Category Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -99,7 +99,7 @@ class CategoryController extends Controller
             toast('Category Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Category Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

@@ -96,7 +96,7 @@ class OrderController extends Controller
             toast('Status Has Been Changed To '.$status,'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Status Updating Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

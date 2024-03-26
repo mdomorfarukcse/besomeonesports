@@ -104,7 +104,7 @@ class TeamController extends Controller
             return redirect()->route('administration.team.index');
         } catch (Exception $e){
 
-            dd($e);
+            //dd($e);
             alert('Team Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -168,7 +168,7 @@ class TeamController extends Controller
             return redirect()->route('administration.team.show', ['team' => $team]);
         } catch (Exception $e){
 
-            dd($e);
+            //dd($e);
             alert('Team Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -198,7 +198,7 @@ class TeamController extends Controller
             toast('Players has been assigned to the team.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Player assigning failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -215,7 +215,7 @@ class TeamController extends Controller
             toast('Players has been removed from the team.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Player removing failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

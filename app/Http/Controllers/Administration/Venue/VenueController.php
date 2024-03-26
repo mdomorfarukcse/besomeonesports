@@ -51,7 +51,7 @@ class VenueController extends Controller
             toast('A New Venue Has Been Created.', 'success');
             return redirect()->route('administration.venue.index');
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Venue Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -92,7 +92,7 @@ class VenueController extends Controller
             toast('Venue Has Been Updated.', 'success');
             return redirect()->route('administration.venue.show', ['venue' => $venue]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Venue Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -109,7 +109,7 @@ class VenueController extends Controller
             toast('Venue Has Been Deleted.','success');
             return redirect()->route('administration.venue.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Venue Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

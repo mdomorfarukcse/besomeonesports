@@ -131,7 +131,7 @@ class CoachController extends Controller
             toast('A New Coach Has Been Created.','success');
             return redirect()->route('administration.coach.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Coach Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -194,7 +194,7 @@ class CoachController extends Controller
             toast('Coach Has Been Updated.','success');
             return redirect()->route('administration.coach.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Coach Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -211,7 +211,7 @@ class CoachController extends Controller
             toast('Coach Has Been Deleted.','success');
             return redirect()->route('administration.coach.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Coach Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -301,7 +301,7 @@ class CoachController extends Controller
                 toast('A New Coach Has Been Created.','success');
                 return redirect()->route('administration.coach.request');
             } catch (Exception $e) {
-                dd($e);
+                //dd($e);
                 alert('Coach Creation Failed!', 'There is some error! Please fix and try again.', 'error');
                 return redirect()->back()->withInput();
             }

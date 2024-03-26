@@ -49,7 +49,7 @@ class SeasonController extends Controller
             return redirect()->route('administration.season.index');
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Season Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -89,7 +89,7 @@ class SeasonController extends Controller
             return redirect()->route('administration.season.show', ['season' => $season]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Season Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -107,7 +107,7 @@ class SeasonController extends Controller
             toast('Season Has Been Deleted.','success');
             return redirect()->route('administration.season.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Season Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

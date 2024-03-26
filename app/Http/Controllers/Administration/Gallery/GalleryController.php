@@ -61,7 +61,7 @@ class GalleryController extends Controller
             toast('Gallery Images Has Been Stored.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Gallery Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -77,7 +77,7 @@ class GalleryController extends Controller
             toast('Gallery Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Gallery Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

@@ -35,7 +35,7 @@ class RoleController extends Controller
             toast('A New Role Has Been Created.', 'success');
             return redirect()->route('administration.role.edit.rolepermission', ['id' => $role->id]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Role Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -66,7 +66,7 @@ class RoleController extends Controller
             toast('Role Has Been Updated.', 'success');
             return redirect()->route('administration.role.show', ['role' => $role]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Role update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -83,7 +83,7 @@ class RoleController extends Controller
             toast('Role Has Been Deleted.','success');
             return redirect()->route('administration.role.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Role Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -111,7 +111,7 @@ class RoleController extends Controller
             toast('A New Role Permission Has Been Created.', 'success');
             return redirect()->route('administration.role.all.rolepermission');
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Role Permission Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -140,7 +140,7 @@ class RoleController extends Controller
             toast('Role Permission Has Been Updated.', 'success');
             return redirect()->route('administration.role.all.rolepermission', ['role' => $role]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Role Permission update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -162,7 +162,7 @@ class RoleController extends Controller
             toast('Role Permission Has Been Deleted.','success');
             return redirect()->route('administration.role.all.rolepermission');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Role Permission Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

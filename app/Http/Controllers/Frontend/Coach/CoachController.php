@@ -57,7 +57,7 @@ class CoachController extends Controller
             toast('Coach Request Has Been Send.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Coach Request Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

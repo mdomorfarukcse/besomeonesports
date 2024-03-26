@@ -27,7 +27,7 @@ class CourtController extends Controller
             return redirect()->back();
         } catch (Exception $e){
 
-            dd($e);
+            //dd($e);
             alert('Court Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -44,7 +44,7 @@ class CourtController extends Controller
             toast('Court has been removed from the Venue.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Court Deletation failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

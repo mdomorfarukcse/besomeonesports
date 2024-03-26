@@ -54,7 +54,7 @@ class NewsController extends Controller
             toast('A New news Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('News Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -104,7 +104,7 @@ class NewsController extends Controller
             return redirect()->route('administration.news.show', ['news' => $news]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('News Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -122,7 +122,7 @@ class NewsController extends Controller
             toast('News Has Been Deleted.','success');
             return redirect()->route('administration.news.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('News Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

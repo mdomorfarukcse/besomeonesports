@@ -48,7 +48,7 @@ class SponsorController extends Controller
             toast('A New Sponsor Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Sponsor Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -65,7 +65,7 @@ class SponsorController extends Controller
             toast('Sponsor Has Been Deleted.','success');
             return redirect()->route('administration.sponsor.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Sponsor Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

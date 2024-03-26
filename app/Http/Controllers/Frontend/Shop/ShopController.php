@@ -270,7 +270,6 @@ class ShopController extends Controller
                         throw new Exception('Order not found.');
                     }
                 } else {
-                    dd($response, $trasactionReport);
                     alert('Payment Failed!', $response->getMessages()->getMessage()[0]->getText(), 'error');
                     return redirect()->back()->withInput();
                 }

@@ -42,7 +42,7 @@ class PermissionController extends Controller
             toast('A New Permission Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Permission Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -73,7 +73,7 @@ class PermissionController extends Controller
             toast('Permission Has Been Updated.', 'success');
             return redirect()->route('administration.permission.show', ['permission' => $permission]);
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Permission update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -90,7 +90,7 @@ class PermissionController extends Controller
             toast('Permission Has Been Deleted.','success');
             return redirect()->route('administration.permission.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Permission Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -111,7 +111,7 @@ class PermissionController extends Controller
             toast('Permission Has Been Imported.','success');
             return redirect()->route('administration.permission.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Permission Import Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

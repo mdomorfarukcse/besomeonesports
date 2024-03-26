@@ -208,7 +208,7 @@ class RefereeController extends Controller
                 toast('A New Referee Has Been Created.','success');
                 return redirect()->route('administration.referee.request');
             } catch (Exception $e) {
-                dd($e);
+                //dd($e);
                 alert('Referee Creation Failed!', 'There is some error! Please fix and try again.', 'error');
                 return redirect()->back()->withInput();
             }

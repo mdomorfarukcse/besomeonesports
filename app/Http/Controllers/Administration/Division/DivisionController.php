@@ -54,7 +54,7 @@ class DivisionController extends Controller
             return redirect()->route('administration.division.index');
         } catch (Exception $e){
 
-            dd($e);
+            //dd($e);
             alert('DIvision Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -92,7 +92,7 @@ class DivisionController extends Controller
             return redirect()->route('administration.division.show', ['division' => $division]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Division Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -110,7 +110,7 @@ class DivisionController extends Controller
             toast('Division Has Been Deleted.','success');
             return redirect()->route('administration.division.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Division Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

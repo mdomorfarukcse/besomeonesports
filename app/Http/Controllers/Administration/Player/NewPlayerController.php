@@ -94,7 +94,7 @@ class NewPlayerController extends Controller
             toast('Profile Has Been Updated.','success');
             return redirect()->route('administration.profile.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             return redirect()->back()->withInput();
         }
     }

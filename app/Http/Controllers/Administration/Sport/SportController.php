@@ -87,7 +87,7 @@ class SportController extends Controller
             return redirect()->route('administration.sport.show', ['sport' => $sport]);
 
         } catch (Exception $e){
-            dd($e);
+            //dd($e);
             alert('Sport Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
@@ -105,7 +105,7 @@ class SportController extends Controller
             toast('Sport Has Been Deleted.','success');
             return redirect()->route('administration.sport.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Sport Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

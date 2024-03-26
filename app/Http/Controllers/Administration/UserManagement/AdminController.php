@@ -144,7 +144,7 @@ class AdminController extends Controller
             toast('Admin Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             throw new Exception($e->getMessage());
             return redirect()->back();
         }

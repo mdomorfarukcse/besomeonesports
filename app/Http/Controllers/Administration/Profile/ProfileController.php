@@ -219,7 +219,7 @@ class ProfileController extends Controller
             return redirect()->route('administration.profile.index');
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            dd($e);
+            //dd($e);
             alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -267,7 +267,7 @@ class ProfileController extends Controller
             toast('Profile Has Been Updated.','success');
             return redirect()->route('administration.profile.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -319,7 +319,7 @@ class ProfileController extends Controller
             toast('Profile Has Been Updated.','success');
             return redirect()->route('administration.profile.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -362,7 +362,7 @@ class ProfileController extends Controller
             toast('Profile Has Been Updated.','success');
             return redirect()->route('administration.profile.index');
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

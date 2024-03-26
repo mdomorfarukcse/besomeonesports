@@ -150,7 +150,7 @@ class ScheduleController extends Controller
             toast('Schedule created successfully.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Failed to create the schedule.', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -209,7 +209,7 @@ class ScheduleController extends Controller
             toast('Schedule updated successfully.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Failed to update the schedule.', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -226,7 +226,7 @@ class ScheduleController extends Controller
             toast('Schedule Has Been Deleted.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Schedule Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -263,7 +263,7 @@ class ScheduleController extends Controller
             toast('Result updated successfully.','success');
             return redirect()->back();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             alert('Failed to update the Result.', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
