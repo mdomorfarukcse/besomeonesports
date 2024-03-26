@@ -64,7 +64,6 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th>Avatar</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
@@ -79,11 +78,8 @@
                                 <tr>
                                     <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
                                     <td>
-                                        <img src="{{ show_image($player->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="player">
-                                    </td>
-                                    <td>
                                         {{ $player->user->name }}
-                                        <a href = "{{ route('administration.league.index') }}" class="badge badge-info">Available League</a>
+                                        <a href = "{{ route('administration.league.index') }}" class="badge badge-info">Register League</a>
                                     </td>
                                     <td>{{ $player->user->email }}</td>
                                     <td>{{ $player->contact_number }}</td>
