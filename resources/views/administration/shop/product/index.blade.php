@@ -92,14 +92,14 @@
                                     @if (auth()->user()->can('shop_product.show') || auth()->user()->can('shop_product.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
+                                                @if (auth()->user()->can('shop_product.show')) 
+                                                    <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <i class="feather icon-eye"></i>
+                                                    </a>
+                                                @endif
                                                 @if (auth()->user()->can('shop_product.destroy')) 
                                                     <a href="{{ route('administration.shop.product.destroy', ['product' => $product]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
                                                         <i class="feather icon-trash-2"></i>
-                                                    </a>
-                                                @endif
-                                                @if (auth()->user()->can('shop_product.show')) 
-                                                    <a href="{{ route('administration.shop.product.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>

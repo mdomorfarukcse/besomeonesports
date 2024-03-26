@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Product\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Shop\Category\Category;
 use App\Models\Shop\Product\Images\ProductImage;
@@ -20,8 +21,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['images'])->get();
+        $authUser = Auth::user();
+        $query = Product::with(['images']);
         // dd(json_decode($products->first()->colors, true));
+        if ($authUser->hasRole('guardian')) {
+            $query = $query->whereStatus('Active');
+        }
+        $products = $query->get();
         return view('administration.shop.product.index', compact(['products']));
     }
 
