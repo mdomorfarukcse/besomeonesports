@@ -127,7 +127,7 @@
                                                                     <br>
                                                                     <div class="mb-4">
                                                                         <label for="cc-name" class="form-label text-xs fw-bold">Name On Card</label>
-                                                                        <input id="cc-name" type="text" name="card_holder_name" value="{{ old('card_holder_name') }}" class="form-control" placeholder="e.g. John E Cash">
+                                                                        <input id="cc-name" type="text" name="card_holder_name" value="{{ old('card_holder_name') }}" class="form-control" placeholder="e.g. John E Cash" required>
                                                                     </div>
                                                 
                                                                     <div class="mb-4">

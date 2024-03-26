@@ -144,7 +144,7 @@
                                                         required autocomplete="off" tabindex="0"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         placeholder="{{ __('Password*') }}">
-        
+                                                    <div class="text-danger font-12">The password must be atleast 8 character long. </div>
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
