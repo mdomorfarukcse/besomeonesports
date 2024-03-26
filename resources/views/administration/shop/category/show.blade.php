@@ -142,7 +142,7 @@
                                                         </a>
                                                     @endif
                                                     @if (auth()->user()->can('shop_product.show')) 
-                                                        <a href="{{ route('administration.shop.product.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                        <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
                                                             <i class="feather icon-eye"></i>
                                                         </a>
                                                     @endif
