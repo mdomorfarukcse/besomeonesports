@@ -107,7 +107,7 @@
                                                 @endif
                                                 @if (auth()->user()->can('shop_order.show')) 
                                                     <a href="{{ route('administration.shop.order.show', ['order' => $order]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>

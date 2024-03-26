@@ -85,7 +85,7 @@
                                                 @endif
                                                 @if (auth()->user()->can('video.show')) 
                                                     <a href="{{ route('administration.video.show', ['video' => $video]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>

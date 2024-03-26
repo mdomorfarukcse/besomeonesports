@@ -169,7 +169,7 @@
                                             <div class="action-btn-group mr-3">
                                                 @if (auth()->user()->can('league.show')) 
                                                     <a href="{{ route('administration.league.show', ['league' => $league]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                         Show
                                                     </a>
                                                 @endif
@@ -262,7 +262,7 @@
                                             <div class="action-btn-group mr-3">
                                                 @if (auth()->user()->can('schedule.show')) 
                                                     <a href="{{ route('administration.schedule.show', ['schedule' => $schedule]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                         Show
                                                     </a>
                                                 @endif

@@ -97,7 +97,7 @@
                                                 @endif
                                                 @if (auth()->user()->can('player.show')) 
                                                     <a href="{{ route('administration.player.show', ['player' => $player]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>

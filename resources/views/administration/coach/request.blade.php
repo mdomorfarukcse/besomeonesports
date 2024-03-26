@@ -88,7 +88,7 @@
                                             <div class="action-btn-group mr-3">
                                                 @if (auth()->user()->role('admin') || auth()->user()->role('developer')) 
                                                     <a href="{{ route('administration.coach.request.show', ['coach' => $coach]) }}" class="btn btn-primary btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                         Show
                                                     </a>
                                                 @endif

@@ -137,7 +137,7 @@
                                                 @endif
                                                 @if (auth()->user()->can('division.show')) 
                                                     <a href="{{ route('administration.division.show', ['division' => $division]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>

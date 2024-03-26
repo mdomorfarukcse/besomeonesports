@@ -77,7 +77,7 @@
                                                 <i class="feather icon-trash-2"></i>
                                             </a>
                                             <a href="{{ route('administration.faq.show', ['faq' => $faq]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                <i class="feather icon-info"></i>
+                                                <i class="feather icon-eye"></i>
                                             </a>
                                         </div>
                                     </td>

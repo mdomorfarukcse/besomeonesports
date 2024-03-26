@@ -85,7 +85,7 @@
                                                 @endif
                                                 @if (auth()->user()->can('sport.show')) 
                                                     <a href="{{ route('administration.sport.show', ['sport' => $sport]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-info"></i>
+                                                        <i class="feather icon-eye"></i>
                                                     </a>
                                                 @endif
                                             </div>
