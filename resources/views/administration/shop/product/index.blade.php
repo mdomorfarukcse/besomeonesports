@@ -63,7 +63,6 @@
                             <tr>
                                 <th>Sl.</th>
                                 <th>Photo</th>
-                                <th>Product ID</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Stock</th>
@@ -84,7 +83,6 @@
                                             <img src="https://fakeimg.pl/300/000000/?text=No-Image" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Product Image">
                                         @endif
                                     </td>
-                                    <td class="text-bold text-primary">{{ $product->product_id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>${{ $product->price }}</td>
                                     <td>{{ $product->quantity }}</td>

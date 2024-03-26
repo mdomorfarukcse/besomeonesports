@@ -64,10 +64,6 @@
                                         <table class="table table-bordered mb-0">
                                             <tbody>
                                                 <tr>
-                                                    <th>Product ID</th>
-                                                    <td class="text-bold text-primary">{{ $product->product_id }}</td>
-                                                </tr>
-                                                <tr>
                                                     <th>Name</th>
                                                     <td>{{ $product->name }}</td>
                                                 </tr>
