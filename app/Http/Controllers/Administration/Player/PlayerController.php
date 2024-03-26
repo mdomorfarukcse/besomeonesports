@@ -171,7 +171,12 @@ class PlayerController extends Controller
 
             toast('A New Player Has Been Created.','success');
             Session::flash('playeradd', 'A New Player Has Been Created.'); 
-            return redirect()->route('administration.player.index');
+            if (Auth::user()->hasRole('guardian')) {
+                return redirect()->route('administration.player.my');
+            } else {
+                return redirect()->route('administration.player.index');
+            }
+            
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             //dd($e);
