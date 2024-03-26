@@ -50,6 +50,25 @@
 
 <!-- Start row -->
 <div class="row">
+    @if (Session::has('playeradd'))
+        <!-- Start col -->
+        <div class="col-md-12">
+            <div class="alert-list">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Welcome to Be Someone Sports!</h4>
+                    <p>Thank you for adding your children.</p>
+                    <hr>
+                    <p class="mb-1">Check out our active League. Register and Pay League for your children. 
+                        <a href="{{ route('administration.league.index') }}" class="btn btn-theme btn-sm"> Register League</a>
+                    </p>
+                    <p class="mt-1">Check out our store and order your children Juersy, Shirt, Shorts etc. 
+                        <a href="{{ route('frontend.shop.index') }}" class="btn btn-theme btn-sm"> Shop Now</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End col -->
+    @endif
     <!-- Start col -->
     <div class="col-lg-12">
         <div class="card m-b-30">
