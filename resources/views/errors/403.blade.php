@@ -12,7 +12,14 @@
 
         <!-- Start css -->
         @include('layouts.administration.partials.stylesheet')
+        <style>
+            .auth-box.error-box {
+                background: #ffffffe6;
+                color: #fff !important;
+            }
+        </style>
         <!-- End css -->
+        
     </head>
     <body class="vertical-layout">
         <!-- Start Container -->
