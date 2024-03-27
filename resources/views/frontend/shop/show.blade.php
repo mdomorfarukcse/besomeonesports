@@ -176,7 +176,7 @@
                                     </figure>
                                 </div>
                                 <div class="text-details-div text-center mt-3">
-                                    <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" target="_blank" class="titel-text1">{{ print_one_line($data->name, 30) }}</a>
+                                    <a href="{{ route('frontend.shop.show', ['product' => $data]) }}" class="titel-text1">{{ print_one_line($data->name, 30) }}</a>
                                     <h3 class="price-text1">${{ $data->price }}</h3>
                                 </div>
                             </div>
