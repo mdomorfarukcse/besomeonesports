@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administration\League;
 
 use Exception;
+use App\Models\User;
 use App\Models\Round\Round;
 use App\Models\Sport\Sport;
 use App\Models\Venue\Venue;
@@ -14,6 +15,7 @@ use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use net\authorize\api\contract\v1\OrderType;
 use net\authorize\api\contract\v1\PaymentType;
 use net\authorize\api\constants\ANetEnvironment;
@@ -26,7 +28,6 @@ use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use App\Http\Requests\Administration\League\LeagueUpdateRequest;
-use App\Models\User;
 use App\Rules\Administration\League\LeagueRegistration\UniqueLeaguePlayerRule;
 
 class LeagueController extends Controller
@@ -469,7 +470,9 @@ class LeagueController extends Controller
                     }, 5);
 
                     toast('Registration completed for the league.', 'success');
-                    return redirect()->route('administration.league.show', ['league' => $league]);
+                    Session::flash('league_register', 'Registration completed for the league.'); 
+                    return redirect()->route('administration.league.registration', ['league' => $league]);
+                    // return redirect()->route('administration.league.show', ['league' => $league]);
                 } else {
                     // dd($response, $trasactionReport);
                     alert('Payment Failed!', $response->getMessages()->getMessage()[0]->getText(), 'error');
