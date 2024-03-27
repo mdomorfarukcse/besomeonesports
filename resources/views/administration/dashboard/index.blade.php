@@ -182,14 +182,9 @@
                             </div>
                             <div class="activities-history-list">
                                 <div class="activities-history-item">
-                                    <h6>Step 2: Add Your Player to the League</h6>
+                                    <h6>Step 2: Add Your Player to the League. Checkout and Pay for Your Registration</h6>
                                     <a href = "{{ route('administration.league.index') }}"
                                         class="btn btn-theme  text-white btn-sm">Register League</a>
-                                </div>
-                            </div>
-                            <div class="activities-history-list">
-                                <div class="activities-history-item">
-                                    <h6>Step 3: Checkout and Pay for Your Registration</h6>
                                 </div>
                             </div>
                             <div class="activities-history-list">
