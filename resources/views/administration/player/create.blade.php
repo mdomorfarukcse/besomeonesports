@@ -314,7 +314,7 @@
                                         </div>
                                         <div class="col-md-2 form-group">
                                             <label for="shirt_size">Shirt Size <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('shirt_size[]') is-invalid @enderror" name="shirt_size[]" required>
+                                            <select class="select2-single form-control @error('shirt_size') is-invalid @enderror" name="shirt_size" required>
                                                 <option value="" >Select Shirt Size</option>
                                                 <option value="Youth Xsmall">Youth Xsmall</option>
                                                 <option value="Youth Small">Youth Small</option>
@@ -334,7 +334,7 @@
                                         </div>
                                         <div class="col-md-2 form-group">
                                             <label for="short_size">Short Size <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('short_size[]') is-invalid @enderror" name="short_size[]" required>
+                                            <select class="select2-single form-control @error('short_size') is-invalid @enderror" name="short_size" required>
                                                 <option value="" >Select Short Size</option>
                                                 <option value="Youth Xsmall">Youth Xsmall</option>
                                                 <option value="Youth Small">Youth Small</option>
