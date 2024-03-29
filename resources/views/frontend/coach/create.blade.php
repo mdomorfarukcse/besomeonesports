@@ -209,8 +209,8 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
-                                        <label for="postal_code" class="text-capitalize">Postal Code *</label>
-                                        <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control" placeholder="Postal Code *" required />
+                                        <label for="postal_code" class="text-capitalize">Zip Code *</label>
+                                        <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control" placeholder="Zip Code *" required />
                                         @error('postal_code')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror

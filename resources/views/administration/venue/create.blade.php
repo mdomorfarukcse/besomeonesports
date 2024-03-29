@@ -77,8 +77,8 @@
                             @enderror
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="Postal Code">Postal Code <span class="required">*</span></label>
-                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="Postal Code" required/>
+                            <label for="Zip Code">Zip Code <span class="required">*</span></label>
+                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="Zip Code" required/>
                             @error('postal_code')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror

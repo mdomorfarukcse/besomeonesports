@@ -84,7 +84,7 @@
                                                     <td>{{ $venue->state }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Postal Code</th>
+                                                    <th>Zip Code</th>
                                                     <td>{{ $venue->postal_code }}</td>
                                                 </tr>
                                                 <tr>
