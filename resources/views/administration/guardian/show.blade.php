@@ -100,13 +100,13 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Zip Code: {{ $guardian->postal_code }}
-                                                            <br>    
-                                                            City: {{ $guardian->city }}
+                                                            Street Address: {{ $guardian->address }}
                                                             <br>    
                                                             State: {{ $guardian->state }}
+                                                            <br>    
+                                                            City: {{ $guardian->city }}
                                                             <br>
-                                                            Street Address: {{ $guardian->address }}
+                                                            Zip Code: {{ $guardian->postal_code }}
                                                         </address>    
                                                     </td>
                                                 </tr>
