@@ -43,6 +43,13 @@
         .about-sec-home .row>* {
             padding-right: 0px !important;
         }
+        .upcoming_league{
+            background: #1f1f26;
+            background-image: url(frontend/images/h1-rev-img-2.png), url(frontend/images/floating_image_05-blu.png);
+            background-repeat: no-repeat;
+            background-position: 98% 30px, left top;
+            background-size: 46%, 40%;
+        }
     </style>
 @endsection
 
@@ -188,50 +195,65 @@
             </div>
         </div>
 
-        <div class="match-result-div">
+        <div class="match-result-div upcoming_league">
             <div class="container">
                 <div class="mindle-heading text-center">
-                    <h5>Upcoming Leagues</h5>
-                    <h1>REGISTER FOR EVENTS HERE</h1>
+                    <h5 class="text-white">Upcoming Leagues</h5>
+                    <h1>REGISTER NOW</h1>
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
-                    <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            @foreach ($upcomingLeagues as $key => $league)
-                                <button type="button" data-bs-target="#carouselleague" data-bs-slide-to="{{ $key }}" class="@if($key == 1) active @endif" aria-current="true" aria-label="Slide 1"></button>
-                            @endforeach
-                        </div>
-                        <div class="carousel-inner">
-                            @foreach ($upcomingLeagues as $key => $league)
-                                <div class="carousel-item @if($key == 1) active @endif">
-                                    <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h6>{{ $league->name }}</h6>
-                                        <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
-                                        <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
-                                            class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
-                                        <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
-                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
+                    @if (!is_null($upcomingLeagues))
+                        <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                @foreach ($upcomingLeagues as $key => $league)
+                                    <button type="button" data-bs-target="#carouselleague"
+                                        data-bs-slide-to="{{ $key }}"
+                                        class="@if ($key == 0) active @endif" aria-current="true"
+                                        aria-label="Slide {{ $key + 1 }}"></button>
+                                @endforeach
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach ($upcomingLeagues as $key => $league)
+                                    <div class="carousel-item @if ($key == 0) active @endif">
+                                        <img src="{{ show_image($league->logo) }}" class="d-block w-100"
+                                            alt="..." />
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h6>{{ $league->name }}</h6>
+                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins
+                                                league.</p>
+                                            <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
+                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i
+                                                    class="fas fa-tags"></i> Register</a>
+                                            <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
+                                                class="btn btn-info btn-outline-custom fw-bolder"> <i
+                                                    class="fas fa-tags"></i> Details</a>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
+                            @if (count($upcomingLeagues) > 1)
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselleague"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            @endif
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselleague" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                    @else
+                        <h5 class="alert alert-info">No Data</h5>
+                    @endif
                 </div>
             </div>
 
-            <div class="bg-img-left">
+            {{-- <div class="bg-img-left">
                 <img src="{{ asset('frontend/images/NFL-Player-PNG-1.png') }}" alt="pngmb" />
-            </div>
+            </div> --}}
 
             <div class="red-bottrom">
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
