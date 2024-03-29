@@ -183,7 +183,7 @@
                                 <div class="col-lg-4">
                                     <div class="from-group">
                                         <label for="phone_number" class="text-capitalize">Phone Number *</label>
-                                        <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="Contact Number *" required />
+                                        <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="+1 (123) 456 -7890" required />
                                         @error('phone_number')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
