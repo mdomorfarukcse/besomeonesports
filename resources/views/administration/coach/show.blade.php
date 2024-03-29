@@ -100,7 +100,7 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $coach->postal_code }}
+                                                            Zip Code: {{ $coach->postal_code }}
                                                             <br>    
                                                             City: {{ $coach->city }}
                                                             <br>    

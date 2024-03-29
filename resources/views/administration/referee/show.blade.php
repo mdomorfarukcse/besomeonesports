@@ -96,7 +96,7 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $referee->postal_code }}
+                                                            Zip Code: {{ $referee->postal_code }}
                                                             <br>    
                                                             City: {{ $referee->city }}
                                                             <br>    

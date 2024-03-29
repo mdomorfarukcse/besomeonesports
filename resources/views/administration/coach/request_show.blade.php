@@ -123,7 +123,7 @@
                                                             <br>    
                                                             City: {{ $coach->city }}
                                                             <br>    
-                                                            Post: {{ $coach->postal_code }}
+                                                            Zip Code: {{ $coach->postal_code }}
                                                             
                                                             
                                                         </address>    

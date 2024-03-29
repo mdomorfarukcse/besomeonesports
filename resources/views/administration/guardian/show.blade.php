@@ -100,7 +100,7 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $guardian->postal_code }}
+                                                            Zip Code: {{ $guardian->postal_code }}
                                                             <br>    
                                                             City: {{ $guardian->city }}
                                                             <br>    

@@ -61,7 +61,7 @@
                                                 <th>Address</th>
                                                 <td>
                                                     <address class="mb-0">
-                                                        Post: {{ $profile->player->postal_code }}
+                                                        Zip Code: {{ $profile->player->postal_code }}
                                                         <br>    
                                                         City: {{ $profile->player->city }}
                                                         <br>    

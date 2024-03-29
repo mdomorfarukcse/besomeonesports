@@ -137,7 +137,7 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $player->postal_code }}
+                                                            Zip Code: {{ $player->postal_code }}
                                                             <br>    
                                                             City: {{ $player->city }}
                                                             <br>    

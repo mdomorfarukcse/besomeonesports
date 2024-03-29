@@ -91,7 +91,7 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $admin->postal_code }}
+                                                            Zip Code: {{ $admin->postal_code }}
                                                             <br>    
                                                             City: {{ $admin->city }}
                                                             <br>    

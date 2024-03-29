@@ -43,7 +43,7 @@
                                                 <th>Address</th>
                                                 <td>
                                                     <address class="mb-0">
-                                                        Post: {{ $profile->postal_code }}
+                                                        Zip Code: {{ $profile->postal_code }}
                                                         <br>    
                                                         City: {{ $profile->city }}
                                                         <br>    
