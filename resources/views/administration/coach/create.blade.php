@@ -118,7 +118,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        {{-- <div class="col-md-12 form-group">
                             <label for="coach_id">Coach ID (CID) <span class="required">*</span></label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -129,7 +129,9 @@
                             @error('coach_id')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
-                        </div>
+                        </div> --}}
+                        <input type="hidden" name="coach_id" value="{{ $coach_id }}" readonly class="form-control text-bold @error('coach_id') is-invalid @enderror" placeholder="BSCOACH202302011235" required/>
+
                         <div class="col-md-12">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
@@ -213,13 +215,8 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="middle_name">Middle Name</label>
-                                            <input type="text" name="middle_name" value="{{ old('middle_name') }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
-                                            @error('middle_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
+                                        <input type="hidden" name="middle_name" value="{{ old('middle_name') }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
+
                                         <div class="col-md-4 form-group">
                                             <label for="last_name">Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
@@ -248,30 +245,30 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="street_address">Street Address</label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
+                                        <div class="col-md-7 form-group">
+                                            <label for="street_address">Street Address <span class="required">*</span></label>
+                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
                                             @error('street_address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="city">City</label>
-                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson"/>
+                                        <div class="col-md-5 form-group">
+                                            <label for="city">City <span class="required">*</span></label>
+                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="state">State/Province</label>
-                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska"/>
+                                        <div class="col-md-4 form-group">
+                                            <label for="state">State <span class="required">*</span></label>
+                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-2 form-group">
-                                            <label for="postal_code">Postal/Zip Code</label>
-                                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620"/>
+                                        <div class="col-md-3 form-group">
+                                            <label for="postal_code">Zip Code <span class="required">*</span></label>
+                                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                             @error('postal_code')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

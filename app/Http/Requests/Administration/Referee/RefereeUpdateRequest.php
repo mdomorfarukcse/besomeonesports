@@ -24,7 +24,8 @@ class RefereeUpdateRequest extends FormRequest
     {
         $refereeId = $this->route('referee')->id;
         return [
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            "first_name" => ['required', 'max:50'],
+            "last_name" => ['required', 'max:50'],
             'email' => [
                 'sometimes',
                 'required',

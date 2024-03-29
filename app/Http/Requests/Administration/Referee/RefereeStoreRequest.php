@@ -22,7 +22,8 @@ class RefereeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            "first_name" => ['required', 'max:50'],
+            "last_name" => ['required', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'birthdate' => ['required', 'date'],
             'contact_number' => ['required', 'string', 'max:20'],

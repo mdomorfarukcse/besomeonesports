@@ -155,15 +155,6 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
-                                        <label for="middle_name" class="text-capitalize">Middle Name *</label>
-                                        <input type="text" name="middle_name" value="{{ old('middle_name') }}" class="form-control" placeholder="Middle Name" />
-                                        @error('middle_name')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="from-group">
                                         <label for="last_name" class="text-capitalize">Last Name *</label>
                                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Last Name *" required />
                                         @error('last_name')

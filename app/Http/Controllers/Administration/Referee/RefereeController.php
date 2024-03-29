@@ -40,10 +40,11 @@ class RefereeController extends Controller
         // dd($request->all());
         try {
             DB::transaction(function() use ($request) {
-                
                 $user = new User();
 
-                $user->name = $request->name;
+                $user->name = $request->first_name . ' ' . $request->last_name;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
                 $user->email = $request->email;
                 $user->password = Hash::make(generate_password());
                 $user->birthdate = $request->birthdate;
@@ -104,7 +105,9 @@ class RefereeController extends Controller
                     $referee->avatar = $avatar;
                 }
 
-                $referee->name = $request->name;
+                $referee->name = $request->first_name . ' ' . $request->last_name;
+                $referee->first_name = $request->first_name;
+                $referee->last_name = $request->last_name;
                 $referee->email = $request->email;
                 $referee->birthdate = $request->birthdate;
                 $referee->contact_number = $request->contact_number;
@@ -173,7 +176,7 @@ class RefereeController extends Controller
         if ($status === 'Approve') {
             try {
                 DB::transaction(function() use ($referee) {
-                    $refereeName = $referee->first_name.' '.$referee->middle_name.' '.$referee->last_name;
+                    $refereeName = $referee->first_name.' '.$referee->last_name;
                     
                     // Store Credentials into User
                     $user = User::create([
@@ -182,13 +185,15 @@ class RefereeController extends Controller
                         'password' => Hash::make($referee->password),
                         'avatar' => $referee->avatar,
                     ]);
-            
+                    
                     // Assign the provided role to the user
                     $role = Role::where('name', 'referee')->firstOrFail();
                     if ($role) {
                         $user->assignRole($role);
                     }
                     
+                    $user->first_name = $referee->first_name;
+                    $user->last_name = $referee->last_name;
                     $user->birthdate = $referee->birthdate;
                     $user->contact_number = $referee->contact_number;
                     $user->city = $referee->city;

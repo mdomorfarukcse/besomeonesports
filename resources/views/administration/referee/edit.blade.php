@@ -171,10 +171,17 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4 form-group">
-                                            <label for="name">Full Name <span class="required">*</span></label>
-                                            <input type="text" name="name" value="{{ $referee->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Joseph Sudan" required/>
-                                            @error('name')
+                                        <div class="col-md-6 form-group">
+                                            <label for="first_name">First Name <span class="required">*</span></label>
+                                            <input type="text" name="first_name" value="{{ $referee->first_name }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
+                                            @error('first_name')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="last_name">Last Name <span class="required">*</span></label>
+                                            <input type="text" name="last_name" value="{{ $referee->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
+                                            @error('last_name')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>

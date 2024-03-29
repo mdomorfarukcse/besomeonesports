@@ -53,13 +53,6 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <label for="middle_name">Middle Name</label>
-                                        <input type="text" name="middle_name" value="{{ $profile->coach->middle_name }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
-                                        @error('middle_name')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-4 form-group">
                                         <label for="last_name">Last Name <span class="required">*</span></label>
                                         <input type="text" name="last_name" value="{{ $profile->coach->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
                                         @error('last_name')
