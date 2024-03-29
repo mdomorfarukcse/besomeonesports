@@ -254,14 +254,14 @@
                                         </div>
                                         <div class="col-md-5 form-group">
                                             <label for="city">City <span class="required">*</span></label>
-                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson" required/>
+                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="state">State <span class="required">*</span></label>
-                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" required/>
+                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
