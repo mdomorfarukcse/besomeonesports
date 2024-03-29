@@ -24,7 +24,6 @@ return new class extends Migration
                   ->comment('The Coach ID Prefix Should be BSSCOACH. The coach ID Example: BSSCOACH202302010001');
 
             $table->string('first_name', 50);
-            $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
             $table->string('position', 50)->default('Assistant Coach');
             $table->string('phone_number', 20)->unique();

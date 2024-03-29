@@ -84,7 +84,7 @@ class CoachController extends Controller
 
         try {
             DB::transaction(function() use ($request) {
-                $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $coachName = $request->first_name.' '.$request->last_name;
 
                 $avatar = upload_image($request->avatar);
                 // Store Credentials into User
@@ -109,7 +109,6 @@ class CoachController extends Controller
                 $coach->coach_id = $request->coach_id;
                 $coach->position = $request->position;
                 $coach->first_name = $request->first_name;
-                $coach->middle_name = $request->middle_name;
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;
@@ -161,7 +160,7 @@ class CoachController extends Controller
         // dd($request->position);
         try {
             DB::transaction(function() use ($request, $coach) {
-                $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $coachName = $request->first_name.' '.$request->last_name;
 
                 // Store Credentials into User
                 $user = User::whereId($coach->user_id)->firstOrFail();
@@ -175,7 +174,6 @@ class CoachController extends Controller
                 
                 $coach->position = $request->position;
                 $coach->first_name = $request->first_name;
-                $coach->middle_name = $request->middle_name;
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;
@@ -251,7 +249,7 @@ class CoachController extends Controller
         if ($status === 'Approve') {
             try {
                 DB::transaction(function() use ($coach) {
-                    $coachName = $coach->first_name.' '.$coach->middle_name.' '.$coach->last_name;
+                    $coachName = $coach->first_name.' '.$coach->last_name;
                     
                     // Store Credentials into User
                     $user = User::create([
@@ -279,7 +277,6 @@ class CoachController extends Controller
                     $coachInfo->user_id = $user->id;
                     $coachInfo->coach_id = unique_id(11,11);
                     $coachInfo->first_name = $coach->first_name;
-                    $coachInfo->middle_name = $coach->middle_name;
                     $coachInfo->last_name = $coach->last_name;
                     $coachInfo->birthdate = $coach->birthdate;
                     $coachInfo->phone_number = $coach->phone_number;

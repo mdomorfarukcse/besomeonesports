@@ -38,7 +38,7 @@ class NewPlayerController extends Controller
         // dd($request->all(), $user);
         try {
             DB::transaction(function() use ($request, $user) {
-                $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $playerName = $request->first_name.' '.$request->last_name;
                 
                 $user->name = $playerName;
                 if (isset($request->avatar)) {
@@ -54,7 +54,6 @@ class NewPlayerController extends Controller
                 $player->player_id = $request->player_id;
                 $player->division_id = $request->division_id;
                 $player->first_name = $request->first_name;
-                $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
                 $player->birthdate = $request->birthdate;
                 $player->contact_number = $request->contact_number;

@@ -28,7 +28,6 @@ class CoachStoreRequest extends FormRequest
             "position" => ['required', 'string'],
             "status" => ['required','in:Active,Inactive,Banned'],
             "first_name" => ['required', 'max:50'],
-            "middle_name" => ['nullable', 'string', 'max:50'],
             "last_name" => ['required', 'max:50'],
             "phone_number" => ['required', 'string', 'max:20'],
             "birthdate" => ['nullablle', 'date', 'date_format:Y-m-d'],

@@ -167,7 +167,7 @@ class ProfileController extends Controller
         // dd($request->all(), $player->user);
         try {
             DB::transaction(function() use ($request, $player) {
-                $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $playerName = $request->first_name.' '.$request->last_name;
                 
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
@@ -179,7 +179,6 @@ class ProfileController extends Controller
                 $user->save();
 
                 $player->first_name = $request->first_name;
-                $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
                 $player->birthdate = $request->birthdate;
                 $player->contact_number = $request->contact_number;
@@ -234,7 +233,7 @@ class ProfileController extends Controller
         // dd($request->all(), $coach->user);
         try {
             DB::transaction(function() use ($request, $coach) {
-                $coachName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $coachName = $request->first_name.' '.$request->last_name;
 
                 // Store Credentials into User
                 $user = User::whereId($coach->user_id)->firstOrFail();
@@ -248,7 +247,6 @@ class ProfileController extends Controller
                 
                 $coach->position = $request->position;
                 $coach->first_name = $request->first_name;
-                $coach->middle_name = $request->middle_name;
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;

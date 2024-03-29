@@ -26,7 +26,6 @@ class PlayerStoreRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             "first_name" => ['required', 'max:50'],
-            "middle_name" => ['nullable', 'string', 'max:50'],
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
             "contact_number" => ['required', 'string', 'max:20'],

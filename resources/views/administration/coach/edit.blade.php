@@ -187,8 +187,6 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <input type="hidden" name="middle_name" value="{{ $coach->middle_name }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
-
                                         <div class="col-md-6 form-group">
                                             <label for="last_name">Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" value="{{ $coach->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>

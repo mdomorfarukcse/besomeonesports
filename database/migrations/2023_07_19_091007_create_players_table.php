@@ -35,7 +35,6 @@ return new class extends Migration
                     ->onDelete('cascade');
 
             $table->string('first_name', 50);
-            $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
             $table->date('birthdate')->nullable();
             $table->string('contact_number', 20);

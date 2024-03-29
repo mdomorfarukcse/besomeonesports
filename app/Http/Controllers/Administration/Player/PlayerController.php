@@ -94,7 +94,7 @@ class PlayerController extends Controller
         $player = null;
         try {
             DB::transaction(function() use ($request, &$player) {
-                $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $playerName = $request->first_name.' '.$request->last_name;
                 
                 // Store Credentials into User
                 $user = new User();
@@ -123,7 +123,6 @@ class PlayerController extends Controller
                 $player->player_id = $request->player_id;
                 $player->division_id = $request->division_id;
                 $player->first_name = $request->first_name;
-                $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
                 $player->birthdate = $request->birthdate;
                 $player->contact_number = $request->contact_number;
@@ -212,7 +211,7 @@ class PlayerController extends Controller
         // dd($request->all());
         try {
             DB::transaction(function() use ($request, $player) {
-                $playerName = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+                $playerName = $request->first_name.' '.$request->last_name;
                 
                 // Store Credentials into User
                 $user = User::where('id', $player->user_id)->firstOrFail();
@@ -225,7 +224,6 @@ class PlayerController extends Controller
 
                 $player->division_id = $request->division_id;
                 $player->first_name = $request->first_name;
-                $player->middle_name = $request->middle_name;
                 $player->last_name = $request->last_name;
                 $player->birthdate = $request->birthdate;
                 $player->contact_number = $request->contact_number;
