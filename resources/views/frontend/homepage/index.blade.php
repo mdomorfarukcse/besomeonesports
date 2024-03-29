@@ -22,35 +22,15 @@
         .slider-banner .cover {
             background-color: #11347985 !important;
         }
-
-        #carouselleague .carousel-caption {
+        #carouselleague .carousel-caption{
             background: #000000ad;
         }
-
         #carouselleague .carousel-item {
             height: 480px;
         }
-
         #carouselleague img {
             max-height: 470px;
         }
-
-        .red-bottrom {
-            z-index: 1;
-        }
-
-        #carouselleague .carousel-caption {
-            z-index: 999999;
-        }
-
-        .img-container,
-        .card-img {
-            height: 450px;
-            /* Fixed height for image containers */
-            overflow: hidden;
-            /* Ensure images don't overflow their container */
-        }
-
         .img-container img {
             width: 100%;
             /* Make images fill their container */
@@ -63,41 +43,6 @@
         .about-sec-home .row>* {
             padding-right: 0px !important;
         }
-
-        @media (max-width: 767px) {
-            .carousel-inner .carousel-item>div {
-                display: none;
-            }
-
-            .carousel-inner .carousel-item>div:first-child {
-                display: block;
-            }
-        }
-
-        .carousel-inner .carousel-item.active,
-        .carousel-inner .carousel-item-next,
-        .carousel-inner .carousel-item-prev {
-            display: flex;
-        }
-
-        /* medium and up screens */
-        @media (min-width: 768px) {
-
-            .carousel-inner .carousel-item-end.active,
-            .carousel-inner .carousel-item-next {
-                transform: translateX(25%);
-            }
-
-            .carousel-inner .carousel-item-start.active,
-            .carousel-inner .carousel-item-prev {
-                transform: translateX(-25%);
-            }
-        }
-
-        .carousel-inner .carousel-item-end,
-        .carousel-inner .carousel-item-start {
-            transform: translateX(0);
-        }
     </style>
 @endsection
 
@@ -106,106 +51,54 @@
 
     <!-- Start row -->
     <section class="float-start w-100 banner-part">
-        <div class="container-fluid text-center my-3">
-            <div class="row mx-auto my-auto justify-content-center">
-                <div id="sliderCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/402858967_838498248279910_284723558559234273_n-min.jpg') }}"
-                                            alt="pic2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/about1.jpg') }}" alt="pic2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/BeSomone Sports Basketball  Summer 2023 All Star Game 08-19-23 (298) (1)-min.jpg') }}"
-                                            alt="pic2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/IMG_20231109_224546_208-min.jpg') }}"
-                                            alt="pic2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/Photo Jan 04 2024, 4 51 31 PM-min.jpg') }}"
-                                            alt="pic2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-img">
-                                        <img src="{{ asset('frontend/images/besomeonesport_about.jpg') }}" alt="pic2" />
+        <div class="slider-banner">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('frontend/images/slider/slider4.jpg') }}" alt="images not found" />
+
+                        <div class="cover">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <div class="header-content">
+                                            <h2 class="fadeInDown animated">Be Someone Sports</h2>
+                                            <h1 class="fadeInDown animated">Winning and losing
+                                                <span class="d-block">are a part of everyday life. </span>
+                                            </h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
+                    <div class="carousel-item">
+                        <img src="{{ asset('frontend/images/slider/slider2.jpg') }}" alt="images not found" />
+
+                        <div class="cover">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <div class="header-content">
+                                            <h2 class="fadeInUp animated">Our Mission</h2>
+                                            <h1 class="fadeInUp animated">
+                                                Inspire and empower Individuals
+                                                <span class="d-block">Through Sports.</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- <div class="gb-roguch">
+        <div class="gb-roguch">
             <img src="{{ asset('frontend/images/h1-bottom-background-image.png') }}" alt="pnm" />
-        </div> --}}
-    </section>
-    {{-- <section class="ads">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="ban-ati-com ads-all-list">
-                        @if (!is_null($top_ad))
-                            <a href="{{ $top_ad->url }}">
-                                <span>Ad</span>
-                                <img src="{{ show_image($top_ad->avatar) }}" height="100" alt="" />
-                            </a>
-                        @else
-                            <a href="/contact">
-                                <span>Ad</span>
-                                <img src="{{ asset('frontend/images/ad.png') }}" height="100" alt="" />
-                            </a>
-                        @endif
-                    </div>
-                </div>
-            </div>
         </div>
-    </section> --}}
+    </section>
     <section class="float-start w-100 ">
         <div class="about-sec-home">
             <div class="container">
@@ -294,89 +187,56 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <div class="match-result-div">
             <div class="container">
                 <div class="mindle-heading text-center">
                     <h5>Upcoming Leagues</h5>
-                    <h1>REGISTER NOW</h1>
+                    <h1>REGISTER FOR EVENTS HERE</h1>
                 </div>
 
                 <div class="col-lg-9 mt-5 mx-auto">
-                    @if (!is_null($upcomingLeagues))
-                        <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                @foreach ($upcomingLeagues as $key => $league)
-                                    <button type="button" data-bs-target="#carouselleague"
-                                        data-bs-slide-to="{{ $key }}"
-                                        class="@if ($key == 0) active @endif" aria-current="true"
-                                        aria-label="Slide {{ $key + 1 }}"></button>
-                                @endforeach
-                            </div>
-                            <div class="carousel-inner">
-                                @foreach ($upcomingLeagues as $key => $league)
-                                    <div class="carousel-item @if ($key == 0) active @endif">
-                                        <img src="{{ show_image($league->logo) }}" class="d-block w-100"
-                                            alt="..." />
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h6>{{ $league->name }}</h6>
-                                            <p>Winning and losing are a part of everyday life. This is not the everyone wins
-                                                league.</p>
-                                            <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
-                                                class="btn btn-warning btn-outline-custom fw-bolder"> <i
-                                                    class="fas fa-tags"></i> Register</a>
-                                            <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
-                                                class="btn btn-info btn-outline-custom fw-bolder"> <i
-                                                    class="fas fa-tags"></i> Details</a>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            @if (count($upcomingLeagues) > 1)
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselleague"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            @endif
+                    <div id="carouselleague" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            @foreach ($upcomingLeagues as $key => $league)
+                                <button type="button" data-bs-target="#carouselleague" data-bs-slide-to="{{ $key }}" class="@if($key == 1) active @endif" aria-current="true" aria-label="Slide 1"></button>
+                            @endforeach
                         </div>
-                    @else
-                        <h5 class="alert alert-info">No Data</h5>
-                    @endif
+                        <div class="carousel-inner">
+                            @foreach ($upcomingLeagues as $key => $league)
+                                <div class="carousel-item @if($key == 1) active @endif">
+                                    <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{ $league->name }}</h6>
+                                        <p>Winning and losing are a part of everyday life. This is not the everyone wins league.</p>
+                                        <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
+                                            class="btn btn-warning btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Register</a>
+                                        <a href="{{ route('frontend.league.show', ['league' => $league]) }}"
+                                                class="btn btn-info btn-outline-custom fw-bolder"> <i class="fas fa-tags"></i> Details</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselleague" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselleague" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            {{-- <div class="bg-img-left">
+            <div class="bg-img-left">
                 <img src="{{ asset('frontend/images/NFL-Player-PNG-1.png') }}" alt="pngmb" />
-            </div> --}}
+            </div>
 
             <div class="red-bottrom">
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
             </div>
         </div>
-        {{-- <div class="our-spocerder d-inline-block w-100">
-            <div class="container">
-                <div class="col-lg-7">
-                    <h1>Join Our <span> Organization </span></h1>
-                    <h6 class="my-3">Be Someone Sports is a youth sports organization for volleyball and basketball in the
-                        Friendswood, Pearland, Alvin, and League City Areas. Grades K - 8th.<span class="d-lg-block">
-                            upcoming matches or sports events faster! </span></h6>
-                    <div class="d-flex align-items-center">
-                        <a href="/register" class="btn subc"> Join Player !</a>
-                        <a href="{{ route('frontend.coach.create') }}" class="btn leaguebtn ms-4"> Become a Coach !</a>
-                    </div>
-                </div>
-                <figure class="m-0 right-imgplya">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="besomeone sport" />
-                </figure>
-            </div>
-        </div> --}}
 
 
         <div class="shop-apge-div">
@@ -458,28 +318,71 @@
             </div>
         </div>
 
-        <!-- Start row -->
-        <section class="float-start w-100 sub-headh-bask body-part pt-0 mb-50">
-            <div class="about-page-main comon-sub-page-main d-inline-block w-100">
-                <div class="about-club-top">
-                    <div class="container">
-                        <div class="row ">
-                            <div class="text-center mb-50">
-                                <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
-                                <h2 class="comon-heading m-0">Reviews</h2>
+        <div class="our-small-details">
+            <div class="container">
+                <div class="row row-cols-2 row-cols-lg-4 g-4 g-lg-0">
+                    <div class="col">
+                        <div class="comon-divbn d-md-flex align-items-center">
+                            <figure>
+                                <img src="{{ asset('frontend/images/819590.png') }}" alt="pnbm" />
+                            </figure>
+                            <div class="right-dibvb">
+                                <h2>{{ $total['leagues'] }} +</h2>
+                                <h6>Total Leagues</h6>
                             </div>
-                            <div class="col-md-12">
-                                <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                                <div class="elfsight-app-4d1d8a6a-9211-40dd-90d4-01d3e4f24ef5" data-elfsight-app-lazy>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col d-lg-grid justify-content-lg-center">
+                        <div class="comon-divbn d-md-flex align-items-center">
+                            <figure>
+                                <img src="{{ asset('frontend/images/8964688.png') }}" alt="pnbm" />
+                            </figure>
+                            <div class="right-dibvb">
+                                <h2>{{ $total['players'] }} +</h2>
+                                <h6>Players</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-lg-grid justify-content-lg-end">
+                        <div class="comon-divbn d-md-flex align-items-center">
+                            <figure>
+                                <img src="{{ asset('frontend/images/33838.png') }}" alt="pnbm" />
+                            </figure>
+                            <div class="right-dibvb">
+                                <h2>{{ $total['coaches'] }} +</h2>
+                                <h6>Trained Coaches</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-lg-grid justify-content-lg-end">
+                        <div class="comon-divbn d-md-flex align-items-center">
+                            <figure>
+                                <img src="{{ asset('frontend/images/1851036.png') }}" alt="pnbm" />
+                            </figure>
+                            <div class="right-dibvb">
+                                <h2>{{ $total['teams'] }} +</h2>
+                                <h6>Teams</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="bg-small-back02">
+                <img src="{{ asset('frontend/images/105418368_1510579202457512_85905419722283172_n.jpg') }}"
+                    alt="sportsfbn" />
+            </div>
 
-        {{-- <div class="mediasection d-inline-block w-100">
+            {{-- <div class="top-imgn">
+                <img src="{{ asset('frontend/images/white-bg-01.png') }}" alt="bnm" />
+            </div>
+            <div class="bootom-imgn">
+                <img src="{{ asset('frontend/images/white-bg-01-btom.png') }}" alt="bnm" />
+            </div> --}}
+        </div>
+        
+        <div class="mediasection d-inline-block w-100">
             <div class="container">
                 <div class="mindle-heading text-center">
                     <h5>Gallery</h5>
@@ -494,7 +397,7 @@
                                     <img src="{{ show_image($gallery->path) }}" alt="{{ $gallery->name }}" />
                                     <figcaption>
                                         {{ $gallery->name }}
-                                        @if (!is_null($gallery->league))
+                                        @if (!is_null($gallery->league)) 
                                             {{ $gallery->league->name }}
                                         @endif
                                     </figcaption>
@@ -504,7 +407,7 @@
                     @endforeach
                 </div>
             </div>
-        </div> --}}
+        </div>
     </section>
     <section class="float-start w-100">
         <div class="mediasection d-inline-block w-100">
@@ -516,8 +419,8 @@
                 <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
                     @foreach ($videos as $key => $video)
                         <div class="col-md-6">
-                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}" allowfullscreen></iframe>
-
+                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}">
+                            </iframe>
                         </div>
                     @endforeach
                 </div>
@@ -610,34 +513,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="leaguemodalLabel">Upcoming League</h1>
-                    @if (!is_null($modalLeague))
-                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}"
-                            class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
-                            <i class="la la-check"></i>
-                            <b>Register Now</b>
-                        </a>
-                    @endif
+                    <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-sm btn-success btn-outline-custom fw-bolder mx-3">
+                        <i class="la la-check"></i>
+                        <b>Register Now</b>
+                    </a>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if (!is_null($modalLeague))
+                @if (!is_null($modalLeague)) 
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
                                 @if (!empty($modalLeague->logo))
-                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height=""
-                                        width="100%" alt="modalLeague">
+                                    <img src="{{ show_image($modalLeague->logo) }}" class="img-fluid" height="" width="100%" alt="modalLeague">
                                 @endif
-                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the
-                                    everyone wins league.
+                                <p class="text-center bold">Winning and losing are a part of everyday life. This is not the everyone wins league.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}"
-                            class="btn btn-success btn-outline-custom fw-bolder"
-                            style="
+                        <a href="{{ route('administration.league.registration', ['league' => $modalLeague]) }}" class="btn btn-success btn-outline-custom fw-bolder" style="
                             float: right;">
                             <i class="la la-check"></i>
                             <b>Register Now</b>
@@ -658,10 +554,9 @@
 @section('custom_script')
     {{--  External Custom Javascript  --}}
     <script type="text/javascript">
-        $(window).on("load", function() {
-            // $("#leaguemodal").modal("show");
+        $(window).on("load", function () {
+           // $("#leaguemodal").modal("show");
         });
-
         let items = document.querySelectorAll("#sliderCarousel .carousel-item");
 
         items.forEach((el) => {
@@ -678,5 +573,5 @@
             }
         });
     </script>
-
+    
 @endsection
