@@ -201,7 +201,7 @@
                                 <div class="col-lg-4">
                                     <label for="state" class="text-capitalize">State *</label>
                                     <div class="from-group">
-                                        <input type="text" name="state" value="{{ old('state') }}" class="form-control" placeholder="State/Province *" required />
+                                        <input type="text" name="state" value="{{ old('state') }}" class="form-control" placeholder="State *" required />
                                         @error('state')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror

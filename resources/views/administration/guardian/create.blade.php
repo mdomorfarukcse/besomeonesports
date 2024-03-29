@@ -211,7 +211,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="state">State/Province</label>
+                                            <label for="state">State</label>
                                             <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="Frederick Nebraska" />
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
