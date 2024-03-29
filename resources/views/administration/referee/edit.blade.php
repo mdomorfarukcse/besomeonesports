@@ -206,10 +206,10 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="city">City <span class="required">*</span></label>
-                                            <input type="text" name="city" value="{{ $referee->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
-                                            @error('city')
+                                        <div class="col-md-8 form-group">
+                                            <label for="address">Street Address <span class="required">*</span></label>
+                                            <input type="text" name="address" value="{{ $referee->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
+                                            @error('address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
@@ -221,19 +221,20 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
+                                            <label for="city">City <span class="required">*</span></label>
+                                            <input type="text" name="city" value="{{ $referee->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
+                                            @error('city')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4 form-group">
                                             <label for="postal_code">Zip Code <span class="required">*</span></label>
                                             <input type="text" name="postal_code" value="{{ $referee->postal_code }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                             @error('postal_code')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-8 form-group">
-                                            <label for="address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="address" value="{{ $referee->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
-                                            @error('address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

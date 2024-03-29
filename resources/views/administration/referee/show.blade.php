@@ -96,13 +96,14 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Zip Code: {{ $referee->postal_code }}
-                                                            <br>    
-                                                            City: {{ $referee->city }}
-                                                            <br>    
+                                                            Street Address: {{ $referee->address }}
+                                                            <br>
                                                             State: {{ $referee->state }}
                                                             <br>
-                                                            Street Address: {{ $referee->address }}
+                                                            City: {{ $referee->city }}
+                                                            <br> 
+                                                            Zip Code: {{ $referee->postal_code }}
+                                                            <br>    
                                                         </address>    
                                                     </td>
                                                 </tr>
