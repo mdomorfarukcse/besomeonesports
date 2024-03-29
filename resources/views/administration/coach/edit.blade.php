@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="first_name">First Name <span class="required">*</span></label>
                                             <input type="text" name="first_name" value="{{ $coach->first_name }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
                                             @error('first_name')
@@ -189,7 +189,7 @@
                                         </div>
                                         <input type="hidden" name="middle_name" value="{{ $coach->middle_name }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
 
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="last_name">Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" value="{{ $coach->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
                                             @error('last_name')
@@ -217,6 +217,13 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="street_address">Street Address</label>
+                                            <input type="text" name="street_address" value="{{ $coach->street_address }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
+                                            @error('street_address')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
                                         <div class="col-md-4 form-group">
                                             <label for="city">City</label>
                                             <input type="text" name="city" value="{{ $coach->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="Iris Watson"/>
@@ -238,13 +245,7 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="street_address">Street Address</label>
-                                            <input type="text" name="street_address" value="{{ $coach->street_address }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
-                                            @error('street_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
+                                        
                                         <div class="col-md-6 form-group">
                                             <label for="extended_address">Extended Address</label>
                                             <input type="text" name="extended_address" value="{{ $coach->extended_address }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>

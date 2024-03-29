@@ -112,17 +112,20 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Post: {{ $coach->postal_code }}
-                                                            <br>    
-                                                            City: {{ $coach->city }}
-                                                            <br>    
-                                                            State: {{ $coach->state }}
-                                                            <br>
+                                                            
                                                             Street Address: {{ $coach->street_address }}
                                                             @if (!empty($coach->extended_address))
                                                                 <br>
                                                                 Extended Address: {{ $coach->extended_address }}
                                                             @endif
+                                                            <br>
+                                                            State: {{ $coach->state }}
+                                                            <br>    
+                                                            City: {{ $coach->city }}
+                                                            <br>    
+                                                            Post: {{ $coach->postal_code }}
+                                                            
+                                                            
                                                         </address>    
                                                     </td>
                                                 </tr>

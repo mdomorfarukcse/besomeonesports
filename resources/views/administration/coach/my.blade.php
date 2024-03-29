@@ -62,8 +62,6 @@
                         <thead>
                             <tr>
                                 <th>Sl.</th>
-                                <th>Avatar</th>
-                                <th>Coach ID (CID)</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
@@ -77,10 +75,6 @@
                             @foreach ($coaches as $sl => $coach)
                                 <tr>
                                     <th class="fw-bold"><b>#{{ $sl+1 }}</b></th>
-                                    <td>
-                                        <img src="{{ show_image($coach->user->avatar) }}" class="img-fluid img-thumbnail rounded-circle table-avatar" height="50" width="50" alt="Coach">
-                                    </td>
-                                    <td>{{ $coach->coach_id }}</td>
                                     <td>
                                         {{ $coach->user->name }}
                                     </td>

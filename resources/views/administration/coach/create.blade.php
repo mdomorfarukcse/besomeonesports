@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="first_name">First Name <span class="required">*</span></label>
                                             <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
                                             @error('first_name')
@@ -217,7 +217,7 @@
                                         </div>
                                         <input type="hidden" name="middle_name" value="{{ old('middle_name') }}" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Roberts"/>
 
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="last_name">Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
                                             @error('last_name')

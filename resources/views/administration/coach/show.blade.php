@@ -74,10 +74,6 @@
                                                         </div>    
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Coach ID (PID)</th>
-                                                    <td class="text-primary text-bold">{{ $coach->coach_id }}</td>
-                                                </tr>
                                                 @if (!empty($coach->position))
                                                     <tr>
                                                         <th>Position</th>
