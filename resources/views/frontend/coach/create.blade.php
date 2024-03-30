@@ -180,20 +180,11 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="from-group">
-                                        <label for="driver_license_no" class="text-capitalize">Driver License No *</label>
-                                        <input type="text" name="driver_license_no" value="{{ old('driver_license_no') }}" class="form-control" placeholder="Driver License No *" required />
-                                        @error('driver_license_no')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="from-group">
-                                        <label for="city" class="text-capitalize">city *</label>
-                                        <input type="text" name="city" value="{{ old('city') }}" class="form-control" placeholder="City *" required />
-                                        @error('city')
+                                        <label for="street_address" class="text-capitalize">Street Address *</label>
+                                        <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control" placeholder="Street Address *" required />
+                                        @error('street_address')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                         @enderror
                                     </div>
@@ -209,6 +200,15 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
+                                        <label for="city" class="text-capitalize">city *</label>
+                                        <input type="text" name="city" value="{{ old('city') }}" class="form-control" placeholder="City *" required />
+                                        @error('city')
+                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="from-group">
                                         <label for="postal_code" class="text-capitalize">Zip Code *</label>
                                         <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control" placeholder="Zip Code *" required />
                                         @error('postal_code')
@@ -216,15 +216,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="from-group">
-                                        <label for="street_address" class="text-capitalize">Street Address *</label>
-                                        <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control" placeholder="Street Address *" required />
-                                        @error('street_address')
-                                            <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                        @enderror
-                                    </div>
-                                </div>
+                                
                                 <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="sport_of_interests[]" class="text-capitalize">Fields Of Interest *</label>

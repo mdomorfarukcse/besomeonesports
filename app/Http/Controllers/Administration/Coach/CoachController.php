@@ -112,7 +112,6 @@ class CoachController extends Controller
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;
-                $coach->driver_license_no = $request->driver_license_no;
                 $coach->city = $request->city;
                 $coach->state = $request->state;
                 $coach->postal_code = $request->postal_code;
@@ -177,7 +176,6 @@ class CoachController extends Controller
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;
-                $coach->driver_license_no = $request->driver_license_no;
                 $coach->city = $request->city;
                 $coach->state = $request->state;
                 $coach->postal_code = $request->postal_code;
@@ -283,7 +281,6 @@ class CoachController extends Controller
                     $coachInfo->city = $coach->city;
                     $coachInfo->state = $coach->state;
                     $coachInfo->postal_code = $coach->postal_code;
-                    $coachInfo->driver_license_no = $coach->driver_license_no;
                     $coachInfo->street_address = $coach->street_address;
                     $coachInfo->extended_address = $coach->extended_address;
 

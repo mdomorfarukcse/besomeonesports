@@ -93,24 +93,16 @@
                                                     <td>{{ $coach->phone_number }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Driver License No</th>
-                                                    <td>{{ $coach->driver_license_no }}</td>
-                                                </tr>
-                                                <tr>
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Zip Code: {{ $coach->postal_code }}
-                                                            <br>    
-                                                            City: {{ $coach->city }}
-                                                            <br>    
-                                                            State: {{ $coach->state }}
-                                                            <br>
                                                             Street Address: {{ $coach->street_address }}
-                                                            @if (!empty($coach->extended_address))
-                                                                <br>
-                                                                Extended Address: {{ $coach->extended_address }}
-                                                            @endif
+                                                            <br>
+                                                            State: {{ $coach->state }}
+                                                            <br>   
+                                                            City: {{ $coach->city }}
+                                                            <br>   
+                                                            Zip Code: {{ $coach->postal_code }}
                                                         </address>    
                                                     </td>
                                                 </tr>                                                

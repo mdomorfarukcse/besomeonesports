@@ -37,7 +37,6 @@ class CoachSeeder extends Seeder
                     'city' => fake()->city(),
                     'state' => fake()->words(2, true),
                     'postal_code' => fake()->postcode(),
-                    'driver_license_no' => unique_id(11,11).$i.rand(1,5000),
                     'note' => fake()->sentence(10, true),
                     'status' => fake()->randomElement(['Active', 'Inactive', 'Banned'])
                 ]);

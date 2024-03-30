@@ -31,7 +31,6 @@ class CoachStoreRequest extends FormRequest
             "last_name" => ['required', 'max:50'],
             "phone_number" => ['required', 'string', 'max:20'],
             "birthdate" => ['nullablle', 'date', 'date_format:Y-m-d'],
-            "driver_license_no" => ['nullablle', 'string', 'max:20'],
             "city" => ['nullablle', 'string', 'max:50'],
             "state" => ['nullablle', 'string', 'max:50'],
             "postal_code" => ['nullablle', 'string', 'max:10'],

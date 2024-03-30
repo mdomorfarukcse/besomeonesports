@@ -249,7 +249,6 @@ class ProfileController extends Controller
                 $coach->last_name = $request->last_name;
                 $coach->birthdate = $request->birthdate;
                 $coach->phone_number = $request->phone_number;
-                $coach->usab_license_no = $request->usab_license_no;
                 $coach->city = $request->city;
                 $coach->state = $request->state;
                 $coach->postal_code = $request->postal_code;
