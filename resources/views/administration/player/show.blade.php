@@ -137,17 +137,13 @@
                                                     <th>Address</th>
                                                     <td>
                                                         <address class="mb-0">
-                                                            Zip Code: {{ $player->postal_code }}
-                                                            <br>    
-                                                            City: {{ $player->city }}
+                                                            Street Address: {{ $player->street_address }}
                                                             <br>    
                                                             State: {{ $player->state }}
                                                             <br>
-                                                            Street Address: {{ $player->street_address }}
-                                                            @if (!empty($player->extended_address))
-                                                                <br>
-                                                                Extended Address: {{ $player->extended_address }}
-                                                            @endif
+                                                            City: {{ $player->city }}
+                                                            <br>    
+                                                            Zip Code: {{ $player->postal_code }}
                                                         </address>    
                                                     </td>
                                                 </tr>

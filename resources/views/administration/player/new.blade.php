@@ -248,13 +248,6 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="extended_address">Extended Address</label>
-                                            <input type="text" name="extended_address" value="{{ old('extended_address') }}" class="form-control @error('extended_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
-                                            @error('extended_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
                                         <div class="col-md-12 form-group">
                                             <label for="note">Note</label>
                                             <textarea name="note" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('note') }}</textarea>

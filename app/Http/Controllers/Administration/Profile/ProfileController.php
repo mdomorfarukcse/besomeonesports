@@ -186,7 +186,6 @@ class ProfileController extends Controller
                 $player->state = $request->state;
                 $player->postal_code = $request->postal_code;
                 $player->street_address = $request->street_address;
-                $player->extended_address = $request->extended_address;
                 $player->position = $request->position;
                 $player->height = $request->height;
                 $player->weight = $request->weight;

@@ -130,7 +130,6 @@ class PlayerController extends Controller
                 $player->state = $request->state;
                 $player->postal_code = $request->postal_code;
                 $player->street_address = $request->street_address;
-                $player->extended_address = $request->extended_address;
                 $player->position = $request->position;
                 $player->grade = $request->grade;
                 $player->shirt_size = $request->shirt_size;
@@ -231,7 +230,6 @@ class PlayerController extends Controller
                 $player->state = $request->state;
                 $player->postal_code = $request->postal_code;
                 $player->street_address = $request->street_address;
-                $player->extended_address = $request->extended_address;
                 $player->position = $request->position;
                 $player->grade = $request->grade;
                 $player->shirt_size = $request->shirt_size;
