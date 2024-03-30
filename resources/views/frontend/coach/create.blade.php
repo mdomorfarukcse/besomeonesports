@@ -144,7 +144,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="first_name" class="text-capitalize">First Name *</label>
                                         <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" placeholder="First Name *" required />
@@ -153,7 +153,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="last_name" class="text-capitalize">Last Name *</label>
                                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Last Name *" required />
@@ -162,7 +162,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="birthdate" class="text-capitalize">birthdate *</label>
                                         <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control" placeholder="Birthdate *" required />
@@ -171,7 +171,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="phone_number" class="text-capitalize">Phone Number *</label>
                                         <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="+1 (123) 456 -7890" required />

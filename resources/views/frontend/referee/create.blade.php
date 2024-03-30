@@ -158,7 +158,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="first_name" class="text-capitalize">First Name *</label>
                                         <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" placeholder="First Name *" required />
@@ -167,7 +167,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="from-group">
                                         <label for="last_name" class="text-capitalize">Last Name *</label>
                                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Last Name *" required />
