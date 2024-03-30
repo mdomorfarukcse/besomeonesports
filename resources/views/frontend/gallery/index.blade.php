@@ -30,6 +30,24 @@
 
 @section('content')
 
+    <section class="float-start w-100">
+        <div class="mediasection d-inline-block w-100">
+            <div class="container">
+                <div class="mindle-heading text-center">
+                    <h5>Videos</h5>
+                    <h1>Our <span> Latest Video </span></h1>
+                </div>
+                <div class="row row-cols-2 row-cols-lg-4 mt-0 g-4 mt-3">
+                    @foreach ($videos as $key => $video)
+                        <div class="col-md-6">
+                            <iframe width="100%" height="345" src="{{ $video->youtubeurl }}">
+                            </iframe>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Start row -->
     <section class="float-start w-100">
         <div class="mediasection d-inline-block w-100">

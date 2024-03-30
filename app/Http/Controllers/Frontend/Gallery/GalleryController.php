@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Frontend\Gallery;
 
-use App\Http\Controllers\Controller;
-use App\Models\Gallery\Gallery;
+use App\Models\Video\Video;
 use Illuminate\Http\Request;
+use App\Models\Gallery\Gallery;
+use App\Http\Controllers\Controller;
 
 class GalleryController extends Controller
 {
@@ -14,6 +15,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::all();
-        return view('frontend.gallery.index', compact(['galleries']));
+        $videos = Video::whereStatus('Active')->get();
+        return view('frontend.gallery.index', compact(['galleries', 'videos']));
     }
 }
