@@ -206,7 +206,7 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-8 form-group">
+                                        <div class="col-md-12 form-group">
                                             <label for="address">Street Address <span class="required">*</span></label>
                                             <input type="text" name="address" value="{{ $referee->address }}" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd." required/>
                                             @error('address')

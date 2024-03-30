@@ -86,14 +86,16 @@ class CoachController extends Controller
             DB::transaction(function() use ($request) {
                 $coachName = $request->first_name.' '.$request->last_name;
 
-                $avatar = upload_image($request->avatar);
-                // Store Credentials into User
-                $user = User::create([
-                    'name' => $coachName,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'avatar' => $avatar,
-                ]);
+                $user = new User();
+                $user->name = $coachName;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+
+                if (isset($request->avatar)) {
+                    $avatar = upload_image($request->avatar);
+                    $user->avatar = $avatar;
+                }
+                $user->save();
         
                 // Assign the provided role to the user
                 $role = Role::where('name', 'coach')->firstOrFail();
@@ -116,7 +118,6 @@ class CoachController extends Controller
                 $coach->state = $request->state;
                 $coach->postal_code = $request->postal_code;
                 $coach->street_address = $request->street_address;
-                $coach->extended_address = $request->extended_address;
                 $coach->note = $request->note;
                 $coach->status = $request->status;
                 
@@ -180,7 +181,6 @@ class CoachController extends Controller
                 $coach->state = $request->state;
                 $coach->postal_code = $request->postal_code;
                 $coach->street_address = $request->street_address;
-                $coach->extended_address = $request->extended_address;
                 $coach->note = $request->note;
                 $coach->status = $request->status;
                 
@@ -282,7 +282,6 @@ class CoachController extends Controller
                     $coachInfo->state = $coach->state;
                     $coachInfo->postal_code = $coach->postal_code;
                     $coachInfo->street_address = $coach->street_address;
-                    $coachInfo->extended_address = $coach->extended_address;
 
                     $coachInfo->save();
 

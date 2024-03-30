@@ -196,14 +196,14 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-7 form-group">
-                                            <label for="street_address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
-                                            @error('street_address')
+                                        <div class="col-md-12 form-group">
+                                            <label for="address">Street Address <span class="required">*</span></label>
+                                            <input type="text" name="address" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
+                                            @error('address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-5 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="city">City <span class="required">*</span></label>
                                             <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
                                             @error('city')

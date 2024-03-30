@@ -30,12 +30,11 @@ class CoachStoreRequest extends FormRequest
             "first_name" => ['required', 'max:50'],
             "last_name" => ['required', 'max:50'],
             "phone_number" => ['required', 'string', 'max:20'],
-            "birthdate" => ['nullablle', 'date', 'date_format:Y-m-d'],
-            "city" => ['nullablle', 'string', 'max:50'],
-            "state" => ['nullablle', 'string', 'max:50'],
-            "postal_code" => ['nullablle', 'string', 'max:10'],
-            "street_address" => ['nullablle', 'string', 'max:100'],
-            "extended_address" => ['nullable', 'string', 'max:100'],
+            "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
+            "city" => ['nullable', 'string', 'max:50'],
+            "state" => ['nullable', 'string', 'max:50'],
+            "postal_code" => ['nullable', 'string', 'max:10'],
+            "street_address" => ['nullable', 'string', 'max:100'],
             "note" => ['nullable', 'string'],
         ];
     }

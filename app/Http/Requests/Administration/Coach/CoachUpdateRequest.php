@@ -32,7 +32,6 @@ class CoachUpdateRequest extends FormRequest
             "state" => ['nullable', 'string', 'max:50'],
             "postal_code" => ['nullable', 'string', 'max:10'],
             "street_address" => ['nullable', 'string', 'max:100'],
-            "extended_address" => ['nullable', 'string', 'max:100'],
             "note" => ['nullable', 'string'],
         ];
     }
