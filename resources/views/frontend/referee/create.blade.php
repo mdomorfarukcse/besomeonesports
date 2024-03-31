@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="birthday" class="text-capitalize">Birthday *</label>
+                                        <label for="birthday" class="text-capitalize">Birthdate *</label>
                                         <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control" placeholder="Birthdate *" required />
                                         @error('birthdate')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
