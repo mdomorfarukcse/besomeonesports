@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Administration\Gallery;
 
-use App\Http\Controllers\Controller;
-use App\Models\Gallery\Gallery;
-use App\Models\League\League;
 use Exception;
+use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
+use App\Models\League\League;
+use App\Models\Season\Season;
+use App\Models\Gallery\Gallery;
+use App\Http\Controllers\Controller;
 
 class GalleryController extends Controller
 {
@@ -28,7 +30,15 @@ class GalleryController extends Controller
                         ->whereStatus('Active')
                         ->orderBy('created_at', 'desc')
                         ->get();
-        return view('administration.gallery.create', compact('leagues'));
+        $sports = Sport::select(['id','name'])
+                        ->whereStatus('Active')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        $seasons = Season::select(['id','name'])
+                        ->whereStatus('Active')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('administration.gallery.create', compact('leagues', 'sports', 'seasons'));
     }
 
     /**
@@ -38,7 +48,9 @@ class GalleryController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string'],
-            'league_id' => ['nullable', 'exists:leagues,id'],
+            'league_id' => ['nullable'],
+            'sport_id' => ['nullable'],
+            'season_id' => ['nullable'],
             'images' => ['required', 'array'],
             'images.*' => ['image', 'mimes:jpeg,jpg,png,gif', 'max:2048']
         ]);
@@ -53,6 +65,8 @@ class GalleryController extends Controller
                         $gallery = new Gallery();
                         $gallery->name = $request->name;
                         $gallery->league_id = $request->league_id;
+                        $gallery->sport_id = $request->sport_id;
+                        $gallery->season_id = $request->season_id;
                         $gallery->path = $imageName;
                         $gallery->save();
                     }

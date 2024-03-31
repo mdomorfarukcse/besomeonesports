@@ -63,6 +63,8 @@
                                 <th>S/N</th>
                                 <th>Image</th>
                                 <th>Caption</th>
+                                <th>Season</th>
+                                <th>Sport</th>
                                 <th>League</th>
                                 <th class="text-right">Actions</th>
                             </tr>
@@ -79,6 +81,20 @@
                                         </a>
                                     </td>
                                     <td>{{ $gallery->name }}</td>
+                                    <td>
+                                        @if(!is_null($gallery->season))
+                                            {{ $gallery->season->name }}
+                                        @else
+                                            <span class="badge badge-dark">No Season</span>
+                                        @endif    
+                                    </td>
+                                    <td>
+                                        @if(!is_null($gallery->sport))
+                                            {{ $gallery->sport->name }}
+                                        @else
+                                            <span class="badge badge-dark">No Sport</span>
+                                        @endif    
+                                    </td>
                                     <td>
                                         @if(!is_null($gallery->league))
                                             {{ $gallery->league->name }}

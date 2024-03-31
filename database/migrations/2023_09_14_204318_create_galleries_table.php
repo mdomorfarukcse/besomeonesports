@@ -20,6 +20,14 @@ return new class extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
+            $table->foreignId('season_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('restrict');
+            $table->foreignId('sport_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
