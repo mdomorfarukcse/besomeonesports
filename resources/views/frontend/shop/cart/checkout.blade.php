@@ -89,7 +89,7 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label>Contact Number <span class="text-danger">*</span></label>
+                                                        <label>Phone Number <span class="text-danger">*</span></label>
                                                         <input type="tel" name="contact_number" class="form-control" required value="{{ old('contact_number') }}" placeholder="Phone Number"/>
                                                         @error('contact_number')
                                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

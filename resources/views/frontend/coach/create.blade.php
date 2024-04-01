@@ -128,7 +128,7 @@
                                 
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="email" class="text-capitalize">email *</label>
+                                        <label for="email" class="text-capitalize">Email <span class="text-danger">*</span></label>
                                         <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email*" required />
                                         @error('email')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="password" class="text-capitalize">password *</label>
+                                        <label for="password" class="text-capitalize">Password <span class="text-danger">*</span></label>
                                         <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Password *" required />
                                         @error('password')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="first_name" class="text-capitalize">First Name *</label>
+                                        <label for="first_name" class="text-capitalize">First Name <span class="text-danger">*</span></label>
                                         <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" placeholder="First Name *" required />
                                         @error('first_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="last_name" class="text-capitalize">Last Name *</label>
+                                        <label for="last_name" class="text-capitalize">Last Name <span class="text-danger">*</span></label>
                                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Last Name *" required />
                                         @error('last_name')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="birthdate" class="text-capitalize">Birthdate *</label>
+                                        <label for="birthdate" class="text-capitalize">Birthdate <span class="text-danger">*</span></label>
                                         <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control" placeholder="Birthdate *" required />
                                         @error('birthdate')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="phone_number" class="text-capitalize">Phone Number *</label>
+                                        <label for="phone_number" class="text-capitalize">Phone Number <span class="text-danger">*</span></label>
                                         <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="+1 (123) 456 -7890" required />
                                         @error('phone_number')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="from-group">
-                                        <label for="street_address" class="text-capitalize">Street Address *</label>
+                                        <label for="street_address" class="text-capitalize">Street Address <span class="text-danger">*</span></label>
                                         <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control" placeholder="Street Address *" required />
                                         @error('street_address')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -190,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <label for="state" class="text-capitalize">State *</label>
+                                    <label for="state" class="text-capitalize">State <span class="text-danger">*</span></label>
                                     <div class="from-group">
                                         <input type="text" name="state" value="{{ old('state') }}" class="form-control" placeholder="State *" required />
                                         @error('state')
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
-                                        <label for="city" class="text-capitalize">city *</label>
+                                        <label for="city" class="text-capitalize">city <span class="text-danger">*</span></label>
                                         <input type="text" name="city" value="{{ old('city') }}" class="form-control" placeholder="City *" required />
                                         @error('city')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="from-group">
-                                        <label for="postal_code" class="text-capitalize">Zip Code *</label>
+                                        <label for="postal_code" class="text-capitalize">Zip Code <span class="text-danger">*</span></label>
                                         <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control" placeholder="Zip Code *" required />
                                         @error('postal_code')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -219,7 +219,7 @@
                                 
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="sport_of_interests[]" class="text-capitalize">Fields Of Interest *</label>
+                                        <label for="sport_of_interests[]" class="text-capitalize">Fields Of Interest <span class="text-danger">*</span></label>
                                         <br>
                                         <ul class="list-group d-inline-block">
                                             <li class="list-group-item d-inline-block border-1">
@@ -242,7 +242,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="from-group">
-                                        <label for="grade_of_interests[]" class="text-capitalize">Grade Of Interest *</label>
+                                        <label for="grade_of_interests[]" class="text-capitalize">Grade Of Interest <span class="text-danger">*</span></label>
                                         <br>
                                         <ul class="list-group d-inline-block">
                                             <li class="list-group-item d-inline-block border-1">

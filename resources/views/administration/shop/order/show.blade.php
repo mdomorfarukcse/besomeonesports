@@ -176,7 +176,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Contact Number</th>
+                                                    <th>Phone Number</th>
                                                     <td>{{ $order->contact_number }}</td>
                                                 </tr>
                                                 <tr>
