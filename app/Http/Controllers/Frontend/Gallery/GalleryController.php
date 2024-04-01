@@ -27,8 +27,12 @@ class GalleryController extends Controller
         if ($request->filled('league_id')) {
             $query->where('league_id', $request->league_id);
         }
-
-        $galleries = $query->get();
+        if($request->has('filter')){
+            $galleries = $query->get();
+        }else{
+            $galleries = $query->limit(15)->get();
+        }
+        
         $videos = Video::whereStatus('Active')->get();
         $leagues = League::select(['id','name'])
                         ->whereStatus('Active')
