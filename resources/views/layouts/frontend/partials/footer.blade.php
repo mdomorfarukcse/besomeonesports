@@ -119,7 +119,7 @@
             <div
                 class="row row-cols-1 row-cols-lg-2 text-center text-lg-start gy-4 gy-lg-0 justify-content-center justify-content-lg-between">
                 <div class="col">
-                    <p class="text-white">©2023, Be Someone Sports All Rights Reserved. Developed by SpaceCenterSystems
+                    <p class="text-white">©2024, Be Someone Sports All Rights Reserved. Developed by SpaceCenter Systems
                     </p>
                 </div>
                 <div class="col d-grid justify-content-lg-end">
