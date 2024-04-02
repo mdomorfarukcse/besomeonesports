@@ -90,10 +90,16 @@
                                     @if (auth()->user()->can('shop_product.show') || auth()->user()->can('shop_product.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
-                                                @if (auth()->user()->can('shop_product.show')) 
-                                                    <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
-                                                        <i class="feather icon-eye"></i>
-                                                    </a>
+                                                @if (auth()->user()->can('shop_product.show'))
+                                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
+                                                        <a href="{{ route('administration.shop.product.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                            <i class="feather icon-eye"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('frontend.shop.show', ['product' => $product]) }}" class="btn btn-outline-info btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('View?') }}">
+                                                            <i class="feather icon-eye"></i>
+                                                        </a>
+                                                    @endif
                                                 @endif
                                                 @if (auth()->user()->can('shop_product.destroy')) 
                                                     <a href="{{ route('administration.shop.product.destroy', ['product' => $product]) }}" class="btn btn-outline-danger btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Delete?') }}" onclick="return confirm('Are You Sure Want To Delete?');">
