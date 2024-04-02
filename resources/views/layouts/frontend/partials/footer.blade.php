@@ -77,6 +77,9 @@
                                     <a href="{{ route('frontend.about.index') }}">About Us</a>
                                 </li>
                                 <li>
+                                    <a href="/testimonials">Testimonials</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('frontend.schedule.index') }}">Schedule</a>
                                 </li>
                                 <li>
@@ -85,6 +88,10 @@
                                 <li>
                                     <a href="{{ route('frontend.coach.create') }}">Become A Coach?</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('frontend.referee.create') }}">Become A Referee?</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
