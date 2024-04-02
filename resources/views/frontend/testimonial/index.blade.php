@@ -28,6 +28,9 @@
         .privacy {
             line-height: 22px;
         }
+        .body-part{
+            background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(57 70 113) 70.2%);
+        }
     </style>
 @endsection
 
