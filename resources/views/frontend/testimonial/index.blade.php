@@ -56,7 +56,7 @@
                 <div class="row row-cols-1 row-cols-lg-2 g-5">
                     <div class="col-md-12">
                         <div class="privacy">
-                            <div class="mindle-heading text-center">
+                            <div class="mindle-heading text-center mb-3">
                                 <h5>Feedback</h5>
                                 <h1>Client <span> *Testimonials* </span></h1>
                             </div>
