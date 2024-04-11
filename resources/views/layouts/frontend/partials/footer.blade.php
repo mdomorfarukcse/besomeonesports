@@ -88,9 +88,9 @@
                                 <li>
                                     <a href="{{ route('frontend.coach.create') }}">Become A Coach?</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('frontend.referee.create') }}">Become A Referee?</a>
-                                </li>
+                                </li> --}}
                                 
                             </ul>
                         </div>

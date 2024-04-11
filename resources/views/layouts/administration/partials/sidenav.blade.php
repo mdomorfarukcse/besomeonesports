@@ -227,7 +227,7 @@
                 @endif
 
                 @if (auth()->user()->can('referee.index') || auth()->user()->can('referee.create'))
-                    <li>
+                    {{-- <li>
                         <a href="javaScript:void();"> 
                             <i class="mdi mdi-account-edit"></i>
                             <span>Referees</span>
@@ -242,7 +242,7 @@
                                 @endif
                             @endif
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
 
                 @if (auth()->user()->can('shop_dashboard.index') || auth()->user()->can('shop_order.index') || auth()->user()->can('shop_product.index') || auth()->user()->can('shop_category.index'))
