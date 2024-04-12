@@ -208,7 +208,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="cardexpiry">Expiry Date</label>
+                                            <label for="cardexpiry">Expiration Date</label>
                                             <input type="text" class="form-control" value="{{ old('card_expiry') }}"
                                                 name="card_expiry" id="cardexpiry" required>
                                         </div>
