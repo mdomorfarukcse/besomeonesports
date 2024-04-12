@@ -84,7 +84,7 @@
                                 <div class="col-md-5">
                                     <button type="submit" class="btn btn-dark btn-custom btn-block m-t-30">
                                         <i class="feather icon-filter mr-1"></i>
-                                        <span class="text-bold">Filter</span>
+                                        <span class="text-bold">Search</span>
                                     </button>
                                     @if ($request->filter == true) 
                                         <a href="{{ route('administration.division.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
