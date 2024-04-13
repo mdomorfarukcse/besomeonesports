@@ -14,7 +14,7 @@
 @section('custom_css')
     {{--  External CSS  --}}
     <style>
-        /* Custom CSS Here */
+        / Custom CSS Here /
         .privacy p {
             margin-top: 10px;
         }
@@ -50,13 +50,13 @@
                 <div class="row row-cols-1 row-cols-lg-2 g-5">
                     <div class="col-md-12">
                         <div class="privacy">
-                            <h2>*PRIVACY POLICY*</h2>
+                            <h2><strong>PRIVACY POLICY</strong></h2>
 
                             <p>Privacy Policy ("Policy") is for Be Someone Sports, located in Friendswood, Texas 77546,
                             and outlines how we collect, use, and protect your personal information. By using our website,
                             you agree to the terms of this Policy.</p> 
 
-                            <h3>*COLLECTION OF YOUR PERSONAL INFORMATION*</h3>
+                            <h3><strong>COLLECTION OF YOUR PERSONAL INFORMATION</strong></h3>
 
                             <p>We collect personal information such as your name, email address, home or work address,
                             telephone number, and demographic information (e.g., zip code, age, gender, preferences,
@@ -72,7 +72,7 @@
                             <p>We encourage you to review the privacy policies of websites linked from our site, as we are not
                             responsible for their practices.</p>
 
-                            <h3>*USE OF YOUR PERSONAL INFORMATION*</h3>
+                            <h3><strong>USE OF YOUR PERSONAL INFORMATION</strong></h3>
 
                             <p>We use your personal information to operate our website and provide requested services. We may
                             also use your information to inform you about our products, services, or conduct surveys to
@@ -88,31 +88,31 @@
                             <p>We will disclose your personal information if required by law or when we believe it is necessary
                             to protect our rights, property, or the safety of our users or the public.</p>
 
-                            <h3>*USE OF COOKIES*</h3>
+                            <h3><strong>USE OF COOKIES</strong></h3>
 
                             <p>We use cookies to enhance your online experience. Cookies are text files placed on your
                             computer's hard disk by a web server. They are used to save your preferences and information to
                             simplify future visits. You can choose to accept or decline cookies, although declining them may
                             limit your access to interactive features on our website.</p>
 
-                            <h3>*SECURITY OF YOUR PERSONAL INFORMATION*</h3>
+                            <h3><strong>SECURITY OF YOUR PERSONAL INFORMATION</strong></h3>
 
                             <p>We take measures to secure your personal information from unauthorized access, use, or
                             disclosure. Personal information is stored on secure servers and transmitted using encryption
                             protocols when necessary.</p>
 
-                            <h3>*CHANGES TO THIS POLICY*</h3>
+                            <h3><strong>CHANGES TO THIS POLICY</strong></h3>
 
                             <p>We may update this Policy to reflect company and customer feedback. Please check this Policy
                             periodically for updates. Your continued use of our website after changes are made constitutes
                             acceptance of the updated Policy.</p>
 
-                            <h3>*CONTACT INFORMATION*</h3>
+                            <h3><strong>CONTACT INFORMATION</strong></h3>
 
                             <p>If you believe we have not adhered to this Policy or have questions about our privacy practices,
                             please contact us at Info@BeSomeoneSports.com.</p>
 
-                            <h3>*Texas Residents*</h3>
+                            <h3><strong>Texas Residents</strong></h3>
 
                             <p>Texas residents have certain rights, including the right to request information about personal
                             information shared with third parties for direct marketing purposes. To make such a request or
