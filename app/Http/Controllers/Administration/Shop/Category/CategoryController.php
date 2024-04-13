@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select(['id','name','status'])->orderBy('created_at', 'desc')->get();
+        $categories = Category::select(['id','name','status'])->orderBy('created_at', 'desc')->whereStatus('Active')->get();
         return view('administration.shop.category.index', compact(['categories']));
     }
 

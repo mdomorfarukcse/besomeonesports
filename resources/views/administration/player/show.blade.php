@@ -295,7 +295,7 @@
                                 <th>Name</th>
                                 <th>League</th>
                                 <th>Players</th>
-                                <th>Status</th>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                 @if (auth()->user()->can('team.show') || auth()->user()->can('team.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -324,7 +324,7 @@
                                             {{ $team->maximum_players }}
                                         </span>
                                     </td>
-                                    <td>{!! status($team->status) !!}</td>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($team->status) !!}</td> @endif
                                     @if (auth()->user()->can('team.show') || auth()->user()->can('team.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">

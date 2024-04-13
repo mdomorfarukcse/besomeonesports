@@ -91,6 +91,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="row">
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <div class="form-group col-md-7">
                                     <label for="status">Status</label>
                                     <select class="select2-single form-control @error('status') is-invalid @enderror" name="status">
@@ -102,6 +103,7 @@
                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                     @enderror
                                 </div>
+                                @endif
                                 <div class="col-md-5">
                                     <button type="submit" class="btn btn-dark btn-custom btn-block m-t-30">
                                         <i class="feather icon-filter mr-1"></i>
@@ -137,7 +139,7 @@
                                 <th>Reg. Fee</th>
                                 <th>Divisions</th>
                                 <th>Time</th>
-                                <th>Status</th>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                 @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -160,7 +162,7 @@
                                     <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
                                     <td>{{ count($league->divisions) }}</td>
                                     <td><span class="badge badge-info badge-sm">{{ $league->start }}</span> To <span class="badge badge-info badge-sm">{{ $league->start }}</span></td>
-                                    <td>{!! status($league->status) !!}</td>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($league->status) !!}</td> @endif
                                     @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">

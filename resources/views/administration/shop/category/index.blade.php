@@ -65,7 +65,7 @@
                                 <th>#</th>
                                 <th>Category Name</th>
                                 <th>Total Products</th>
-                                <th>Status</th>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                 @if (auth()->user()->can('shop_category.show') || auth()->user()->can('shop_category.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -77,7 +77,7 @@
                                     <th class="fw-bold"><b>#{{ serial($categories, $sl) }}</b></th>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ count($category->products) }}</td>
-                                    <td>{!! status($category->status) !!}</td>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($category->status) !!}</td> @endif
                                     @if (auth()->user()->can('shop_category.show') || auth()->user()->can('shop_category.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">

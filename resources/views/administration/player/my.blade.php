@@ -87,7 +87,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Contact No</th>
-                                    <th>Status</th>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                     @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy'))
                                         <th class="text-right">Actions</th>
                                     @endif
@@ -102,7 +102,7 @@
                                         </td>
                                         <td>{{ $player->user->email }}</td>
                                         <td>{{ $player->contact_number }}</td>
-                                        <td>{!! status($player->status) !!}</td>
+                                        @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($player->status) !!}</td> @endif
                                         @if (auth()->user()->can('player.show') || auth()->user()->can('player.destroy'))
                                             <td class="text-right">
                                                 <div class="action-btn-group mr-3">

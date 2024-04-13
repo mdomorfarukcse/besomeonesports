@@ -66,7 +66,7 @@
                                 <th>Reg. Fee</th>
                                 <th>Divisions</th>
                                 <th>Venues</th>
-                                <th>Status</th>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                 @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -84,7 +84,7 @@
                                     <td class="text-bold text-primary">${{ $league->registration_fee }}</td>
                                     <td>{{ count($league->divisions) }}</td>
                                     <td>{{ count($league->venues) }}</td>
-                                    <td>{!! status($league->status) !!}</td>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($league->status) !!}</td> @endif
                                     @if (auth()->user()->can('league.show') || auth()->user()->can('league.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">

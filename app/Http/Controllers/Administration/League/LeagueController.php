@@ -66,8 +66,9 @@ class LeagueController extends Controller
         }
         if ($request->filled('status')) {
             $query->whereStatus($request->status);
+        }else{
+            $query->whereStatus('Active');
         }
-
         $leagues = $query->get();
 
         return view('administration.league.index', compact(['sports', 'divisions', 'leagues', 'request']));

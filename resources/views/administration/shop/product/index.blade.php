@@ -66,7 +66,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Stock</th>
-                                <th>Status</th>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <th>Status</th> @endif
                                 @if (auth()->user()->can('shop_product.show') || auth()->user()->can('shop_product.destroy')) 
                                     <th class="text-right">Actions</th>
                                 @endif
@@ -86,7 +86,7 @@
                                     <td>{{ $product->name }}</td>
                                     <td>${{ $product->price }}</td>
                                     <td>{{ $product->quantity }}</td>
-                                    <td>{!! status($product->status) !!}</td>
+                                    @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin')) <td>{!! status($product->status) !!}</td> @endif
                                     @if (auth()->user()->can('shop_product.show') || auth()->user()->can('shop_product.destroy')) 
                                         <td class="text-right">
                                             <div class="action-btn-group mr-3">
