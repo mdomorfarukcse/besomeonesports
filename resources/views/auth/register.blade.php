@@ -33,6 +33,13 @@
             background-color: #000000 !important;
             opacity: 0.9 !important;
         }
+        input::-webkit-input-placeholder{
+            color:#000000 !important;
+        }
+        input:-moz-placeholder {
+            color:#000000 !important;
+        }
+
     </style>
     <!-- End css -->
 </head>
