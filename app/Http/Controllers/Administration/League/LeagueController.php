@@ -61,8 +61,8 @@ class LeagueController extends Controller
                 $q->where('id', $request->division);
             });
         }
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
+        if ($request->filled('league')) {
+            $query->where('id', 'like', '%' . $request->league . '%');
         }
         if ($request->filled('status')) {
             $query->whereStatus($request->status);

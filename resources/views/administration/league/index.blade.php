@@ -84,7 +84,12 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="name">League Name</label>
-                            <input type="text" name="name" value="{{ $request->name ? $request->name : old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Fifa World Club 2023"/>
+                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="league">
+                                <option value="">Select League</option>
+                                @foreach ($leagues as $league)
+                                    <option value="{{ $league->id }}" {{ $request->league == $league->id ? 'selected' : '' }}>{{ $league->name }}</option>
+                                @endforeach
+                            </select>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
