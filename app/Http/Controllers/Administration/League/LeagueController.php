@@ -29,6 +29,7 @@ use net\authorize\api\controller\CreateTransactionController;
 use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use App\Http\Requests\Administration\League\LeagueUpdateRequest;
 use App\Rules\Administration\League\LeagueRegistration\UniqueLeaguePlayerRule;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LeagueController extends Controller
 {
@@ -342,8 +343,7 @@ class LeagueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(League $league)
-    {
+    public function destroy(League $league) {
         try {
             $league->delete();
 
@@ -594,5 +594,20 @@ class LeagueController extends Controller
         } catch (Exception $e){
             return response()->json(['error' => 'Registration Failed! There is some error! Please fix and try again. The Error is: '.$e->getMessage()]);
         }
+    }
+
+
+    /**
+     * Download Invoice
+     */
+    public function downloadInvoice($invoice_number) {
+        $pivotRecord = DB::table('league_player')
+                    ->where('invoice_number', $invoice_number)
+                    ->first();
+        dd($pivotRecord);
+
+        $invoice = Pdf::loadView('administration.league.invoice.invoice', ['invoice' => $invoice_number]);
+
+        return $invoice->download();
     }
 }
