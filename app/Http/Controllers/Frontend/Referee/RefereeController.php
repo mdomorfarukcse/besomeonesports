@@ -6,7 +6,9 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User\Frontend\RefereeRequest;
+use App\Mail\Administration\Coach\CoachRequestMail;
 use App\Http\Requests\Frontend\Referee\RefereeStoreRequest;
 
 class RefereeController extends Controller
@@ -48,7 +50,7 @@ class RefereeController extends Controller
             $admins = User::role('admin')->get();
             foreach ($admins as $admin) {
                 // Send Mail to the admin email
-                //Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
+                Mail::to($admin->email)->send(new CoachRequestMail($referee, $admin));
             }
 
             toast('Referee Request Has Been Send.','success');
