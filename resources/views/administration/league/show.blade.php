@@ -130,10 +130,12 @@
                                     <th>League End Date</th>
                                     <td>{{ $league->end }}</td>
                                 </tr>
+                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
                                 <tr>
                                     <th>Status</th>
                                     <td>{!! status($league->status) !!}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <th>Referees</th>
                                     <td>
