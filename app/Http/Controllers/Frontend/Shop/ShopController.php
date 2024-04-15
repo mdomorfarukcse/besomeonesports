@@ -223,11 +223,11 @@ class ShopController extends Controller
                         $admins = User::role('admin')->get();
                         foreach ($admins as $admin) {
                             // Send Mail to the admin email
-                            //Mail::to($admin->email)->send(new NewOrderMail($customerOrder, $admin));
+                            Mail::to($admin->email)->send(new NewOrderMail($customerOrder, $admin));
                         }
                         
                         // Send Mail to Customer about the Order
-                        //Mail::to($customerOrder->email)->send(new OrderConfirmationMail($customerOrder));
+                        Mail::to($customerOrder->email)->send(new OrderConfirmationMail($customerOrder));
             
                         $cartItems = Session::get('cart', []);
                         foreach ($cartItems as $itemKey => $cartItem) {
