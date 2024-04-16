@@ -59,8 +59,8 @@
                     <input type="hidden" name="filter" value="true">
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <label for="sport_id">Sport</label>
-                            <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id">
+                            <label for="sport_id">Sport <b class="text-danger">*</b></label>
+                            <select class="select2-single form-control @error('sport_id') is-invalid @enderror" name="sport_id" id="sport_id" required>
                                 <option value="">Select Sport</option>
                                 @foreach ($sports as $sport)
                                     <option value="{{ $sport->id }}" {{ $request->sport_id == $sport->id ? 'selected' : '' }}>{{ $sport->name }}</option>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="division">Divisions</label>
-                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="division">
+                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="division" id="division_id">
                                 <option value="">Select Divisions</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division->id }}" {{ $request->division == $division->id ? 'selected' : '' }}>{{ $division->name }} ({{ $division->gender }})</option>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="name">League Name</label>
-                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="league">
+                            <select class="select2-single form-control @error('division') is-invalid @enderror" name="league" id="league_id">
                                 <option value="">Select League</option>
                                 @foreach ($leagues as $league)
                                     <option value="{{ $league->id }}" {{ $request->league == $league->id ? 'selected' : '' }}>{{ $league->name }}</option>
@@ -94,33 +94,29 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                @if (auth()->user()->hasRole('developer') || auth()->user()->hasRole('admin'))
-                                <div class="form-group col-md-7">
-                                    <label for="status">Status</label>
-                                    <select class="select2-single form-control @error('status') is-invalid @enderror" name="status">
-                                        <option value="">Select Status</option>
-                                        <option value="Active" {{ $request->status === 'Active' ? 'selected' : '' }}>Active</option>
-                                        <option value="Inactive" {{ $request->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
-                                    </select>
-                                    @error('status')
-                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                    @enderror
-                                </div>
+                        <div class="form-group col-md-3">
+                            <label for="status">Status</label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status">
+                                <option value="">Select Status</option>
+                                <option value="Active" {{ $request->status === 'Active' ? 'selected' : '' }}>Active</option>
+                                <option value="Inactive" {{ $request->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-dark btn-custom m-t-30 float-end">
+                                    <i class="feather icon-filter mr-1"></i>
+                                    <span class="text-bold">Search</span>
+                                </button>
+                                @if ($request->filter == true) 
+                                    <a href="{{ route('administration.league.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
+                                        <i class="icon feather icon-x m-r-1"></i>
+                                        Clear
+                                    </a>
                                 @endif
-                                <div class="col-md-5">
-                                    <button type="submit" class="btn btn-dark btn-custom btn-block m-t-30">
-                                        <i class="feather icon-filter mr-1"></i>
-                                        <span class="text-bold">Search</span>
-                                    </button>
-                                    @if ($request->filter == true) 
-                                        <a href="{{ route('administration.league.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
-                                            <i class="icon feather icon-x m-r-1"></i>
-                                            Clear
-                                        </a>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,5 +225,44 @@
         // Custom Script Here
         /* -- Bootstrap Tooltip -- */
         $('[data-toggle="tooltip"]').tooltip();
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            // Add an event listener to the sport dropdown
+            $('#sport_id').change(function() {
+                // Fetch leagues based on the selected sport
+                fetchLeagues($(this).val());
+            });
+
+            function fetchLeagues(sportId) {
+                // Send an AJAX request to fetch leagues based on the selected sport
+                $.ajax({
+                    url: '/administration/league/filter/by_sport/' + sportId,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Update the league dropdown options
+                        updateLeagueOptions(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching leagues:', error);
+                    }
+                });
+            }
+
+            function updateLeagueOptions(leagues) {
+                const leagueDropdown = $('[name="league"]');
+                // Clear existing options
+                leagueDropdown.html('<option value="">Select League</option>');
+                // Populate with fetched leagues
+                $.each(leagues, function(index, league) {
+                    leagueDropdown.append($('<option>', {
+                        value: league.id,
+                        text: league.name
+                    }));
+                });
+            }
+        });
     </script>
 @endsection
