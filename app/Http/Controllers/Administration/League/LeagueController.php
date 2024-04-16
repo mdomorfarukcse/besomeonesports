@@ -601,12 +601,21 @@ class LeagueController extends Controller
      * Download Invoice
      */
     public function downloadInvoice($invoice_number) {
-        $pivotRecord = DB::table('league_player')
-                    ->where('invoice_number', $invoice_number)
-                    ->first();
-        dd($pivotRecord);
+        $payment = DB::table('league_player')->whereInvoiceNumber($invoice_number)->first();
+        if (!$payment) {
+            throw new Exception('Invoice not found');
+        }
 
-        $invoice = Pdf::loadView('administration.league.invoice.invoice', ['invoice' => $invoice_number]);
+        $league = League::whereId($payment->league_id)->first();
+        $player = Player::with('user')->whereId($payment->player_id)->first();
+
+        // dd($payment, $league, $player);
+
+        $invoice = Pdf::loadView('administration.league.invoice.invoice', [
+            'payment' => $payment,
+            'league' => $league,
+            'player' => $player
+        ]);
 
         return $invoice->download();
     }

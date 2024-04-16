@@ -1,60 +1,78 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoice</title>
-</head>
-<body>
-    <table class="w-full">
+@extends('layouts.invoice.app')
+
+
+@section('invoice_title')
+    <span style="text-align: center;">League Registration Invoice</span>
+@endsection
+
+
+@section('content')
+<!-- Start Content -->
+<div>
+    Hello <strong>{{ $player->user->first_name }}</strong>,
+    <br>
+    You have successfully registered on <a href="{{ route('administration.league.show', ['league' => $league]) }}"><strong>{{ $league->name }}</strong></a>. We are glad to know you that, you are now a part of this league. 
+    <br>
+    Your payment Information has been given below.
+</div>
+<br>
+<table cellpadding="0" cellspacing="0" style="width: 100%; border: 1px solid #ededed;">
+    <tbody>
         <tr>
-            <td class="w-half">
-                <img src="#" alt="laravel daily" width="200" />
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                Payment For:
             </td>
-            <td class="w-half">
-                <h2>Invoice ID: 834847473</h2>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <strong>{{ $player->user->name }}</strong>
             </td>
         </tr>
-    </table>
- 
-    <div class="margin-top">
-        <table class="w-full">
-            <tr>
-                <td class="w-half">
-                    <div><h4>To:</h4></div>
-                    <div>John Doe</div>
-                    <div>123 Acme Str.</div>
-                </td>
-                <td class="w-half">
-                    <div><h4>From:</h4></div>
-                    <div>Laravel Daily</div>
-                    <div>London</div>
-                </td>
-            </tr>
-        </table>
-    </div>
- 
-    <div class="margin-top">
-        <table class="products">
-            <tr>
-                <th>Name</th>
-                <td>{{ $league->name }}</td>
-            </tr>
-            <tr>
-                <th>Invoice No</th>
-                <td>{{ $league->invoice_number }}</td>
-            </tr>
-        </table>
-    </div>
- 
-    <div class="total">
-        Total: ${{ $league->total_paid }} (USD)
-    </div>
- 
-    <div class="footer margin-top">
-        <div>Thank you</div>
-        <div>&copy; Laravel Daily</div>
-    </div>
-</body>
-</html>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                League Name:
+            </td>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <span>{{ $league->name }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                Total Paid:
+            </td>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <strong class="text-info">${{ $payment->total_paid }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                Transaction ID:
+            </td>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <code>{{ $payment->transaction_id }}</code>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                Invoice No:
+            </td>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <code>{{ $payment->invoice_number }}</code>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: rgba(0, 0, 0, 0.64);">
+                Paid At:
+            </td>
+            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                <span>{{ show_date_time($payment->created_at) }}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<div>
+    [<strong>Note: </strong> Please visit here for league details: <strong><a href="{{ route('administration.league.show', ['league' => $league]) }}" target="_blank">{{ $league->name }}</a></strong> ]
+</div>
+<!-- End Content -->
+@endsection
+
+
