@@ -105,19 +105,19 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-dark btn-custom m-t-30 float-end">
-                                    <i class="feather icon-filter mr-1"></i>
-                                    <span class="text-bold">Search</span>
-                                </button>
-                                @if ($request->filter == true) 
-                                    <a href="{{ route('administration.league.index') }}" class="btn btn-link text-danger text-bold float-end float-right">
-                                        <i class="icon feather icon-x m-r-1"></i>
-                                        Clear
-                                    </a>
-                                @endif
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-dark btn-custom">
+                                <i class="feather icon-filter mr-1"></i>
+                                <span class="text-bold">Search</span>
+                            </button>
+                            @if ($request->filter == true) 
+                                <a href="{{ route('administration.league.index') }}" class="btn btn-link text-danger text-bold" onclick="return confirm('Are you sure want to clear the filter?');">
+                                    <i class="icon feather icon-x m-r-1"></i>
+                                    Clear
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
