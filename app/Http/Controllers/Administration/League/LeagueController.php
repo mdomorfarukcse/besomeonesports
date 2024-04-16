@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 use App\Models\League\League;
 use App\Models\Player\Player;
 use App\Models\Season\Season;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Division\Division;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use net\authorize\api\contract\v1\OrderType;
 use net\authorize\api\contract\v1\PaymentType;
@@ -28,6 +30,7 @@ use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 use App\Http\Requests\Administration\League\LeagueStoreRequest;
 use App\Http\Requests\Administration\League\LeagueUpdateRequest;
+use App\Mail\Administration\League\LeaguePlayerRegistrationMail;
 use App\Rules\Administration\League\LeagueRegistration\UniqueLeaguePlayerRule;
 
 class LeagueController extends Controller
@@ -342,8 +345,7 @@ class LeagueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(League $league)
-    {
+    public function destroy(League $league) {
         try {
             $league->delete();
 
@@ -470,6 +472,9 @@ class LeagueController extends Controller
                         ]);
                     }, 5);
 
+                    // Send Mail to the creator's email
+                    Mail::to($player->user->email)->send(new LeaguePlayerRegistrationMail($league, $player, $invoice_number));
+
                     toast('Registration completed for the league.', 'success');
                     Session::flash('league_register', 'Registration completed for the league.'); 
                     return redirect()->route('administration.league.registration', ['league' => $league]);
@@ -483,7 +488,7 @@ class LeagueController extends Controller
                 return "Payment failed: " . $response->getMessages()->getMessage()[0]->getText();
             }
         } catch (Exception $e){
-            //dd($e);
+            dd($e);
             alert('Registration Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
@@ -594,5 +599,31 @@ class LeagueController extends Controller
         } catch (Exception $e){
             return response()->json(['error' => 'Registration Failed! There is some error! Please fix and try again. The Error is: '.$e->getMessage()]);
         }
+    }
+
+
+    /**
+     * Download Invoice
+     */
+    public function downloadInvoice($invoice_number) {
+        $payment = DB::table('league_player')->whereInvoiceNumber($invoice_number)->first();
+        if (!$payment) {
+            throw new Exception('Invoice not found');
+        }
+
+        $league = League::whereId($payment->league_id)->first();
+        $player = Player::with('user')->whereId($payment->player_id)->first();
+
+        // dd($payment, $league, $player);
+
+        $invoice = Pdf::loadView('administration.league.invoice.invoice', [
+            'payment' => $payment,
+            'league' => $league,
+            'player' => $player
+        ]);
+
+        $fileName = 'INVOICE_'.$invoice_number.'.pdf';
+
+        return $invoice->download($fileName);
     }
 }

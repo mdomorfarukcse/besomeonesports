@@ -300,6 +300,9 @@
                                     <th>Registered At</th>
                                     <th>Transaction ID</th>
                                     <th>Invoice No</th>
+                                    @if (auth()->user()->can('league.show')) 
+                                        <th class="text-right">Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -319,6 +322,13 @@
                                             </td>
                                             <td>
                                                 <code class="text-dark text-bold">{{ $player->pivot->invoice_number }}</code>
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="action-btn-group mr-3">
+                                                    <a href="{{ route('administration.league.invoice.download', ['invoice_number' => $player->pivot->invoice_number]) }}" class="btn btn-outline-primary btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('Download Invoice') }}">
+                                                        <i class="feather icon-download"></i>
+                                                    </a>
+                                                </div>
                                             </td>
                                         @endif
                                     </tr>
