@@ -622,6 +622,8 @@ class LeagueController extends Controller
             'player' => $player
         ]);
 
-        return $invoice->download();
+        $fileName = 'INVOICE_'.$invoice_number.'.pdf';
+
+        return $invoice->download($fileName);
     }
 }
