@@ -15,13 +15,17 @@ class PlayerLoginCredentialMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $playerEmail;
+    public $playerPassword;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($data, $playerEmail, $playerPassword)
     {
         $this->data = $data;
+        $this->playerEmail = $playerEmail;
+        $this->playerPassword = $playerPassword;
     }
 
     /**
@@ -43,7 +47,9 @@ class PlayerLoginCredentialMail extends Mailable
         return new Content(
             markdown: 'emails.administration.player.credential',
             with: [
-                'data' => $this->data
+                'data' => $this->data,
+                'playerEmail' => $this->playerEmail,
+                'playerPassword' => $this->playerPassword
             ]
         );
     }

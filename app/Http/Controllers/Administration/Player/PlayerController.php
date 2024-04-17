@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administration\Player;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\Player\Player;
 use Illuminate\Support\Carbon;
 use App\Models\Division\Division;
@@ -95,12 +96,14 @@ class PlayerController extends Controller
         try {
             DB::transaction(function() use ($request, &$player) {
                 $playerName = $request->first_name.' '.$request->last_name;
+                $playerEmail = $request->email ?? Str::slug($playerName).rand(111,999).'@bss.com';
+                $playerPassword = $request->password ?? '@Player#'.rand(11111111,99999999);
                 
                 // Store Credentials into User
                 $user = new User();
                 $user->name = $playerName;
-                $user->email = $request->email;
-                $user->password = Hash::make($request->password);
+                $user->email = $playerEmail;
+                $user->password = Hash::make($playerPassword);
 
                 if (isset($request->avatar)) {
                     $avatar = upload_image($request->avatar);
@@ -164,7 +167,8 @@ class PlayerController extends Controller
                 $player->save();
 
                 // Send Mail to the player email
-                Mail::to($user->email)->send(new PlayerLoginCredentialMail($request));
+                $receiverEmail = auth()->user()->email;
+                Mail::to($receiverEmail)->send(new PlayerLoginCredentialMail($request, $playerEmail, $playerPassword));
             }, 5);
 
             toast('A New Player Has Been Created.','success');
@@ -177,7 +181,7 @@ class PlayerController extends Controller
             
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            //dd($e);
+            dd($e);
             alert('Player Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

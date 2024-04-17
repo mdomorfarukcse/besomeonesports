@@ -21,7 +21,7 @@
                 Login Email:
             </td>
             <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
-                <code>{{ $data->email }}</code>
+                <code>{{ $playerEmail }}</code>
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
                 Password:
             </td>
             <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
-                <code>{{ $data->password }}</code>
+                <code>{{ $playerPassword }}</code>
             </td>
         </tr>
     </tbody>
