@@ -23,8 +23,8 @@ class PlayerStoreRequest extends FormRequest
     {
         return [
             'player_id' => ['required', 'string', 'unique:players,player_id'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8'],
+            'email' => ['nullable', 'email', 'unique:users,email'],
+            'password' => ['nullable', 'string', 'min:8'],
             "first_name" => ['required', 'max:50'],
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
