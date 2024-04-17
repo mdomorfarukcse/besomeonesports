@@ -20,4 +20,10 @@ Route::controller(LeagueController::class)->prefix('league')->name('league.')->g
     Route::post('/registration/{league}/store', 'register_player')->name('registration.store')->middleware(['can:league_registration.create']);
     
     Route::get('/download/invoice/{invoice_number}', 'downloadInvoice')->name('invoice.download')->middleware(['can:league.show']);
+
+    Route::prefix('filter')
+        ->name('filter.')
+        ->group(function () {
+            include_once 'league_filter.php';
+        });
 });
