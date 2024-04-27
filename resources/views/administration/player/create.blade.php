@@ -226,178 +226,187 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Player Info</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="division_id">Division <span class="required">*</span></label>
-                                            <select class="form-control" id="division_gender" required>
-                                                <option value="">Choose a Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                            <select id="division" name="division_id" class="form-control mt-3" required style="display: none;"></select>
-                                            {{-- <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
-                                                <option value="" selected disabled>Select Division</option>
-                                                @foreach ($divisions as $division) 
-                                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
-                                                @endforeach
-                                            </select> --}}
-                                            @error('division_id')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
+                        <div id="players">
+                            <div class="player">
+                                <div class="col-md-12">
+                                    <div class="card border m-b-30">
+                                        <div class="card-header border-bottom">
+                                            <h5 class="card-title mb-0">Player Info</h5>
                                         </div>
-                                        {{-- <div class="form-group col-md-12">
-                                            <label for="position">Player Position</label>
-                                            <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
-                                            @error('position')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div> --}}
-                                        <div class="form-group col-md-6">
-                                            <label for="grade">Grade <span class="required">*</span></label>
-                                            <select class="form-control" id="grade_gender" required>
-                                                <option value="">Choose a Grade</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                            <select id="grade" name="grade" class="form-control mt-3" required style="display: none;"></select>
-                                            @error('grade')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <input type="hidden" name="position" value="" class="form-control" />
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="division_id">Division <span class="required">*</span></label>
+                                                    <select class="form-control" id="division_gender" required>
+                                                        <option value="">Choose a Gender</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                    <select id="division" name="division_id" class="form-control mt-3" required style="display: none;"></select>
+                                                    {{-- <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
+                                                        <option value="" selected disabled>Select Division</option>
+                                                        @foreach ($divisions as $division) 
+                                                            <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
+                                                        @endforeach
+                                                    </select> --}}
+                                                    @error('division_id')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                {{-- <div class="form-group col-md-12">
+                                                    <label for="position">Player Position</label>
+                                                    <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
+                                                    @error('position')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div> --}}
+                                                <div class="form-group col-md-6">
+                                                    <label for="grade">Grade <span class="required">*</span></label>
+                                                    <select class="form-control" id="grade_gender" required>
+                                                        <option value="">Choose a Grade</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                    <select id="grade" name="grade" class="form-control mt-3" required style="display: none;"></select>
+                                                    @error('grade')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <input type="hidden" name="position" value="" class="form-control" />
 
-                                        <input type="hidden" name="status" value="Active" required>
+                                                <input type="hidden" name="status" value="Active" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card border m-b-30">
+                                        <div class="card-header border-bottom">
+                                            <h5 class="card-title mb-0">Player's Personal Infomation</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <label for="first_name">First Name <span class="required">*</span></label>
+                                                    <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
+                                                    @error('first_name')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label for="last_name">Last Name <span class="required">*</span></label>
+                                                    <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
+                                                    @error('last_name')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3 form-group">
+                                                    <label for="contact_number">Phone Number <span class="required">*</span></label>
+                                                    <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 (123) 456 -7890" required/>
+                                                    @error('contact_number')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3 form-group">
+                                                    <label for="birthdate">Birthdate</label>
+                                                    <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
+                                                    @error('birthdate')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label for="jersey">Jersey Number</label>
+                                                    <input type="text"  name="jersey" value="{{ old('jersey') }}" class="form-control @error('jersey') is-invalid @enderror" placeholder="Type Jersey Number"/>
+
+                                                    @error('jersey')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label for="shirt_size">Shirt Size <span class="required">*</span></label>
+                                                    <select class="select2-single form-control @error('shirt_size') is-invalid @enderror" name="shirt_size" required>
+                                                        <option value="" >Select Shirt Size</option>
+                                                        <option value="Youth Xsmall">Youth Xsmall</option>
+                                                        <option value="Youth Small">Youth Small</option>
+                                                        <option value="Youth Medium">Youth Medium</option>
+                                                        <option value="Youth Large">Youth Large</option>
+                                                        <option value="Youth XL">Youth XL</option>
+                                                        <option value="Adult Small">Adult Small</option>
+                                                        <option value="Adult Medium">Adult Medium</option>
+                                                        <option value="Adult Large">Adult Large</option>
+                                                        <option value="Adult XL">Adult XL</option>
+                                                        <option value="Adult 2XL">Adult 2XL</option>
+                                                        <option value="Adult 3XL">Adult 3XL</option>
+                                                    </select>
+                                                    @error('shirt_size')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label for="short_size">Short Size <span class="required">*</span></label>
+                                                    <select class="select2-single form-control @error('short_size') is-invalid @enderror" name="short_size" required>
+                                                        <option value="" >Select Short Size</option>
+                                                        <option value="Youth Xsmall">Youth Xsmall</option>
+                                                        <option value="Youth Small">Youth Small</option>
+                                                        <option value="Youth Medium">Youth Medium</option>
+                                                        <option value="Youth Large">Youth Large</option>
+                                                        <option value="Youth XL">Youth XL</option>
+                                                        <option value="Adult Small">Adult Small</option>
+                                                        <option value="Adult Medium">Adult Medium</option>
+                                                        <option value="Adult Large">Adult Large</option>
+                                                        <option value="Adult XL">Adult XL</option>
+                                                        <option value="Adult 2XL">Adult 2XL</option>
+                                                        <option value="Adult 3XL">Adult 3XL</option>
+                                                    </select>
+                                                    @error('short_size')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-7 form-group">
+                                                    <label for="street_address">Street Address <span class="required">*</span></label>
+                                                    <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
+                                                    @error('street_address')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-5 form-group">
+                                                    <label for="city">City <span class="required">*</span></label>
+                                                    <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
+                                                    @error('city')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="state">State <span class="required">*</span></label>
+                                                    <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
+                                                    @error('state')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3 form-group">
+                                                    <label for="postal_code">Zip Code <span class="required">*</span></label>
+                                                    <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
+                                                    @error('postal_code')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label for="note">Note</label>
+                                                    <textarea name="note" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('note') }}</textarea>
+                                                    @error('note')
+                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="card border m-b-30">
-                                <div class="card-header border-bottom">
-                                    <h5 class="card-title mb-0">Player's Personal Infomation</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="first_name">First Name <span class="required">*</span></label>
-                                            <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
-                                            @error('first_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="last_name">Last Name <span class="required">*</span></label>
-                                            <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
-                                            @error('last_name')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="contact_number">Phone Number <span class="required">*</span></label>
-                                            <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1333" required/>
-                                            @error('contact_number')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="birthdate">Birthdate</label>
-                                            <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
-                                            @error('birthdate')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-2 form-group">
-                                            <label for="jersey">Jersey Number</label>
-                                            <input type="text"  name="jersey" value="{{ old('jersey') }}" class="form-control @error('jersey') is-invalid @enderror" placeholder="Type Jersey Number"/>
-
-                                            @error('jersey')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-2 form-group">
-                                            <label for="shirt_size">Shirt Size <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('shirt_size') is-invalid @enderror" name="shirt_size" required>
-                                                <option value="" >Select Shirt Size</option>
-                                                <option value="Youth Xsmall">Youth Xsmall</option>
-                                                <option value="Youth Small">Youth Small</option>
-                                                <option value="Youth Medium">Youth Medium</option>
-                                                <option value="Youth Large">Youth Large</option>
-                                                <option value="Youth XL">Youth XL</option>
-                                                <option value="Adult Small">Adult Small</option>
-                                                <option value="Adult Medium">Adult Medium</option>
-                                                <option value="Adult Large">Adult Large</option>
-                                                <option value="Adult XL">Adult XL</option>
-                                                <option value="Adult 2XL">Adult 2XL</option>
-                                                <option value="Adult 3XL">Adult 3XL</option>
-                                            </select>
-                                            @error('shirt_size')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-2 form-group">
-                                            <label for="short_size">Short Size <span class="required">*</span></label>
-                                            <select class="select2-single form-control @error('short_size') is-invalid @enderror" name="short_size" required>
-                                                <option value="" >Select Short Size</option>
-                                                <option value="Youth Xsmall">Youth Xsmall</option>
-                                                <option value="Youth Small">Youth Small</option>
-                                                <option value="Youth Medium">Youth Medium</option>
-                                                <option value="Youth Large">Youth Large</option>
-                                                <option value="Youth XL">Youth XL</option>
-                                                <option value="Adult Small">Adult Small</option>
-                                                <option value="Adult Medium">Adult Medium</option>
-                                                <option value="Adult Large">Adult Large</option>
-                                                <option value="Adult XL">Adult XL</option>
-                                                <option value="Adult 2XL">Adult 2XL</option>
-                                                <option value="Adult 3XL">Adult 3XL</option>
-                                            </select>
-                                            @error('short_size')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-7 form-group">
-                                            <label for="street_address">Street Address <span class="required">*</span></label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
-                                            @error('street_address')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-5 form-group">
-                                            <label for="city">City <span class="required">*</span></label>
-                                            <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
-                                            @error('city')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="state">State <span class="required">*</span></label>
-                                            <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
-                                            @error('state')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3 form-group">
-                                            <label for="postal_code">Zip Code <span class="required">*</span></label>
-                                            <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
-                                            @error('postal_code')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-12 form-group">
-                                            <label for="note">Note</label>
-                                            <textarea name="note" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('note') }}</textarea>
-                                            @error('note')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-12 pull-right">
+                            <button type="button" id="addPlayer" class="btn btn-outline-info btn-outline-custom fw-bolder ">Add Player</button>
+                            <!-- Hide remove button for the initial player -->
+                            <button type="button" class="removePlayer" style="display: none;" class="btn btn-outline-danger btn-outline-custom fw-bolder">Remove</button>
                         </div>
                         <div class="col-md-12">
                             <div class="card border m-b-30">
@@ -621,6 +630,41 @@
                         $('#grade').show();
                     }
                 });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            // Counter for dynamically generated player fields
+            var playerCount = 1;
+
+            // Function to add player fields
+            function addPlayerFields() {
+                var playerFields = $('#players .player:first').clone();
+                playerFields.find('select.division_gender').attr('id', 'division_gender_' + playerCount);
+                playerFields.find('select.division').attr('id', 'division_' + playerCount);
+                playerFields.find('select.grade_gender').attr('id', 'grade_gender_' + playerCount);
+                playerFields.find('select.grade').attr('id', 'grade_' + playerCount);
+                playerFields.appendTo('#players');
+                
+                // Show remove button for newly added player
+                playerFields.find('.removePlayer').show();
+                
+                // Add click event handler to remove button
+                playerFields.find('.removePlayer').click(function(){
+                    $(this).closest('.player').remove();
+                });
+                
+                playerCount++;
+            }
+
+            // Add player fields when the "Add Player" button is clicked
+            $('#addPlayer').click(function(){
+                addPlayerFields();
+            });
+             // Function to remove player fields
+             $(document).on('click', '.removePlayer', function(){
+                $(this).closest('.player').remove();
             });
         });
     </script>
