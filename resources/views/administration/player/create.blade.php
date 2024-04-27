@@ -231,7 +231,11 @@
                                 <div class="col-md-12">
                                     <div class="card border m-b-30">
                                         <div class="card-header border-bottom">
-                                            <h5 class="card-title mb-0">Player Info</h5>
+                                            <h5 class="card-title mb-0 player_title">Player 1 Info</h5>
+                                            <!-- Hide remove button for the initial player -->
+                                            <div class="pull-right">
+                                                <button type="button" style="display: none;" class="removePlayer btn btn-sm btn-outline-danger btn-outline-custom fw-bolder">Remove</button>
+                                            </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
@@ -401,12 +405,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
-                        <div class="col-md-12 pull-right">
-                            <button type="button" id="addPlayer" class="btn btn-outline-info btn-outline-custom fw-bolder ">Add Player</button>
-                            <!-- Hide remove button for the initial player -->
-                            <button type="button" class="removePlayer" style="display: none;" class="btn btn-outline-danger btn-outline-custom fw-bolder">Remove</button>
+                        <div class="col-md-12">
+                            <button type="button" id="addPlayer" class="btn btn-outline-info btn-outline-custom fw-bolder  pull-right btn-sm mb-3">Add Player</button>
+                           
                         </div>
                         <div class="col-md-12">
                             <div class="card border m-b-30">
@@ -641,6 +645,7 @@
             // Function to add player fields
             function addPlayerFields() {
                 var playerFields = $('#players .player:first').clone();
+                playerFields.find('.player_title').text('Player ' + (playerCount + 1) + ' Info');
                 playerFields.find('select.division_gender').attr('id', 'division_gender_' + playerCount);
                 playerFields.find('select.division').attr('id', 'division_' + playerCount);
                 playerFields.find('select.grade_gender').attr('id', 'grade_gender_' + playerCount);
