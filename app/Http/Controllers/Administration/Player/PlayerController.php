@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Session;
 use App\Mail\Administration\Player\PlayerLoginCredentialMail;
 use App\Http\Requests\Administration\Player\PlayerStoreRequest;
 use App\Http\Requests\Administration\Player\PlayerUpdateRequest;
+use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
@@ -293,5 +294,17 @@ class PlayerController extends Controller
             alert('Player Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
+    }
+
+    /**
+     * Get Divisions list based on gender.
+     */
+
+    public function getDivisions(Request $request)
+    {
+        $gender = $request->input('gender');
+        $divisions = Division::where('gender', $gender)->get();
+
+        return response()->json($divisions);
     }
 }
