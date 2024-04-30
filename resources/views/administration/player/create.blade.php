@@ -216,7 +216,7 @@
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
-                                                <option value="Aunty">Aunty</option>
+                                                <option value="Aunt">Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -246,7 +246,7 @@
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
                                                     </select>
-                                                    <select id="division" name="division_id" class="form-control mt-3" required style="display: none;"></select>
+                                                    <select id="division" name="players['division_id']" class="form-control mt-3" required style="display: none;"></select>
                                                     {{-- <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
                                                         <option value="" selected disabled>Select Division</option>
                                                         @foreach ($divisions as $division) 
@@ -271,7 +271,7 @@
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
                                                     </select>
-                                                    <select id="grade" name="grade" class="form-control mt-3" required style="display: none;"></select>
+                                                    <select id="grade" name="players['grade']" class="form-control mt-3" required style="display: none;"></select>
                                                     @error('grade')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
@@ -299,28 +299,28 @@
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <label for="last_name">Last Name <span class="required">*</span></label>
-                                                    <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
+                                                    <input type="text" name="players['last_name']" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Kerr" required/>
                                                     @error('last_name')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-3 form-group">
                                                     <label for="contact_number">Phone Number <span class="required">*</span></label>
-                                                    <input type="tel" name="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 (123) 456 -7890" required/>
+                                                    <input type="tel" name="players['contact_number']" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 (123) 456 -7890" required/>
                                                     @error('contact_number')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-3 form-group">
                                                     <label for="birthdate">Birthdate</label>
-                                                    <input type="text" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" class="datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
+                                                    <input type="text" name="players['birthdate']" value="{{ old('birthdate') }}" class="birthdate datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
                                                     @error('birthdate')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-2 form-group">
                                                     <label for="jersey">Jersey Number</label>
-                                                    <input type="text"  name="jersey" value="{{ old('jersey') }}" class="form-control @error('jersey') is-invalid @enderror" placeholder="Type Jersey Number"/>
+                                                    <input type="text"  name="players['jersey']" value="{{ old('jersey') }}" class="form-control @error('jersey') is-invalid @enderror" placeholder="Type Jersey Number"/>
 
                                                     @error('jersey')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -328,7 +328,7 @@
                                                 </div>
                                                 <div class="col-md-2 form-group">
                                                     <label for="shirt_size">Shirt Size <span class="required">*</span></label>
-                                                    <select class="select2-single form-control @error('shirt_size') is-invalid @enderror" name="shirt_size" required>
+                                                    <select class="select2-single form-control @error('shirt_size') is-invalid @enderror" name="players['shirt_size']" required>
                                                         <option value="" >Select Shirt Size</option>
                                                         <option value="Youth Xsmall">Youth Xsmall</option>
                                                         <option value="Youth Small">Youth Small</option>
@@ -348,7 +348,7 @@
                                                 </div>
                                                 <div class="col-md-2 form-group">
                                                     <label for="short_size">Short Size <span class="required">*</span></label>
-                                                    <select class="select2-single form-control @error('short_size') is-invalid @enderror" name="short_size" required>
+                                                    <select class="select2-single form-control @error('short_size') is-invalid @enderror" name="players['short_size']" required>
                                                         <option value="" >Select Short Size</option>
                                                         <option value="Youth Xsmall">Youth Xsmall</option>
                                                         <option value="Youth Small">Youth Small</option>
@@ -368,35 +368,35 @@
                                                 </div>
                                                 <div class="col-md-7 form-group">
                                                     <label for="street_address">Street Address <span class="required">*</span></label>
-                                                    <input type="text" name="street_address" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
+                                                    <input type="text" name="players['street_address']" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
                                                     @error('street_address')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-5 form-group">
                                                     <label for="city">City <span class="required">*</span></label>
-                                                    <input type="text" name="city" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
+                                                    <input type="text" name="players['city']" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
                                                     @error('city')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-4 form-group">
                                                     <label for="state">State <span class="required">*</span></label>
-                                                    <input type="text" name="state" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
+                                                    <input type="text" name="players['state']" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
                                                     @error('state')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-3 form-group">
                                                     <label for="postal_code">Zip Code <span class="required">*</span></label>
-                                                    <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
+                                                    <input type="text" name="players['postal_code']" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                                     @error('postal_code')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-12 form-group">
                                                     <label for="note">Note</label>
-                                                    <textarea name="note" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('note') }}</textarea>
+                                                    <textarea name="players['note']" rows="5" class="form-control @error('note') is-invalid @enderror" placeholder="Note">{{ old('note') }}</textarea>
                                                     @error('note')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
@@ -450,7 +450,7 @@
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
-                                                <option value="Aunty">Aunty</option>
+                                                <option value="Aunt">Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -487,7 +487,7 @@
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
-                                                <option value="Aunty">Aunty</option>
+                                                <option value="Aunt">Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -524,7 +524,7 @@
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
-                                                <option value="Aunty">Aunty</option>
+                                                <option value="Aunt">Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -572,7 +572,7 @@
         // Custom Script Here
         $(document).ready(function() {
             /* --- Form - Datepicker -- */
-            $('#birthdate').datepicker({
+            $('.birthdate').datepicker({
                 language: 'en',
                 autoClose: true,
                 dateFormat: 'yyyy-mm-dd',

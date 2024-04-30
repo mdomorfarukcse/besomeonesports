@@ -370,7 +370,7 @@
                                                 <option value="Brother">Brother</option>
                                                 <option value="Sister">Sister</option>
                                                 <option value="Uncle">Uncle</option>
-                                                <option value="Aunty">Aunty</option>
+                                                <option value="Aunt">Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

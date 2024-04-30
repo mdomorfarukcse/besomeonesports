@@ -247,7 +247,7 @@
                                             <option value="Brother" @selected($profile->player->guardian_relation === 'Brother')>Brother</option>
                                             <option value="Sister" @selected($profile->player->guardian_relation === 'Sister')>Sister</option>
                                             <option value="Uncle" @selected($profile->player->guardian_relation === 'Uncle')>Uncle</option>
-                                            <option value="Aunty" @selected($profile->player->guardian_relation === 'Aunty')>Aunty</option>
+                                            <option value="Aunt" @selected($profile->player->guardian_relation === 'Aunt')>Aunt</option>
                                         </select>
                                         @error('guardian_relation')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
