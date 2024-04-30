@@ -120,53 +120,55 @@ class PlayerController extends Controller
                 }
                 
                 
-                // Store Information into player
-                $player = new Player();
-                
-                $player->user_id = $user->id;
-                $player->player_id = $request->player_id;
-                $player->division_id = $request->division_id;
-                $player->first_name = $request->first_name;
-                $player->last_name = $request->last_name;
-                $player->birthdate = $request->birthdate;
-                $player->contact_number = $request->contact_number;
-                $player->city = $request->city;
-                $player->state = $request->state;
-                $player->postal_code = $request->postal_code;
-                $player->street_address = $request->street_address;
-                $player->position = $request->position;
-                $player->grade = $request->grade;
-                $player->shirt_size = $request->shirt_size;
-                $player->short_size = $request->short_size;
-                $player->note = $request->note;
-                $player->status = $request->status;
-                
-                // Parents Info
-                $player->guardian1_name = $request->guardian1_name;
-                $player->guardian1_email = $request->guardian1_email;
-                $player->guardian1_contact = $request->guardian1_contact;
-                $player->guardian1_relationship = $request->guardian1_relationship;
-                $player->guardian2_name = $request->guardian2_name;
-                $player->guardian2_email = $request->guardian2_email;
-                $player->guardian2_contact = $request->guardian2_contact;
-                $player->guardian2_relationship = $request->guardian2_relationship;
-                $player->guardian3_name = $request->guardian3_name;
-                $player->guardian3_email = $request->guardian3_email;
-                $player->guardian3_contact = $request->guardian3_contact;
-                $player->guardian3_relationship = $request->guardian3_relationship;
-                
-                // Guardian Info
-                if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
-                    $player->guardian_id = Auth::user()->id;
-                    $player->guardian_relation = $request->guardian_relation;
-                } else {
-                    $player->guardian_id = $request->guardian_id;
-                    $player->guardian_relation = $request->guardian_relation;
+                foreach($request->players as $single_player){
+                    // Store Information into player
+                    $player = new Player();
+                    
+                    $player->user_id = $user->id;
+                    $player->player_id = $single_player->player_id;
+                    $player->division_id = $request->division_id;
+                    $player->first_name = $request->first_name;
+                    $player->last_name = $request->last_name;
+                    $player->birthdate = $request->birthdate;
+                    $player->contact_number = $request->contact_number;
+                    $player->city = $request->city;
+                    $player->state = $request->state;
+                    $player->postal_code = $request->postal_code;
+                    $player->street_address = $request->street_address;
+                    $player->position = $request->position;
+                    $player->grade = $request->grade;
+                    $player->shirt_size = $request->shirt_size;
+                    $player->short_size = $request->short_size;
+                    $player->note = $request->note;
+                    $player->status = $request->status;
+
+                    // Parents Info
+                    $player->guardian1_name = $request->guardian1_name;
+                    $player->guardian1_email = $request->guardian1_email;
+                    $player->guardian1_contact = $request->guardian1_contact;
+                    $player->guardian1_relationship = $request->guardian1_relationship;
+                    $player->guardian2_name = $request->guardian2_name;
+                    $player->guardian2_email = $request->guardian2_email;
+                    $player->guardian2_contact = $request->guardian2_contact;
+                    $player->guardian2_relationship = $request->guardian2_relationship;
+                    $player->guardian3_name = $request->guardian3_name;
+                    $player->guardian3_email = $request->guardian3_email;
+                    $player->guardian3_contact = $request->guardian3_contact;
+                    $player->guardian3_relationship = $request->guardian3_relationship;
+
+                    // Guardian Info
+                    if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                        $player->guardian_id = Auth::user()->id;
+                        $player->guardian_relation = $request->guardian_relation;
+                    } else {
+                        $player->guardian_id = $request->guardian_id;
+                        $player->guardian_relation = $request->guardian_relation;
+                    }
+                    
+                    
+                    $player->save();
                 }
                 
-                
-                $player->save();
-
                 // Send Mail to the player email
                 $receiverEmail = auth()->user()->email;
                 Mail::to($receiverEmail)->send(new PlayerLoginCredentialMail($request, $playerEmail, $playerPassword));

@@ -10,6 +10,9 @@
 @section('css_links')
     {{--  External CSS  --}}
     <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
+     <!-- Select2 css -->
+     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+
 @endsection
 
 @section('custom_css')
@@ -133,41 +136,17 @@
                                 @csrf
                                 <div class="row mt-4">
                                     {{-- <div class="col-md-12">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
-                                            <label for="coachAvatar"></label>
+                                        <div class="avatar-upload">
+                                            <div class="avatar-edit">
+                                                <input type="file" id="coachAvatar" name="avatar" accept=".png, .jpg, .jpeg" />
+                                                <label for="coachAvatar"></label>
+                                            </div>
+                                            <div class="avatar-preview">
+                                                <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
+                                            </div>
                                         </div>
-                                        <div class="avatar-preview">
-                                            <div id="imagePreview" style="background-image: url(https://fakeimg.pl/500x500);"></div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <label for="email" class="text-capitalize">Email <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="email" name="email" value="{{ old('email') }}"
-                                                class="form-control" placeholder="Email*" required />
-                                            @error('email')
-                                                <b class="text-danger"><i
-                                                        class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="from-group">
-                                            <label for="password" class="text-capitalize">Password <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="password" name="password" value="{{ old('password') }}"
-                                                class="form-control" placeholder="Password *" required />
-                                            @error('password')
-                                                <b class="text-danger"><i
-                                                        class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    </div> --}}
+                                    
                                     <div class="col-lg-6">
                                         <div class="from-group">
                                             <label for="first_name" class="text-capitalize">First Name <span
@@ -194,10 +173,34 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="from-group">
+                                            <label for="email" class="text-capitalize">Email <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" name="email" value="{{ old('email') }}"
+                                                class="form-control" placeholder="Email*" required />
+                                            @error('email')
+                                                <b class="text-danger"><i
+                                                        class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-none">
+                                        <div class="from-group">
+                                            <label for="password" class="text-capitalize">Password <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="password" name="password" value="87654321"
+                                                class="form-control" placeholder="Password *" />
+                                            @error('password')
+                                                <b class="text-danger"><i
+                                                        class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-none">
+                                        <div class="from-group">
                                             <label for="birthdate" class="text-capitalize">Birthdate <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" name="birthdate" value="{{ old('birthdate') }}"
-                                                class="form-control" placeholder="Birthdate *" required />
+                                            <input type="date" name="birthdate" value="1990-01-01"
+                                                class="form-control" placeholder="Birthdate *" />
                                             @error('birthdate')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -216,48 +219,48 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 d-none">
                                         <div class="from-group">
                                             <label for="street_address" class="text-capitalize">Street Address <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" name="street_address" value="{{ old('street_address') }}"
-                                                class="form-control" placeholder="Street Address *" required />
+                                            <input type="text" name="street_address" value="NA"
+                                                class="form-control" placeholder="Street Address *" />
                                             @error('street_address')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-none">
                                         <label for="state" class="text-capitalize">State <span
                                                 class="text-danger">*</span></label>
                                         <div class="from-group">
-                                            <input type="text" name="state" value="{{ old('state') }}"
-                                                class="form-control" placeholder="State *" required />
+                                            <input type="text" name="state" value="NA"
+                                                class="form-control" placeholder="State *" />
                                             @error('state')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-none">
                                         <div class="from-group">
                                             <label for="city" class="text-capitalize">city <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" name="city" value="{{ old('city') }}"
-                                                class="form-control" placeholder="City *" required />
+                                            <input type="text" name="city" value="NA"
+                                                class="form-control" placeholder="City *" />
                                             @error('city')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-none">
                                         <div class="from-group">
                                             <label for="postal_code" class="text-capitalize">Zip Code <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" name="postal_code" value="{{ old('postal_code') }}"
-                                                class="form-control" placeholder="Zip Code *" required />
+                                            <input type="text" name="postal_code" value="N/A"
+                                                class="form-control" placeholder="Zip Code *" />
                                             @error('postal_code')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -294,39 +297,15 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        {{-- <div class="form-group col-md-6">
-                                            <label for="grade">Grade <span class="required">*</span></label>
-                                            <select class="form-control" id="grade_gender" required>
-                                                <option value="">Choose a Grade</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                            <select id="grade" name="grade" class="form-control mt-3" required style="display: none;"></select>
-                                            @error('grade')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div> --}}
                                         <div class="from-group">
                                             <label for="grade_of_interests" class="text-capitalize">Grade Of Interest
                                                 <span class="text-danger">*</span></label>
                                             <br>
-                                            <select name="grade_of_interests" class="form-control" >
+                                            <select name="grade_of_interests[]" class="select2-multi-select form-control" multiple="multiple">
                                                 <option value="">Select a Grade</option>
                                                 <option value="Girls K-8">Girls K-8</option>
                                                 <option value="Boys K-8">Boys K-8</option>
                                             </select>
-                                            {{-- <ul class="list-group d-inline-block">
-                                                <li class="list-group-item d-inline-block border-1">
-                                                    <input class="form-check-input me-1" type="checkbox" value="Girls"
-                                                        name="grade_of_interests[]" id="checkbox11">
-                                                    <label class="form-check-label" for="checkbox11">Girls</label>
-                                                </li>
-                                                <li class="list-group-item d-inline-block border-1">
-                                                    <input class="form-check-input me-1" type="checkbox" value="Boys K-8"
-                                                        name="grade_of_interests[]" id="checkbox22">
-                                                    <label class="form-check-label" for="checkbox22">Boys K-8</label>
-                                                </li>
-                                            </ul> --}}
                                             @error('grade_of_interests')
                                                 <b class="text-danger"><i
                                                         class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -352,6 +331,9 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <!-- Select2 js -->
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
 @endsection
 
 @section('custom_script')

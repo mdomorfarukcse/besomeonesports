@@ -292,7 +292,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 form-group">
                                                     <label for="first_name">First Name <span class="required">*</span></label>
-                                                    <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
+                                                    <input type="text" name="players['first_name']" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Joseph" required/>
                                                     @error('first_name')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
