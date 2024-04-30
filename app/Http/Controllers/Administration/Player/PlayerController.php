@@ -126,7 +126,8 @@ class PlayerController extends Controller
                     
                     $player->user_id = $user->id;
                     $player->player_id = $single_player->player_id;
-                    $player->division_id = $single_player->division_id;
+                    $player->division_id = $request->division_id;
+                    $player->grade = $request->grade;
                     $player->first_name = $single_player->first_name;
                     $player->last_name = $single_player->last_name;
                     $player->birthdate = $single_player->birthdate;
@@ -136,7 +137,6 @@ class PlayerController extends Controller
                     $player->postal_code = $single_player->postal_code;
                     $player->street_address = $single_player->street_address;
                     $player->position = $single_player->position;
-                    $player->grade = $single_player->grade;
                     $player->jersey = $single_player->jersey;
                     $player->shirt_size = $single_player->shirt_size;
                     $player->short_size = $single_player->short_size;

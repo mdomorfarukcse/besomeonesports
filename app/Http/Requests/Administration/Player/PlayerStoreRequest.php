@@ -25,11 +25,13 @@ class PlayerStoreRequest extends FormRequest
             'player_id' => ['required', 'string', 'unique:players,player_id'],
             'email' => ['nullable', 'email', 'unique:users,email'],
             'password' => ['nullable', 'string', 'min:8'],
-            "first_name" => ['required', 'max:50'],
+            "grade" => ['required', 'string', 'max:50'],
+            "division_id" => ['required', 'string', 'max:50'],
+
+            'players.first_name' => ['required', 'max:50'],
             "last_name" => ['required', 'max:50'],
             "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
             "contact_number" => ['required', 'string', 'max:20'],
-            "grade" => ['required', 'string', 'max:50'],
             "shirt_size" => ['required', 'string', 'max:50'],
             "short_size" => ['required', 'string', 'max:50'],
             "city" => ['required', 'string', 'max:50'],
@@ -38,6 +40,7 @@ class PlayerStoreRequest extends FormRequest
             "street_address" => ['required', 'string', 'max:100'],
             "position" => ['nullable', 'string'],
             "note" => ['nullable', 'string'],
+            
             "status" => ['required','in:Active,Inactive,Banned'],
 
             // Parents Info

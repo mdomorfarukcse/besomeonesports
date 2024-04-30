@@ -226,67 +226,69 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-md-12">
+                            <div class="card border m-b-30">
+                                <div class="card-header border-bottom">
+                                    <h5 class="card-title mb-0 ">Player  Info</h5>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="division_id">Division <span class="required">*</span></label>
+                                            <select class="form-control" id="division_gender" required>
+                                                <option value="">Choose a Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                            <select id="division" name="division_id" class="form-control mt-3" required style="display: none;"></select>
+                                            {{-- <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
+                                                <option value="" selected disabled>Select Division</option>
+                                                @foreach ($divisions as $division) 
+                                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
+                                                @endforeach
+                                            </select> --}}
+                                            @error('division_id')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        {{-- <div class="form-group col-md-12">
+                                            <label for="position">Player Position</label>
+                                            <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
+                                            @error('position')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div> --}}
+                                        <div class="form-group col-md-6">
+                                            <label for="grade">Grade <span class="required">*</span></label>
+                                            <select class="form-control" id="grade_gender" required>
+                                                <option value="">Choose a Grade</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                            <select id="grade" name="grade" class="form-control mt-3" required style="display: none;"></select>
+                                            @error('grade')
+                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                                            @enderror
+                                        </div>
+                                        <input type="hidden" name="position" value="" class="form-control" />
+
+                                        <input type="hidden" name="status" value="Active" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div id="players">
                             <div class="player">
                                 <div class="col-md-12">
                                     <div class="card border m-b-30">
                                         <div class="card-header border-bottom">
-                                            <h5 class="card-title mb-0 player_title">Player 1 Info</h5>
+                                            <h5 class="card-title mb-0 player_title">Player 1 Personal Infomation</h5>
                                             <!-- Hide remove button for the initial player -->
                                             <div class="pull-right">
                                                 <button type="button" style="display: none;" class="removePlayer btn btn-sm btn-outline-danger btn-outline-custom fw-bolder">Remove</button>
                                             </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="division_id">Division <span class="required">*</span></label>
-                                                    <select class="form-control" id="division_gender" required>
-                                                        <option value="">Choose a Gender</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
-                                                    <select id="division" name="players['division_id']" class="form-control mt-3" required style="display: none;"></select>
-                                                    {{-- <select class="select2-single form-control @error('division_id') is-invalid @enderror" name="division_id" required>
-                                                        <option value="" selected disabled>Select Division</option>
-                                                        @foreach ($divisions as $division) 
-                                                            <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
-                                                        @endforeach
-                                                    </select> --}}
-                                                    @error('division_id')
-                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                                    @enderror
-                                                </div>
-                                                {{-- <div class="form-group col-md-12">
-                                                    <label for="position">Player Position</label>
-                                                    <input type="text" name="position" value="{{ old('position') }}" class="form-control @error('position') is-invalid @enderror" placeholder="Ex: Right Hand Batsman"/>
-                                                    @error('position')
-                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                                    @enderror
-                                                </div> --}}
-                                                <div class="form-group col-md-6">
-                                                    <label for="grade">Grade <span class="required">*</span></label>
-                                                    <select class="form-control" id="grade_gender" required>
-                                                        <option value="">Choose a Grade</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
-                                                    <select id="grade" name="players['grade']" class="form-control mt-3" required style="display: none;"></select>
-                                                    @error('grade')
-                                                        <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                                    @enderror
-                                                </div>
-                                                <input type="hidden" name="position" value="" class="form-control" />
-
-                                                <input type="hidden" name="status" value="Active" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card border m-b-30">
-                                        <div class="card-header border-bottom">
-                                            <h5 class="card-title mb-0">Player's Personal Infomation</h5>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
@@ -441,7 +443,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian1_relationship">Guardian #3 Relationship </label>
+                                            <label for="guardian1_relationship">Guardian #1 Relationship </label>
                                             <select class="select2-single form-control @error('guardian1_relationship') is-invalid @enderror" name="guardian1_relationship">
                                                 <option value="" selected disabled>Select Relation</option>
                                                 <option value="Legal Guardian">Legal Guardian</option>
@@ -472,13 +474,13 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian2_email">Guardian #2 Email.</label>
-                                            <input type="email" name="guardian2_email" value="{{ old('guardian2_email') }}" class="form-control @error('guardian2_email') is-invalid @enderror" placeholder=""/>
+                                            <input type="email" name="guardian2_email" value="{{ old('guardian2_email') }}" class="form-control @error('guardian2_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
                                             @error('guardian2_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian2_relationship">Guardian #3 Relationship </label>
+                                            <label for="guardian2_relationship">Guardian #2 Relationship </label>
                                             <select class="select2-single form-control @error('guardian2_relationship') is-invalid @enderror" name="guardian2_relationship">
                                                 <option value="" selected disabled>Select Relation</option>
                                                 <option value="Legal Guardian">Legal Guardian</option>
@@ -509,7 +511,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian3_email">Guardian #3 Email.</label>
-                                            <input type="email" name="guardian3_email" value="{{ old('guardian3_email') }}" class="form-control @error('guardian3_email') is-invalid @enderror" placeholder=""/>
+                                            <input type="email" name="guardian3_email" value="{{ old('guardian3_email') }}" class="form-control @error('guardian3_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
                                             @error('guardian3_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -572,6 +574,7 @@
         // Custom Script Here
         $(document).ready(function() {
             /* --- Form - Datepicker -- */
+            
             $('.birthdate').datepicker({
                 language: 'en',
                 autoClose: true,
@@ -645,11 +648,11 @@
             // Function to add player fields
             function addPlayerFields() {
                 var playerFields = $('#players .player:first').clone();
-                playerFields.find('.player_title').text('Player ' + (playerCount + 1) + ' Info');
-                playerFields.find('select.division_gender').attr('id', 'division_gender_' + playerCount);
-                playerFields.find('select.division').attr('id', 'division_' + playerCount);
-                playerFields.find('select.grade_gender').attr('id', 'grade_gender_' + playerCount);
-                playerFields.find('select.grade').attr('id', 'grade_' + playerCount);
+                playerFields.find('.player_title').text('Player ' + (playerCount + 1) + ' Personal Infomation ');
+                // playerFields.find('select.division_gender').attr('id', 'division_gender_' + playerCount);
+                // playerFields.find('select.division').attr('id', 'division_' + playerCount);
+                // playerFields.find('select.grade_gender').attr('id', 'grade_gender_' + playerCount);
+                // playerFields.find('select.grade').attr('id', 'grade_' + playerCount);
 
                 // Reset input fields
                 playerFields.find('input[type="text"], input[type="tel"], select, textarea').val('');
@@ -672,6 +675,7 @@
             });
              // Function to remove player fields
              $(document).on('click', '.removePlayer', function(){
+                playerCount--;
                 $(this).closest('.player').remove();
             });
         });
