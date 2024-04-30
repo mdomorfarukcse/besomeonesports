@@ -220,7 +220,7 @@
                                                 <option value="Brother" @selected($player->guardian_relation === 'Brother')>Brother</option>
                                                 <option value="Sister" @selected($player->guardian_relation === 'Sister')>Sister</option>
                                                 <option value="Uncle" @selected($player->guardian_relation === 'Uncle')>Uncle</option>
-                                                <option value="Aunty" @selected($player->guardian_relation === 'Aunty')>Aunty</option>
+                                                <option value="Aunt" @selected($player->guardian_relation === 'Aunt')>Aunt</option>
                                             </select>
                                             @error('guardian_relation')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
@@ -372,7 +372,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian1_contact">Guardian #1 Contact No.</label>
-                                            <input type="text" name="guardian1_contact" value="{{ $player->guardian1_contact }}" class="form-control @error('guardian1_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="text" name="guardian1_contact" value="{{ $player->guardian1_contact }}" class="form-control @error('guardian1_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian1_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -400,7 +400,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian2_contact">Guardian #2 Contact No.</label>
-                                            <input type="text" name="guardian2_contact" value="{{ $player->guardian2_contact }}" class="form-control @error('guardian2_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="text" name="guardian2_contact" value="{{ $player->guardian2_contact }}" class="form-control @error('guardian2_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian2_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -428,7 +428,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian3_contact">Guardian #3 Contact No.</label>
-                                            <input type="text" name="guardian3_contact" value="{{ $player->guardian3_contact }}" class="form-control @error('guardian3_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="text" name="guardian3_contact" value="{{ $player->guardian3_contact }}" class="form-control @error('guardian3_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian3_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

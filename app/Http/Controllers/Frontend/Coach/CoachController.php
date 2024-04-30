@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Frontend\Coach;
 use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Division\Division;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Coach\Frontend\CoachRequest;
-use App\Http\Requests\Frontend\Coach\CoachStoreRequest;
 use App\Mail\Administration\Coach\CoachRequestMail;
+use App\Http\Requests\Frontend\Coach\CoachStoreRequest;
 
 class CoachController extends Controller
 {
@@ -62,6 +63,17 @@ class CoachController extends Controller
             return redirect()->back()->withInput();
         }
     }
+    /**
+     * Get Divisions list based on gender.
+    */
+
+     public function getDivisions(Request $request)
+     {
+         $gender = $request->input('gender');
+         $divisions = Division::where('gender', $gender)->get();
+ 
+         return response()->json($divisions);
+     }
 
     /**
      * Display the specified resource.

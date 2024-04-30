@@ -40,10 +40,10 @@
                     <li class="nav-item dropdown">
                         <a href="{{ route('frontend.league.index') }}" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leagues </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('frontend.schedule.index') }}">Schedule</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.league.index') }}">Schedule</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.coach.create') }}">Become a Coach</a></li>
                             {{-- <li><a class="dropdown-item" href="{{ route('frontend.referee.create') }}">Become a Referee</a></li> --}}
-                            <li><a class="dropdown-item" href="#">Stats</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.stats.index') }}">Stats</a></li>
                         </ul>
                     </li> 
                     <li class="nav-item dropdown">

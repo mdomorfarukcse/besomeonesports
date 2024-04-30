@@ -15,4 +15,5 @@ Route::controller(PlayerController::class)->prefix('player')->name('player.')->g
     Route::get('/edit/{player}', 'edit')->name('edit')->middleware(['can:player.update']);
     Route::post('/update/{player}', 'update')->name('update')->middleware(['can:player.update']);
     Route::get('/destroy/{player}', 'destroy')->name('destroy')->middleware(['can:player.destroy']);
+    Route::post('/get-divisions', 'getDivisions')->name('get-divisions');
 });

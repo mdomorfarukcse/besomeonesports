@@ -12,4 +12,5 @@ Route::controller(CoachController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
+        Route::post('/get-divisions', 'getDivisions')->name('get-divisions');
     });
