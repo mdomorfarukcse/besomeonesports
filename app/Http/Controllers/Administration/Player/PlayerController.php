@@ -130,6 +130,7 @@ class PlayerController extends Controller
                     $player->user_id = $user->id;
                     $player->player_id = $requestedValue->player_id . '-' . $key;
                     $player->division_id = $requestedValue->division_id;
+                    $player->grade = $requestedValue->grade;
                     $player->first_name = $request->first_name;
                     $player->last_name = $request->last_name;
                     $player->birthdate = $request->birthdate;
@@ -139,7 +140,6 @@ class PlayerController extends Controller
                     $player->postal_code = $request->postal_code;
                     $player->street_address = $request->street_address;
                     $player->position = $requestedValue->position;
-                    $player->grade = $request->grade;
                     $player->shirt_size = $request->shirt_size;
                     $player->short_size = $request->short_size;
                     $player->note = $request->note;
@@ -187,7 +187,7 @@ class PlayerController extends Controller
             
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            dd($e);
+            // dd($e);
             alert('Player Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }

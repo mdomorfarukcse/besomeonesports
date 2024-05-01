@@ -22,7 +22,7 @@ class PlayerStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            // 'grade' => ['required', 'string', 'max:50'],
+            'grade' => ['required', 'string', 'max:50'],
             'division_id' => ['required', 'string', 'max:50'],
             'status' => ['required', 'in:Active,Inactive,Banned'],
         ];
