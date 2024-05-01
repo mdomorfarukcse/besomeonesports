@@ -198,7 +198,7 @@
                                             </div>
                                         @endrole
                                         <div class="col-md-12 form-group">
-                                            <label for="guardian_relation">Relation With Guardian @role('guardian') <span class="required">*</span> @endrole</label>
+                                            <label for="guardian_relation">Relation With Player @role('guardian') <span class="required">*</span> @endrole</label>
                                             <select class="select2-single form-control @error('guardian_relation') is-invalid @enderror" name="guardian_relation" @role('guardian') required @endrole>
                                                 <option value="" selected disabled>Select Relation</option>
                                                 <option value="Legal Guardian">Legal Guardian</option>
