@@ -90,89 +90,91 @@ class PlayerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PlayerStoreRequest $request)
+    public function store(PlayerStoreRequest $requestedValue)
     {
-        // dd($request->all());
+        // $hmm = (object) $requestedValue->players[0];
+        // dd($requestedValue->all());
         $player = null;
         try {
-            DB::transaction(function() use ($request, &$player) {
-                $playerName = $request->first_name.' '.$request->last_name;
-                $playerEmail = $request->email ?? Str::slug($playerName).rand(111,999).'@bss.com';
-                $playerPassword = $request->password ?? '@Player#'.rand(11111111,99999999);
-                
-                // Store Credentials into User
-                $user = new User();
-                $user->name = $playerName;
-                $user->email = $playerEmail;
-                $user->password = Hash::make($playerPassword);
+            DB::transaction(function() use ($requestedValue, &$player) {
+                foreach ((object)$requestedValue->players as $key => $data) {
+                    $request = (object)$data;
+                    $playerName = $request->first_name.' '.$request->last_name;
+                    $playerEmail = $request->email ?? Str::slug($playerName).rand(111,999).'@bss.com';
+                    $playerPassword = $request->password ?? '@Player#'.rand(11111111,99999999);
+                    
+                    // Store Credentials into User
+                    $user = new User();
+                    $user->name = $playerName;
+                    $user->email = $playerEmail;
+                    $user->password = Hash::make($playerPassword);
 
-                if (isset($request->avatar)) {
-                    $avatar = upload_image($request->avatar);
-                    $user->avatar = $avatar;
-                }
+                    if (isset($request->avatar)) {
+                        $avatar = upload_image($request->avatar);
+                        $user->avatar = $avatar;
+                    }
 
-                $user->save();
-                
-                // Assign the provided role to the user
-                $role = Role::where('name', 'player')->firstOrFail();
-                if ($role) {
-                    $user->assignRole($role);
-                }
-                
-                
-                foreach($request->players as $single_player){
+                    $user->save();
+                    
+                    // Assign the provided role to the user
+                    $role = Role::where('name', 'player')->firstOrFail();
+                    if ($role) {
+                        $user->assignRole($role);
+                    }
+                    
+                    // dd($request);
+                    
                     // Store Information into player
                     $player = new Player();
                     
                     $player->user_id = $user->id;
-                    $player->player_id = $single_player->player_id;
-                    $player->division_id = $request->division_id;
+                    $player->player_id = $requestedValue->player_id . '-' . $key;
+                    $player->division_id = $requestedValue->division_id;
+                    $player->first_name = $request->first_name;
+                    $player->last_name = $request->last_name;
+                    $player->birthdate = $request->birthdate;
+                    $player->contact_number = $request->contact_number;
+                    $player->city = $request->city;
+                    $player->state = $request->state;
+                    $player->postal_code = $request->postal_code;
+                    $player->street_address = $request->street_address;
+                    $player->position = $requestedValue->position;
                     $player->grade = $request->grade;
-                    $player->first_name = $single_player->first_name;
-                    $player->last_name = $single_player->last_name;
-                    $player->birthdate = $single_player->birthdate;
-                    $player->contact_number = $single_player->contact_number;
-                    $player->city = $single_player->city;
-                    $player->state = $single_player->state;
-                    $player->postal_code = $single_player->postal_code;
-                    $player->street_address = $single_player->street_address;
-                    $player->position = $single_player->position;
-                    $player->jersey = $single_player->jersey;
-                    $player->shirt_size = $single_player->shirt_size;
-                    $player->short_size = $single_player->short_size;
-                    $player->note = $single_player->note;
-                    $player->status = $request->status;
-
+                    $player->shirt_size = $request->shirt_size;
+                    $player->short_size = $request->short_size;
+                    $player->note = $request->note;
+                    $player->status = $requestedValue->status;
+                    
                     // Parents Info
-                    $player->guardian1_name = $request->guardian1_name;
-                    $player->guardian1_email = $request->guardian1_email;
-                    $player->guardian1_contact = $request->guardian1_contact;
-                    $player->guardian1_relationship = $request->guardian1_relationship;
-                    $player->guardian2_name = $request->guardian2_name;
-                    $player->guardian2_email = $request->guardian2_email;
-                    $player->guardian2_contact = $request->guardian2_contact;
-                    $player->guardian2_relationship = $request->guardian2_relationship;
-                    $player->guardian3_name = $request->guardian3_name;
-                    $player->guardian3_email = $request->guardian3_email;
-                    $player->guardian3_contact = $request->guardian3_contact;
-                    $player->guardian3_relationship = $request->guardian3_relationship;
-
+                    $player->guardian1_name = $requestedValue->guardian1_name;
+                    $player->guardian1_email = $requestedValue->guardian1_email;
+                    $player->guardian1_contact = $requestedValue->guardian1_contact;
+                    $player->guardian1_relationship = $requestedValue->guardian1_relationship;
+                    $player->guardian2_name = $requestedValue->guardian2_name;
+                    $player->guardian2_email = $requestedValue->guardian2_email;
+                    $player->guardian2_contact = $requestedValue->guardian2_contact;
+                    $player->guardian2_relationship = $requestedValue->guardian2_relationship;
+                    $player->guardian3_name = $requestedValue->guardian3_name;
+                    $player->guardian3_email = $requestedValue->guardian3_email;
+                    $player->guardian3_contact = $requestedValue->guardian3_contact;
+                    $player->guardian3_relationship = $requestedValue->guardian3_relationship;
+                    
                     // Guardian Info
-                    if (Auth::user()->hasRole('guardian') && isset($request->guardian_relation)) {
+                    if (Auth::user()->hasRole('guardian') && isset($requestedValue->guardian_relation)) {
                         $player->guardian_id = Auth::user()->id;
-                        $player->guardian_relation = $request->guardian_relation;
+                        $player->guardian_relation = $requestedValue->guardian_relation;
                     } else {
-                        $player->guardian_id = $request->guardian_id;
-                        $player->guardian_relation = $request->guardian_relation;
+                        $player->guardian_id = $requestedValue->guardian_id;
+                        $player->guardian_relation = $requestedValue->guardian_relation;
                     }
                     
                     
                     $player->save();
+
+                    // Send Mail to the player email
+                    $receiverEmail = auth()->user()->email;
+                    Mail::to($receiverEmail)->send(new PlayerLoginCredentialMail($request, $playerEmail, $playerPassword));
                 }
-                
-                // Send Mail to the player email
-                $receiverEmail = auth()->user()->email;
-                Mail::to($receiverEmail)->send(new PlayerLoginCredentialMail($request, $playerEmail, $playerPassword));
             }, 5);
 
             toast('A New Player Has Been Created.','success');

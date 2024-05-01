@@ -21,47 +21,46 @@ class PlayerStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'player_id' => ['required', 'string', 'unique:players,player_id'],
-            'email' => ['nullable', 'email', 'unique:users,email'],
-            'password' => ['nullable', 'string', 'min:8'],
-            "grade" => ['required', 'string', 'max:50'],
-            "division_id" => ['required', 'string', 'max:50'],
-
-            'players.first_name' => ['required', 'max:50'],
-            "last_name" => ['required', 'max:50'],
-            "birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
-            "contact_number" => ['required', 'string', 'max:20'],
-            "shirt_size" => ['required', 'string', 'max:50'],
-            "short_size" => ['required', 'string', 'max:50'],
-            "city" => ['required', 'string', 'max:50'],
-            "state" => ['required', 'string', 'max:50'],
-            "postal_code" => ['required', 'string', 'max:10'],
-            "street_address" => ['required', 'string', 'max:100'],
-            "position" => ['nullable', 'string'],
-            "note" => ['nullable', 'string'],
-            
-            "status" => ['required','in:Active,Inactive,Banned'],
-
-            // Parents Info
-            "guardian1_name" => ['required', 'string'],
-            "guardian1_email" => ['nullable', 'email'],
-            "guardian1_contact" => ['nullable', 'string', 'max:20'],
-            "guardian1_relationship" => ['nullable', 'string', 'max:20'],
-            "guardian2_name" => ['nullable', 'string'],
-            "guardian2_email" => ['nullable', 'email'],
-            "guardian2_contact" => ['nullable', 'string', 'max:20'],
-            "guardian2_relationship" => ['nullable', 'string', 'max:20'],
-            "guardian3_name" => ['nullable', 'string'],
-            "guardian3_email" => ['nullable', 'email'],
-            "guardian3_contact" => ['nullable', 'string', 'max:20'],
-            "guardian3_relationship" => ['nullable', 'string', 'max:20'],
-            
-            // Guardian Info
-            "guardian_id" => ['nullable', 'integer', 'exists:users,id'],
-            "guardian_relation" => ['nullable', 'string'],
+        $rules = [
+            // 'grade' => ['required', 'string', 'max:50'],
+            'division_id' => ['required', 'string', 'max:50'],
+            'status' => ['required', 'in:Active,Inactive,Banned'],
         ];
+
+        // Iterate over each player's data
+        foreach ($this->input('players', []) as $key => $player) {
+            $playerRules = [
+                "players.{$key}.first_name" => ['required', 'max:50'],
+                "players.{$key}.last_name" => ['required', 'max:50'],
+                "players.{$key}.birthdate" => ['nullable', 'date', 'date_format:Y-m-d'],
+                "players.{$key}.contact_number" => ['required', 'string', 'max:20'],
+                "players.{$key}.shirt_size" => ['required', 'string', 'max:50'],
+                "players.{$key}.short_size" => ['required', 'string', 'max:50'],
+                "players.{$key}.city" => ['required', 'string', 'max:50'],
+                "players.{$key}.state" => ['required', 'string', 'max:50'],
+                "players.{$key}.postal_code" => ['required', 'string', 'max:10'],
+                "players.{$key}.street_address" => ['required', 'string', 'max:100'],
+                "players.{$key}.position" => ['nullable', 'string'],
+                "players.{$key}.note" => ['nullable', 'string'],
+            ];
+
+            $rules = array_merge($rules, $playerRules);
+        }
+
+        // Additional rules for parent/guardian info
+        $rules += [
+            'guardian1_name' => ['required', 'string'],
+            'guardian1_email' => ['nullable', 'email'],
+            'guardian1_contact' => ['nullable', 'string', 'max:20'],
+            'guardian1_relationship' => ['nullable', 'string', 'max:20'],
+            // Add similar rules for other guardians if needed
+            'guardian_id' => ['nullable', 'integer', 'exists:users,id'],
+            'guardian_relation' => ['nullable', 'string'],
+        ];
+
+        return $rules;
     }
+
     
     /**
      * Get the error messages for the defined validation rules.
