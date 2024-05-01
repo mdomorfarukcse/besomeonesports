@@ -236,7 +236,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian1_contact">Guardian #1 Contact No.</label>
-                                            <input type="tel" name="guardian1_contact" value="{{ old('guardian1_contact') }}" class="form-control @error('guardian1_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="guardian1_contact" value="{{ old('guardian1_contact') }}" class="form-control @error('guardian1_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian1_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -273,7 +273,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian2_contact">Guardian #2 Contact No.</label>
-                                            <input type="tel" name="guardian2_contact" value="{{ old('guardian2_contact') }}" class="form-control @error('guardian2_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="guardian2_contact" value="{{ old('guardian2_contact') }}" class="form-control @error('guardian2_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian2_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -310,7 +310,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian3_contact">Guardian #3 Contact No.</label>
-                                            <input type="tel" name="guardian3_contact" value="{{ old('guardian3_contact') }}" class="form-control @error('guardian3_contact') is-invalid @enderror" placeholder="Ex: +03 234234 23423"/>
+                                            <input type="tel" name="guardian3_contact" value="{{ old('guardian3_contact') }}" class="form-control @error('guardian3_contact') is-invalid @enderror" placeholder="Ex: +1 (123) 456 -7890"/>
                                             @error('guardian3_contact')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
