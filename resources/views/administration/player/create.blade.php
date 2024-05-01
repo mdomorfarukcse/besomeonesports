@@ -390,7 +390,7 @@
                                                         </div>
                                                         <div class="col-md-4 form-group">
                                                             <label for="jersey_number">Jersey Number</label>
-                                                            <input type="text" name="players[0][jersey_number]" value="{{ old('jersey_number') }}" class="form-control @error('jersey_number') is-invalid @enderror" placeholder="+1 505-683-1333" required/>
+                                                            <input type="text" name="players[0][jersey_number]" value="{{ old('jersey_number') }}" class="form-control @error('jersey_number') is-invalid @enderror" placeholder="Jersey Number" />
                                                             @error('jersey_number')
                                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                             @enderror
