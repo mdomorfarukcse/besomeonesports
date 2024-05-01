@@ -243,7 +243,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian1_email">Guardian #1 Email.</label>
-                                            <input type="email" name="guardian1_email" value="{{ old('guardian1_email') }}" class="form-control @error('guardian1_email') is-invalid @enderror" placeholder="Ex: father@mail.com"/>
+                                            <input type="email" name="guardian1_email" value="{{ old('guardian1_email') }}" class="form-control @error('guardian1_email') is-invalid @enderror" placeholder="Ex: guardian@mail.com"/>
                                             @error('guardian1_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -280,7 +280,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian2_email">Guardian #2 Email.</label>
-                                            <input type="email" name="guardian2_email" value="{{ old('guardian2_email') }}" class="form-control @error('guardian2_email') is-invalid @enderror" placeholder=""/>
+                                            <input type="email" name="guardian2_email" value="{{ old('guardian2_email') }}" class="form-control @error('guardian2_email') is-invalid @enderror" placeholder="guardian@mail.com"/>
                                             @error('guardian2_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
@@ -317,7 +317,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="guardian3_email">Guardian #3 Email.</label>
-                                            <input type="email" name="guardian3_email" value="{{ old('guardian3_email') }}" class="form-control @error('guardian3_email') is-invalid @enderror" placeholder=""/>
+                                            <input type="email" name="guardian3_email" value="{{ old('guardian3_email') }}" class="form-control @error('guardian3_email') is-invalid @enderror" placeholder="guardian@mail.com"/>
                                             @error('guardian3_email')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
