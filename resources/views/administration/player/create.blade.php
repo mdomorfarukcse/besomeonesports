@@ -356,7 +356,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row player-list-row">
-                                        <div class="col-md-6 player-list">
+                                        <div class="col-md-12 player-list">
                                             <div class="card border m-b-10">
                                                 <div class="card-header border-bottom bg-dark-rgba" style="padding: 8px 16px;">
                                                     <h5 class="card-title float-left mb-0" style="margin-top: 4px;">Player #1</h5>
