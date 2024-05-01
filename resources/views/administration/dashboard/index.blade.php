@@ -177,7 +177,7 @@
                                 <div class="activities-history-item">
                                     <h6>Step 1: Register Your Child </h6>
                                     <a href = "{{ route('administration.player.create') }}"
-                                        class="btn btn-theme  text-white btn-sm">Add Payer</a>
+                                        class="btn btn-theme  text-white btn-sm">Add Player</a>
                                 </div>
                             </div>
                             <div class="activities-history-list">
