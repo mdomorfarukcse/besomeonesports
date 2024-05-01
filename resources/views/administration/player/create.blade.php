@@ -10,7 +10,7 @@
 @section('css_links')
     {{--  External CSS  --}}
     <!-- Datepicker css -->
-    <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css"> --}}
     <!-- Select2 css -->
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
@@ -509,9 +509,9 @@
 @section('script_links')
     {{--  External Javascript Links --}}
     <!-- Datepicker JS -->
-    <script src="{{ asset('assets/plugins/datepicker/datepicker.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/datepicker/datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datepicker/i18n/datepicker.en.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/custom-form-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/custom-form-datepicker.js') }}"></script> --}}
     <!-- Select2 js -->
     <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/custom-form-select.js') }}"></script>
