@@ -98,7 +98,7 @@ class TeamController extends Controller
             $coach = Coach::findOrfail($request->coach_id);
 
             // Send Mail to the coach email
-            Mail::to($coach->user->email)->send(new TeamInfoToCoachMail($team));
+            //Mail::to($coach->user->email)->send(new TeamInfoToCoachMail($team));
 
             toast('A New Team Has Been Created.', 'success');
             return redirect()->route('administration.team.index');
@@ -188,11 +188,11 @@ class TeamController extends Controller
                 foreach ($request->players as $playerID) {
                     $player = Player::findOrfail($playerID);
                     // Send Mail to the player email
-                    Mail::to($player->user->email)->send(new TeamInfoToPlayerMail($team, $player));
+                    //Mail::to($player->user->email)->send(new TeamInfoToPlayerMail($team, $player));
                 }
                 
                 // Send Mail to the coach email
-                Mail::to($team->coach->user->email)->send(new TeamPlayerInfoToCoachMail($team, $request->players));
+                //Mail::to($team->coach->user->email)->send(new TeamPlayerInfoToCoachMail($team, $request->players));
             }, 5);
 
             toast('Players has been assigned to the team.', 'success');

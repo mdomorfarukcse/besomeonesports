@@ -473,7 +473,7 @@ class LeagueController extends Controller
                     }, 5);
 
                     // Send Mail to the creator's email
-                    Mail::to($player->user->email)->send(new LeaguePlayerRegistrationMail($league, $player, $invoice_number));
+                    //Mail::to($player->user->email)->send(new LeaguePlayerRegistrationMail($league, $player, $invoice_number));
 
                     toast('Registration completed for the league.', 'success');
                     Session::flash('league_register', 'Registration completed for the league.'); 

@@ -205,7 +205,7 @@ class RefereeController extends Controller
                     $user->save();
 
                     // Send Mail to the referee email
-                    Mail::to($user->email)->send(new refereeRequestApproveMail($referee));
+                    //Mail::to($user->email)->send(new refereeRequestApproveMail($referee));
 
                     $referee->delete();
                 }, 5);
@@ -219,7 +219,7 @@ class RefereeController extends Controller
             }
         } else {
             // Send Mail to the referee email
-            Mail::to($referee->email)->send(new refereeRequestRejectMail($referee));
+            //Mail::to($referee->email)->send(new refereeRequestRejectMail($referee));
 
             $referee->delete();
 

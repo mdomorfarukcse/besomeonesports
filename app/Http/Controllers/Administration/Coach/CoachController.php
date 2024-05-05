@@ -124,7 +124,7 @@ class CoachController extends Controller
                 $coach->save();
 
                 // Send Mail to the coach email
-                Mail::to($user->email)->send(new CoachLoginCredentialMail($request));
+                //Mail::to($user->email)->send(new CoachLoginCredentialMail($request));
             }, 5);
 
             toast('A New Coach Has Been Created.','success');
@@ -286,7 +286,7 @@ class CoachController extends Controller
                     $coachInfo->save();
 
                     // Send Mail to the coach email
-                    Mail::to($user->email)->send(new CoachRequestApproveMail($coach));
+                    //Mail::to($user->email)->send(new CoachRequestApproveMail($coach));
 
                     $coach->delete();
                 }, 5);
@@ -300,7 +300,7 @@ class CoachController extends Controller
             }
         } else {
             // Send Mail to the coach email
-            Mail::to($coach->email)->send(new CoachRequestRejectMail($coach));
+            //Mail::to($coach->email)->send(new CoachRequestRejectMail($coach));
 
             $coach->delete();
 
