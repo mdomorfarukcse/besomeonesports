@@ -187,7 +187,7 @@ class PlayerController extends Controller
             
         } catch (Exception $e) {
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
-            // dd($e);
+            dd($e);
             alert('Player Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
