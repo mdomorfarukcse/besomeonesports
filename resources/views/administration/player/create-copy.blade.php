@@ -314,7 +314,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-3 form-group">
-                                                    <label for="birthdate">Birthdate</label>
+                                                    <label for="birthdate">Birthday</label>
                                                     <input type="text" name="players['birthdate']" value="{{ old('birthdate') }}" class="birthdate datepicker-here form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd"/>
                                                     @error('birthdate')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

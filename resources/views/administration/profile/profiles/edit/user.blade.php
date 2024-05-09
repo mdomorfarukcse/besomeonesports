@@ -52,7 +52,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <label for="birthdate">Birthdate <span class="required">*</span></label>
+                                        <label for="birthdate">Birthday <span class="required">*</span></label>
                                         <input type="date" name="birthdate" value="{{ $profile->birthdate }}" class="form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" required/>
                                         @error('birthdate')
                                             <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>

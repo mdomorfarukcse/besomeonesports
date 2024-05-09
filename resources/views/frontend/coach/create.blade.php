@@ -197,7 +197,7 @@
                                     </div>
                                     <div class="col-lg-6 d-none">
                                         <div class="from-group">
-                                            <label for="birthdate" class="text-capitalize">Birthdate <span
+                                            <label for="birthdate" class="text-capitalize">Birthday <span
                                                     class="text-danger">*</span></label>
                                             <input type="date" name="birthdate" value="1990-01-01"
                                                 class="form-control" placeholder="Birthdate *" />
