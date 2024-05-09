@@ -69,7 +69,7 @@
                                 @endforeach
                             </div>
 
-                            <div id="sync2" class="owl-carousel owl-theme">
+                            <div id="sync2" class="owl-carousel owl-theme mt-3 mb-3 mr-3">
                                 @foreach ($product->images as $sl => $image)
                                     <div class="item">
                                         <div class="thum-pic-slide">
@@ -91,7 +91,7 @@
                                 <h5>Size <sup class="text-danger">*</sup></h5>
                                 <ul class="list-unstyled d-flex sixe-menu-q size-checkbox">
                                     @foreach (json_decode($product->sizes) as $key => $size)
-                                        <li>
+                                        <li class="mb-2 mt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="product_size" id="product_size_{{ $key }}" value="{{ $size }}" required/>
                                                 <label class="form-check-label" for="product_size_{{ $key }}">{{ $size }}</label>
@@ -102,7 +102,7 @@
                                 <h5>Color <sup class="text-danger">*</sup></h5>
                                 <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
                                     @foreach (json_decode($product->colors) as $key => $color)
-                                        <li>
+                                        <li class="mb-2 mt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="product_color" id="product_color_{{ $key }}" value="{{ $color }}" required/>
                                                 <label class="form-check-label" for="product_color_{{ $key }}">{{ $color }}</label>
