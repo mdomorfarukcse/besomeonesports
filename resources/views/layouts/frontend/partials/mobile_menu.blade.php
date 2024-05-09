@@ -22,7 +22,7 @@
                 <ul>
                     <li> <i class="fas fa-map-marker-alt"></i> <span> Friendswood, Texas, United States</span>
                     </li>
-                    <li> <i class="fab fa-whatsapp"></i> <span> 832-421-2895 </span> </li>
+                    <li> <i class="fab fa-whatsapp"></i> <span> 409-270-6115 </span> </li>
                     <li> <i class="fas fa-envelope"></i> <span> Info@besomeonesports.com </span> </li>
                 </ul>
             </div>

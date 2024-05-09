@@ -96,11 +96,11 @@
                                 </li>
                                 <li>
                                     <span class="d-block"> ADDRESS </span>
-                                    <span> <i class="fas fa-map-marker-alt"></i> Friendswood, Texas, United States </span>
+                                    <span> <i class="fas fa-map-marker-alt"></i> 1620 S. Friendswood Drive, MBO #118 Friendswood, TX 77546 </span>
                                 </li>
                                 <li>
                                     <span class="d-block"> PHONE </span>
-                                    <span> <i class="fas fa-phone-alt"></i> 832-421-2895</span>
+                                    <span> <i class="fas fa-phone-alt"></i> 409-270-6115</span>
                                 </li>
                             </ul>
                             
