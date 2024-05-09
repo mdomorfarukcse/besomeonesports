@@ -99,7 +99,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <h5>Color <sup class="text-danger">*</sup></h5>
+                                <h5 class="mt-2">Color <sup class="text-danger">*</sup></h5>
                                 <ul class="list-unstyled d-flex sixe-menu-q color-checkbox">
                                     @foreach (json_decode($product->colors) as $key => $color)
                                         <li class="mb-2 mt-2">
