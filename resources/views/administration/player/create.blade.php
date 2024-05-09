@@ -249,7 +249,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian1_relationship">Guardian #3 Relationship </label>
+                                            <label for="guardian1_relationship">Guardian #1 Relationship </label>
                                             <select class="select2-single form-control @error('guardian1_relationship') is-invalid @enderror" name="guardian1_relationship">
                                                 <option value="" selected disabled>Select Relation</option>
                                                 <option value="Legal Guardian">Legal Guardian</option>
@@ -286,7 +286,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label for="guardian2_relationship">Guardian #3 Relationship </label>
+                                            <label for="guardian2_relationship">Guardian #2 Relationship </label>
                                             <select class="select2-single form-control @error('guardian2_relationship') is-invalid @enderror" name="guardian2_relationship">
                                                 <option value="" selected disabled>Select Relation</option>
                                                 <option value="Legal Guardian">Legal Guardian</option>
