@@ -60,6 +60,10 @@
     <section class="float-start w-100 banner-part">
         <div class="slider-banner">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{ asset('frontend/images/slider/slider4.jpg') }}" alt="images not found" />
@@ -99,12 +103,20 @@
                         </div>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
             </div>
         </div>
 
-        <div class="gb-roguch">
+        {{-- <div class="gb-roguch">
             <img src="{{ asset('frontend/images/h1-bottom-background-image.png') }}" alt="pnm" />
-        </div>
+        </div> --}}
     </section>
     <section class="float-start w-100 ">
         <div class="about-sec-home">

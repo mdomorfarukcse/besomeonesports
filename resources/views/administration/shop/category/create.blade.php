@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Ex. Tshirts" required/>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Ex. T-Shirt" required/>
                             @error('name')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
