@@ -198,21 +198,21 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <label for="address">Street Address</label>
-                                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
+                                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="123 Main Street"/>
                                             @error('address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="city">City</label>
-                                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" placeholder="" />
+                                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" placeholder="City" />
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="state">State</label>
-                                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="" />
+                                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="State" />
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

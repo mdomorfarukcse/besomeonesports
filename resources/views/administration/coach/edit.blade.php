@@ -210,21 +210,21 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="street_address">Street Address</label>
-                                            <input type="text" name="street_address" value="{{ $coach->street_address }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="Box 283 8562 Fusce Rd."/>
+                                            <input type="text" name="street_address" value="{{ $coach->street_address }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street"/>
                                             @error('street_address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="city">City</label>
-                                            <input type="text" name="city" value="{{ $coach->city }}" class="form-control @error('city') is-invalid @enderror" placeholder=""/>
+                                            <input type="text" name="city" value="{{ $coach->city }}" class="form-control @error('city') is-invalid @enderror" placeholder="City"/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <label for="state">State</label>
-                                            <input type="text" name="state" value="{{ $coach->state }}" class="form-control @error('state') is-invalid @enderror" placeholder=""/>
+                                            <input type="text" name="state" value="{{ $coach->state }}" class="form-control @error('state') is-invalid @enderror" placeholder="State"/>
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror

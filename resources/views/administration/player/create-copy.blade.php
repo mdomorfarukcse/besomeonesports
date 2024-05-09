@@ -370,21 +370,21 @@
                                                 </div>
                                                 <div class="col-md-7 form-group">
                                                     <label for="street_address">Street Address <span class="required">*</span></label>
-                                                    <input type="text" name="players['street_address']" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street, Anytown, USA 12345" required/>
+                                                    <input type="text" name="players['street_address']" value="{{ old('street_address') }}" class="form-control @error('street_address') is-invalid @enderror" placeholder="123 Main Street" required/>
                                                     @error('street_address')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-5 form-group">
                                                     <label for="city">City <span class="required">*</span></label>
-                                                    <input type="text" name="players['city']" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="" required/>
+                                                    <input type="text" name="players['city']" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" placeholder="City" required/>
                                                     @error('city')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-4 form-group">
                                                     <label for="state">State <span class="required">*</span></label>
-                                                    <input type="text" name="players['state']" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="" required/>
+                                                    <input type="text" name="players['state']" value="{{ old('state') }}" class="form-control @error('state') is-invalid @enderror" placeholder="State" required/>
                                                     @error('state')
                                                         <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                     @enderror
