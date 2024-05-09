@@ -20,6 +20,7 @@ class MediaInquiriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        toast('Inquiry Has Been Sent.','success');
+        return redirect()->back();
     }
 }

@@ -56,7 +56,7 @@ class CoachController extends Controller
                 //Mail::to($admin->email)->send(new CoachRequestMail($coach, $admin));
             }
 
-            toast('Coach Request Has Been Send.','success');
+            toast('Coach Request Has Been Sent.','success');
             return redirect()->back();
         } catch (Exception $e) {
             //dd($e);

@@ -38,7 +38,7 @@
                     <div class="col-md-12">
                         <div class="contact-use-div">
                             <h4 class="mt-5">Please submit your inquiries in below form. We will contact you as soon as possible.</h4>
-                            <form name="fmn" action="" method="post">
+                            <form name="fmn" action="{{ route('frontend.media-inquiries.store') }}" method="post" >
                                 <div class="row mt-4">
                                     <div class="col-lg-6">
                                         <div class="from-group">
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <input type="button" name="submit" class="btn comon-btn" value="Submit" disabled/>
+                                        <input type="submit" name="submit" class="btn comon-btn" value="Submit" />
                                     </div>
                                 </div>
                             </form>
