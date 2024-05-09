@@ -49,7 +49,7 @@
                             <h2 class="comon-heading m-0">About Us</h2>
                             <p class="mt-3">
                                 At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
-                                full potential through sports. We Strive to create a positive and inclusive environment
+                                full potential through sports. We strive to create a positive and inclusive environment
                                 where everyone can develop their skills, build confidence, and experience the joys of
                                 athletic achievement. Through our programs and activities, we aim to promote physical
                                 fitness, teamwork, and sportsmanship, while instilling values as determination,
@@ -108,9 +108,9 @@
                 </div>
             </div>
 
-            <div class="bg-img-left">
+            {{-- <div class="bg-img-left">
                 <img src="{{ asset('frontend/images/NFL-Player-PNG-1.png') }}" alt="pngmb" />
-            </div>
+            </div> --}}
 
             <div class="red-bottrom">
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />

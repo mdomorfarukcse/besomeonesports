@@ -145,9 +145,9 @@
                 </div>
             </div>
 
-            <div class="bg-img-left">
+            {{-- <div class="bg-img-left">
                 <img src="{{ asset('frontend/images/NFL-Player-PNG-1.png') }}" alt="pngmb" />
-            </div>
+            </div> --}}
 
             <div class="red-bottrom">
                 <img src="{{ asset('frontend/images/white_bottom_wave_01.png') }}" alt="pngmb" />
