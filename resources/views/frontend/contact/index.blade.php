@@ -41,10 +41,16 @@
                             <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
                                 @csrf
                                 <div class="row mt-4">
-                                    <div class="col-lg-12">
+                                    <div class="col-md-6">
                                         <div class="from-group">
-                                            <input type="text" name="name" class="form-control"
-                                                placeholder="Name*" required />
+                                            <input type="text" name="first_name" class="form-control"
+                                                placeholder="First Name*" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="from-group">
+                                            <input type="text" name="last_name" class="form-control"
+                                                placeholder="Last Name*" required />
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -78,7 +84,7 @@
                                         <input type="checkbox" id="FlagFootball" name="location[]" value="Flag Football"> Flag Football<br><br>
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn comon-btn" disabled>Send Message</button>
+                                        <button type="submit" class="btn comon-btn" >Send Message</button>
                                     </div>
                                 </div>
                             </form>
