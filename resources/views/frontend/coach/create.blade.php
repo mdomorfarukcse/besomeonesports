@@ -289,6 +289,11 @@
                                                         value="Volleyball" name="sport_of_interests[]" id="checkbox3">
                                                     <label class="form-check-label" for="checkbox3">Volleyball</label>
                                                 </li>
+                                                <li class="list-group-item d-inline-block border-1">
+                                                    <input class="form-check-input me-1" type="checkbox"
+                                                        value="Cheerleading" name="sport_of_interests[]" id="checkbox3">
+                                                    <label class="form-check-label" for="checkbox3">Cheerleading</label>
+                                                </li> 
                                             </ul>
                                             @error('sport_of_interests[]')
                                                 <b class="text-danger"><i
@@ -303,8 +308,9 @@
                                             <br>
                                             <select name="grade_of_interests[]" class="select2-multi-select form-control" multiple="multiple">
                                                 <option value="">Select a Grade</option>
-                                                <option value="Girls K-8">Girls K-8</option>
-                                                <option value="Boys K-8">Boys K-8</option>
+                                                @foreach ($grades as $grade) 
+                                                    <option value="{{ $grade->id }}" >{{ $grade->name }} ({{ $grade->gender }} )</option>
+                                                @endforeach
                                             </select>
                                             @error('grade_of_interests')
                                                 <b class="text-danger"><i

@@ -27,7 +27,8 @@ class CoachController extends Controller
      */
     public function create()
     {
-        return view('frontend.coach.create');
+        $grades = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->orderBy('name', 'asc')->get();
+        return view('frontend.coach.create' , compact(['grades']));
     }
 
     /**
