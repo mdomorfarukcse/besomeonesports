@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\MediaInquiries;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MediaInquiriesController extends Controller
 {
@@ -20,7 +21,13 @@ class MediaInquiriesController extends Controller
      */
     public function store(Request $request)
     {
-        toast('Inquiry Has Been Sent.','success');
-        return redirect()->back();
+        try {
+            toast('Inquiry Has Been Sent.', 'success');
+            return redirect()->back();
+        } catch (Exception $e){
+            //dd($e);
+            alert('Ads Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 }
