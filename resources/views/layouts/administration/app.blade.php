@@ -6,7 +6,7 @@
         {{-- Meta Ends --}}
         
         {{--  Page Title  --}}
-        <title> {{ config('app.name') }} | {{ __('Role_Name') }} | @yield('page_title') </title>
+        <title> {{ config('app.name') }} | @yield('page_title') </title>
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
 
@@ -37,6 +37,20 @@
 
                 <!-- Start Contentbar -->
                 <div class="contentbar">
+                    @if ($errors->any())
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                @foreach ($errors->all() as $error) 
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>{{ $error }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <!-- Start row -->
                         @yield('content')
                     <!-- End row -->

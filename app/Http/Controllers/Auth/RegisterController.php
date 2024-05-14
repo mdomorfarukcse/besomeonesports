@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            "role" => ['required','in:player,user'],
         ]);
     }
 
@@ -75,11 +76,30 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $response = Http::post('http://spatierolepermission.test/api/register', [
-            'name' => $request->name,
+        // Validate the request
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:guardian,player,user',
+            "agree" => ['required','in:on'],
+        ], [
+            'email.unique' => 'This email is already registered.',
+            'role.in' => 'The role should only Guardian, Player or User.',
+            'password.confirmed' => 'Password confirmation does not match.',
+            'agree.required' => 'You must have to read the Terms & Conditions and agree it.',
+        ]);
+
+        $role = isset($request->role) ? $request->role : 'player';
+        
+        $response = Http::post(config('app.url').'/api/register', [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'name' => $request->first_name.' '.$request->last_name,
             'email' => $request->email,
             'password' => $request->password,
-            'role' => $request->role, // Assuming the role is provided in the request
+            'role' => $role, // Assuming the role is provided in the request
         ]);
 
         // Check if the request was successful
@@ -94,7 +114,11 @@ class RegisterController extends Controller
             auth()->loginUsingId($user['id']);
 
             // Redirect or return a response based on successful registration
-            return redirect()->route('home'); // Adjust the route as per your application's needs
+            
+            toast('Hello '. auth()->user()->name . '. You\'ve Registered Successfully. Update Your Profile.','success');
+            return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
+            // return redirect()->intended();
+            // return redirect()->route('administration.player.index');
         }
 
         // Handle failed registration

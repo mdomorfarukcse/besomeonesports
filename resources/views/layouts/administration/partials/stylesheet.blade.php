@@ -13,6 +13,17 @@
     .role-select .select2-container {
         min-width: 200px !important;
     }
+    .theme_bg,.btn-theme{
+        background-color: #01aeed;
+        color: #ffffff ;
+    }
+    .text-theme{
+        color:  #01aeed;
+    }
+    .btn-theme:hover{
+        background-color: #1491be;
+        color: #ffffff ;
+    }
 </style>
 
 {{-- Custom Main CSS --}}

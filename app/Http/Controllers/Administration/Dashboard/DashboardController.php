@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Dashboard;
 
+use App\Models\Team\Team;
+use App\Models\League\League;
+use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
+use App\Models\Player\Player;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Shop\Order\Order;
 
 class DashboardController extends Controller
 {
@@ -13,7 +18,30 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('administration.dashboard.index');
+        $teams = Team::whereStatus('Active')->count();
+        $leagues = League::whereStatus('Active')->count();
+        $sports = Sport::whereStatus('Active')->count();
+        $players = Player::whereStatus('Active')->count();
+
+        $registrations = DB::table('league_player')->sum('total_paid');
+
+        $sales = Order::sum('total_price');
+        
+        $total = [
+            'teams' => $teams,
+            'leagues' => $leagues,
+            'sports' => $sports,
+            'players' => $players,
+            'registrations' => $registrations,
+            'sales' => $sales,
+        ];
+
+        $upcomingLeagues = League::whereDate('start', '>', now())
+                                ->whereStatus('Active')
+                                ->orderBy('start', 'asc')
+                                ->get();
+
+        return view('administration.dashboard.index', compact(['total', 'upcomingLeagues']));
     }
 
     /**

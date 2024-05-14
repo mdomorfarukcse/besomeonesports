@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $response = Http::post('http://spatierolepermission.test/api/login', [
+        $response = Http::post(config('app.url').'/api/login', [
             'email' => $request->email,
             'password' => $request->password,
         ]);
@@ -67,13 +67,25 @@ class LoginController extends Controller
             $user = User::where('email', $userData['email'])->first();
             auth()->login($user);
 
+            if (Auth::check()) {
+                $user = Auth::user();
+        
+                if ($user->hasRole(['player', 'guardian'])) {
+                    // return redirect('/administration/league');
+                    // return redirect()->route('administration.league.index');
+                    return redirect()->route('administration.dashboard.index');
+                }
+            }
+
             // Redirect or return a response based on successful login
-            return redirect()->route('administration.dashboard.index'); // Adjust the route as per your application's needs
+            toast('Hello '. auth()->user()->name . '. You\'re Logged In.','success');
+            // return redirect()->intended();
+            return redirect()->route('administration.dashboard.index');
         }
 
         // Handle failed login
         // For example, return an error message or redirect back to the login page
-        return redirect()->route('login')->with('error', 'Invalid credentials');
+        return redirect()->route('login')->with('error', 'Invalid credentials! Please check your email and password and try again.');
     }
     
 
@@ -85,7 +97,7 @@ class LoginController extends Controller
             $user->tokens()->delete();
 
             // Call the logout API endpoint
-            $response = Http::post('http://spatierolepermission.test/api/logout', [
+            $response = Http::post(config('app.url').'/api/logout', [
                 'token' => $request->session()->get('access_token'),
             ]);
 
@@ -95,7 +107,7 @@ class LoginController extends Controller
                 $request->session()->regenerateToken();
                 Auth::guard('web')->logout();
 
-                return redirect()->route('login')->with('message', 'Logged out successfully');
+                return redirect()->route('frontend.homepage.index')->with('message', 'Logged out successfully');
             }
         }
 

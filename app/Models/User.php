@@ -3,15 +3,22 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use App\Models\User\Traits\Relations;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Relations, SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = [];
 
     /**
      * The attributes that are mass assignable.
@@ -20,8 +27,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -43,4 +53,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public static function getpermissionGroups(){
+        $permission_groups = DB::table('permissions')->select('group_name')->groupBy('group_name')->get();
+        return $permission_groups;
+    }
+
+    public static function getpermissionByGroupName($group_name){
+        $permissions = DB::table('permissions')
+                        ->select('name','id')
+                        ->where('group_name',$group_name)
+                        ->get();
+        return $permissions;
+    }
+    
+    public static function roleHasPermissions($role,$permissions){
+        $hasPermission = true;
+        foreach ($permissions as $permission) {
+            if(!$role->hasPermissionTo($permission->name)){
+                $hasPermission = false;
+            }
+            return $hasPermission;
+        }
+    }
 }
