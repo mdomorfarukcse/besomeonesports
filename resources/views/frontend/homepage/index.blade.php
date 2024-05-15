@@ -50,6 +50,17 @@
             background-position: 98% 30px, left top;
             background-size: 46%, 40%;
         }
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #products  .comon-items-d1 {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border:solid 1px rgb(218 147 11) !important;
+        }
     </style>
 @endsection
 

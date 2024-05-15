@@ -184,7 +184,9 @@
                         Advertising and Sponsor Today! Contact us through the form below and a Be Someone Sports
                         representative will assist you.
                     </h5>
-                    <form name="fmn" action="" method="post">
+                    <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
+                        @csrf
+                        <input type="text" name="form_type" value="sponsor" />
                         <div class="row mt-4">
                             <div class="col-lg-6">
                                 <div class="from-group">
@@ -217,12 +219,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="from-group">
-                                    <textarea class="form-control" name="notes" placeholder="Other notes"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <input type="button" name="submit" class="btn btn-info" value="Submit" disabled/>
+                                <input type="submit" name="submit" class="btn btn-info" value="Submit" disabled/>
                             </div>
                         </div>
                     </form>

@@ -32,6 +32,7 @@ class ContactController extends Controller
     
         try {
             Contact::create([
+                'form_type' => $request->form_type,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
@@ -65,6 +66,7 @@ class ContactController extends Controller
     
         try {
             $contact = Contact::create([
+                'form_type' => $request->form_type,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,

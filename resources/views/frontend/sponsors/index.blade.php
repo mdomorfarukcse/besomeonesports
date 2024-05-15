@@ -57,7 +57,7 @@
                 <div class="container">
                     <div class="row ">
                         <div class="text-center mb-50">
-                            <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
+                            <h5 class="samll-sub mb-1 mt-0">Be Someone Sports</h5>
                             <h2 class="comon-heading m-0">Sponsors</h2>
                         </div>
                         @foreach ($sponsors as $key => $sponsor)
