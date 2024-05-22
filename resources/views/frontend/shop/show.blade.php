@@ -9,6 +9,8 @@
 
 @section('css_links')
     {{--  External CSS  --}}
+    <link rel="stylesheet" href="https://thdoan.github.io/magnify/css/magnify.css">
+    
 @endsection
 
 @section('custom_css')
@@ -35,6 +37,14 @@
         }
         .sixe-menu-q .form-check .form-check-input,.sixe-menu-q .form-check .form-check-label  {
             width: auto !important;
+        }
+        p, .owl-carousel .owl-item {
+            text-align: center;
+        }
+        .zoom {
+            width: auto !important;
+            height: 400px;
+            display: inline-block !important;
         }
     </style>
 @endsection
@@ -63,7 +73,7 @@
                                 @foreach ($product->images as $sl => $image)
                                     <div class="item">
                                         <a href="{{ show_image($image->path) }}" data-fancybox="" class="mian-ppic">
-                                            <img src="{{ show_image($image->path) }}" alt="Product Image {{ $sl+1 }}" />
+                                            <img src="{{ show_image($image->path) }}" alt="Product Image {{ $sl+1 }}" class="zoom" />
                                         </a>
                                     </div>
                                 @endforeach
@@ -214,6 +224,7 @@
 
 @section('script_links')
     {{--  External Javascript Links --}}
+    <script src="https://thdoan.github.io/magnify/js/jquery.magnify.js"></script>
 @endsection
 
 @section('custom_script')
@@ -408,5 +419,21 @@
                 $(this).addClass("active");
             });
         });
+    </script>
+    <script>
+        $(function() {
+  // Initiate carousel
+  $('.owl-carousel').owlCarousel({
+    items: 1,
+    afterMove: function() {
+      setTimeout(function() {
+        // Update Magnify when slide changes
+        $zoom.destroy().magnify();
+      }, 800); // This number should match paginationSpeed option
+    }
+  });
+  // Initiate zoom
+  var $zoom = $('.zoom').magnify();
+});
     </script>
 @endsection
