@@ -189,14 +189,7 @@
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label for="birthdate">Birthday </label>
-                                            <input type="date" name="birthdate" class="form-control @error('birthdate') is-invalid @enderror" placeholder="yyyy-mm-dd" />
-                                            @error('birthdate')
-                                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-8 form-group">
+                                        <div class="col-md-12 form-group">
                                             <label for="address">Street Address</label>
                                             <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="123 Main Street"/>
                                             @error('address')
