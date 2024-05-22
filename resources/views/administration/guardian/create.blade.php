@@ -190,29 +190,29 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-12 form-group">
-                                            <label for="address">Street Address</label>
-                                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="123 Main Street"/>
+                                            <label for="address">Street Address <span class="required">*</span></label>
+                                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="123 Main Street" required/>
                                             @error('address')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="city">City</label>
-                                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" placeholder="City" />
+                                            <label for="city">City <span class="required">*</span></label>
+                                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" placeholder="City" required/>
                                             @error('city')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="state">State</label>
-                                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="State" />
+                                            <label for="state">State <span class="required">*</span></label>
+                                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" placeholder="State" required/>
                                             @error('state')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="postal_code">Zip Code</label>
-                                            <input type="text" name="postal_code" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620"/>
+                                            <label for="postal_code">Zip Code <span class="required">*</span></label>
+                                            <input type="text" name="postal_code" class="form-control @error('postal_code') is-invalid @enderror" placeholder="20620" required/>
                                             @error('postal_code')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
