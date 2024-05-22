@@ -55,7 +55,18 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="form-group col-md-4">
+                            <label for="status">Status <span class="required">*</span></label>
+                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="">Select Status</option>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            @error('status')
+                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 form-group">
                             <label for="street">Street <span class="required">*</span></label>
                             <input type="text" name="street" value="{{ old('street') }}" class="form-control @error('street') is-invalid @enderror" placeholder="Street" required/>
                             @error('street')
@@ -80,31 +91,6 @@
                             <label for="Zip Code">Zip Code <span class="required">*</span></label>
                             <input type="text" name="postal_code" value="{{ old('postal_code') }}" class="form-control @error('postal_code') is-invalid @enderror" placeholder="Zip Code" required/>
                             @error('postal_code')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="latitude">Latitude</label>
-                            <input type="text" name="latitude" value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" placeholder="Latitude"/>
-                            @error('latitude')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="longitude">Longitude </label>
-                            <input type="text" name="longitude" value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" placeholder="Longitude"/>
-                            @error('longitude')
-                                <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="status">Status <span class="required">*</span></label>
-                            <select class="select2-single form-control @error('status') is-invalid @enderror" name="status" required>
-                                <option value="">Select Status</option>
-                                <option value="Active" selected>Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                            @error('status')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>

@@ -88,14 +88,6 @@
                                                     <td>{{ $venue->postal_code }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Latitude</th>
-                                                    <td>{{ $venue->latitude }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Longitude</th>
-                                                    <td>{{ $venue->longitude }}</td>
-                                                </tr>
-                                                <tr>
                                                     <th>Status</th>
                                                     <td>{!! status($venue->status) !!}</td>
                                                 </tr>

@@ -43,8 +43,6 @@ class VenueController extends Controller
             $venue->city = $request->city;
             $venue->state = $request->state;
             $venue->postal_code = $request->postal_code;
-            $venue->latitude = $request->latitude;
-            $venue->longitude = $request->longitude;
             $venue->status = $request->status;
             $venue->save();
 
@@ -84,8 +82,6 @@ class VenueController extends Controller
             $venue->city = $request->city;
             $venue->state = $request->state;
             $venue->postal_code = $request->postal_code;
-            $venue->latitude = $request->latitude;
-            $venue->longitude = $request->longitude;
             $venue->status = $request->status;
             $venue->save();
 
