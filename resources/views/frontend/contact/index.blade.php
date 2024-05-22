@@ -40,7 +40,7 @@
                             <h2 class="">Get In Touch</h2>
                             <form name="fmn" action="{{ route('frontend.contact.store') }}" method="post" autocomplete="off">
                                 @csrf
-                                <input type="text" name="form_type" value="contact" />
+                                <input type="hidden" name="form_type" value="contact" />
                                 <div class="row mt-4">
                                     <div class="col-md-6">
                                         <div class="from-group">
