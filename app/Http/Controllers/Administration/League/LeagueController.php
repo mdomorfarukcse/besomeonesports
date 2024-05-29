@@ -41,7 +41,7 @@ class LeagueController extends Controller
     public function index(Request $request)
     {
         $sports = Sport::select(['id', 'name'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'gender'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
 
         $query = League::select(['id', 'season_id', 'sport_id', 'logo', 'name', 'registration_fee', 'start', 'end', 'status'])
                         ->with([
@@ -162,7 +162,7 @@ class LeagueController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $referees = User::role('referee')->get();
 
@@ -262,7 +262,7 @@ class LeagueController extends Controller
     {
         $seasons = Season::select(['id', 'name', 'year', 'status'])->whereStatus('Active')->get();
         $sports = Sport::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $venues = Venue::select(['id', 'name', 'status'])->whereStatus('Active')->get();
         $referees = User::role('referee')->get();
 

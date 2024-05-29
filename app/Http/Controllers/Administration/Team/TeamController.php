@@ -65,7 +65,7 @@ class TeamController extends Controller
     public function create()
     {
         $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
         $team_id = unique_id(11, 11).rand(1,5000);
 
@@ -137,7 +137,7 @@ class TeamController extends Controller
     {
         // dd($team);
         $leagues = League::select(['id', 'name', 'status'])->whereStatus('Active')->get();
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $coaches = Coach::select(['id', 'user_id'])->with(['user'])->whereStatus('Active')->get();
 
         return view('administration.team.edit', compact(['team', 'leagues', 'divisions', 'coaches']));

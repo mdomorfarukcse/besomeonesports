@@ -16,7 +16,7 @@ class DivisionController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Division::select(['id','name','gender','status'])->orderBy('created_at', 'desc');
+        $query = Division::select(['id','name','gender','status'])->orderBy('created_at', 'asc');
         if ($request->filled('gender')) {
             $query->where('gender', $request->gender);
         }

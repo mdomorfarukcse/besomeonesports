@@ -24,7 +24,7 @@ class NewPlayerController extends Controller
 
 
     public function index() {
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $player_id = unique_id(11, 11);
         $user = Auth::user();
 

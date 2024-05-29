@@ -79,7 +79,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'gender', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $player_id = unique_id(11, 11);
 
         $guardianRole = Role::where('name', 'guardian')->first();
@@ -206,7 +206,7 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->get();
+        $divisions = Division::select(['id', 'name', 'status'])->whereStatus('Active')->orderBy('created_at', 'asc')->get();
         $guardianRole = Role::where('name', 'guardian')->first();
         $guardians = $guardianRole->users;
         return view('administration.player.edit', compact(['player', 'divisions', 'guardians']));
@@ -308,7 +308,7 @@ class PlayerController extends Controller
     public function getDivisions(Request $request)
     {
         $gender = $request->input('gender');
-        $divisions = Division::where('gender', $gender)->get();
+        $divisions = Division::where('gender', $gender)->orderBy('created_at', 'asc')->get();
 
         return response()->json($divisions);
     }
