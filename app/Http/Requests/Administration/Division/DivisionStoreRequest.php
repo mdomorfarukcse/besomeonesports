@@ -22,7 +22,7 @@ class DivisionStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:divisions,name'],
+            'name' => ['required', 'string'],
             "gender" => ['required','in:Male,Female,Co-Ed'],
             "status" => ['required','in:Active,Inactive'],
         ];
