@@ -243,7 +243,7 @@
                                             alt="..." />
                                         <div class="carousel-caption d-none d-md-block">
                                             <h6>{{ $league->name }}</h6>
-                                            <p>Winning and losing are a part of everyday life. EVERYONE WINS LEAGUE. </p>
+                                            <p>Winning and losing are apart of everyday life. This is not the "Everyone wins" league!</p>
                                             <a href="{{ route('administration.league.registration', ['league' => $league]) }}"
                                                 class="btn btn-warning btn-outline-custom fw-bolder"> <i
                                                     class="fas fa-tags"></i> Register</a>
