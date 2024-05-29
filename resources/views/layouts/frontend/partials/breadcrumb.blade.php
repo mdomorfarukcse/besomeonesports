@@ -9,7 +9,15 @@
             @case('league')
                 <img src="{{ asset('frontend/images/breadcrumb_banners/leagues.png') }}" alt="sub-banner" />
                 @break
-
+            
+            @case('coach/create')
+                <img src="{{ asset('frontend/images/breadcrumb_banners/leagues.png') }}" alt="sub-banner" />
+                @break
+            
+            @case('stats')
+                <img src="{{ asset('frontend/images/breadcrumb_banners/leagues.png') }}" alt="sub-banner" />
+                @break
+                          
             @case('gallery')
                 <img src="{{ asset('frontend/images/breadcrumb_banners/gallery.png') }}" alt="sub-banner" />
                 @break
@@ -31,7 +39,7 @@
                 @break
             
             @default
-                <img src="{{ asset('frontend/images/breadcrumb_banners/about_us.png') }}" alt="default-banner" />
+                <img src="{{ asset('frontend/images/h1-rev-img-2.png') }}" alt="default-banner" />
         @endswitch
     </div>
     <style>
