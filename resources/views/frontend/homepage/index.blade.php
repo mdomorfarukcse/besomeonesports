@@ -239,8 +239,8 @@
                             <div class="carousel-inner">
                                 @foreach ($upcomingLeagues as $key => $league)
                                     <div class="carousel-item @if ($key == 0) active @endif">
-                                        <img src="{{ show_image($league->logo) }}" class="d-block w-100"
-                                            alt="..." />
+                                        {{-- <img src="{{ show_image($league->logo) }}" class="d-block w-100" alt="..." /> --}}
+                                        <img src="{{ asset('frontend/images/slider/upcoming_league.jpg') }}" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption d-none d-md-block">
                                             <h6>{{ $league->name }}</h6>
                                             <p>Winning and losing are apart of everyday life. This is not the "Everyone wins" league!</p>
