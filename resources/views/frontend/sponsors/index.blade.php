@@ -20,13 +20,13 @@
             display: inline-block;
             width: 100%;
             padding: 15px;
-            height: 150px;
+            height: 200px;
             border-radius: 10px;
             border: 1px solid #333;
             margin-bottom: 20px;
         }
         .single_sponsor img{
-            height: 120px;
+            height: 100%;
             width: 100%;
         }
         .mb-50{
@@ -61,7 +61,7 @@
                             <h2 class="comon-heading m-0">Sponsors</h2>
                         </div>
                         @foreach ($sponsors as $key => $sponsor)
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <a href="{{ $sponsor->url }}">
                                     <div class="single_sponsor">
                                         <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
