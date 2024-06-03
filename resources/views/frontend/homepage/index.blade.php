@@ -50,20 +50,15 @@
             background-position: 98% 30px, left top;
             background-size: 46%, 40%;
         }
-        .shop-apge-div {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px; /* Space between boxes */
-        }
+        
         #products .item{
-            flex: 1;
-            min-width: 200px; /* Minimum width for each box */
             border: 1px solid #ccc;
             box-sizing: border-box;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%; /* Ensures equal height */
         }
         #products .item p {
             flex-grow: 1;
