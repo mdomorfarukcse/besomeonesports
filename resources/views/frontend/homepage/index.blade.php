@@ -50,16 +50,30 @@
             background-position: 98% 30px, left top;
             background-size: 46%, 40%;
         }
-        #products {
+        .shop-apge-div {
             display: flex;
             flex-wrap: wrap;
+            gap: 10px; /* Space between boxes */
         }
-        #products  .comon-items-d1 {
+        #products .item{
             flex: 1;
-            margin: 10px;
-            padding: 20px;
+            min-width: 200px; /* Minimum width for each box */
             border: 1px solid #ccc;
-            border:solid 1px rgb(218 147 11) !important;
+            box-sizing: border-box;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #products .item p {
+            flex-grow: 1;
+        }
+        #products .item img {
+            max-width: 100%;
+            height: auto;
+        }
+        #products .item button {
+            align-self: flex-end;
         }
     </style>
 @endsection
