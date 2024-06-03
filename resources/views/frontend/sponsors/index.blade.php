@@ -24,10 +24,10 @@
             border-radius: 10px;
             border: 1px solid #333;
             margin-bottom: 20px;
+            text-align: center;
         }
         .single_sponsor img{
-            height: 100%;
-            width: 100%;
+            height: 150px;
         }
         .mb-50{
             margin-bottom: 50px;
