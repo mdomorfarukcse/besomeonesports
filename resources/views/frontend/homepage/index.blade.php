@@ -50,25 +50,16 @@
             background-position: 98% 30px, left top;
             background-size: 46%, 40%;
         }
-        
-        #products .item{
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            padding: 20px;
+        #products {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%; /* Ensures equal height */
+            flex-wrap: wrap;
         }
-        #products .item p {
-            flex-grow: 1;
-        }
-        #products .item img {
-            max-width: 100%;
-            height: auto;
-        }
-        #products .item button {
-            align-self: flex-end;
+        #products  .comon-items-d1 {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border:solid 1px rgb(218 147 11) !important;
         }
     </style>
 @endsection
