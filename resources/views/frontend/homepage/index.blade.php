@@ -294,7 +294,7 @@
                         <div class="row g-lg-4 ">
 
                             @foreach ($products as $keys => $product)
-                                <div class="item list-item col-md-3 col-lg-3 col-xl-3 view-group grid-group-item collist">
+                                <div class="item list-item col-md-4 col-lg-4 col-xl-4 view-group grid-group-item collist">
                                     <div class="comon-items-d1">
                                         <a href="{{ route('frontend.shop.show', ['product' => $product]) }}"
                                             target="_blank" class="left-div-list">
