@@ -171,7 +171,7 @@
                     <div class="card-body">
                         <h5 class="mb-4">Welcome to <span class ="text-theme bold">Be Someone Sports!</span>  To register your child for our exciting kids
                             basketball league, please create an account and provide the necessary information about your
-                            child. Let's get started on this exciting journey!</h5>
+                            child. Let's get started on this exciting journey! Jerseys are included in registration, items in shop are seperate</h5>
                         <div class="activities-history">
                             <div class="activities-history-list">
                                 <div class="activities-history-item">
