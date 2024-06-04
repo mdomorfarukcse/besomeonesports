@@ -169,9 +169,12 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="mb-4">Welcome to <span class ="text-theme bold">Be Someone Sports!</span>  To register your child for our exciting kids
-                            basketball league, please create an account and provide the necessary information about your
-                            child. Let's get started on this exciting journey! Jerseys are included in registration, items in shop are seperate</h5>
+                        <h5 class="mb-4">Welcome to <span class ="text-theme bold">Be Someone Sports!</span> To register your child for our exciting kids basketball league, please create an
+                            account and provide the necessary information about your child. Let's get started on this
+                            exciting journey!
+                            <br><b>Important Information: </b> Once your child is registered, their jersey will be included at no
+                            additional cost. Please note that all other items available in the shop are sold separately.
+                        </h5>
                         <div class="activities-history">
                             <div class="activities-history-list">
                                 <div class="activities-history-item">
