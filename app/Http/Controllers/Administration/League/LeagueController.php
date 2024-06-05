@@ -394,7 +394,7 @@ class LeagueController extends Controller
         ]);
         
         try{
-            dd($request->all(), $league);
+            
             $cardNumber = $request->card_number;
             $expirationDate = $request->card_expiry;
             $cvv = $request->card_cvc;
@@ -432,6 +432,7 @@ class LeagueController extends Controller
 
             // Set customer information
             $customerData = new CustomerDataType();
+            dd($player->player_id);
             $customerData->setId($player->player_id);
             $transactionRequestType->setCustomer($customerData);
 
