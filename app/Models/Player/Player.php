@@ -22,7 +22,7 @@ class Player extends Model
 
         static::creating(function ($player) {
             // Prefix 'BSSPLAYER' to the 'player_id' attribute
-            $player->player_id = 'BSSPLAYER' . $player->player_id;
+            $player->player_id = 'BSSP' . $player->player_id;
         });
     }
 }
