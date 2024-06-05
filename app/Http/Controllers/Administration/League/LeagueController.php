@@ -382,7 +382,7 @@ class LeagueController extends Controller
      * League Registration Store
      */
     public function register_player(Request $request, League $league) {
-        
+        // dd($request->all(), $league);
         $request->validate([
             'league_id' => 'required|exists:leagues,id',
             'player_id' => ['required', 'exists:players,id', new UniqueLeaguePlayerRule],
@@ -394,7 +394,6 @@ class LeagueController extends Controller
         ]);
         
         try{
-            
             $cardNumber = $request->card_number;
             $expirationDate = $request->card_expiry;
             $cvv = $request->card_cvc;
@@ -432,7 +431,6 @@ class LeagueController extends Controller
 
             // Set customer information
             $customerData = new CustomerDataType();
-            // dd($player->player_id);
             $customerData->setId($player->player_id);
             $transactionRequestType->setCustomer($customerData);
 
@@ -458,7 +456,7 @@ class LeagueController extends Controller
                 $trasactionReport = $response->getTransactionResponse();
 
                 if ($trasactionReport != null && $trasactionReport->getResponseCode() == "1") {
-                    dd($response, $trasactionReport, $trasactionReport->getTransId());
+                    // dd($response, $trasactionReport, $trasactionReport->getTransId());
 
                     DB::transaction(function () use ($request, $league, $trasactionReport, $invoice_number) {
                         $paidBy = decrypt($request->paid_by);
