@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('frontend/images/slider/slider5.jpeg') }}" alt="images not found" />
+                        <img src="{{ asset('frontend/images/slider/slider7.png') }}" alt="images not found" />
 
                         <div class="cover">
                             <div class="container">
