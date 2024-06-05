@@ -64,7 +64,7 @@
                             <a href="{{ route('administration.league.index') }}" class="btn btn-theme btn-sm"> Register
                                 League</a>
                         </p>
-                        <p class="mt-1">Check out our store and order your children Juersy, Shirt, Shorts etc.
+                        <p class="mt-1">Check out our store and order your children Jersey, Shirt, Shorts etc.
                             <a href="{{ route('frontend.shop.index') }}" class="btn btn-theme btn-sm"> Shop Now</a>
                         </p>
                     </div>

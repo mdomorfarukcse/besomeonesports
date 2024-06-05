@@ -147,7 +147,7 @@
                                 registered for the basketball league. We'll email you shortly with further instructions and
                                 important details about the upcoming season. Get ready for an amazing experience!</p>
                             <hr>
-                            <p class="mt-1">Check out our store and order your children Juersy, Shirt, Shorts etc.
+                            <p class="mt-1">Check out our store and order your children Jersey, Shirt, Shorts etc.
                                 <a href="{{ route('frontend.shop.index') }}" class="btn btn-theme btn-sm"> Shop Now</a>
                             </p>
                         </div>
