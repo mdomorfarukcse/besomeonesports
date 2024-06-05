@@ -382,7 +382,7 @@ class LeagueController extends Controller
      * League Registration Store
      */
     public function register_player(Request $request, League $league) {
-        // dd($request->all(), $league);
+        dd($request->all(), $league);
         $request->validate([
             'league_id' => 'required|exists:leagues,id',
             'player_id' => ['required', 'exists:players,id', new UniqueLeaguePlayerRule],

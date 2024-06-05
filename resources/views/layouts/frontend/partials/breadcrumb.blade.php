@@ -16,31 +16,14 @@
                 <img src="{{ asset('frontend/images/breadcrumb_banners/leagues.png') }}" alt="sub-banner" />
                 @break
 
-            @case('gallery')
-                <img src="{{ asset('frontend/images/breadcrumb_banners/gallery.png') }}" alt="sub-banner" />
-                @break
-
             @case('sponsors')
             @case('advertise-with-us')
             @case('partners')
                 <img src="{{ asset('frontend/images/breadcrumb_banners/our_sponsors.png') }}" alt="sub-banner" />
                 @break
-
-            @case('blog')
-            @case('media-inquiries')
-                <img src="{{ asset('frontend/images/breadcrumb_banners/news.jpg') }}" alt="sub-banner" />
-                @break
-
-            @case('contact')
-                <img src="{{ asset('frontend/images/breadcrumb_banners/contact.png') }}" alt="sub-banner" />
-                @break
-
-            @case('shop')
-                <img src="{{ asset('frontend/images/breadcrumb_banners/shop.png') }}" alt="sub-banner" />
-                @break
-
+                
             @default
-                <img src="{{ asset('frontend/images/h1-rev-img-2.png') }}" alt="default-banner" />
+                <img src="{{ asset('frontend/images/breadcrumb_banners/leagues.png') }}" alt="sub-banner" />
         @endswitch
 
     </div>
