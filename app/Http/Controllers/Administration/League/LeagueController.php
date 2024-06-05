@@ -432,7 +432,7 @@ class LeagueController extends Controller
 
             // Set customer information
             $customerData = new CustomerDataType();
-            dd($player->player_id);
+            // dd($player->player_id);
             $customerData->setId($player->player_id);
             $transactionRequestType->setCustomer($customerData);
 
@@ -458,7 +458,7 @@ class LeagueController extends Controller
                 $trasactionReport = $response->getTransactionResponse();
 
                 if ($trasactionReport != null && $trasactionReport->getResponseCode() == "1") {
-                    // dd($response, $trasactionReport, $trasactionReport->getTransId());
+                    dd($response, $trasactionReport, $trasactionReport->getTransId());
 
                     DB::transaction(function () use ($request, $league, $trasactionReport, $invoice_number) {
                         $paidBy = decrypt($request->paid_by);
