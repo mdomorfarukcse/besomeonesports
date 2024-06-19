@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label for="contact_number">Phone Number <span class="required">*</span></label>
-                                            <input type="tel" name="contact_number" value="{{ $player->contact_number }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 505-683-1334" required/>
+                                            <input type="tel" name="contact_number" value="{{ $player->contact_number }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="+1 (123) 456 -7890" required/>
                                             @error('contact_number')
                                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                             @enderror
