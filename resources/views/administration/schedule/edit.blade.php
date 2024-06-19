@@ -68,7 +68,7 @@
                             <label for="">End Time <span class="required">*</span></label>
                             <input type="time" class="form-control" value="{{ $schedule->end }}" name="end" id="end" />
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="">Choose An League <span class="required">*</span></label>
                             <select class="select2-single form-control @error('league_id') is-invalid @enderror" name="league_id" id="league_id" required>
                                 <option value="">Select League</option>
@@ -82,13 +82,9 @@
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="">Select Referee <span class="required">*</span></label>
-                            <select class="select2-single form-control" name="referee_id" id="referee_id" required disabled>
-                                <option value="" selected>Select Referee</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
+                        <input type="hidden" value="4" name="referee_id" id="referee_id">
+
+                        <div class="form-group col-md-6">
                             <label for="">Select Round <span class="required">*</span></label>
                             <select class="select2-single form-control" name="round_id" id="round_id" required disabled>
                                 <option value="" selected>Select Round</option>
