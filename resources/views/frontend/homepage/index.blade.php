@@ -61,6 +61,15 @@
             border: 1px solid #ccc;
             border:solid 1px rgb(218 147 11) !important;
         }
+        .carousel{height:calc(100vh - 84px) !important;}
+        .carousel-item img{width:100%;height:100vh !important;object-fit:cover;}
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .carousel{height:100% !important;}
+            .carousel-item img{height:100% !important;}
+        }
+
+
     </style>
 @endsection
 
@@ -95,7 +104,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('frontend/images/slider/slider7.png') }}" alt="images not found" />
+                        <img src="{{ asset('frontend/images/slider/slider8.png') }}" alt="images not found" />
 
                         <div class="cover">
                             <div class="container">
