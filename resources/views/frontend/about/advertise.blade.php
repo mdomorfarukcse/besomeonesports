@@ -50,6 +50,12 @@
         .palyerspage .row>* {
             padding-right: 0px !important;
         }
+        .packageUl{
+            padding-left: 2rem !important;
+        }
+        .packageUl li {
+            list-style: initial;
+        }
     </style>
 @endsection
 
@@ -135,46 +141,114 @@
                             <h2 class="">Packages</h2>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Premier Partner Sponsor - $5000</h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website and social media channels.
-                                Your logo will go on all Power ranking fliers posted, league leaders fliers posted, and
-                                player of the week fliers posted. Your banner will be on all scorers tables. Shouts outs at
-                                all Championship Games.
-                            </p>
+                            <h2 class="pcolor">TITLE SPONSOR - $5000</h2>
+                            <p><b>Sponsorship includes the following recognition : </b></p>
+                            <ul class="packageUl">
+                                <li>Recognition on the Be Someone website</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Two Company specific social media postings
+                                    highlighting our partnership</li>
+                                <li>Company name displayed on the Be Someone Sports
+                                    App.
+                                    </li>
+                                <li>Branded table cloth with company logo (displayed at
+                                    all games score table)
+                                    </li>
+                                <li>Company logo on prime location across all divisions
+                                    jerseys</li>
+                            </ul>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Platinum Sponsor - $2500</h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website and social media channels.
-                                Signage at the tournament games gym entrances. Shoutout at the Championship Game.
-                            </p>
+                            <h2 class="pcolor">COURTSIDE SPONSOR - $2500</h2>
+                            <p><b>Sponsorship includes the following recognition : </b></p>
+                            <ul class="packageUl">
+                                <li>Recognition on the organization’s website</li>
+                                <li>Social media channels.</li>
+                                <li>Logo will be placed on table cloths at scorers tables</li>
+                                <li>Shoutout will be given at Championship Games</li>
+                                <li>Two Company specific social media postingshighlighting our partnership</li>
+                            </ul>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Gold Sponsor - $1000</h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website and social media channels.
-                                Signage at the Championship games gym entrances Shoutout at the Championship Game.
-                            </p>
+                            <h2 class="pcolor">OFFICIAL TEAM SPONSOR - $1000</h2>
+                            <p><b>Sponsorship includes recognition </b> on the organization’s website and
+                                social media channels. All Team players will recieve team official
+                                backpacks and warm up shirts with your logo.</p>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Silver Sponsor - $500</h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website and social media channels.
-                                Signage at the Championship games gym entrances.
-                            </p>
+                            <h2 class="pcolor">OFFICIAL SPONSOR - $500</h2>
+                            <p><b>Sponsorship includes recognition </b> on the organization’s website and social media channels. </p>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Bronze Sponsor - $275</h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website and social media channels.
-                            </p>
+                            <h2 class="pcolor">PLAYER SPONSOR - $275</h2>
+                            <p>Be Someone Sports Leagues are growing and have players of all income levels. We
+                                have never turned a player away due to a lack of resources. With the growing cost of
+                                everyday life, we are receiving more and more requests for financial assistance. If you
+                                are interested in helping us give players the opportunity to play sports this would be
+                                a great way to give back.</p>
+                        </div>
+                        <div class="mindle-heading text-center">
+                            <h1>CHAMPIONSHIP OR <span> ALL STAR GAMES </span></h1>
                         </div>
                         <div class="advertise_package mt-3 mt-lg-3">
-                            <h2 class="pcolor">Donation - </h2>
-                            <p>
-                                Sponsorship includes recognition on the organization’s website.
-                            </p>
+                            <h5  class="pcolor">CHAMPIONSHIP OR ALL-STAR GAMES</h5>
+                            <h2 class="pcolor">TITLE SPONSOR - $3000</h2>
+                            <p><b>Sponsorship includes the following benefits : </b></p>
+                            <ul class="packageUl">
+                                <li>Naming rights for Championship game</li>
+                                <li>Recognition in all Championship activities &
+                                    communications</li>
+                                <li>Branded Photo backdrop where all team photos are
+                                    taken</li>
+                                <li>Recognition on the Be Someone Sports website</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Signage with company logo throughout
+                                    Championship venue</li>
+                            </ul>
+                        </div>
+                        <div class="advertise_package mt-3 mt-lg-3">
+                            <h5  class="pcolor">ALL-STAR GAMES</h5>
+                            <h2 class="pcolor">TEAM NAME - $2500</h2>
+                            <p><b>Sponsorship includes the following benefits : </b></p>
+                            <ul class="packageUl">
+                                <li>Naming Rights to Half the teams playing in the AllStar Games</li>
+                                <li>Customized All-Star Uniform for all teams to wear</li>
+                                <li>Team Logo on Score Table cloth.</li>
+                                <li>Recognition on the Be Someone Sports website</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Recognition during Championship games</li>
+                            </ul>
+                        </div>
+                        <div class="advertise_package mt-3 mt-lg-3">
+                            <h5  class="pcolor">ALL-STAR GAMES</h5>
+                            <h2 class="pcolor">SKILLS CHALLEGE - $1,500</h2>
+                            <p><b>Sponsorship includes the following benefits : </b></p>
+                            <ul class="packageUl">
+                                <li>Naming Rights to the skills Challenge</li>
+                                <li>Skills challenge winners receive prizes branded by
+                                    your company.</li>
+                                <li>Back drop in gym for photo opportunities.</li>
+                                <li>Recognition on the Be Someone Sports website</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Recognition during Championship games Skills challenge will be played by division games included</li>
+                                <li>Knockout</li>
+                                <li>Free throw</li>
+                                <li>3 - point contest</li>
+                                <li>Dribbling Contest</li>
+                            </ul>
+                        </div>
+                        <div class="advertise_package mt-3 mt-lg-3">
+                            <h5 class="pcolor">CHAMPIONSHIP GAMES</h5>
+                            <h2 class="pcolor">ENTERTAINMENT SPONSOR - $1,250</h2>
+                            <p><b>Sponsorship includes the following benefits : </b></p>
+                            <ul class="packageUl">
+                                <li>Signage at DJ booth</li>
+                                <li>Recognition on the Be Someone Sports website</li>
+                                <li>Recognition on Be Someone social media channels</li>
+                                <li>Recognition during Championship games</li>
+                                <li>Logo on G.O.A.T. mascot uniform</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
