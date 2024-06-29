@@ -24,6 +24,11 @@
         .contact-page ul li{
             list-style: disc !important;
         }
+        .accordion-body p a{
+            color: #0c63e4;
+            font-weight: bolder;
+        }
+
     </style>
 @endsection
 
