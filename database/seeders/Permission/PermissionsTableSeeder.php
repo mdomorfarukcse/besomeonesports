@@ -38,6 +38,7 @@ class PermissionsTableSeeder extends Seeder
 
             // Frontend
             'sponsor',
+            'partner',
             'video',
             'blog',
             'gallery',

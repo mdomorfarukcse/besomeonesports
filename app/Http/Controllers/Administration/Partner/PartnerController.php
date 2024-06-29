@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Administration\Sponsor;
+namespace App\Http\Controllers\Administration\Partner;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sponsor\Sponsor;
-use Exception;
+use App\Models\Partner\Partner;
 use Illuminate\Http\Request;
 
-class SponsorController extends Controller
+class PartnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sponsors = Sponsor::all();
-        return view('administration.sponsor.index', compact('sponsors'));
+        $partners = Partner::all();
+        return view('administration.partner.index', compact('partners'));
     }
 
     /**
@@ -23,7 +22,7 @@ class SponsorController extends Controller
      */
     public function create()
     {
-        return view('administration.sponsor.create');
+        return view('administration.partner.create');
     }
 
     /**
@@ -39,17 +38,17 @@ class SponsorController extends Controller
         try {
             $avatar = upload_image($request->avatar);
             $data = $request->all();
-            Sponsor::create([
+            Partner::create([
                 'name' => $data['name'],
                 'url' => $data['url'],
                 'avatar' => $avatar,
                 'status' => $data['status'],
             ]);
-            toast('A New Sponsor Has Been Created.', 'success');
+            toast('A New Partner Has Been Created.', 'success');
             return redirect()->back();
         } catch (Exception $e) {
             //dd($e);
-            alert('Sponsor Creation Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Partner Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }
@@ -57,59 +56,58 @@ class SponsorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sponsor $sponsor)
+    public function show(Partner $partner)
     {
-        return view('administration.sponsor.show', compact(['sponsor']));
+        return view('administration.partner.show', compact(['partner']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sponsor $sponsor)
+    public function edit(Partner $partner)
     {
-        return view('administration.sponsor.edit', compact(['sponsor']));
+        return view('administration.partner.edit', compact(['partner']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sponsor $sponsor)
+    public function update(Request $request, Partner $partner)
     {
         try{
-            $sponsor->name = $request->name;
-            $sponsor->url = $request->url;
-            $sponsor->status = $request->status;
+            $partner->name = $request->name;
+            $partner->url = $request->url;
+            $partner->status = $request->status;
             if (isset($request->avatar)) {
                 $avatar = upload_image($request->avatar);
-                $sponsor->avatar = $avatar;
+                $partner->avatar = $avatar;
             }
-            $sponsor->save();
+            $partner->save();
 
-            toast('Sponsor Has Been Updated.', 'success');
-            return redirect()->route('administration.sponsor.show', ['sponsor' => $sponsor]);
+            toast('Partner Has Been Updated.', 'success');
+            return redirect()->route('administration.partner.show', ['partner' => $partner]);
 
         } catch (Exception $e){
             //dd($e);
-            alert('Sponsors Update Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Partners Update Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
 
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sponsor $sponsor)
+    public function destroy(Partner $partner)
     {
         try {
-            $sponsor->delete();
+            $partner->delete();
 
-            toast('Sponsor Has Been Deleted.','success');
-            return redirect()->route('administration.sponsor.index');
+            toast('Partner Has Been Deleted.','success');
+            return redirect()->route('administration.partner.index');
         } catch (Exception $e) {
             //dd($e);
-            alert('Sponsor Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
+            alert('Partner Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
     }

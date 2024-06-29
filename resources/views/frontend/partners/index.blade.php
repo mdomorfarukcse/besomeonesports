@@ -5,7 +5,7 @@
 
 @endsection
 
-@section('page_title', __('Partners'))
+@section('page_title', __('Sponsors'))
 
 @section('css_links')
     {{--  External CSS  --}}
@@ -15,19 +15,19 @@
     {{--  External CSS  --}}
     <style>
         /* Custom CSS Here */
-        .single_sponsor{
+        .single_partner{
             background: #fff;
             display: inline-block;
             width: 100%;
             padding: 15px;
-            height: 150px;
+            height: 200px;
             border-radius: 10px;
             border: 1px solid #333;
             margin-bottom: 20px;
+            text-align: center;
         }
-        .single_sponsor img{
-            height: 120px;
-            width: 100%;
+        .single_partner img{
+            height: 150px;
         }
         .mb-50{
             margin-bottom: 50px;
@@ -40,12 +40,12 @@
 
 
 @section('page_name')
-    <b class="text-uppercase">{{ __('Partners') }}</b>
+    <b class="text-uppercase">{{ __('Sponsors') }}</b>
 @endsection
 
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">{{ __('Partners') }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Sponsors') }}</li>
 @endsection
 
 @section('content')
@@ -57,17 +57,18 @@
                 <div class="container">
                     <div class="row ">
                         <div class="text-center mb-50">
-                            <h5 class="samll-sub mb-1 mt-0">BE SOMEONE SPORTS</h5>
-                            <h2 class="comon-heading m-0">Partners</h2>
+                            <h5 class="samll-sub mb-1 mt-0">Be Someone Sports</h5>
+                            <h2 class="comon-heading m-0">Sponsors</h2>
                         </div>
-                        
-                        <div class="col-md-2">
-                            {{-- <a href="">
-                                <div class="single_sponsor">
-                                    <img src="{{ show_image($sponsor->avatar) }}" alt="{{ $sponsor->name }}"/>
-                                </div>
-                            </a> --}}
-                        </div>
+                        @foreach ($partners as $key => $partner)
+                            <div class="col-md-3">
+                                <a href="{{ $partner->url }}" target="_blank">
+                                    <div class="single_partner">
+                                        <img src="{{ show_image($partner->avatar) }}" alt="{{ $partner->name }}"/>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

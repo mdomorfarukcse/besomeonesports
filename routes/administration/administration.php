@@ -62,6 +62,9 @@ Route::prefix('administration')
             // Sponsor
             include_once 'sponsor/sponsor.php';
 
+            // Partner
+            include_once 'partner/partner.php';
+
             // Role
             include_once 'role/role.php';
 
