@@ -61,8 +61,8 @@
             border: 1px solid #ccc;
             border:solid 1px rgb(218 147 11) !important;
         }
-        .carousel{height:calc(100vh - 84px) !important;}
-        .carousel-item img{width:100%;height:100vh !important;object-fit:cover;}
+        .slider-banner .carousel{height:calc(100vh - 84px) !important;}
+        .slider-banner .carousel-item img{width:100%;height:100vh !important;object-fit:cover;}
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             .carousel{height:100% !important;}
