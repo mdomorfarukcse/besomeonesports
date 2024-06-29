@@ -331,6 +331,12 @@ class RolesTableSeeder extends Seeder
                     'sponsor.update',
                     'sponsor.destroy',
 
+                    'partner.index',
+                    'partner.create',
+                    'partner.show',
+                    'partner.update',
+                    'partner.destroy',
+
                     'gallery.index',
                     'gallery.create',
                     'gallery.show',
