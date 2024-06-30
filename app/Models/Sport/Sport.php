@@ -13,4 +13,6 @@ class Sport extends Model
     use HasFactory, Relations, SoftDeletes, CascadeSoftDeletes;
 
     protected $cascadeDeletes = ['leagues'];
+
+    protected $fillable = ['name', 'description', 'status'];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\Administration;
 
 use App\Models\Sport\Sport;
 use App\Exports\Global\BaseExportSettings;

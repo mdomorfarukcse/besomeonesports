@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Administration\Sport;
 
-use App\Exports\SportsExport;
 use Exception;
 use App\Models\Sport\Sport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
+use App\Exports\Administration\SportsExport;
+use App\Imports\Administration\SportsImport;
+use Maatwebsite\Excel\Validators\ValidationException;
 use App\Http\Requests\Administration\Sport\SportStoreRequest;
 use App\Http\Requests\Administration\Sport\SportUpdateRequest;
 
@@ -36,9 +39,7 @@ class SportController extends Controller
     public function store(SportStoreRequest $request)
     {
         //dd($request->all());
-
         try{
-           
             $sport = new Sport();
 
             $sport->name = $request->name;
@@ -48,13 +49,10 @@ class SportController extends Controller
 
             toast('A New Sport Has Been Created.', 'success');
             return redirect()->route('administration.sport.index');
-
         } catch (Exception $e){
-
             // toast('There is some error! Please fix and try again. Error: '.$e,'error');
             alert('Sport Creation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
-
         }
     }
 
@@ -121,5 +119,43 @@ class SportController extends Controller
         $date = date('d_m_Y');
         $fileName = 'sports_'.$date.'.xlsx';
         return Excel::download(new SportsExport, $fileName);
+    }
+
+    /**
+     * Show the form for importing a new resource.
+     */
+    public function import()
+    {
+        return view('administration.sport.import');
+    }
+
+    /**
+     * import csv file
+     */
+    public function importCsv(Request $request)
+    {
+        // Validate the uploaded file
+        $validator = Validator::make($request->all(), [
+            'csv_file' => 'required|file|mimes:csv,txt'
+        ],[
+            'csv_file.mimes' => 'The uploaded file is not in .csv format. Please upload .csv file.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            try {
+                Excel::import(new SportsImport, $request->file('csv_file'));
+        
+                toast('Sports have been successfully imported.', 'success');
+                return redirect()->route('administration.sport.index');
+            } catch (ValidationException $excel_validation_error) {
+                // Handle validation exceptions using the helper function
+                return show_csv_import_validation_errors($excel_validation_error);
+            } catch (\Exception $error) {
+                // Handle other exceptions
+                return redirect()->back()->withErrors($error->getMessage());
+            }
+        }
     }
 }
