@@ -48,13 +48,13 @@
                             <h5 class="samll-sub mb-1 mt-0">Our Story</h5>
                             <h2 class="comon-heading m-0">About Us</h2>
                             <p class="mt-3">
-                                At Be Someone Sports, our missions is to inspire and empower individuals to achieve their
+                                At Be Someone Sports, our mission is to inspire and empower individuals to achieve their
                                 full potential through sports. We strive to create a positive and inclusive environment
-                                where everyone can develop their skills, build confidence, and experience the joys of
+                                where everyone can develop their skills, build confidence, and experience the joy of
                                 athletic achievement. Through our programs and activities, we aim to promote physical
-                                fitness, teamwork, and sportsmanship, while instilling values as determination,
+                                fitness, teamwork and sportsmanship, while instilling values as determination,
                                 perseverance, and respect. Our ultimate goal is to help individuals become their best
-                                selves, both on and off the courts.
+                                selves, both on and off the court.
                             </p>
                         </div>
                     </div>

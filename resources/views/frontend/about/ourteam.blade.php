@@ -100,8 +100,8 @@
                                 husband and father with a background in project management and operations. After making his
                                 new home in Friendswood, TX, Steve realized something was missing in the local sports
                                 landscape, and he was inspired to offer something truly special for children in the area. He
-                                saw the need for a youth sports league that didn’t award every player a trophy but instead
-                                offered opportunities to grow, learn, and thrive as athletes and as individuals.
+                                saw the need for a youth sports league that didn’t award every player a trophy, but instead
+                                offered opportunities to grow, learn and thrive as athletes and as individuals.
                             </p>
                         </div>
                         <div class="col-md-5 img-container mb-1">
@@ -139,7 +139,7 @@
                             </p>
                         </div>
                         <div class="col-md-12">
-                            <blockquote>We want to create something special for the kids, an opportunity for them to Be Someone in sports and life.</blockquote>
+                            <blockquote>We want to create something special for the kids, An opportunity for them to Be Someone in sports and in life.</blockquote>
                             <cite>Steve Passons, Owner of Be Someone Sports</cite>
                         </div>
                     </div>
