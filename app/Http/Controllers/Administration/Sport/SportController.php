@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Administration\Sport;
 
+use App\Exports\SportsExport;
+use Exception;
+use App\Models\Sport\Sport;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\Administration\Sport\SportStoreRequest;
 use App\Http\Requests\Administration\Sport\SportUpdateRequest;
-use App\Models\Sport\Sport;
-use Exception;
-use Illuminate\Http\Request;
 
 class SportController extends Controller
 {
@@ -109,5 +111,15 @@ class SportController extends Controller
             alert('Sport Deletation Failed!', 'There is some error! Please fix and try again.', 'error');
             return redirect()->back()->withInput();
         }
+    }
+
+
+    /**
+     * Export all sports
+     */
+    public function export(){
+        $date = date('d_m_Y');
+        $fileName = 'sports_'.$date.'.xlsx';
+        return Excel::download(new SportsExport, $fileName);
     }
 }

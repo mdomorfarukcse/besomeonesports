@@ -14,4 +14,6 @@ Route::controller(SportController::class)->prefix('sport')->name('sport.')->grou
     Route::get('/edit/{sport}', 'edit')->name('edit')->middleware(['can:sport.update']);
     Route::post('/update/{sport}', 'update')->name('update')->middleware(['can:sport.update']);
     Route::get('/destroy/{sport}', 'destroy')->name('destroy')->middleware(['can:sport.destroy']);
+
+    Route::get('/export', 'export')->name('export')->middleware(['can:sport.create']);
 });

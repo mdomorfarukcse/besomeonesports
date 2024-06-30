@@ -54,7 +54,11 @@
     <div class="col-lg-12">
         <div class="card m-b-30">
             <div class="card-header">
-                <h5 class="card-title">{{ __('All Sports') }}</h5>
+                <h5 class="card-title float-left">{{ __('All Sports') }}</h5>
+                <a href="{{ route('administration.sport.export') }}" class="btn btn-dark btn-sm float-right font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
+                    <i class="la la-download"></i>
+                    Download Sports
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
