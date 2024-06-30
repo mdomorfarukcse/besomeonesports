@@ -39,6 +39,12 @@
         input:-moz-placeholder {
             color:#000000 !important;
         }
+        .toggle-password {
+            float: right;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: -25px;
+        }
 
     </style>
     <!-- End css -->
@@ -151,6 +157,7 @@
                                                         required autocomplete="off" tabindex="0"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         placeholder="{{ __('Password*') }}">
+                                                    <i class="toggle-password fa fa-fw fa-eye-slash"></i>
                                                     <div class="text-danger font-12">The password must be atleast 8 character long. </div>
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
@@ -168,7 +175,7 @@
                                                         name="password_confirmation" required autocomplete="off" tabindex="0"
                                                         class="form-control @error('password_confirmation') is-invalid @enderror"
                                                         placeholder="{{ __('Re-Type Password*') }}">
-        
+                                                    <i class="toggle-password fa fa-fw fa-eye-slash"></i>
                                                     @error('password_confirmation')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -239,6 +246,18 @@
 
     {{-- custom js --}}
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script>
+    $(".toggle-password").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        input = $(this).parent().find("input");
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
     <!-- End js -->
 
 

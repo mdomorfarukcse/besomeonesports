@@ -29,6 +29,12 @@
             background-color: #000000 !important;
             opacity: 0.9 !important;
         }
+        .toggle-password {
+            float: right;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: -25px;
+        }
         </style>
     </head>
     <body class="vertical-layout">
@@ -72,7 +78,7 @@
                                             <div class="form-group">
                                                 <label for="password" class="float-left text-white text-bold">Password <span class="required">*</span></label>
                                                 <input type="password" value="{{ old('password') }}" name="password" required autocomplete="off"  tabindex="0" class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}">
-
+                                                <i class="toggle-password fa fa-fw fa-eye-slash"></i>
                                                 @error('password')
                                                     <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                                                 @enderror
@@ -132,6 +138,17 @@
         
         {{-- custom js --}}
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script>
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            input = $(this).parent().find("input");
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        </script>
         <!-- End js -->
     </body>
 </html>
