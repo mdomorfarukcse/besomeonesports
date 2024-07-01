@@ -23,7 +23,7 @@ class TeamsImport implements ToCollection, WithHeadingRow, WithValidation
             $coach = Coach::where('coach_id', $row['coach_id'])->first();
 
             Team::updateOrCreate(
-                ['team_id' => str_pad(Team::max('id') + 1, 5, '0', STR_PAD_LEFT)],
+                ['team_id' => unique_id(11, 11).rand(1,5000)],
                 [
                     'name' => $row['team_name'],
                     'gender' => $row['gender'],
