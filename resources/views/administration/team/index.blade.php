@@ -94,15 +94,19 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
-                                            {{ $team->league->name }}
-                                        </a>
-                                        <br>
-                                        <small class="text-muted">
-                                            <b>Total Teams:</b>
-                                            {{ count($team->league->teams) }}
-                                        </small>
-                                    </td>
+                                        @if ($team->league)
+                                            <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
+                                                {{ $team->league->name }}
+                                            </a>
+                                            <br>
+                                            <small class="text-muted">
+                                                <b>Total Teams:</b>
+                                                {{ $team->league->teams->count() }}
+                                            </small>
+                                        @else
+                                            <span>No League</span>
+                                        @endif
+                                    </td>                                    
                                     <td class="text-center">
                                         <span class="text-success text-bold">
                                             {{ count($team->players) }}
