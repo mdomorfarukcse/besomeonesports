@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administration\Team;
 
+use App\Exports\Administration\TeamsExport;
 use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Mail\Administration\Team\TeamInfoToCoachMail;
 use App\Mail\Administration\Team\TeamInfoToPlayerMail;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
@@ -227,5 +229,15 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         dd($team);
+    }
+
+
+    /**
+     * Export all teams
+     */
+    public function export(){
+        $date = date('d_m_Y');
+        $fileName = 'teams_'.$date.'.xlsx';
+        return Excel::download(new TeamsExport, $fileName);
     }
 }
