@@ -13,6 +13,22 @@ class Team extends Model
 
     protected $cascadeDeletes = [];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'team_id',
+        'name',
+        'gender',
+        'league_id',
+        'division_id',
+        'coach_id',
+        'description',
+        'status',
+    ];
+
     protected static function boot()
     {
         parent::boot();

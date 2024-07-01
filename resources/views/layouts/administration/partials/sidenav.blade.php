@@ -163,6 +163,9 @@
                             @if (auth()->user()->can('team.create'))
                                 <li><a href="{{ route('administration.team.create') }}">Create New Team</a></li>
                             @endif
+                            @if (auth()->user()->can('team.create'))
+                                <li><a href="{{ route('administration.team.import') }}">Import Teams</a></li>
+                            @endif
                         </ul>
                     </li>
                 @endif
