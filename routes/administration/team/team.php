@@ -19,6 +19,6 @@ Route::controller(TeamController::class)->prefix('team')->name('team.')->group(f
     Route::get('/destroy/{team}', 'destroy')->name('destroy')->middleware(['can:team.destroy']);
 
     Route::get('/export', 'export')->name('export')->middleware(['can:team.create']);
-    // Route::get('/import', 'import')->name('import')->middleware(['can:sport.create']);
-    // Route::post('/import/csv', 'importCsv')->name('import.csv')->middleware(['can:sport.create']);
+    Route::get('/import', 'import')->name('import')->middleware(['can:sport.create']);
+    Route::post('/import/csv', 'importCsv')->name('import.csv')->middleware(['can:sport.create']);
 });

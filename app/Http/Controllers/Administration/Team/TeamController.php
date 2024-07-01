@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Administration\Team;
 
-use App\Exports\Administration\TeamsExport;
 use Exception;
 use App\Models\Team\Team;
 use App\Models\Coach\Coach;
@@ -14,7 +13,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Exports\Administration\TeamsExport;
+use App\Imports\Administration\TeamsImport;
 use App\Mail\Administration\Team\TeamInfoToCoachMail;
+use Maatwebsite\Excel\Validators\ValidationException;
 use App\Mail\Administration\Team\TeamInfoToPlayerMail;
 use App\Http\Requests\Administration\Team\TeamStoreRequest;
 use App\Mail\Administration\Team\TeamPlayerInfoToCoachMail;
@@ -239,5 +243,45 @@ class TeamController extends Controller
         $date = date('d_m_Y');
         $fileName = 'teams_'.$date.'.xlsx';
         return Excel::download(new TeamsExport, $fileName);
+    }
+
+
+    /**
+     * Show the form for importing a new resource.
+     */
+    public function import()
+    {
+        return view('administration.team.import');
+    }
+
+
+    /**
+     * import csv file
+     */
+    public function importCsv(Request $request)
+    {
+        // Validate the uploaded file
+        $validator = Validator::make($request->all(), [
+            'csv_file' => 'required|file|mimes:csv,txt'
+        ],[
+            'csv_file.mimes' => 'The uploaded file is not in .csv format. Please upload .csv file.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            try {
+                Excel::import(new TeamsImport, $request->file('csv_file'));
+        
+                toast('Teams have been successfully imported.', 'success');
+                return redirect()->route('administration.team.index');
+            } catch (ValidationException $excel_validation_error) {
+                // Handle validation exceptions using the helper function
+                return show_csv_import_validation_errors($excel_validation_error);
+            } catch (\Exception $error) {
+                // Handle other exceptions
+                return redirect()->back()->withErrors($error->getMessage());
+            }
+        }
     }
 }
