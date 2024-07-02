@@ -13,7 +13,7 @@ class SportsExport extends BaseExportSettings implements FromCollection
     */
     public function collection()
     {
-        return Sport::select(['name', 'status', 'description'])->get();
+        return Sport::select(['name', 'status', 'description'])->orderBy('created_at', 'desc')->get();
     }
 
     /**

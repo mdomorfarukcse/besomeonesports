@@ -54,11 +54,11 @@
     <div class="col-lg-12">
         <div class="card m-b-30">
             <div class="card-header">
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <h5 class="card-title mb-0">All Team</h5>
-                    </div>
-                </div>
+                <h5 class="card-title float-left">{{ __('All Teams') }}</h5>
+                <a href="{{ route('administration.team.export') }}" class="btn btn-dark btn-sm float-right font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
+                    <i class="la la-download"></i>
+                    Download Teams
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -94,15 +94,19 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
-                                            {{ $team->league->name }}
-                                        </a>
-                                        <br>
-                                        <small class="text-muted">
-                                            <b>Total Teams:</b>
-                                            {{ count($team->league->teams) }}
-                                        </small>
-                                    </td>
+                                        @if ($team->league)
+                                            <a href="{{ route('administration.league.show', ['league' => $team->league]) }}" target="_blank" class="text-bold text-dark" data-toggle="tooltip" data-placement="top" title="{{ __('Click to see '.$team->league->name.'\'s Details') }}">
+                                                {{ $team->league->name }}
+                                            </a>
+                                            <br>
+                                            <small class="text-muted">
+                                                <b>Total Teams:</b>
+                                                {{ $team->league->teams->count() }}
+                                            </small>
+                                        @else
+                                            <span>No League</span>
+                                        @endif
+                                    </td>                                    
                                     <td class="text-center">
                                         <span class="text-success text-bold">
                                             {{ count($team->players) }}
