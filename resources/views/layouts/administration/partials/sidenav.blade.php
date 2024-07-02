@@ -33,8 +33,6 @@
                             @endif
                             @if (auth()->user()->can('sport.create'))
                                 <li><a href="{{ route('administration.sport.create') }}">Create New Sport</a></li>
-                            @endif
-                            @if (auth()->user()->can('sport.create'))
                                 <li><a href="{{ route('administration.sport.import') }}">Import Sports</a></li>
                             @endif
                         </ul>
@@ -54,6 +52,7 @@
                             @endif
                             @if (auth()->user()->can('season.create'))
                                 <li><a href="{{ route('administration.season.create') }}">Create New Season</a></li>
+                                <li><a href="{{ route('administration.season.import') }}">Import Seasons</a></li>
                             @endif
                         </ul>
                     </li>

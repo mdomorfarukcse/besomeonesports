@@ -55,6 +55,16 @@
         <div class="card m-b-30">
             <div class="card-header">
                 <h5 class="card-title">{{ __('All Seasons') }}</h5>
+                <div class="float-right ">
+                    <a href="{{ route('administration.season.import') }}" class="btn btn-theme btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Import Sports">
+                        <i class="la la-download"></i>
+                        Import Seasons
+                    </a>
+                    <a href="{{ route('administration.season.export') }}" class="btn btn-dark btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
+                        <i class="la la-upload"></i>
+                        Download Seasons
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
