@@ -56,7 +56,7 @@
             <div class="card-header">
                 <h5 class="card-title">{{ __('All Seasons') }}</h5>
                 <div class="float-right ">
-                    <a href="{{ route('administration.season.import') }}" class="btn btn-theme btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Import Sports">
+                    <a href="{{ route('administration.season.import') }}" class="btn btn-theme btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Import Seasons">
                         <i class="la la-download"></i>
                         Import Seasons
                     </a>

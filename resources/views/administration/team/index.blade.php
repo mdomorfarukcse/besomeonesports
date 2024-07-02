@@ -55,10 +55,16 @@
         <div class="card m-b-30">
             <div class="card-header">
                 <h5 class="card-title float-left">{{ __('All Teams') }}</h5>
-                <a href="{{ route('administration.team.export') }}" class="btn btn-dark btn-sm float-right font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
-                    <i class="la la-download"></i>
-                    Download Teams
-                </a>
+                <div class="float-right ">
+                    <a href="{{ route('administration.team.import') }}" class="btn btn-theme btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Import Teams">
+                        <i class="la la-download"></i>
+                        Import Teams
+                    </a>
+                    <a href="{{ route('administration.team.export') }}" class="btn btn-dark btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
+                        <i class="la la-upload"></i>
+                        Download Teams
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
