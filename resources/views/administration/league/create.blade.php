@@ -84,6 +84,16 @@
         background-repeat: no-repeat;
         background-position: center;
     }
+    /* Optional: Adjust the spacing between checkbox and text */
+    .list-group-item label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .list-group-item input {
+        margin-right: 10px;
+    }
     </style>
 @endsection
 
@@ -198,12 +208,76 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="divisions[]">Divisions <span class="required">*</span></label>
-                            <select class="select2-multi-select form-control @error('divisions[]') is-invalid @enderror" name="divisions[]" multiple="multiple" required>
-                                <option value="">Select Divisions</option>
-                                @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }} ({{ $division->gender }})</option>
-                                @endforeach
-                            </select>
+                            
+                            <div class="row">
+                                <!-- Boys Column -->
+                                <div class="col-md-6">
+                                    <p><b>Boys</b></p>
+                                   
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="3"> 1st Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="5"> 2nd Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="11"> 3rd Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="13"> 4th Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="15"> 5th Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="17"> 6th Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="19"> 7th Grade (Male)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="21"> 8th Grade (Male)
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Girls Column -->
+                                <div class="col-md-6">
+                                    <p><b>Girls</b></p>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="2"> Kindergarten (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="4"> 1st Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="12"> 3rd Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="14"> 4th Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="16"> 5th Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="18"> 6th Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="20"> 7th Grade (Female)
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" name="divisions[]" value="22"> 8th Grade (Female)
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             @error('divisions[]')
                                 <b class="text-danger"><i class="feather icon-info mr-1"></i>{{ $message }}</b>
                             @enderror
