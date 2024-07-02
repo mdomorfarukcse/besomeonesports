@@ -55,10 +55,16 @@
         <div class="card m-b-30">
             <div class="card-header">
                 <h5 class="card-title float-left">{{ __('All Sports') }}</h5>
-                <a href="{{ route('administration.sport.export') }}" class="btn btn-dark btn-sm float-right font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
-                    <i class="la la-download"></i>
-                    Download Sports
-                </a>
+                <div class="float-right ">
+                    <a href="{{ route('administration.sport.import') }}" class="btn btn-theme btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Import Sports">
+                        <i class="la la-download"></i>
+                        Import Sports
+                    </a>
+                    <a href="{{ route('administration.sport.export') }}" class="btn btn-dark btn-sm font-13" data-toggle="tooltip" data-placement="top" title="Download as CSV format">
+                        <i class="la la-upload"></i>
+                        Download Sports
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
