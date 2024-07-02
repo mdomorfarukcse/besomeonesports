@@ -2,7 +2,7 @@
 
 namespace App\Imports\Administration;
 
-use App\Models\Sport\Sport;
+use App\Models\Season\Season;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -15,10 +15,10 @@ class SeasonsImport implements ToCollection, WithHeadingRow, WithValidation
     {
         // dd($rows);
         foreach ($rows as $row) {
-            Sport::updateOrCreate(
+            Season::updateOrCreate(
                 ['name' => $row['name']],
                 [
-                    'description' => $row['description'],
+                    'year' => $row['year'],
                     'status' => 'Active',
                 ]
             );
@@ -31,11 +31,11 @@ class SeasonsImport implements ToCollection, WithHeadingRow, WithValidation
             '*.name' => [
                 'required',
                 'string',
-                Rule::unique('sports', 'name')->where(function ($query) {
+                Rule::unique('season', 'name')->where(function ($query) {
                     $query->whereNull('deleted_at');
                 }),
             ],
-            '*.description' => 'required|string',
+            '*.year' => 'required|string',
         ];
     }
 
