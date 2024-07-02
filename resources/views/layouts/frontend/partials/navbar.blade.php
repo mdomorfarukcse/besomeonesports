@@ -81,7 +81,7 @@
                         </li>
                         <li class="nav-item button">
                             {{-- <a class="nav-link btn join-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Register Now</a> --}}
-                            <a href="/register" class="nav-link btn join-btn">Register</a>
+                            <a href="/register" class="nav-link btn join-btn">Register Now</a>
                         </li>
                         
                     @endauth
